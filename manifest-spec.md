@@ -1,37 +1,140 @@
-# Package Manifests
+# The Ethereum Smart Contract Package Manifest Specification
 
+This document defines the specification for the manifest file used for
+packaging ethereum smart contracts.
 
-## Assumptions
+## Guiding Principles
 
 The package manifest specification makes the following assumptions.
 
-1. Package manifests are primarily for non-contract actors and will not be consumed by contracts themselves.
-2. Following from that, we will likely store the manifest on some distributed protocol like IPFS or Swarm (although this is jumping ahead in the discussion).
-3. Since our off chain actors are primarily software, the message format needs to be easily readable by most programming languages.
-4. That said, it's likely human actors will write the manifest, meaning it needs to be in a format humans can easily understand and comprehend.
-5. Contrasting to the above, we need a format that takes up the least amount of space possible so that it costs the least to make available
+1. Package manifests will be consumed by package managers.
+2. Package manifests will be stored off-chain.
 
 
-## Data to be stored within the manifest
+## Use Cases
 
+The following use cases were used to guide the specification.
+
+1. Code with zero deployed instances.
+    1. Reusable base contracts.
+2. Code with one or more addresses.
+    1. Libraries: Installation of the package involves having an importable interface for the library and linking against the proper address during deployment.
+    2. Contracts: Installation of the package involves having an importable interface and some manner of templating in the proper addresses into the local source code prior to compilation as well as other non-contract code that may interact with the installed contract.
+
+
+It is worth pointing out that the *Library* and *Contract* use cases are functionally the same.  Once [Solidity issue #242](https://github.com/ethereum/solidity/issues/242) has been addressed this distinction may no longer need to exist.
+
+## Manifest format
+
+The canoonical format for the package manifest is a JSON document containing a
+single JSON object.  
+
+
+## Manifest filename
+convention is to name this document `epm.json` which is short for *'ethereum
+package manifest'*.
+
+## Manifest Data Overview
+
+The following fields are defined as data that *may* be included in a package
+manifest.  Custom fields should be prefixed with `x-` to prevent collision with
+new fields introduced in future versions of the specification.
+
+- manifest version
 - package name
 - author
-- version (preferably [semver](http://semver.org/))
+- version
 - description
 - contract metadata
   - abi
   - unlinked binary
-  - deployed address if applicable
-  - name/address pairs for linked libraries
+  - deployed addresses
+  - linked libraries
   - compiler version for bytecode verification
-  - key/value pairs of the sha3 hash of events this contract can emit with the abi definition of that event (i.e., the contract metadata should contain information for all events that can be triggered by this contract, including those triggered by linked libraries)
 - external project URIs (homepage, repository uri, etc.)
 - dependencies (i.e., references to other packages and versions)
-- updated time (likely added by the packager)
+
+## Manifest Data Specification
+
+### Manifest Version: `manifest_version`
 
 
-## Manifest format
+The `manifest_version` field defines the version of the ethereum package manifest
+specification (this document) that this manifest conforms to. All manifests
+**must** include this field.
 
-Package Manifests can be stored in the following formats:
+* Key: `manifest_version`
+* Type: Integer
+* Allowed Values: `1`
+* Package Manager Guide: Package managers should validate this field is valid prior to publishing new manifests.
 
-* JSON document in a `package.json` file.
+
+### Package Name: `package_name`
+
+The `package_name` field defines a human readable name for this package.  All
+manifests **should** include this field.
+
+* TODO: what should happen if this is missing (should it be required?)
+* Key: `package_name`
+* Type: String
+* Package Manager Guide: Package managers should use this field when registering new packages (TODO: define this better)
+
+### Author: `author`
+
+The `author` field defines a human readable name for the author of this package.  All
+manifests **should** include this field. 
+
+
+* Key: `author`
+* Type: String
+
+### Version: `version`
+
+The `version` field declares the version number of this release.  This value
+**should** be conform to the [semver](http://semver.org/) version numbering
+specification.  All manifests must **include** this field.
+
+* Key: `version`
+* Type: String
+* Package Manager Guide: Package Managers should validate this field conforms to the *semver* format and display a warning if it does not.
+
+
+### Description: `description`
+
+The `description` field *should* be used to provide additional detail that may be relevant for the package.
+
+* TODO: should this include a suggestion to use a specific markup format like markdown?
+* Key: `description`
+* Type: String
+
+
+### Links: `links`
+
+The `links` field *should* be used to provide URIs to relevant resources
+associated with this package.  When possible, authors *should* use the
+following keys for the following common resources.
+
+* `website`: Primary website for the package.
+* `documentation`: Package Documentation
+* `repository`: Location of the project source code.
+* TODO: what other common fields?
+
+* Key: `links`
+* Type: Hash(String: String)
+
+### Contract Meta: `??-TODO-??`
+
+TODO: define this
+
+- contract metadata
+  - abi
+  - unlinked binary
+  - deployed addresses
+  - linked libraries
+  - compiler version for bytecode verification
+
+### Dependencies: `dependencies`
+
+TODO: define this.
+
+- dependencies (i.e., references to other packages and versions)
