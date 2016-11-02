@@ -1,40 +1,33 @@
-# The Ethereum Smart Contract Package Manifest Specification
+# Package Manifest Specification
 
-This document defines the specification for the manifest file used for
-packaging ethereum smart contracts.
+This document defines the specification for the *Package Manifest*.  The
+package manifest contains meta data about the package as well as
+dependencies needed for installation of the package.
+
 
 ## Guiding Principles
 
-The package manifest specification makes the following assumptions.
+The package manifest specification makes the following assumptions about the
+document lifecycle.
 
+1. Package Manifest documents will be created and modified manually by people.
+2. Package Managers will often be used to assit in the creation and modification of Package Manifest documents.
 1. Package manifests will be consumed by package managers.
-2. Package manifests will be stored off-chain.
+2. Package manifests will normally be stored alongised the package source code.
 
 
-## Use Cases
-
-The following use cases were used to guide the specification.
-
-1. Code with zero deployed instances.
-    1. Reusable base contracts.
-2. Code with one or more addresses.
-    1. Libraries: Installation of the package involves having an importable interface for the library and linking against the proper address during deployment.
-    2. Contracts: Installation of the package involves having an importable interface and some manner of templating in the proper addresses into the local source code prior to compilation as well as other non-contract code that may interact with the installed contract.
-
-
-It is worth pointing out that the *Library* and *Contract* use cases are functionally the same.  Once [Solidity issue #242](https://github.com/ethereum/solidity/issues/242) has been addressed this distinction may no longer need to exist.
-
-## Manifest format
+## Format
 
 The canoonical format for the package manifest is a JSON document containing a
 single JSON object.  
 
 
-## Manifest filename
-convention is to name this document `epm.json` which is short for *'ethereum
+## Filename
+
+Convention is to name this document `epm.json` which is short for *'ethereum
 package manifest'*.
 
-## Manifest Data Overview
+## Document Overview
 
 The following fields are defined as data that *may* be included in a package
 manifest.  Custom fields should be prefixed with `x-` to prevent collision with
@@ -46,18 +39,11 @@ new fields introduced in future versions of the specification.
 - version
 - description
 - keywords
-- source
-- contract metadata
-  - abi
-  - natspec
-  - unlinked binary
-  - deployed addresses
-  - linked libraries
-  - compiler version and flags for bytecode verification
+- contracts
 - external project URIs (homepage, repository uri, etc.)
-- dependencies (i.e., references to other packages and versions)
+- dependencies
 
-## Manifest Data Specification
+## Document Specification
 
 ### Manifest Version: `manifest_version`
 
@@ -80,7 +66,6 @@ manifests **should** include this field.
 * TODO: what should happen if this is missing (should it be required?)
 * Key: `package_name`
 * Type: String
-* Package Manager Guide: Package managers should use this field when registering new packages (TODO: define this better)
 
 ### Authors: `authors`
 
@@ -93,13 +78,12 @@ this package.  All manifests **should** include this field.
 
 ### Version: `version`
 
-The `version` field declares the version number of this release.  This value
+The `version` field declares the current version number of this package.  This value
 **should** be conform to the [semver](http://semver.org/) version numbering
 specification.  All manifests must **include** this field.
 
 * Key: `version`
 * Type: String
-* Package Manager Guide: Package Managers should validate this field conforms to the *semver* format and display a warning if it does not.
 
 
 ### Description: `description`
@@ -136,25 +120,21 @@ following keys for the following common resources.
 * Type: Hash(String: String)
 
 
-### Source Code: `source`
-
-TODO: define this
-
-
 ### Contracts: `contracts`
 
-TODO: define this.  Probably contains the following.
+The `contracts` field defines a list of contract names that should be included
+in the release manifest when generating a release.
 
-- contract metadata
-  - abi
-  - natspec
-  - unlinked binary
-  - deployed addresses
-  - linked libraries
-  - compiler version for bytecode verification
+
+TODO: flesh this out
+* Key: `contracts`
+* Type: List of Strings
+
 
 ### Dependencies: `dependencies`
 
-TODO: define this.
+the `dependencies` field defines a list of project dependencies.
 
-- dependencies (i.e., references to other packages and versions)
+TODO: flesh this out. Keys declare dependencies.  Values are semver.  What format do we declare dependencies in?
+* Key: `dependencies`
+* Type: Hash(String: String)
