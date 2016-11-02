@@ -6,7 +6,7 @@ use cases.
 
 ## Base Contract
 
-These packages do provide any deployed instances of their contracts as they are
+These packages do not provide any deployed instances of their contracts as they are
 intended to be used as base contracts or re-usable generic contracts for common
 use cases.
 

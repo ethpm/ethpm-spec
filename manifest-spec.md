@@ -42,15 +42,18 @@ new fields introduced in future versions of the specification.
 
 - manifest version
 - package name
-- author
+- authors
 - version
 - description
+- keywords
+- source
 - contract metadata
   - abi
+  - natspec
   - unlinked binary
   - deployed addresses
   - linked libraries
-  - compiler version for bytecode verification
+  - compiler version and flags for bytecode verification
 - external project URIs (homepage, repository uri, etc.)
 - dependencies (i.e., references to other packages and versions)
 
@@ -79,14 +82,14 @@ manifests **should** include this field.
 * Type: String
 * Package Manager Guide: Package managers should use this field when registering new packages (TODO: define this better)
 
-### Author: `author`
+### Authors: `authors`
 
-The `author` field defines a human readable name for the author of this package.  All
-manifests **should** include this field. 
+The `authors` field defines a list of human readable names for the authors of
+this package.  All manifests **should** include this field. 
 
 
-* Key: `author`
-* Type: String
+* Key: `authors`
+* Type: List of Strings
 
 ### Version: `version`
 
@@ -108,6 +111,14 @@ The `description` field *should* be used to provide additional detail that may b
 * Type: String
 
 
+### Description: `keywords`
+
+The `keywords` field *should* be used to provide relevant keywords related to this package.
+
+* Key: `keywords`
+* Type: List of Strings
+
+
 ### Links: `links`
 
 The `links` field *should* be used to provide URIs to relevant resources
@@ -122,12 +133,19 @@ following keys for the following common resources.
 * Key: `links`
 * Type: Hash(String: String)
 
-### Contract Meta: `??-TODO-??`
+
+### Source Code: `source`
 
 TODO: define this
 
+
+### Contracts: `contracts`
+
+TODO: define this.  Probably contains the following.
+
 - contract metadata
   - abi
+  - natspec
   - unlinked binary
   - deployed addresses
   - linked libraries
