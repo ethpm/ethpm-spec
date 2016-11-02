@@ -121,6 +121,8 @@ The `keywords` field *should* be used to provide relevant keywords related to th
 
 ### Links: `links`
 
+TODO: This could potentially not be necessary, or should be removed.  Needs discussion.
+
 The `links` field *should* be used to provide URIs to relevant resources
 associated with this package.  When possible, authors *should* use the
 following keys for the following common resources.
