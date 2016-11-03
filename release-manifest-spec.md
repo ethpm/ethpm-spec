@@ -98,6 +98,7 @@ field is a hash whos keys are the contract names, and values are one of:
 
 A *Contract Instance Object* is a hash with the following key/values.
 
+* `contract_name`:
 * `address`:
     * Type: 20byte hex encoded ethereum address of the deployed contract.
 * `dependencies`:
@@ -119,3 +120,28 @@ TODO: define this.
 
 - dependencies (i.e., references to other packages and versions)
 
+
+# Examples
+
+```javascript
+{
+    "manifest_version": 1,
+    "version": "1.0.0",
+    "sources": [
+        "ipfs://Qm....AAA",
+        "ipfs://Qm....BBB",
+    ],
+    "chain": {
+        "0x00": "0xd4e56740f876aef8c010b86a40d5f56745a118d0906a34e69aec8c0db1cb8fa3"
+        "0x270e22": "0xbebcefa8d868cdcad0d500f2550047f4abd9d4111e621457f613403202798c85",
+    },
+    "contracts": [
+        {
+            "name": "Wallet",
+            "address": "0xd3cda913deb6f67967b99d67acdfa1712c293601",
+        },
+    ],
+    "dependencies": {
+        "
+    },
+}
