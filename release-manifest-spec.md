@@ -100,7 +100,8 @@ A *Contract Instance Object* is a hash with the following key/values.
 
 * `address`:
     * Type: 20byte hex encoded ethereum address of the deployed contract.
-* `link_dependencies`:
+* `dependencies`:
+    * Type: Hash(Name: Address) or (Name: URI)
     * TODO: define this
 * TODO: what else
 
