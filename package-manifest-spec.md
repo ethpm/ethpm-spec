@@ -138,3 +138,9 @@ the `dependencies` field defines a list of project dependencies.
 TODO: flesh this out. Keys declare dependencies.  Values are semver.  What format do we declare dependencies in?
 * Key: `dependencies`
 * Type: Hash(String: String)
+
+
+# Examples
+
+```javascript
+

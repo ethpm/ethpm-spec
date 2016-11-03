@@ -1,0 +1,14 @@
+{
+    "manifest_version": 1,
+    "package_name": "owned",
+    "version": "1.0.0",
+    "authors": [
+        "Piper Merriam <pipermerriam@gmail.com"
+    ],
+    "description": "Base contracts for things that have an 'owner'",
+    "contracts": [
+        "owned",
+        "mortal",
+        "transferable"
+    ]
+}
