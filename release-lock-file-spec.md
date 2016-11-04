@@ -62,8 +62,8 @@ specification (this document) that this manifest conforms to. All release lock f
 ### Version: `version`
 
 The `version` field declares the version number of this release.  This value
-**should** be conform to the [semver](http://semver.org/) version numbering
-specification.  All manifests must **include** this field.
+**must** be included in all release lock files.  This value **should** be conform
+to the [semver](http://semver.org/) version numbering specification.
 
 * Key: `version`
 * Type: String
@@ -72,8 +72,9 @@ specification.  All manifests must **include** this field.
 
 ### Sources: `sources`
 
-The `sources` field declares the full source tree for the source files
-contained in this release.  Sources are declared in a key/value mapping.  
+The `sources` field declares a source tree that *should* comprise the full
+source tree necessary to recompile the contracts contained in this release.
+Sources are declared in a key/value mapping.  
 
 * All keys **must** conform to *one of* the following formats.
     * Begins with a `./` to denote that it is a filesystem path.
@@ -97,7 +98,9 @@ The `chain` field declares the blockchain that the contract addresses apply to.
 The chain is defined by a hash with block numbers as keys and block hashes as
 values.  Both block numbers and hashes *must* be hexidecimal encoded.
 Convention is to define a chain using two blocks, the genesis block under the
-key `0x00` and the latest observable block at the time of release.
+key `0x00` and the latest observable block at the time of release.  *If* this
+release lock file includes any addressed contracts this field **must** be
+present.
 
 * Key: `chain`
 * Type: Hash(BlockNumber: BlockHash)
@@ -119,24 +122,31 @@ The `contracts` field declares information about the deployed contracts.
 A *Contract Instance Object* is a hash with the following key/values.
 
 * `contract_name`:
+    * Required: Yes
     * Type: String
     * Format: Valid contract name matching regular expression `[_a-zA-Z][_a-zA-Z0-9]*]`
 * `address`:
+    * Required: No
     * Type: String
     * Format: Hex encoded ethereum address of the deployed contract.
 * `bytecode`:
+    * Required: No
     * Type: String
-    * Format: Hex encoded bytecode for the compiled contract.
+    * Format: Hex encoded unlinked bytecode for the compiled contract.
 * `runtime_bytecode`:
+    * Required: No
     * Type: String
-    * Format: Hex encoded runtime portion of the bytecode for the compiled contract.
+    * Format: Hex encoded unlinked runtime portion of the bytecode for the compiled contract.
 * `abi`:
+    * Required: No
     * Type: List
     * Format: see https://github.com/ethereum/wiki/wiki/Ethereum-Contract-ABI#json
 * `natspec`:
+    * Required: No
     * Type: Hash
     * Format: Combined [UserDoc](https://github.com/ethereum/wiki/wiki/Ethereum-Natural-Specification-Format#user-documentation) and [DevDoc](https://github.com/ethereum/wiki/wiki/Ethereum-Natural-Specification-Format#developer-documentation)
 * `compiler`:
+    * Required: Required if either `bytecode` or `runtime_bytecode` is present.
     * Type: Hash
     * Keys:
         * `version`:
@@ -144,7 +154,8 @@ A *Contract Instance Object* is a hash with the following key/values.
             Format: TODO
         * `settings`: TODO
 * `link_dependencies`:
-    * Hash:
+    * Reqired: Required to have an entry for each link reference found in either the `bytecode` or `runtime_bytecode` fields.
+    * Type: Hash
     * Format:
         * All keys **must** be strings which are formatted as valid link targets.
         * All values **must** conform to *one of* the following formats:
