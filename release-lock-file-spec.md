@@ -1,9 +1,9 @@
 # Release Lock File Specification
 
 This document defines the specification for the **Release Lock File**.  The
-release lock file provides metadata about the package and includes structure to
-provide sufficient information about the packaged contracts and their
-dependencies to do full bytecode verification.
+release lock file provides metadata about the package and in most cases should
+provide sufficient information about the packaged contracts and its
+dependencies to do bytecode verification of its contracts.
 
 
 ## Guiding Principles
@@ -14,6 +14,7 @@ document lifecycle.
 1. Release lock files are intended to be generated programatically by package management software as part of the release process.
 2. Release lock files will be consumed by package managers during tasks like installing package dependencies or building and deploying new releases.
 3. Release lock files will typically **not** be stored alongside the source, but rather by package registries *or* referenced by package registries and stored in something akin to IPFS.
+
 
 ## Format
 
@@ -27,32 +28,23 @@ Convention is to name this document `<version>.lock` where the `<version>`
 component is the full version string for the release.
 
 Package managers which are installing dependencies for development versions
-should keep their own version of this document under the name of the package
-manager such as `truffle.lock` or `dapple.lock`.  This file would typically be
-excluded from version control.
+should keep their own version of this document under the lowercased name of the
+package manager such as `truffle.lock` or `dapple.lock`.  This file would
+typically be excluded from version control.
 
-
-## Document Overview
-
-The following fields are defined as data that *may* be included in a package
-manifest.  Custom fields should be prefixed with `x-` to prevent collision with
-new fields introduced in future versions of the specification.
-
-- manifest version
-- package manifest
-- version
-- sources
-- chain
-- contracts
 
 ## Document Specification
+
+The following fields are defined for the release lock file.  Custom fields may
+be included.  Custom fields **should** be prefixed with `x-` to prevent name
+collisions with future versions of the specification.
+
 
 ### Manifest Version: `manifest_version`
 
 
-The `manifest_version` field defines the version of the ethereum release lock file
-specification (this document) that this manifest conforms to. All release lock files
-**must** include this field.
+The `manifest_version` field defines the specification version that this
+document conforms to.  All release lock files **must** include this field.
 
 * Key: `manifest_version`
 * Type: Integer
@@ -72,7 +64,7 @@ to the [semver](http://semver.org/) version numbering specification.
 
 ### Sources: `sources`
 
-The `sources` field declares a source tree that *should* comprise the full
+The `sources` field defines a source tree that **should** comprise the full
 source tree necessary to recompile the contracts contained in this release.
 Sources are declared in a key/value mapping.  
 
@@ -95,12 +87,12 @@ Sources are declared in a key/value mapping.
 ### Chain: `chain`
 
 The `chain` field declares the blockchain that the contract addresses apply to.
-The chain is defined by a hash with block numbers as keys and block hashes as
-values.  Both block numbers and hashes *must* be hexidecimal encoded.
-Convention is to define a chain using two blocks, the genesis block under the
-key `0x00` and the latest observable block at the time of release.  *If* this
-release lock file includes any addressed contracts this field **must** be
-present.
+Chains are defined by as a key/value mapping with block numbers as keys and
+block hashes as values.  Both block numbers and hashes **must** be hexidecimal
+encoded.  Convention is to define a chain using two blocks, the genesis block
+under the key `0x00` and the latest observable block at the time of release.
+*If* this release lock file includes any addressed contracts this field
+**must** be present.
 
 * Key: `chain`
 * Type: Hash(BlockNumber: BlockHash)
@@ -116,6 +108,7 @@ The `contracts` field declares information about the deployed contracts.
 
 * Key: `contracts`
 * Type: *Contract Instance Object* or List of *Contract Instance Object* or Hash of (String: *Contract Instance Object*)
+
 
 #### The *Contract Instance Object*
 

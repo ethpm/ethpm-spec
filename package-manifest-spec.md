@@ -1,8 +1,8 @@
 # Package Manifest Specification
 
-This document defines the specification for the *Package Manifest*.  The
-package manifest contains meta data about the package as well as
-dependencies needed for installation of the package.
+This document defines the specification for the **Package Manifest**.  The
+package manifest contains meta data about the package as well as dependencies
+needed for installation of the package.
 
 
 ## Guiding Principles
@@ -10,10 +10,12 @@ dependencies needed for installation of the package.
 The package manifest specification makes the following assumptions about the
 document lifecycle.
 
-1. Package Manifest documents will be created and modified manually by people.
-2. Package Managers will often be used to assit in the creation and modification of Package Manifest documents.
-1. Package manifests will be consumed by package managers.
-2. Package manifests will normally be stored alongised the package source code.
+1. Package manifests are long lived documents that will be modified regularly
+2. Package manifests will primarily be consumed by package managers.
+3. Package manifests will primarily be used by package indexes to popululate basic package metadata.
+2. Package Managers will typically be used to assist in the creation and modification of Package Manifest documents.
+4. Package Manifest documents will occasionally be created and modified manually by people.
+4. Package manifests will typically be stored alongised the package source code.
 
 
 ## Format
@@ -27,23 +29,13 @@ single JSON object.
 Convention is to name this document `epm.json` which is short for *'ethereum
 package manifest'*.
 
-## Document Overview
-
-The following fields are defined as data that *may* be included in a package
-manifest.  Custom fields should be prefixed with `x-` to prevent collision with
-new fields introduced in future versions of the specification.
-
-- manifest version
-- package name
-- authors
-- version
-- description
-- keywords
-- contracts
-- external project URIs (homepage, repository uri, etc.)
-- dependencies
 
 ## Document Specification
+
+The following fields are defined for the package manifest.  Custom fields may
+be included.  Custom fields **should** be prefixed with `x-` to prevent name
+collisions with future versions of the specification.
+
 
 ### Manifest Version: `manifest_version`
 
@@ -157,3 +149,8 @@ this project depends on.
 
 * Key: `dependencies`
 * Type: Hash(String: String)
+
+
+## Examples
+
+TODO: populus these when the spec is no longer changing a bunch.
