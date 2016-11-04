@@ -153,4 +153,4 @@ this project depends on.
 
 ## Examples
 
-TODO: populus these when the spec is no longer changing a bunch.
+TODO: populate these when the spec is no longer changing a bunch.
