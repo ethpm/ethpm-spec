@@ -51,6 +51,18 @@ document conforms to.  All release lock files **must** include this field.
 * Allowed Values: `1`
 
 
+### Package Manifest: `package_manifest`
+
+
+The `package_manifest` field references the package's Package Manifest document
+as it existed at the time this release was created.  All release lock files
+**must** include this field.  The manifest may be referenced using an IPFS URI
+or by directly embedding the document under this key.
+
+* Key: `package_manifest`
+* Type: IPFS URI or Embedded Document
+
+
 ### Version: `version`
 
 The `version` field declares the version number of this release.  This value
@@ -104,15 +116,17 @@ The `contracts` field declares information about the deployed contracts.
 
 * a single *Contract Instance Object*
 * a List of *Contract Instance Objects*
-* a Hash of (String: *Contract Instance Object*) where keys are valid contract names matching the regex `[_a-zA-Z][_a-zA-Z0-9]*`.
 
 * Key: `contracts`
-* Type: *Contract Instance Object* or List of *Contract Instance Object* or Hash of (String: *Contract Instance Object*)
+* Type:  *any of:*
+    - *Contract Instance Object* 
+    - List of *Contract Instance Object* 
+    - Hash of (String: *Contract Instance Object*) where keys are valid contract names matching the regex `[_a-zA-Z][_a-zA-Z0-9]*`.
 
 
 #### The *Contract Instance Object*
 
-A *Contract Instance Object* is a hash with the following key/values.
+A *Contract Instance Object* is an object with the following key/values.
 
 * `contract_name`:
     * Required: Yes
