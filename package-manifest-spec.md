@@ -76,6 +76,7 @@ this package.  All manifests **should** include this field.
 * Key: `authors`
 * Type: List of Strings
 
+
 ### Version: `version`
 
 The `version` field declares the current version number of this package.  This value
@@ -120,27 +121,39 @@ following keys for the following common resources.
 * Type: Hash(String: String)
 
 
+### Source Files: `sources`
+
+The `sources` field defines a set of source files that comprise the source code
+for the project.  This list *should* be included in all manifests.  Package
+managers *should* use this field to inform population of the `sources` field in
+the *release lock file*.
+
+* Key: `sources`
+* Type: List of Strings
+* Format: Strings *should* be formatted as valid filesystem paths or glob patterns.
+
+
 ### Contracts: `contracts`
 
 The `contracts` field defines a list of contract names that should be included
 in the release manifest when generating a release.
 
 
-TODO: flesh this out
 * Key: `contracts`
 * Type: List of Strings
 
 
 ### Dependencies: `dependencies`
 
-the `dependencies` field defines a list of project dependencies.
+the `dependencies` field defines a key/value mapping of ethereum packages that
+this project depends on.
 
-TODO: flesh this out. Keys declare dependencies.  Values are semver.  What format do we declare dependencies in?
+* All keys **must** be valid package names matching the regular expression `[a-zA-Z][-a-zA-Z0-9_]*`
+* All values **must** conform to *one of* the following formats:
+    * IPFS URI:
+        * The resolved document **must** be a valid *release lock file*.
+    * Version String.
+
+
 * Key: `dependencies`
 * Type: Hash(String: String)
-
-
-# Examples
-
-```javascript
-
