@@ -132,10 +132,10 @@ A *Contract Instance Object* is a hash with the following key/values.
     * Format: Hex encoded runtime portion of the bytecode for the compiled contract.
 * `abi`:
     * Type: List
-    * Format: TODO: define ABI.
+    * Format: see https://github.com/ethereum/wiki/wiki/Ethereum-Contract-ABI#json
 * `natspec`:
     * Type: Hash
-    * Format: TODO: define natspec.
+    * Format: Combined [UserDoc](https://github.com/ethereum/wiki/wiki/Ethereum-Natural-Specification-Format#user-documentation) and [DevDoc](https://github.com/ethereum/wiki/wiki/Ethereum-Natural-Specification-Format#developer-documentation)
 * `compiler`:
     * Type: Hash
     * Keys:
@@ -144,8 +144,14 @@ A *Contract Instance Object* is a hash with the following key/values.
             Format: TODO
         * `settings`: TODO
 * `link_dependencies`:
-    * Type: *Link Definition*
-    * TODO: define this
+    * Hash:
+    * Format:
+        * All keys **must** be strings which are formatted as valid link targets.
+        * All values **must** conform to *one of* the following formats:
+            * A hex encoded ethereum address.
+            * A [json pointer](https://tools.ietf.org/html/rfc6901) to another *Contract Instance Object* in the release lock file.
+            * An IPFS URI with a JSON point in the fragment portion of the URI.  The IPFS hash must resolves to a valid release lock file.  The json pointer **must** resolves to a *Contract Instance Object* within the release lock file.
+
 
 ### Build Dependencies: `build_dependencies`
 
