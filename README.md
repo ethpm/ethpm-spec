@@ -4,6 +4,11 @@
 
 Ethereum Packaging Specification
 
+## Resources
+
+* https://pad.riseup.net/p/7x3G896a3NLA
+* https://medium.com/@sdboyer/so-you-want-to-write-a-package-manager-4ae9c17d9527
+
 
 ## Use Cases
 
