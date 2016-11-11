@@ -98,16 +98,16 @@ Sources are declared in a key/value mapping.
 
 ### Chain: `chain`
 
-The `chain` field declares the blockchain that the contract addresses apply to.
-Chains are defined by as a key/value mapping with block numbers as keys and
-block hashes as values.  Both block numbers and hashes **must** be hexidecimal
-encoded.  Convention is to define a chain using two blocks, the genesis block
-under the key `0x00` and the latest observable block at the time of release.
-*If* this release lock file includes any addressed contracts this field
-**must** be present.
+The `chain` field defines the blockchain that should be used for any addresses
+provided with this package.  A blockchain is defined using
+[BIP-122](https://github.com/bitcoin/bips/blob/master/bip-0122.mediawiki).  A
+matching blockchain is one on which all resources defined by the list of BIP122
+URIs can be found. *If* this release lock file includes any addressed contracts
+this field **must** be present.
 
 * Key: `chain`
-* Type: Hash(BlockNumber: BlockHash)
+* Type: List os Strings
+* Format: All strings **must** be valid BIP122 URIS
 
 
 ### Contracts: `contracts`
