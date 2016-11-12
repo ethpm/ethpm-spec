@@ -18,7 +18,7 @@ document lifecycle.
 
 ## Format
 
-The canoonical format for the package manifest is a JSON document containing a
+The canonical format for the package manifest is a JSON document containing a
 single JSON object.  
 
 
@@ -72,6 +72,17 @@ to the [semver](http://semver.org/) version numbering specification.
 * Key: `version`
 * Type: String
 * Format: [semver](http://semver.org)
+
+
+### License: `license`
+
+The `license` field declares the license under which this package is released.  This value
+**should** be conform to the
+[SPDX](https://en.wikipedia.org/wiki/Software_Package_Data_Exchange) format.
+All release lock files **should** include this field.
+
+* Key: `license`
+* Type: String
 
 
 ### Sources: `sources`
@@ -136,6 +147,14 @@ A *Contract Instance Object* is an object with the following key/values.
     * Required: No
     * Type: String
     * Format: Hex encoded ethereum address of the deployed contract.
+* `deploy_transaction`:
+    * Required: No
+    * Type: String
+    * Format: [BIP122](https://github.com/bitcoin/bips/blob/master/bip-0122.mediawiki) URI which defines the transaction in which this contract was created.
+* `deploy_block`:
+    * Required: No
+    * Type: String
+    * Format: [BIP122](https://github.com/bitcoin/bips/blob/master/bip-0122.mediawiki) URI which defines the block in which this contract was created.
 * `bytecode`:
     * Required: No
     * Type: String

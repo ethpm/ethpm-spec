@@ -73,9 +73,20 @@ this package.  All manifests **should** include this field.
 
 The `version` field declares the current version number of this package.  This value
 **should** be conform to the [semver](http://semver.org/) version numbering
-specification.  All manifests must **include** this field.
+specification.  All manifests **must** this field.
 
 * Key: `version`
+* Type: String
+
+
+### License: `license`
+
+The `license` field declares the license under which this package is released.  This value
+**should** be conform to the
+[SPDX](https://en.wikipedia.org/wiki/Software_Package_Data_Exchange) format.
+All manifests **should** include this field.
+
+* Key: `license`
 * Type: String
 
 
