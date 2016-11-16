@@ -18,9 +18,10 @@ var EPM = {
   },
 
   // Publish a package given a config object that represents a specific manifest file, host and registry.
+  // Contract metadata is also required for all contracts listed in the `contracts` portion of the manifest.
   // Returns a Promise.
-  publishPackage: function(config) {
-    var publisher = new Publisher(config.registry, config.host);
+  publishPackage: function(config, contract_metadata) {
+    var publisher = new Publisher(config.registry, config.host, contract_metadata);
     return publisher.publish(config);
   }
 };
