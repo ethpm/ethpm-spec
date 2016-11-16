@@ -99,7 +99,7 @@ The `description` field *should* be used to provide additional detail that may b
 * Type: String
 
 
-### Description: `keywords`
+### Keywords: `keywords`
 
 The `keywords` field *should* be used to provide relevant keywords related to this package.
 
