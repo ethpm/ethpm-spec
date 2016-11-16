@@ -45,6 +45,7 @@ describe("Publishing", function() {
       var lockfile = JSON.parse(data);
 
       assert.equal(lockfile.version, "1.0.0");
+      assert.equal(lockfile.manifest_version, 1);
 
       return host.get(lockfile.package_manifest);
     }).then(function(data) {
