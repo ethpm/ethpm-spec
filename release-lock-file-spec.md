@@ -145,8 +145,8 @@ A *Contract Instance Object* is an object with the following key/values.
     * Format: Valid contract name matching regular expression `[_a-zA-Z][_a-zA-Z0-9]*]`
 * `address`:
     * Required: No
-    * Type: String
-    * Format: Hex encoded ethereum address of the deployed contract.
+    * Type: []String (Array of Strings)
+    * Format: Hex encoded ethereum address(es) of the deployed contract. If null, assume not deployed. 
 * `deploy_transaction`:
     * Required: No
     * Type: String
