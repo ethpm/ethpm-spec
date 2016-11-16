@@ -133,7 +133,7 @@ the *release lock file*.
 
 * Key: `sources`
 * Type: List of Strings
-* Format: Strings *should* be formatted as valid filesystem paths or glob patterns.
+* Format: Strings *should* be formatted as valid filesystem paths or glob patterns, and be relative to the base directory of the package (i.e., location of epm.json)
 
 
 ### Contracts: `contracts`
