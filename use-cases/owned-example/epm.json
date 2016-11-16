@@ -6,6 +6,9 @@
         "Piper Merriam <pipermerriam@gmail.com"
     ],
     "description": "Base contracts for things that have an 'owner'",
+    "sources": [
+      "./contracts"
+    ],
     "contracts": [
         "owned",
         "mortal",

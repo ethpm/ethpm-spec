@@ -26,9 +26,11 @@
     "mocha": "^3.1.2"
   },
   "dependencies": {
+    "async": "^2.1.2",
     "ipfs": "^0.18.0",
     "ipfs-api": "^11.1.0",
     "lodash": "^4.17.1",
+    "node-dir": "^0.1.16",
     "semver": "^5.3.0",
     "yargs": "^6.4.0"
   }
