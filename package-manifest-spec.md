@@ -127,13 +127,13 @@ following keys for the following common resources.
 ### Source Files: `sources`
 
 The `sources` field defines a set of source files that comprise the source code
-for the project.  This list *should* be included in all manifests.  Package
-managers *should* use this field to inform population of the `sources` field in
+for the project.  This list **should** be included in all manifests.  Package
+managers **should** use this field to inform population of the `sources` field in
 the *release lock file*.
 
 * Key: `sources`
 * Type: List of Strings
-* Format: Strings *should* be formatted as valid filesystem paths or glob patterns.
+* Format: Strings **must** be formatted as valid filesystem paths.  All paths **must** be relative paths beginning with `./`.  All paths **must** resolve to to a path located within the base directory of the package (i.e., the location of `epm.json`)
 
 
 ### Contracts: `contracts`
