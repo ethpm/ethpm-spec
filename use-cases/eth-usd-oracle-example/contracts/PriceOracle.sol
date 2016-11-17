@@ -1,22 +1,15 @@
 pragma solidity ^0.4.0;
 
-contract PriceOracle {
-    address owner;
-    uint priceInCents;
+import "owned/owned";
 
-    function PriceOracle() {
-        owner = msg.sender;
-    }
+contract PriceOracle is owned {
+    uint priceInCents;
 
     function getPrice() constant returns (uint) {
         return priceInCents;
     }
 
-    function setPrice(uint _priceInCents) public {
-        if (msg.sender != owner) {
-            throw;
-        } else {
-            priceInCents = _priceInCents;
-        }
+    function setPrice(uint _priceInCents) onlyowner public {
+        priceInCents = _priceInCents;
     }
 }

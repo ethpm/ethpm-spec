@@ -1,0 +1,19 @@
+{
+    "manifest_version": 1,
+    "package_name": "eth-usd-oracle",
+    "version": "1.0.0",
+    "authors": [
+        "Piper Merriam <pipermerriam@gmail.com",
+        "Tim Coulter <tim@timothyjcoulter.com>"
+    ],
+    "description": "Oracle of current ETH prices in USD.",
+    "sources": [
+      "./contracts"
+    ],
+    "contracts": [
+        "PriceOracle"
+    ],
+    "dependencies": {
+      "owned": "1.0.0"
+    }
+}
