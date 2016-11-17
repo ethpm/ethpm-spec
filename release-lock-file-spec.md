@@ -40,13 +40,13 @@ be included.  Custom fields **should** be prefixed with `x-` to prevent name
 collisions with future versions of the specification.
 
 
-### Manifest Version: `manifest_version`
+### Lock File Version: `lock_file_version`
 
 
-The `manifest_version` field defines the specification version that this
+The `lock_file_version` field defines the specification version that this
 document conforms to.  All release lock files **must** include this field.
 
-* Key: `manifest_version`
+* Key: `lock_file_version`
 * Type: Integer
 * Allowed Values: `1`
 
