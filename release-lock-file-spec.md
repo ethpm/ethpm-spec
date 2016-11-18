@@ -24,13 +24,13 @@ single JSON object.
 
 ## Filename
 
-Convention is to name this document `<version>.lock` where the `<version>`
+Convention is to name this document `<version>.json` where the `<version>`
 component is the full version string for the release.
 
 Package managers which are installing dependencies for development versions
-should keep their own version of this document under the lowercased name of the
-package manager such as `truffle.lock` or `dapple.lock`.  This file would
-typically be excluded from version control.
+should keep their own version of this document. Convention is to use the
+lowercased name of the package manager such as `truffle.lock` or `dapple.lock`.
+This file would typically be excluded from version control.
 
 
 ## Document Specification
