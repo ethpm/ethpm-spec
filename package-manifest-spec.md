@@ -121,7 +121,7 @@ following keys for the following common resources.
 * TODO: what other common fields?
 
 * Key: `links`
-* Type: Hash(String: String)
+* Type: Object (String: String)
 
 
 ### Source Files: `sources`
@@ -159,7 +159,7 @@ this project depends on.
 
 
 * Key: `dependencies`
-* Type: Hash(String: String)
+* Type: Object (String: String)
 
 
 ## Examples
