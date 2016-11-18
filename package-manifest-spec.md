@@ -136,16 +136,6 @@ the *release lock file*.
 * Format: Strings **must** be formatted as valid filesystem paths.  All paths **must** be relative paths beginning with `./`.  All paths **must** resolve to to a path located within the base directory of the package (i.e., the location of `epm.json`)
 
 
-### Contracts: `contracts`
-
-The `contracts` field defines a list of contract names that should be included
-in the release manifest when generating a release.
-
-
-* Key: `contracts`
-* Type: List of Strings
-
-
 ### Dependencies: `dependencies`
 
 the `dependencies` field defines a key/value mapping of ethereum packages that
