@@ -123,16 +123,14 @@ this field **must** be present.
 
 ### Contracts: `contracts`
 
-The `contracts` field declares information about the deployed contracts.
-
-* a single *Contract Instance Object*
-* a List of *Contract Instance Objects*
+The `contracts` field declares information about the deployed contracts
+included within this release.
 
 * Key: `contracts`
-* Type:  *any of:*
-    - *Contract Instance Object* 
-    - List of *Contract Instance Object* 
-    - Hash of (String: *Contract Instance Object*) where keys are valid contract names matching the regex `[_a-zA-Z][_a-zA-Z0-9]*`.
+* Type:  Object (String: *Contract Instance Object*)
+* Format: 
+    * All keys **must** be valid contract names matching the regex `[_a-zA-Z][_a-zA-Z0-9]*`.
+    * All values **must** conform to the *Contract Instance Object* definition.
 
 
 #### The *Contract Instance Object*
