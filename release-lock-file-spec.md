@@ -104,7 +104,7 @@ Sources are declared in a key/value mapping.
         * *If* the resulting document is a file the key should be interpreted as a file path.
 
 * Key: `sources`
-* Type: Hash(String: String)
+* Type: Object (String: String)
 
 
 ### Chain: `chain`
@@ -114,7 +114,9 @@ provided with this package.  A blockchain is defined using
 [BIP-122](https://github.com/bitcoin/bips/blob/master/bip-0122.mediawiki).  A
 matching blockchain is one on which all resources defined by the list of BIP122
 URIs can be found. *If* this release lock file includes any addressed contracts
-this field **must** be present.
+this field **must** be present.  Convention is to define a chain using a single
+URI which points to the latest observable block hash and includes the genesis
+hash as the `chain_id`.
 
 * Key: `chain`
 * Type: List os Strings
@@ -167,19 +169,35 @@ A *Contract Instance Object* is an object with the following key/values.
     * Format: see https://github.com/ethereum/wiki/wiki/Ethereum-Contract-ABI#json
 * `natspec`:
     * Required: No
-    * Type: Hash
+    * Type: Object
     * Format: Combined [UserDoc](https://github.com/ethereum/wiki/wiki/Ethereum-Natural-Specification-Format#user-documentation) and [DevDoc](https://github.com/ethereum/wiki/wiki/Ethereum-Natural-Specification-Format#developer-documentation)
 * `compiler`:
     * Required: Required if either `bytecode` or `runtime_bytecode` is present.
-    * Type: Hash
+    * Type: Object
     * Keys:
+        * `type`:
+            * Required: Yes
+            * Type: String
+            * Allowed Values:
+                * `'solc'` for the solc command line compiler.
+                * `'solcjs'` for the nodejs solc compiler.
         * `version`:
-            Type: String
-            Format: TODO
-        * `settings`: TODO
+            * Required: Yes
+            * Type: String
+        * `settings`:
+            * Required: No
+            * Type: Object
+            * Keys:
+                * `optimize`
+                    * Required: No
+                    * Type: Boolean
+                * `optimize_runs`
+                    * Required: No
+                    * Type: Integer
+                    * Format: Positive Integer
 * `link_dependencies`:
     * Reqired: Required to have an entry for each link reference found in either the `bytecode` or `runtime_bytecode` fields.
-    * Type: Hash
+    * Type: Object
     * Format:
         * All keys **must** be strings which are formatted as valid link targets.
         * All values **must** conform to *one of* the following formats:
@@ -202,4 +220,4 @@ this project depends on.
 
 
 * Key: `dependencies`
-* Type: Hash(String: String)
+* Type: Object (String: String)
