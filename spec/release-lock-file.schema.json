@@ -49,7 +49,8 @@
       "items": {
         "title": "URI",
         "description": "must be valid BIP122 URIS",
-        "type": "string"
+        "type": "string",
+        "format": "uri"
       }
     },
     "contracts": {
@@ -63,7 +64,8 @@
           "properties": {
             "contract_name": {
               "type": "string",
-              "description": "Valid contract name matching regular expression `[_a-zA-Z][_a-zA-Z0-9]*]`"
+              "description": "Valid contract name matching regular expression `[_a-zA-Z][_a-zA-Z0-9]*]`",
+              "pattern": "^[a-zA-Z][-a-zA-Z0-9_]*$"
             },
             "address": {
               "type": "string",

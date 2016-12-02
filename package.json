@@ -1,5 +1,5 @@
 {
-  "name": "epm-spec",
+  "name": "ethpm-spec",
   "version": "1.0.0",
   "description": "Ethereum Package Manager Specifications",
   "main": "index.js",
