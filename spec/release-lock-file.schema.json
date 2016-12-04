@@ -36,7 +36,7 @@
       "type": "object",
       "description": "The sources field defines a set of source files that comprise the source code for the project. This list should be included in all manifests. Package managers should use this field to inform population of the sources field in the release lock file.\n\n * All keys **must** conform to *one of* the following formats.\n     * Begins with a `./` to denote that it is a filesystem path.\n     * Is a valid contract name matching the regex `[_a-zA-Z][_a-zA-Z0-9]*`.\n * All keys which are formatted to be filesystem paths **must** conform to *all* of the following rules:\n     * Resolving the filesystem paths must result path that is *under* the current working directory.\n * *If* the key is a contract name the value **must** be the source string for that contract.\n * *If* the key is a filesystem path the value **must** conform to *one of* the following formats.\n     * IPFS URI\n         * *If* the resulting document is a directory the key should be interpreted as a directory path.\n         * *If* the resulting document is a file the key should be interpreted as a file path.\n",
       "patternProperties": {
-        ".*": {
+        "\.\/.*": {
           "title": "Source Path",
           "type": "string",
           "description": ": Strings must be formatted as valid filesystem paths. All paths must be relative paths beginning with ./. All paths must resolve to to a path located within the base directory of the package (i.e., the location of epm.json"
