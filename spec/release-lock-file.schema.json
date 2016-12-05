@@ -7,7 +7,7 @@
   "additionalProperties": false,
   "properties": {
     "lock_file_version": {
-      "type": "integer",
+      "type": "string",
       "title": "Lock File Version",
       "description": " The `lock_file_version` field defines the specification version that this document conforms to.  All release lock files **must** include this field.  ",
       "default": 1
