@@ -91,14 +91,11 @@ The `sources` field defines a source tree that **should** comprise the full
 source tree necessary to recompile the contracts contained in this release.
 Sources are declared in a key/value mapping.  
 
-* All keys **must** conform to *one of* the following formats.
-    * Begins with a `./` to denote that it is a filesystem path.
-    * Is a valid contract name matching the regex `[_a-zA-Z][_a-zA-Z0-9]*`.
-* All keys which are formatted to be filesystem paths **must** conform to *all* of the following rules:
-    * Resolving the filesystem paths must result path that is *under* the current working directory.
+* All keys **must** be relative filesystem paths beginning with a `./`.  All paths **must** resolve to a path that is within the current working directory.
 
-* *If* the key is a contract name the value **must** be the source string for that contract.
-* *If* the key is a filesystem path the value **must** conform to *one of* the following formats.
+* All values **must** conform to *one of* the following formats.
+    * Source string.
+        * When the value is a source string the key should be interpreted as a file path.
     * IPFS URI
         * *If* the resulting document is a directory the key should be interpreted as a directory path.
         * *If* the resulting document is a file the key should be interpreted as a file path.
