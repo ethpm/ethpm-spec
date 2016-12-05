@@ -3,6 +3,7 @@
   "description": "TODO",
   "type": "object",
   "required": ["lock_file_version", "version"],
+  "version": "1",
   "additionalProperties": false,
   "properties": {
     "lock_file_version": {
@@ -32,12 +33,14 @@
     },
     "sources": {
       "title": "Sources",
-      "type": "array",
       "description": "TODO",
-      "items": {
-        "title": "Source Path",
-        "type": "string",
-        "description": "TODO"
+      "type": "object",
+      "patternProperties": {
+        "\\.\\/.*": {
+          "title": "Source Path",
+          "type": "string",
+          "description": ": Strings must be formatted as valid filesystem paths. All paths must be relative paths beginning with ./. All paths must resolve to to a path located within the base directory of the package (i.e., the location of epm.json"
+        }
       },
       "default": []
     },
