@@ -24,13 +24,11 @@ single JSON object.
 
 ## Filename
 
-Convention is to name this document `<version>.lock` where the `<version>`
-component is the full version string for the release.
+When creating a release, convention is to name this document `<version>.json`.
 
-Package managers which are installing dependencies for development versions
-should keep their own version of this document under the lowercased name of the
-package manager such as `truffle.lock` or `dapple.lock`.  This file would
-typically be excluded from version control.
+* The `1.0.0` Release would be named `1.0.0.json`
+
+Package managers may keep their own copy of this file as part of their package installation process.  In these cases it is up to the package manager to decide on a naming convention.  Package managers **should** keep the `.json` file extension.
 
 
 ## Document Specification
@@ -56,7 +54,7 @@ document conforms to.  All release lock files **must** include this field.
 
 The `package_manifest` field references the package's Package Manifest document
 as it existed at the time this release was created.  All release lock files
-**must** include this field.  The manifest may be referenced using an IPFS URI
+**should** include this field.  The manifest may be referenced using an IPFS URI
 or by directly embedding the document under this key.
 
 * Key: `package_manifest`
