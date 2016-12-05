@@ -18,7 +18,8 @@
       "description": "TODO",
       "default": "1",
       "enum": [
-          "1"
+          "1",
+          "2"
       ]
     },
     "authors": {
