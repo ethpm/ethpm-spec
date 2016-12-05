@@ -54,7 +54,7 @@ document conforms to.  All release lock files **must** include this field.
 
 The `package_manifest` field references the package's Package Manifest document
 as it existed at the time this release was created.  All release lock files
-**should** include this field.  The manifest may be referenced using an IPFS URI
+**must** include this field.  The manifest may be referenced using an IPFS URI
 or by directly embedding the document under this key.
 
 * Key: `package_manifest`
@@ -70,17 +70,6 @@ to the [semver](http://semver.org/) version numbering specification.
 * Key: `version`
 * Type: String
 * Format: [semver](http://semver.org)
-
-
-### License: `license`
-
-The `license` field declares the license under which this package is released.  This value
-**should** be conform to the
-[SPDX](https://en.wikipedia.org/wiki/Software_Package_Data_Exchange) format.
-All release lock files **should** include this field.
-
-* Key: `license`
-* Type: String
 
 
 ### Sources: `sources`

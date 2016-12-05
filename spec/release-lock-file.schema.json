@@ -2,7 +2,7 @@
   "title": "Release Lock File Specification",
   "description": "TODO",
   "type": "object",
-  "required": ["lock_file_version", "version"],
+  "required": ["lock_file_version", "package_manifest", "version"],
   "version": "1",
   "additionalProperties": false,
   "properties": {
@@ -13,7 +13,6 @@
       "default": "1",
       "enum": ["1"]
     },
-
     "package_manifest": {
       "title": "Package Manifest",
       "type": "string",
@@ -22,13 +21,6 @@
     "version": {
       "title": "Version",
       "type": "string",
-      "description": "TODO"
-    },
-
-    "license": {
-      "title": "License",
-      "type": "string",
-      "default": "MIT",
       "description": "TODO"
     },
     "sources": {

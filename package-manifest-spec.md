@@ -53,10 +53,8 @@ specification (this document) that this manifest conforms to. All manifests
 ### Package Name: `package_name`
 
 The `package_name` field defines a human readable name for this package.  All
-manifests **should** include this field.
+manifests **must** include this field.
 
-* Required: Yes
-* TODO: what should happen if this is missing (should it be required?)
 * Key: `package_name`
 * Type: String
 
@@ -66,7 +64,6 @@ The `authors` field defines a list of human readable names for the authors of
 this package.  All manifests **should** include this field. 
 
 
-* Required: No
 * Key: `authors`
 * Type: List of Strings
 
@@ -77,7 +74,6 @@ The `version` field declares the current version number of this package.  This v
 **should** be conform to the [semver](http://semver.org/) version numbering
 specification.  All manifests **must** this field.
 
-* Required: Yes
 * Key: `version`
 * Type: String
 
@@ -89,23 +85,22 @@ The `license` field declares the license under which this package is released.  
 [SPDX](https://en.wikipedia.org/wiki/Software_Package_Data_Exchange) format.
 All manifests **should** include this field.
 
-* Required: No
 * Key: `license`
 * Type: String
 
 
 ### Description: `description`
 
-The `description` field *should* be used to provide additional detail that may be relevant for the package.
+The `description` field provides additional detail that may be relevant for the
+package.  All packages **should** include this field.
 
-* Required: No
 * Key: `description`
 * Type: String
 
 
 ### Keywords: `keywords`
 
-The `keywords` field *should* be used to provide relevant keywords related to this package.
+The `keywords` field provides relevant keywords related to this package.
 
 * Required: No
 * Key: `keywords`
@@ -114,16 +109,14 @@ The `keywords` field *should* be used to provide relevant keywords related to th
 
 ### Links: `links`
 
-The `links` field *should* be used to provide URIs to relevant resources
-associated with this package.  When possible, authors *should* use the
+The `links` field provides URIs to relevant resources
+associated with this package.  When possible, authors **should** use the
 following keys for the following common resources.
 
 * `website`: Primary website for the package.
 * `documentation`: Package Documentation
 * `repository`: Location of the project source code.
-* TODO: what other common fields?
 
-* Required: No
 * Key: `links`
 * Type: Object (String: String)
 
@@ -131,9 +124,9 @@ following keys for the following common resources.
 ### Source Files: `sources`
 
 The `sources` field defines a set of source files that comprise the source code
-for the project.  This list **should** be included in all manifests.  Package
+for the project.  This field **should** be included in all manifests.  Package
 managers **should** use this field to inform population of the `sources` field in
-the *release lock file*.
+the *Release Lock File*.
 
 * Key: `sources`
 * Type: List of Strings
