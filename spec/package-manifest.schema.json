@@ -1,25 +1,29 @@
 {
   "title": "Package Manifest Specification",
-  "description": "This document defines the specification for the **Package Manifest**. The\n package manifest contains meta data about the package as well as dependencies\n needed for installation of the package.\n \n \n## Guiding Principles\n \nThe package manifest specification makes the following assumptions about the\n document lifecycle.\n \n1. Package manifests are long lived documents that will be modified regularly\n2. Package manifests will primarily be consumed by package managers.\n3. Package manifests will primarily be used by package indexes to popululate basic package metadata.\n2. Package Managers will typically be used to assist in the creation and modification of Package Manifest documents.\n4. Package Manifest documents will occasionally be created and modified manually by people.\n4. Package manifests will typically be stored alongised the package source code.\n \n \n## Format\n \n The canoonical format for the package manifest is a JSON document containing a\n single JSON object.\n \n \n## Filename\n \n Convention is to name this document `epm.json` which is short for *'ethereum\n package manifest'*.\n \n \n## Document Specification\n \n The following fields are defined for the package manifest.  Custom fields may\n be included.  Custom fields **should** be prefixed with `x-` to prevent name\n collisions with future versions of the specification.\nThis document defines the specification for the Package Manifest. The package manifest contains meta data about the package as well as dependencies needed for installation of the package.",
+  "description": "TODO",
   "type": "object",
-  "required": ["manifest_version", "version"],
+  "required": ["package_name", "manifest_version", "version"],
   "additionalProperties": false,
   "properties": {
     "package_name": {
       "title": "Package Name",
       "type": "string",
-      "description": " The `package_name` field defines a human readable name for this package.  All manifests **should** include this field."
+      "description": "TODO",
+      "pattern": "^[a-zA-Z][-a-zA-Z0-9_]*$"
     },
     "manifest_version": {
       "type": "integer",
       "title": "Manifest Version",
-      "description": " The `manifest_version` field defines the version of the ethereum package manifest specification (this document) that this manifest conforms to. All manifests **must** include this field.",
-      "default": 1
+      "description": "TODO",
+      "default": "1",
+      "enum": [
+          "1"
+      ]
     },
     "authors": {
       "title": "Authors",
       "type": "array",
-      "description": " The `authors` field defines a list of human readable names for the authors of this package.  All manifests **should** include this field.",
+      "description": "TODO",
       "default": [],
       "items": {
         "title": "Name and Email of the authors",
@@ -29,72 +33,58 @@
     "version": {
       "title": "Version",
       "type": "string",
-      "description": " The `version` field declares the current version number of this package.  This value **should** be conform to the [semver](http://semver.org/) version numbering specification.  All manifests **must** this field.",
+      "description": "TODO",
       "default": "0.0.1-dev"
     },
-
     "license": {
       "title": "License",
       "type": "string",
       "default": "MIT",
-      "description": "The `license` field declares the license under which this package is released.  This value **should** be conform to the [SPDX](https://en.wikipedia.org/wiki/Software_Package_Data_Exchange) format.  All manifests **should** include this field."
+      "description": "TODO"
     },
     "description": {
       "title": "Description",
       "type": "string",
-      "description": "The `description` field *should* be used to provide additional detail that may be relevant for the package.",
+      "description": "TODO",
       "default": ""
     },
-
     "keywords": {
       "title": "Keywords",
       "type": "array",
       "default": [],
-      "description": "The `keywords` field *should* be used to provide relevant keywords related to this package.",
+      "description": "TODO",
       "items": {
         "title": "Keyword",
         "type": "string"
       }
     },
-
     "links": {
       "title": "Links",
-      "description": " The `links` field *should* be used to provide URIs to relevant resources associated with this package.  When possible, authors *should* use the following keys for the following common resources.",
+      "description": "TODO",
       "type": "object",
       "blackbox": true
     },
-
     "sources": {
       "title": "Sources",
       "type": "array",
-      "description": " The `sources` field defines a set of source files that comprise the source code for the project.  This list **should** be included in all manifests.  Package managers **should** use this field to inform population of the `sources` field in the *release lock file*.  ",
+      "description": "TODO",
       "items": {
         "title": "Source Path",
         "type": "string",
-        "description": ": Strings must be formatted as valid filesystem paths. All paths must be relative paths beginning with ./. All paths must resolve to to a path located within the base directory of the package (i.e., the location of epm.json"
+        "description": "TODO",
+        "pattern": "\\.\\/.*"
       },
       "default": []
     },
-
-    "contracts": {
-      "title": "Contracts",
-      "description": "The `contracts` field defines a list of contract names that should be included in the release manifest when generating a release.",
-      "type": "array",
-      "items": {
-        "type": "string",
-        "title": "Contract Name"
-      },
-      "default": []
-    },
-
     "dependencies": {
       "title": "Dependencies",
-      "description": "the `dependencies` field defines a key/value mapping of ethereum packages that this project depends on.",
+      "description": "TODO",
       "type": "object",
       "patternProperties": {
         "^[a-zA-Z][-a-zA-Z0-9_]*$": {
+          "title": "Dependency",
           "type": "string",
-          "description": "IPFS URI: The resolved document must be a valid release lock file."
+          "description": "TODO"
         }
       },
       "default": {}

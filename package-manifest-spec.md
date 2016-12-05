@@ -53,9 +53,8 @@ specification (this document) that this manifest conforms to. All manifests
 ### Package Name: `package_name`
 
 The `package_name` field defines a human readable name for this package.  All
-manifests **should** include this field.
+manifests **must** include this field.
 
-* TODO: what should happen if this is missing (should it be required?)
 * Key: `package_name`
 * Type: String
 
@@ -92,33 +91,31 @@ All manifests **should** include this field.
 
 ### Description: `description`
 
-The `description` field *should* be used to provide additional detail that may be relevant for the package.
+The `description` field provides additional detail that may be relevant for the
+package.  All packages **should** include this field.
 
-* TODO: should this include a suggestion to use a specific markup format like markdown?
 * Key: `description`
 * Type: String
 
 
 ### Keywords: `keywords`
 
-The `keywords` field *should* be used to provide relevant keywords related to this package.
+The `keywords` field provides relevant keywords related to this package.
 
+* Required: No
 * Key: `keywords`
 * Type: List of Strings
 
 
 ### Links: `links`
 
-TODO: This could potentially not be necessary, or should be removed.  Needs discussion.
-
-The `links` field *should* be used to provide URIs to relevant resources
-associated with this package.  When possible, authors *should* use the
+The `links` field provides URIs to relevant resources
+associated with this package.  When possible, authors **should** use the
 following keys for the following common resources.
 
 * `website`: Primary website for the package.
 * `documentation`: Package Documentation
 * `repository`: Location of the project source code.
-* TODO: what other common fields?
 
 * Key: `links`
 * Type: Object (String: String)
@@ -127,23 +124,13 @@ following keys for the following common resources.
 ### Source Files: `sources`
 
 The `sources` field defines a set of source files that comprise the source code
-for the project.  This list **should** be included in all manifests.  Package
+for the project.  This field **should** be included in all manifests.  Package
 managers **should** use this field to inform population of the `sources` field in
-the *release lock file*.
+the *Release Lock File*.
 
 * Key: `sources`
 * Type: List of Strings
 * Format: Strings **must** be formatted as valid filesystem paths.  All paths **must** be relative paths beginning with `./`.  All paths **must** resolve to to a path located within the base directory of the package (i.e., the location of `epm.json`)
-
-
-### Contracts: `contracts`
-
-The `contracts` field defines a list of contract names that should be included
-in the release manifest when generating a release.
-
-
-* Key: `contracts`
-* Type: List of Strings
 
 
 ### Dependencies: `dependencies`
@@ -160,8 +147,3 @@ this project depends on.
 
 * Key: `dependencies`
 * Type: Object (String: String)
-
-
-## Examples
-
-TODO: populate these when the spec is no longer changing a bunch.

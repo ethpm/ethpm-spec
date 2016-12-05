@@ -1,98 +1,104 @@
 {
   "title": "Release Lock File Specification",
-  "description": " This document defines the specification for the **Release Lock File**.  The release lock file provides metadata about the package and in most cases should provide sufficient information about the packaged contracts and its dependencies to do bytecode verification of its contracts.\n ## Guiding Principles\n \n The release lock file specification makes the following assumptions about the\n document lifecycle.\n \n 1. Release lock files are intended to be generated programatically by package management software as part of the release process.\n 2. Release lock files will be consumed by package managers during tasks like installing package dependencies or building and deploying new releases.\n 3. Release lock files will typically **not** be stored alongside the source, but rather by package registries *or* referenced by package registries and stored in something akin to IPFS.\n \n \n## Format\n \n The canonical format for the package manifest is a JSON document containing a\n single JSON object.  \n \n \n## Filename\n \n Convention is to name this document `<version>.lock` where the `<version>`\n component is the full version string for the release.\n \n Package managers which are installing dependencies for development versions\n should keep their own version of this document under the lowercased name of the\n package manager such as `truffle.lock` or `dapple.lock`.  This file would\n typically be excluded from version control.\n \n \n## Document Specification\n \n The following fields are defined for the release lock file.  Custom fields may\n be included.  Custom fields **should** be prefixed with `x-` to prevent name\n collisions with future versions of the specification.\n ",
+  "description": "TODO",
   "type": "object",
-  "version": "1",
   "required": ["lock_file_version", "package_manifest", "version"],
+  "version": "1",
   "additionalProperties": false,
   "properties": {
     "lock_file_version": {
       "type": "string",
       "title": "Lock File Version",
-      "description": " The `lock_file_version` field defines the specification version that this document conforms to.  All release lock files **must** include this field.  ",
-      "default": 1
+      "description": "TODO",
+      "default": "1",
+      "enum": ["1"]
     },
-
     "package_manifest": {
       "title": "Package Manifest",
       "type": "string",
-      "description": " The `package_manifest` field references the package's Package Manifest document as it existed at the time this release was created.  All release lock files **must** include this field.  The manifest may be referenced using an IPFS URI or by directly embedding the document under this key.  "
+      "description": "TODO"
     },
     "version": {
       "title": "Version",
       "type": "string",
-      "description": " The `version` field declares the version number of this release.  This value **must** be included in all release lock files.  This value **should** be conform to the [semver](http://semver.org/) version numbering specification.  ",
-      "default": "0.0.1-dev"
-    },
-
-    "license": {
-      "title": "License",
-      "type": "string",
-      "default": "MIT",
-      "description": "The `license` field declares the license under which this package is released.  This value **should** be conform to the [SPDX](https://en.wikipedia.org/wiki/Software_Package_Data_Exchange) format.  All release lock files **should** include this field."
+      "description": "TODO"
     },
     "sources": {
       "title": "Sources",
       "type": "object",
-      "description": "The sources field defines a set of source files that comprise the source code for the project. This list should be included in all manifests. Package managers should use this field to inform population of the sources field in the release lock file.\n\n * All keys **must** conform to *one of* the following formats.\n     * Begins with a `./` to denote that it is a filesystem path.\n     * Is a valid contract name matching the regex `[_a-zA-Z][_a-zA-Z0-9]*`.\n * All keys which are formatted to be filesystem paths **must** conform to *all* of the following rules:\n     * Resolving the filesystem paths must result path that is *under* the current working directory.\n * *If* the key is a contract name the value **must** be the source string for that contract.\n * *If* the key is a filesystem path the value **must** conform to *one of* the following formats.\n     * IPFS URI\n         * *If* the resulting document is a directory the key should be interpreted as a directory path.\n         * *If* the resulting document is a file the key should be interpreted as a file path.\n",
+      "description": "TODO",
       "patternProperties": {
         "\\.\\/.*": {
           "title": "Source Path",
           "type": "string",
-          "description": ": Strings must be formatted as valid filesystem paths. All paths must be relative paths beginning with ./. All paths must resolve to to a path located within the base directory of the package (i.e., the location of epm.json"
+          "description": "TODO"
         }
-      },
-      "default": []
+      }
     },
     "chain": {
       "title": "Chain",
       "type": "array",
-      "description": "The `chain` field defines the blockchain that should be used for any addresses provided with this package.  A blockchain is defined using [BIP-122](https://github.com/bitcoin/bips/blob/master/bip-0122.mediawiki).  A matching blockchain is one on which all resources defined by the list of BIP122 URIs can be found. *If* this release lock file includes any addressed contracts this field **must** be present.  Convention is to define a chain using a single URI which points to the latest observable block hash and includes the genesis hash as the `chain_id`.",
-      "default": [],
+      "description": "TODO",
       "items": {
         "title": "URI",
-        "description": "must be valid BIP122 URIS",
+        "description": "TODO",
         "type": "string",
         "format": "uri"
+      }
+    },
+    "build_dependencies": {
+      "title": "Build Dependencies",
+      "type": "object",
+      "description": "TODO",
+      "patternProperties": {
+        "^[a-zA-Z][-a-zA-Z0-9_]*$": {
+          "title": "Dependency",
+          "type": "string",
+          "description": "TODO"
+        }
       }
     },
     "contracts": {
       "title": "Contracts",
       "type": "object",
-      "description": "The `contracts` field declares information about the deployed contracts included within this release.",
+      "description": "TODO",
       "patternProperties": {
         "^[a-zA-Z][-a-zA-Z0-9_]*$": {
           "type": "object",
-          "description": "A *Contract Instance Object* is an object with the following key/values.",
+          "description": "TODO",
+          "required": ["contract_name"],
           "properties": {
             "contract_name": {
               "type": "string",
-              "description": "Valid contract name matching regular expression `[_a-zA-Z][_a-zA-Z0-9]*]`",
+              "description": "TODO",
               "pattern": "^[a-zA-Z][-a-zA-Z0-9_]*$"
             },
             "address": {
               "type": "string",
-              "description": "Hex encoded ethereum address of the deployed contract."
+              "description": "TODO",
+              "pattern": "^0x[0-9a-fA-F]{40}$"
             },
             "deploy_transaction": {
               "type": "string",
-              "description": "[BIP122](https://github.com/bitcoin/bips/blob/master/bip-0122.mediawiki) URI which defines the transaction in which this contract was created."
+              "description": "TODO",
+              "pattern": "^0x[0-9a-fA-F]{64}$"
             },
             "deploy_block": {
               "type": "string",
-              "description": "[BIP122](https://github.com/bitcoin/bips/blob/master/bip-0122.mediawiki) URI which defines the block in which this contract was created."
+              "description": "TODO",
+              "pattern": "^0x[0-9a-fA-F]{64}$"
             },
             "bytecode": {
               "type": "string",
-              "description": "Hex encoded unlinked bytecode for the compiled contract."
+              "description": "TODO"
             },
             "runtime_bytecode": {
               "type": "string",
-              "description": "Hex encoded unlinked runtime portion of the bytecode for the compiled contract."
+              "description": "TODO"
             },
             "abi": {
               "type": "array",
-              "description": "see https://github.com/ethereum/wiki/wiki/Ethereum-Contract-ABI#json",
+              "description": "TODO",
               "items": {
                 "type": "object",
                 "description": "",
@@ -101,13 +107,13 @@
             },
             "natspec": {
               "type": "object",
-              "description": "Combined [UserDoc](https://github.com/ethereum/wiki/wiki/Ethereum-Natural-Specification-Format#user-documentation) and [DevDoc](https://github.com/ethereum/wiki/wiki/Ethereum-Natural-Specification-Format#developer-documentation)",
+              "description": "TODO",
               "blackbox": true
             },
             "compiler": {
               "title": "Compiler",
               "type": "object",
-              "description": "Properties of the `compiler` object",
+              "description": "TODO",
               "properties": {
                 "type": {
                   "type": "string"
@@ -122,12 +128,12 @@
               }
             },
             "link_dependencies": {
-              "description": "Required to have an entry for each link reference found in either the `bytecode` or `runtime_bytecode` fields.  \n\n * All keys **must** be strings which are formatted as valid link targets.",
+              "description": "TODO",
               "type": "object",
               "patternProperties": {
                 ".*": {
                   "type": "string",
-                  "description": "* All values **must** conform to *one of* the following formats:\n * A hex encoded ethereum address.\n * A [json pointer](https://tools.ietf.org/html/rfc6901) to another *Contract Instance Object* in the release lock file.\n * An IPFS URI with a JSON point in the fragment portion of the URI.  The IPFS hash must resolves to a valid release lock file.  The json pointer **must** resolves to a *Contract Instance Object* within the release lock file.\n"
+                  "description": "TODO"
                 }
               }
             }
