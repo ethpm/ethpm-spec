@@ -33,16 +33,15 @@
     },
     "sources": {
       "title": "Sources",
-      "description": "TODO",
       "type": "object",
+      "description": "TODO",
       "patternProperties": {
         "\\.\\/.*": {
           "title": "Source Path",
           "type": "string",
-          "description": ": Strings must be formatted as valid filesystem paths. All paths must be relative paths beginning with ./. All paths must resolve to to a path located within the base directory of the package (i.e., the location of epm.json"
+          "description": "TODO"
         }
-      },
-      "default": []
+      }
     },
     "chain": {
       "title": "Chain",
@@ -55,6 +54,18 @@
         "format": "uri"
       }
     },
+    "build_dependencies": {
+      "title": "Build Dependencies",
+      "type": "object",
+      "description": "TODO",
+      "patternProperties": {
+        "^[a-zA-Z][-a-zA-Z0-9_]*$": {
+          "title": "Dependency",
+          "type": "string",
+          "description": "TODO"
+        }
+      }
+    },
     "contracts": {
       "title": "Contracts",
       "type": "object",
@@ -63,6 +74,7 @@
         "^[a-zA-Z][-a-zA-Z0-9_]*$": {
           "type": "object",
           "description": "TODO",
+          "required": ["contract_name"],
           "properties": {
             "contract_name": {
               "type": "string",
@@ -71,15 +83,18 @@
             },
             "address": {
               "type": "string",
-              "description": "TODO"
+              "description": "TODO",
+              "pattern": "^0x[0-9a-fA-F]{40}$"
             },
             "deploy_transaction": {
               "type": "string",
-              "description": "TODO"
+              "description": "TODO",
+              "pattern": "^0x[0-9a-fA-F]{64}$"
             },
             "deploy_block": {
               "type": "string",
-              "description": "TODO"
+              "description": "TODO",
+              "pattern": "^0x[0-9a-fA-F]{64}$"
             },
             "bytecode": {
               "type": "string",
@@ -109,7 +124,11 @@
               "description": "TODO",
               "properties": {
                 "type": {
-                  "type": "string"
+                  "type": "string",
+                  "enum": [
+                      "solc",
+                      "solc-js"
+                  ]
                 },
                 "version": {
                   "type": "string"

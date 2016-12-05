@@ -2,19 +2,23 @@
   "title": "Package Manifest Specification",
   "description": "TODO",
   "type": "object",
-  "required": ["manifest_version", "version"],
+  "required": ["package_name", "manifest_version", "version"],
   "additionalProperties": false,
   "properties": {
     "package_name": {
       "title": "Package Name",
       "type": "string",
-      "description": " The `package_name` field defines a human readable name for this package.  All manifests **should** include this field."
+      "description": "TODO",
+      "pattern": "^[a-zA-Z][-a-zA-Z0-9_]*$"
     },
     "manifest_version": {
       "type": "integer",
       "title": "Manifest Version",
       "description": "TODO",
-      "default": 1
+      "default": "1",
+      "enum": [
+          "1"
+      ]
     },
     "authors": {
       "title": "Authors",
@@ -32,7 +36,6 @@
       "description": "TODO",
       "default": "0.0.1-dev"
     },
-
     "license": {
       "title": "License",
       "type": "string",
@@ -45,7 +48,6 @@
       "description": "TODO",
       "default": ""
     },
-
     "keywords": {
       "title": "Keywords",
       "type": "array",
@@ -56,14 +58,12 @@
         "type": "string"
       }
     },
-
     "links": {
       "title": "Links",
       "description": "TODO",
       "type": "object",
       "blackbox": true
     },
-
     "sources": {
       "title": "Sources",
       "type": "array",
@@ -71,28 +71,18 @@
       "items": {
         "title": "Source Path",
         "type": "string",
-        "description": "TODO"
+        "description": "TODO",
+        "pattern": "\\.\\/.*"
       },
       "default": []
     },
-
-    "contracts": {
-      "title": "Contracts",
-      "description": "TODO",
-      "type": "array",
-      "items": {
-        "type": "string",
-        "title": "Contract Name"
-      },
-      "default": []
-    },
-
     "dependencies": {
       "title": "Dependencies",
       "description": "TODO",
       "type": "object",
       "patternProperties": {
         "^[a-zA-Z][-a-zA-Z0-9_]*$": {
+          "title": "Dependency",
           "type": "string",
           "description": "TODO"
         }

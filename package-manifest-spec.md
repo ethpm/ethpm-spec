@@ -55,6 +55,7 @@ specification (this document) that this manifest conforms to. All manifests
 The `package_name` field defines a human readable name for this package.  All
 manifests **should** include this field.
 
+* Required: Yes
 * TODO: what should happen if this is missing (should it be required?)
 * Key: `package_name`
 * Type: String
@@ -65,6 +66,7 @@ The `authors` field defines a list of human readable names for the authors of
 this package.  All manifests **should** include this field. 
 
 
+* Required: No
 * Key: `authors`
 * Type: List of Strings
 
@@ -75,6 +77,7 @@ The `version` field declares the current version number of this package.  This v
 **should** be conform to the [semver](http://semver.org/) version numbering
 specification.  All manifests **must** this field.
 
+* Required: Yes
 * Key: `version`
 * Type: String
 
@@ -86,6 +89,7 @@ The `license` field declares the license under which this package is released.  
 [SPDX](https://en.wikipedia.org/wiki/Software_Package_Data_Exchange) format.
 All manifests **should** include this field.
 
+* Required: No
 * Key: `license`
 * Type: String
 
@@ -94,7 +98,7 @@ All manifests **should** include this field.
 
 The `description` field *should* be used to provide additional detail that may be relevant for the package.
 
-* TODO: should this include a suggestion to use a specific markup format like markdown?
+* Required: No
 * Key: `description`
 * Type: String
 
@@ -103,13 +107,12 @@ The `description` field *should* be used to provide additional detail that may b
 
 The `keywords` field *should* be used to provide relevant keywords related to this package.
 
+* Required: No
 * Key: `keywords`
 * Type: List of Strings
 
 
 ### Links: `links`
-
-TODO: This could potentially not be necessary, or should be removed.  Needs discussion.
 
 The `links` field *should* be used to provide URIs to relevant resources
 associated with this package.  When possible, authors *should* use the
@@ -120,6 +123,7 @@ following keys for the following common resources.
 * `repository`: Location of the project source code.
 * TODO: what other common fields?
 
+* Required: No
 * Key: `links`
 * Type: Object (String: String)
 
@@ -136,16 +140,6 @@ the *release lock file*.
 * Format: Strings **must** be formatted as valid filesystem paths.  All paths **must** be relative paths beginning with `./`.  All paths **must** resolve to to a path located within the base directory of the package (i.e., the location of `epm.json`)
 
 
-### Contracts: `contracts`
-
-The `contracts` field defines a list of contract names that should be included
-in the release manifest when generating a release.
-
-
-* Key: `contracts`
-* Type: List of Strings
-
-
 ### Dependencies: `dependencies`
 
 the `dependencies` field defines a key/value mapping of ethereum packages that
@@ -160,8 +154,3 @@ this project depends on.
 
 * Key: `dependencies`
 * Type: Object (String: String)
-
-
-## Examples
-
-TODO: populate these when the spec is no longer changing a bunch.

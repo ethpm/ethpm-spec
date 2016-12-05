@@ -130,6 +130,23 @@ included within this release.
     * All values **must** conform to the *Contract Instance Object* definition.
 
 
+### Build Dependencies: `build_dependencies`
+
+
+the `dependencies` field defines a key/value mapping of ethereum packages that
+this project depends on.
+
+* All keys **must** be valid package names matching the regular expression `[a-zA-Z][-a-zA-Z0-9_]*`
+* All values **must** conform to *one of* the following formats:
+    * IPFS URI:
+        * The resolved document **must** be a valid *release lock file*.
+    * Version String that resolves to a specific package version.
+
+
+* Key: `dependencies`
+* Type: Object (String: String)
+
+
 #### The *Contract Instance Object*
 
 A *Contract Instance Object* is an object with the following key/values.
@@ -199,20 +216,3 @@ A *Contract Instance Object* is an object with the following key/values.
             * A hex encoded ethereum address.
             * A [json pointer](https://tools.ietf.org/html/rfc6901) to another *Contract Instance Object* in the release lock file.
             * An IPFS URI with a JSON point in the fragment portion of the URI.  The IPFS hash must resolves to a valid release lock file.  The json pointer **must** resolves to a *Contract Instance Object* within the release lock file.
-
-
-### Build Dependencies: `build_dependencies`
-
-
-the `dependencies` field defines a key/value mapping of ethereum packages that
-this project depends on.
-
-* All keys **must** be valid package names matching the regular expression `[a-zA-Z][-a-zA-Z0-9_]*`
-* All values **must** conform to *one of* the following formats:
-    * IPFS URI:
-        * The resolved document **must** be a valid *release lock file*.
-    * Version String that resolves to a specific package version.
-
-
-* Key: `dependencies`
-* Type: Object (String: String)
