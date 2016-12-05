@@ -124,11 +124,7 @@
               "description": "TODO",
               "properties": {
                 "type": {
-                  "type": "string",
-                  "enum": [
-                      "solc",
-                      "solc-js"
-                  ]
+                  "type": "string"
                 },
                 "version": {
                   "type": "string"
