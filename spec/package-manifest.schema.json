@@ -64,18 +64,6 @@
       "type": "object",
       "blackbox": true
     },
-    "sources": {
-      "title": "Sources",
-      "type": "array",
-      "description": "TODO",
-      "items": {
-        "title": "Source Path",
-        "type": "string",
-        "description": "TODO",
-        "pattern": "\\.\\/.*"
-      },
-      "default": []
-    },
     "dependencies": {
       "title": "Dependencies",
       "description": "TODO",
