@@ -24,13 +24,11 @@ single JSON object.
 
 ## Filename
 
-Convention is to name this document `<version>.lock` where the `<version>`
-component is the full version string for the release.
+When creating a release, convention is to name this document `<version>.json`.
 
-Package managers which are installing dependencies for development versions
-should keep their own version of this document under the lowercased name of the
-package manager such as `truffle.lock` or `dapple.lock`.  This file would
-typically be excluded from version control.
+* The `1.0.0` Release would be named `1.0.0.json`
+
+Package managers may keep their own copy of this file as part of their package installation process.  In these cases it is up to the package manager to decide on a naming convention.  Package managers **should** keep the `.json` file extension.
 
 
 ## Document Specification
@@ -72,17 +70,6 @@ to the [semver](http://semver.org/) version numbering specification.
 * Key: `version`
 * Type: String
 * Format: [semver](http://semver.org)
-
-
-### License: `license`
-
-The `license` field declares the license under which this package is released.  This value
-**should** be conform to the
-[SPDX](https://en.wikipedia.org/wiki/Software_Package_Data_Exchange) format.
-All release lock files **should** include this field.
-
-* Key: `license`
-* Type: String
 
 
 ### Sources: `sources`
@@ -130,6 +117,23 @@ included within this release.
 * Format: 
     * All keys **must** be valid contract names matching the regex `[_a-zA-Z][_a-zA-Z0-9]*`.
     * All values **must** conform to the *Contract Instance Object* definition.
+
+
+### Build Dependencies: `build_dependencies`
+
+
+the `dependencies` field defines a key/value mapping of ethereum packages that
+this project depends on.
+
+* All keys **must** be valid package names matching the regular expression `[a-zA-Z][-a-zA-Z0-9_]*`
+* All values **must** conform to *one of* the following formats:
+    * IPFS URI:
+        * The resolved document **must** be a valid *release lock file*.
+    * Version String that resolves to a specific package version.
+
+
+* Key: `dependencies`
+* Type: Object (String: String)
 
 
 #### The *Contract Instance Object*
@@ -201,20 +205,3 @@ A *Contract Instance Object* is an object with the following key/values.
             * A hex encoded ethereum address.
             * A [json pointer](https://tools.ietf.org/html/rfc6901) to another *Contract Instance Object* in the release lock file.
             * An IPFS URI with a JSON point in the fragment portion of the URI.  The IPFS hash must resolves to a valid release lock file.  The json pointer **must** resolves to a *Contract Instance Object* within the release lock file.
-
-
-### Build Dependencies: `build_dependencies`
-
-
-the `dependencies` field defines a key/value mapping of ethereum packages that
-this project depends on.
-
-* All keys **must** be valid package names matching the regular expression `[a-zA-Z][-a-zA-Z0-9_]*`
-* All values **must** conform to *one of* the following formats:
-    * IPFS URI:
-        * The resolved document **must** be a valid *release lock file*.
-    * Version String that resolves to a specific package version.
-
-
-* Key: `dependencies`
-* Type: Object (String: String)
