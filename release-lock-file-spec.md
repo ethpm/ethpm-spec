@@ -98,13 +98,13 @@ provided with this package.  A blockchain is defined using
 [BIP-122](https://github.com/bitcoin/bips/blob/master/bip-0122.mediawiki).  A
 matching blockchain is one on which all resources defined by the list of BIP122
 URIs can be found. *If* this release lock file includes any addressed contracts
-this field **must** be present.  Convention is to define a chain using a single
+this field **must** be present. Convention is to define a chain using a single
 URI which points to the latest observable block hash and includes the genesis
 hash as the `chain_id`.
 
 * Key: `chain`
-* Type: List os Strings
-* Format: All strings **must** be valid BIP122 URIS
+* Type: URI String
+* Format: **must** be valid BIP122 URI
 
 
 ### Contracts: `contracts`

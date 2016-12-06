@@ -37,14 +37,9 @@
     },
     "chain": {
       "title": "Chain",
-      "type": "array",
+      "type": "string",
       "description": "TODO",
-      "items": {
-        "title": "URI",
-        "description": "TODO",
-        "type": "string",
-        "format": "uri"
-      }
+      "format": "uri"
     },
     "build_dependencies": {
       "title": "Build Dependencies",
