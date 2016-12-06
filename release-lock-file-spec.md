@@ -108,7 +108,7 @@ this field **must** be present.
 
 * Key: `chain`
 * Type: String
-* Format: `blockchain://[0-9a-fA-F{64}/block/[0-9a-fA-F{64}`
+* Format: `blockchain://[0-9a-fA-F]{64}/block/[0-9a-fA-F]{64}`
 
 
 ### Contracts: `contracts`
