@@ -5,7 +5,6 @@ release lock file provides metadata about the package and in most cases should
 provide sufficient information about the packaged contracts and its
 dependencies to do bytecode verification of its contracts.
 
-
 ## Guiding Principles
 
 The release lock file specification makes the following assumptions about the
