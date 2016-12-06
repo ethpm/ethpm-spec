@@ -4,7 +4,7 @@
   "type": "object",
   "required": ["package_name", "manifest_version", "version"],
   "additionalProperties": false,
-  "version": "2",
+  "version": "1",
   "properties": {
     "package_name": {
       "title": "Package Name",
@@ -18,8 +18,7 @@
       "description": "TODO",
       "default": "1",
       "enum": [
-          "1",
-          "2"
+          "1"
       ]
     },
     "authors": {
