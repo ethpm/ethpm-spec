@@ -108,7 +108,7 @@ this field **must** be present.
 
 * Key: `chain`
 * Type: String
-* Format: `blockchain://<genesis_hash>/block/<latest block hash>`
+* Format: `blockchain://[0-9a-fA-F{64}/block/[0-9a-fA-F{64}`
 
 
 ### Contracts: `contracts`
