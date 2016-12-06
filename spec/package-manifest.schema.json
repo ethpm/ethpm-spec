@@ -4,6 +4,7 @@
   "type": "object",
   "required": ["package_name", "manifest_version", "version"],
   "additionalProperties": false,
+  "version": "1",
   "properties": {
     "package_name": {
       "title": "Package Name",
@@ -12,7 +13,7 @@
       "pattern": "^[a-zA-Z][-a-zA-Z0-9_]*$"
     },
     "manifest_version": {
-      "type": "integer",
+      "type": "string",
       "title": "Manifest Version",
       "description": "TODO",
       "default": "1",
