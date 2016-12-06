@@ -128,7 +128,7 @@ included within this release.
 the `dependencies` field defines a key/value mapping of ethereum packages that
 this project depends on.
 
-* All keys **must** be valid package names matching the regular expression `[a-zA-Z][-a-zA-Z0-9_]*`
+* All keys **must** be valid package names matching the regular expression `[a-z][-a-z0-9_]{0,214}`
 * All values **must** conform to *one of* the following formats:
     * IPFS URI:
         * The resolved document **must** be a valid *release lock file*.
