@@ -37,14 +37,9 @@
     },
     "chain": {
       "title": "Chain",
-      "type": "array",
+      "type": "string",
       "description": "TODO",
-      "items": {
-        "title": "URI",
-        "description": "TODO",
-        "type": "string",
-        "format": "uri"
-      }
+      "pattern": "^blockchain://[0-9a-fA-F]{64}/block/[0-9a-fA-F]{64}$"
     },
     "build_dependencies": {
       "title": "Build Dependencies",
