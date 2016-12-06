@@ -95,16 +95,20 @@ Sources are declared in a key/value mapping.
 
 The `chain` field defines the blockchain that should be used for any addresses
 provided with this package.  A blockchain is defined using
-[BIP-122](https://github.com/bitcoin/bips/blob/master/bip-0122.mediawiki).  A
-matching blockchain is one on which all resources defined by the list of BIP122
-URIs can be found. *If* this release lock file includes any addressed contracts
-this field **must** be present.  Convention is to define a chain using a single
-URI which points to the latest observable block hash and includes the genesis
-hash as the `chain_id`.
+a subset of the [BIP-122](https://github.com/bitcoin/bips/blob/master/bip-0122.mediawiki), specified below:
+
+```
+blockchain://<genesis_hash>/block/<latest block hash>
+```
+
+The `<genesis hash>` represents the blockhash of the first block on the chain, and `<latest block hash>` represents the hash of the latest block that's been reliably confirmed (package managers should be free to choose their desired level of confirmations).
+
+*If* this release lock file includes any addressed contracts
+this field **must** be present. 
 
 * Key: `chain`
-* Type: List os Strings
-* Format: All strings **must** be valid BIP122 URIS
+* Type: String
+* Format: `blockchain://<genesis_hash>/block/<latest block hash>`
 
 
 ### Contracts: `contracts`
