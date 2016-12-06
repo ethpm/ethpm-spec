@@ -51,7 +51,7 @@
       "type": "object",
       "description": "TODO",
       "patternProperties": {
-        "^[a-zA-Z][-a-zA-Z0-9_]*$": {
+        "^[a-z][-a-z0-9_]{0,214}$": {
           "title": "Dependency",
           "type": "string",
           "description": "TODO"
