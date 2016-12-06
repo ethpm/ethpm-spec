@@ -95,7 +95,7 @@ Sources are declared in a key/value mapping.
 
 The `chain` field defines the blockchain that should be used for any addresses
 provided with this package.  A blockchain is defined using
-a subset of the [BIP-122](https://github.com/bitcoin/bips/blob/master/bip-0122.mediawiki), specified below:
+a subset of the [BIP-122](https://github.com/bitcoin/bips/blob/master/bip-0122.mediawiki) spec, specified below:
 
 ```
 blockchain://<genesis_hash>/block/<latest block hash>
