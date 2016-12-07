@@ -53,10 +53,14 @@ specification (this document) that this manifest conforms to. All manifests
 ### Package Name: `package_name`
 
 The `package_name` field defines a human readable name for this package.  All
-manifests **must** include this field.
+manifests **must** include this field.  All package names **must** begin with a
+lowercase letter and be comprised of only lowercase letters, numeric
+characters, and the dash character `'-'`.  Package names **must** not exceed
+214 characters in length.
 
 * Key: `package_name`
 * Type: String
+* Format: All package names must conform to the following regular expression. `[a-z][-a-z0-9]{0,213}`
 
 ### Authors: `authors`
 
@@ -138,7 +142,7 @@ the *Release Lock File*.
 the `dependencies` field defines a key/value mapping of ethereum packages that
 this project depends on.
 
-* All keys **must** be valid package names matching the regular expression `[a-z][-a-z0-9_]{0,214}`
+* All keys **must** be valid package names matching the regular expression `[a-z][-a-z0-9]{0,213}`
 * All values **must** conform to *one of* the following formats:
     * IPFS URI:
         * The resolved document **must** be a valid *release lock file*.
