@@ -10,7 +10,7 @@
       "title": "Package Name",
       "type": "string",
       "description": "TODO",
-      "pattern": "^[a-z][-a-z0-9_]{0,214}$"
+      "pattern": "^[a-z][-a-z0-9]{0,213}$"
     },
     "manifest_version": {
       "type": "string",
@@ -70,7 +70,7 @@
       "description": "TODO",
       "type": "object",
       "patternProperties": {
-        "^[a-z][-a-z0-9_]{0,214}$": {
+        "^[a-z][-a-z0-9]{0,213}$": {
           "title": "Dependency",
           "type": "string",
           "description": "TODO"
