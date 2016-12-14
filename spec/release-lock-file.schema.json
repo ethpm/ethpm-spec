@@ -35,12 +35,6 @@
         }
       }
     },
-    "chain": {
-      "title": "Chain",
-      "type": "string",
-      "description": "TODO",
-      "pattern": "^blockchain://[0-9a-fA-F]{64}/block/[0-9a-fA-F]{64}$"
-    },
     "build_dependencies": {
       "title": "Build Dependencies",
       "type": "object",
@@ -61,28 +55,7 @@
         "^[a-zA-Z][-a-zA-Z0-9_]*$": {
           "type": "object",
           "description": "TODO",
-          "required": ["contract_name"],
           "properties": {
-            "contract_name": {
-              "type": "string",
-              "description": "TODO",
-              "pattern": "^[a-zA-Z][-a-zA-Z0-9_]*$"
-            },
-            "address": {
-              "type": "string",
-              "description": "TODO",
-              "pattern": "^0x[0-9a-fA-F]{40}$"
-            },
-            "deploy_transaction": {
-              "type": "string",
-              "description": "TODO",
-              "pattern": "^0x[0-9a-fA-F]{64}$"
-            },
-            "deploy_block": {
-              "type": "string",
-              "description": "TODO",
-              "pattern": "^0x[0-9a-fA-F]{64}$"
-            },
             "bytecode": {
               "type": "string",
               "description": "TODO"
@@ -122,13 +95,42 @@
                 }
               }
             },
-            "link_dependencies": {
-              "description": "TODO",
-              "type": "object",
+            "deployments": {
               "patternProperties": {
-                ".*": {
-                  "type": "string",
-                  "description": "TODO"
+                "^blockchain://[0-9a-fA-F]{64}/block/[0-9a-fA-F]{64}$": {
+                  "type": "object",
+                  "patternProperties": {
+                    "^[a-zA-Z][-a-zA-Z0-9_]*$": {
+                      "type": "object":
+                      "properties": {
+                        "address": {
+                          "type": "string",
+                          "description": "TODO",
+                          "pattern": "^0x[0-9a-fA-F]{40}$"
+                        },
+                        "transaction": {
+                          "type": "string",
+                          "description": "TODO",
+                          "pattern": "^0x[0-9a-fA-F]{64}$"
+                        },
+                        "block": {
+                          "type": "string",
+                          "description": "TODO",
+                          "pattern": "^0x[0-9a-fA-F]{64}$"
+                        },
+                        "link_dependencies": {
+                          "description": "TODO",
+                          "type": "object",
+                          "patternProperties": {
+                            ".*": {
+                              "type": "string",
+                              "description": "TODO"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
                 }
               }
             }

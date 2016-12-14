@@ -90,36 +90,16 @@ Sources are declared in a key/value mapping.
 * Type: Object (String: String)
 
 
-### Chain: `chain`
-
-The `chain` field defines the blockchain that should be used for any addresses
-provided with this package.  A blockchain is defined using
-a subset of the [BIP-122](https://github.com/bitcoin/bips/blob/master/bip-0122.mediawiki) spec, specified below:
-
-```
-blockchain://<genesis_hash>/block/<latest block hash>
-```
-
-The `<genesis hash>` represents the blockhash of the first block on the chain, and `<latest block hash>` represents the hash of the latest block that's been reliably confirmed (package managers should be free to choose their desired level of confirmations).
-
-*If* this release lock file includes any addressed contracts
-this field **must** be present. 
-
-* Key: `chain`
-* Type: String
-* Format: `blockchain://[0-9a-fA-F]{64}/block/[0-9a-fA-F]{64}`
-
-
 ### Contracts: `contracts`
 
 The `contracts` field declares information about the deployed contracts
 included within this release.
 
 * Key: `contracts`
-* Type:  Object (String: *Contract Instance Object*)
+* Type:  Object (String: *Contract* Object)
 * Format: 
     * All keys **must** be valid contract names matching the regex `[_a-zA-Z][_a-zA-Z0-9]*`.
-    * All values **must** conform to the *Contract Instance Object* definition.
+    * All values **must** conform to the *Contract* object definition.
 
 
 ### Build Dependencies: `build_dependencies`
@@ -139,26 +119,10 @@ this project depends on.
 * Type: Object (String: String)
 
 
-#### The *Contract Instance Object*
+#### The *Contract* Object
 
-A *Contract Instance Object* is an object with the following key/values.
+A *Contract* Object is an object with the following key/values.
 
-* `contract_name`:
-    * Required: Yes
-    * Type: String
-    * Format: Valid contract name matching regular expression `[_a-zA-Z][_a-zA-Z0-9]*]`
-* `address`:
-    * Required: No
-    * Type: String
-    * Format: Hex encoded ethereum address of the deployed contract.
-* `deploy_transaction`:
-    * Required: No
-    * Type: String
-    * Format: [BIP122](https://github.com/bitcoin/bips/blob/master/bip-0122.mediawiki) URI which defines the transaction in which this contract was created.
-* `deploy_block`:
-    * Required: No
-    * Type: String
-    * Format: [BIP122](https://github.com/bitcoin/bips/blob/master/bip-0122.mediawiki) URI which defines the block in which this contract was created.
 * `bytecode`:
     * Required: No
     * Type: String
@@ -199,6 +163,35 @@ A *Contract Instance Object* is an object with the following key/values.
                     * Required: No
                     * Type: Integer
                     * Format: Positive Integer
+* `deployments`
+    * Required: No
+    * Type: Object(String: Object(String: *Deployment* object)
+    * Format: 
+        * All keys **must** be valid BIP122 URIs matching the regular expression `blockchain://[0-9a-fA-F]{64}/block/[0-9a-fA-F]{64}`
+        * All values **must** be objects which conform to the following format
+            * Type: Object(String: *Deployment* object)
+            * Format:
+                * All keys **must** be strings conforming to the regular expression `[_a-zA-Z][_a-zA-Z0-9]*`.
+                    * In the case that there is a single deployed instance this **should** use the same name as the contract.  
+                    * In the case that there are multiple deployed instances of the same contract a unique name should be used for each deployed instance.
+                * All values **must** be objects conforming to the *Deployment* object format (see below).
+
+
+#### The *Deployments* Object
+
+
+* `address`:
+    * Required: Yes
+    * Type: String
+    * Format: Hex encoded ethereum address of the deployed contract.
+* `deploy_transaction`:
+    * Required: No
+    * Type: String
+    * Format: [BIP122](https://github.com/bitcoin/bips/blob/master/bip-0122.mediawiki) URI which defines the transaction in which this contract was created.
+* `deploy_block`:
+    * Required: No
+    * Type: String
+    * Format: [BIP122](https://github.com/bitcoin/bips/blob/master/bip-0122.mediawiki) URI which defines the block in which this contract was created.
 * `link_dependencies`:
     * Reqired: Required to have an entry for each link reference found in either the `bytecode` or `runtime_bytecode` fields.
     * Type: Object
@@ -206,5 +199,20 @@ A *Contract Instance Object* is an object with the following key/values.
         * All keys **must** be strings which are formatted as valid link targets.
         * All values **must** conform to *one of* the following formats:
             * A hex encoded ethereum address.
-            * A [json pointer](https://tools.ietf.org/html/rfc6901) to another *Contract Instance Object* in the release lock file.
-            * An IPFS URI with a JSON point in the fragment portion of the URI.  The IPFS hash must resolves to a valid release lock file.  The json pointer **must** resolves to a *Contract Instance Object* within the release lock file.
+            * A [json pointer](https://tools.ietf.org/html/rfc6901) to another *Deployment* object in the release lock file.  The `address` from the resolved *Deployment* object should be used.
+            * An IPFS URI with a JSON point in the fragment portion of the URI.  The IPFS hash must resolves to a valid release lock file.  The json pointer **must** resolves to a *Deployment* object within the release lock file.  The `address` from the resolved *Deployment* object should be used.
+
+
+#### BIP122 URIs
+
+BIP122 URIs are used to define a blockchain via a subset of the
+[BIP-122](https://github.com/bitcoin/bips/blob/master/bip-0122.mediawiki) spec.
+
+```
+blockchain://<genesis_hash>/block/<latest confirmed block hash>
+```
+
+The `<genesis hash>` represents the blockhash of the first block on the chain,
+and `<latest confirmed block hash>` represents the hash of the latest block
+that's been reliably confirmed (package managers should be free to choose their
+desired level of confirmations).
