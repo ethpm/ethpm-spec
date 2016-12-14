@@ -11,9 +11,9 @@ The release lock file specification makes the following assumptions about the
 document lifecycle.
 
 1. Release lock files are intended to be generated programatically by package management software as part of the release process.
-2. Release lock files will be consumed by package managers during tasks like installing package dependencies or building and deploying new releases.
+2. Release lock files will be consumed by package managers during tasks like installing package dependencies.
 3. Release lock files will typically **not** be stored alongside the source, but rather by package registries *or* referenced by package registries and stored in something akin to IPFS.
-
+4. Release lock files are static. Once the release is in, they **should not** be updated further.
 
 ## Format
 
@@ -90,26 +90,6 @@ Sources are declared in a key/value mapping.
 * Type: Object (String: String)
 
 
-### Chain: `chain`
-
-The `chain` field defines the blockchain that should be used for any addresses
-provided with this package.  A blockchain is defined using
-a subset of the [BIP-122](https://github.com/bitcoin/bips/blob/master/bip-0122.mediawiki) spec, specified below:
-
-```
-blockchain://<genesis_hash>/block/<latest block hash>
-```
-
-The `<genesis hash>` represents the blockhash of the first block on the chain, and `<latest block hash>` represents the hash of the latest block that's been reliably confirmed (package managers should be free to choose their desired level of confirmations).
-
-*If* this release lock file includes any addressed contracts
-this field **must** be present. 
-
-* Key: `chain`
-* Type: String
-* Format: `blockchain://[0-9a-fA-F]{64}/block/[0-9a-fA-F]{64}`
-
-
 ### Contracts: `contracts`
 
 The `contracts` field declares information about the deployed contracts
@@ -147,18 +127,6 @@ A *Contract Instance Object* is an object with the following key/values.
     * Required: Yes
     * Type: String
     * Format: Valid contract name matching regular expression `[_a-zA-Z][_a-zA-Z0-9]*]`
-* `address`:
-    * Required: No
-    * Type: String
-    * Format: Hex encoded ethereum address of the deployed contract.
-* `deploy_transaction`:
-    * Required: No
-    * Type: String
-    * Format: [BIP122](https://github.com/bitcoin/bips/blob/master/bip-0122.mediawiki) URI which defines the transaction in which this contract was created.
-* `deploy_block`:
-    * Required: No
-    * Type: String
-    * Format: [BIP122](https://github.com/bitcoin/bips/blob/master/bip-0122.mediawiki) URI which defines the block in which this contract was created.
 * `bytecode`:
     * Required: No
     * Type: String
