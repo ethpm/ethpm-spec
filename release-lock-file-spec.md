@@ -1,18 +1,147 @@
-# Release Lock File Specification
+# Release Lockfile Specification
 
-This document defines the specification for the **Release Lock File**.  The
-release lock file provides metadata about the package and in most cases should
+This document defines the specification for the **Release Lockfile**.  The
+release lockfile provides metadata about the package and in most cases should
 provide sufficient information about the packaged contracts and its
 dependencies to do bytecode verification of its contracts.
 
 ## Guiding Principles
 
-The release lock file specification makes the following assumptions about the
+The release lockfile specification makes the following assumptions about the
 document lifecycle.
 
-1. Release lock files are intended to be generated programatically by package management software as part of the release process.
-2. Release lock files will be consumed by package managers during tasks like installing package dependencies or building and deploying new releases.
-3. Release lock files will typically **not** be stored alongside the source, but rather by package registries *or* referenced by package registries and stored in something akin to IPFS.
+1. Release lockfiles are intended to be generated programatically by package management software as part of the release process.
+2. Release lockfiles will be consumed by package managers during tasks like installing package dependencies or building and deploying new releases.
+3. Release lockfiles will typically **not** be stored alongside the source, but rather by package registries *or* referenced by package registries and stored in something akin to IPFS.
+
+
+## Keywords
+
+### RFC2119
+
+The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD",
+"SHOULD NOT", "RECOMMENDED",  "MAY", and "OPTIONAL" in this document are to be
+interpreted as described in RFC 2119.
+
+* https://www.ietf.org/rfc/rfc2119.txt
+
+### Custom
+
+#### Prefixed vs Unprefixed
+
+A prefixed hexidecimal value begins with `'0x'`.  Unprefixed values have no
+prefix.  Unless otherwise specified, all hexidecimal values should be
+represented with the `'0x'` prefix.
+
+* Prefixed: `0xdeadbeef`
+* Unprefixed: `deadbeef`
+
+
+#### Bytecode
+
+The set of EVM instructions as produced by a compiler.  Unless otherwise
+specified this should be assumed to be hexidecimal encoded and prefixed with a
+`'0x'`.
+
+#### Unlinked Bytecode
+
+Unlinked bytecode is the hexidecimal representation of a contract's EVM
+instructions which contains placeholders which are referred to as *link
+references*.
+
+* Unlinked Bytecode: `606060405260e0600073__MathLib_______________________________634d536f`
+
+
+#### Linked Bytecode
+
+Linked bytecode is the hexidecimal representation of a contract's EVM instructions which has hadd all *link references* replaced with the desired *link values*
+
+* linked Bytecode: `606060405260e06000736fe36000604051602001526040518160e060020a634d536f`
+
+
+#### Link Reference
+
+A placeholder within the hexidecimal representation of a contract's EVM instructions.
+
+`606060405260e0600073__MathLib_______________________________634d536f` the
+
+In the bytecode
+`606060405260e0600073__MathLib_______________________________634d536f`, the
+substring `__MathLib_______________________________` is a link reference.
+
+
+#### Link Value
+
+A link value is the value which can be inserted in place of a link reference.
+
+
+#### Linking
+
+The act of replacing *link references* within some bytecode with *link values*.
+
+
+#### Contract Type
+
+This term is used to refer to a specific contract or library in the package
+source.
+
+
+#### Contract Name
+
+The name found in the source code which defines a specific *contract type*.
+These names **must** conform to the regular expression
+`[a-zA-Z][-a-zA-Z0-9_]*`.
+
+There can be multiple contracts with the same *contract name* in
+a projects source files.
+
+
+#### Contract Alias
+
+This is a name chosen to reference a specific *contract type*.  Contract
+aliases must be unique within a single release lockfile.  
+
+In the case where the *contract name* is unique across a project's source files
+the *contract name* and *contract alias* **must** either be the same *or* use
+the alias naming scheme for *contract names* which are not unique.
+
+In the case where there are multiple contracts with the same *contract name* in
+a project's source files the *contract alias* **must** use the naming scheme
+`<contract-name>[<identifier>]` where `<contract-name>` is the *contract name*
+and `<identifier>` is a value conforming to the regular expression
+`[-a-zA-Z0-9_]`.
+
+Package managers **should** use the unprefixed hexidecimal representation of
+the Keccak (SHA-3) hash of the *contract type* bytecode in it's binary
+representation as the `identifier` value.
+
+In the case that the *contract types* with name collisions have the same
+bytecode such as two abstract contracts, package managers **should** fall back
+to the Keccak (SHA-3) hash of the source file in which each *contract type* is
+defined.
+
+
+#### Contract Instance 
+
+A contract instance a specific deployed version of a *contract type*.  All
+contract instances have an address on some specific chain.
+
+
+#### Contract Instance Name
+
+A name which refers to a specific *contract instance* on a specific chain from
+the deployments of a single release lockfile.  This name **must** be unique
+across all other *contract instances* for the given chain.  The name must
+conform to the regular expression `[a-zA-Z][a-zA-Z0-9_]*`.
+
+In cases where there is a single deployed instance of a given *contract type*
+package managers **should** use the *contract alias* for that *contract type*
+for this name.
+
+In cases where there are multiple deployed instances of a given *contract type*
+package managers **should** use a name which provides some added semantic
+information as to help differentiate the two deployed instances in a meaningful
+way.
 
 
 ## Format
@@ -23,52 +152,69 @@ single JSON object.
 
 ## Filename
 
-When creating a release, convention is to name this document `<version>.json`.
+When creating a release, convention is to name this document using one of the following conventions.
 
-* The `1.0.0` Release would be named `1.0.0.json`
+* In cases where multiple *Release Lockfiles* are being store alongside one another, convention is to use `<version>.json`.  For example, the `1.0.0` release would be named `1.0.0.json`.  
+* In cases where a single *Release Lockfile* is being stored, convention is to use `lock.json`.
 
-Package managers may keep their own copy of this file as part of their package installation process.  In these cases it is up to the package manager to decide on a naming convention.  Package managers **should** keep the `.json` file extension.
+Package managers **should not** rely on these naming conventions nor are they
+required to follow them.
 
 
 ## Document Specification
 
-The following fields are defined for the release lock file.  Custom fields may
+The following fields are defined for the release lockfile.  Custom fields may
 be included.  Custom fields **should** be prefixed with `x-` to prevent name
 collisions with future versions of the specification.
 
 
-### Lock File Version: `lock_file_version`
+### Lock File Version: `lockfile_version`
 
 
-The `lock_file_version` field defines the specification version that this
-document conforms to.  All release lock files **must** include this field.
+The `lockfile_version` field defines the specification version that this
+document conforms to.  Release lockfiles **must** include this field.
 
-* Key: `lock_file_version`
-* Type: Integer
+* Required: Yes
+* Key: `lockfile_version`
+* Type: String
 * Allowed Values: `1`
 
 
-### Package Manifest: `package_manifest`
+### Package Name: `package_name`
+
+The `package_name` field defines a human readable name for this package.
+Release lockfiles **must** include this field.  Package names **must**
+begin with a lowercase letter and be comprised of only lowercase letters,
+numeric characters, and the dash character `'-'`.  Package names **must** not
+exceed 214 characters in length.
+
+* Required: Yes
+* Key: `package_name`
+* Type: String
+* Format: Package names must conform to the following regular expression. `[a-z][-a-z0-9]{0,213}`
 
 
-The `package_manifest` field references the package's Package Manifest document
-as it existed at the time this release was created.  All release lock files
-**must** include this field.  The manifest may be referenced using an IPFS URI
-or by directly embedding the document under this key.
+### Package Meta: `meta`
 
-* Key: `package_manifest`
-* Type: IPFS URI or Embedded Document
+The `package_meta` field defines a location for metadata about the package
+which is not integral in nature for package installation, but may be important
+or convenient to have on-hand for other reasons. This field **should** be
+cinluded in all release lockfiles.
+
+* Required: No
+* Key: `package_meta`
+* Type:  Object (String: *Package Meta* object)
 
 
 ### Version: `version`
 
 The `version` field declares the version number of this release.  This value
-**must** be included in all release lock files.  This value **should** be conform
+**must** be included in all release lockfiles.  This value **should** be conform
 to the [semver](http://semver.org/) version numbering specification.
 
+* Required: Yes
 * Key: `version`
 * Type: String
-* Format: [semver](http://semver.org)
 
 
 ### Sources: `sources`
@@ -77,9 +223,9 @@ The `sources` field defines a source tree that **should** comprise the full
 source tree necessary to recompile the contracts contained in this release.
 Sources are declared in a key/value mapping.  
 
-* All keys **must** be relative filesystem paths beginning with a `./`.  All paths **must** resolve to a path that is within the current working directory.
+* Keys **must** be relative filesystem paths beginning with a `./`.  Paths **must** resolve to a path that is within the current working directory.
 
-* All values **must** conform to *one of* the following formats.
+* Values **must** conform to *one of* the following formats.
     * Source string.
         * When the value is a source string the key should be interpreted as a file path.
     * IPFS URI
@@ -90,117 +236,323 @@ Sources are declared in a key/value mapping.
 * Type: Object (String: String)
 
 
-### Contracts: `contracts`
+### Contract Types: `contract_types`
 
-The `contracts` field declares information about the deployed contracts
-included within this release.
+The `contract_types` field holds information about *contract types* which
+have been included in this release lockfile.  Release lockfiles **may not**
+include any *contract types* which are not present in the project's source
+code.
 
-* Key: `contracts`
-* Type:  Object (String: *Contract* Object)
+* Key: `contract_types`
+* Type:  Object (String: *Contract Type* Object)
 * Format: 
-    * All keys **must** be valid contract names matching the regex `[_a-zA-Z][_a-zA-Z0-9]*`.
-    * All values **must** conform to the *Contract* object definition.
+    * Keys **must** be valid *contract aliases*.
+    * Values **must** conform to the *Contract Type* object definition.
+
+
+### Deployments: `deployments`
+
+The `deployments` field holds the information for the chains on which this
+release has *contract instances* as well as the *contract types* and other
+deployment details for those deployed *contract instances*.  The set of chains
+defined by the BIP122 URI keys for this object **must** be unique.
+
+* Key: `deployments`
+* Type:  Object (String: Object(String: *Deployed Instance* Object))
+* Format: 
+    * Keys **must** be valid BIP122 URI chain definitions.
+    * Values **must** be objects which conform to the format:
+        * Keys **must** be valid *contract instance* names.
+        * Values **must** be valid *Deployed Instance* objects.
 
 
 ### Build Dependencies: `build_dependencies`
 
 
-the `dependencies` field defines a key/value mapping of ethereum packages that
+The `build_dependencies` field defines a key/value mapping of ethereum packages that
 this project depends on.
-
 
 * Key: `dependencies`
 * Type: Object (String: String)
 * Format:
-    * All keys **must** be valid package names matching the regular expression `[a-z][-a-z0-9]{0,213}`
-    * All values **must** be valid IPFS URIs which resolve to a valid *Release Lock File*
+    * Keys **must** be valid package names matching the regular expression `[a-z][-a-z0-9]{0,213}`
+    * Values **must** be valid IPFS URIs which resolve to a valid *Release Lock File*
 
 
-#### The *Contract* Object
+## Object Definitions
 
-A *Contract* Object is an object with the following key/values.
-
-* `bytecode`:
-    * Required: No
-    * Type: String
-    * Format: Hex encoded unlinked bytecode for the compiled contract.
-* `runtime_bytecode`:
-    * Required: No
-    * Type: String
-    * Format: Hex encoded unlinked runtime portion of the bytecode for the compiled contract.
-* `abi`:
-    * Required: No
-    * Type: List
-    * Format: see https://github.com/ethereum/wiki/wiki/Ethereum-Contract-ABI#json
-* `natspec`:
-    * Required: No
-    * Type: Object
-    * Format: Combined [UserDoc](https://github.com/ethereum/wiki/wiki/Ethereum-Natural-Specification-Format#user-documentation) and [DevDoc](https://github.com/ethereum/wiki/wiki/Ethereum-Natural-Specification-Format#developer-documentation)
-* `compiler`:
-    * Required: Required if either `bytecode` or `runtime_bytecode` is present.
-    * Type: Object
-    * Keys:
-        * `type`:
-            * Required: Yes
-            * Type: String
-            * Allowed Values:
-                * `'solc'` for the solc command line compiler.
-                * `'solcjs'` for the nodejs solc compiler.
-        * `version`:
-            * Required: Yes
-            * Type: String
-        * `settings`:
-            * Required: No
-            * Type: Object
-            * Keys:
-                * `optimize`
-                    * Required: No
-                    * Type: Boolean
-                * `optimize_runs`
-                    * Required: No
-                    * Type: Integer
-                    * Format: Positive Integer
-* `deployments`
-    * Required: No
-    * Type: Object(String: Object(String: *Deployment* object)
-    * Format: 
-        * All keys **must** be valid BIP122 URIs matching the regular expression `blockchain://[0-9a-fA-F]{64}/block/[0-9a-fA-F]{64}`
-        * All values **must** be objects which conform to the following format
-            * Type: Object(String: *Deployment* object)
-            * Format:
-                * All keys **must** be strings conforming to the regular expression `[_a-zA-Z][_a-zA-Z0-9]*`.
-                    * In the case that there is a single deployed instance this **should** use the same name as the contract.  
-                    * In the case that there are multiple deployed instances of the same contract a unique name should be used for each deployed instance.
-                * All values **must** be objects conforming to the *Deployment* object format (see below).
+Definitions for different objects used within the release lockfile.  All
+objects allow custom fields to be included.  Custom fields **should** be
+prefixed with `x-` to prevent name collisions with future versions of the
+specification.
 
 
-#### The *Deployments* Object
+### The *Package Meta* Object
+
+The *Package Meta* object is defined to have the following key/value pairs.
 
 
-* `address`:
-    * Required: Yes
-    * Type: String
-    * Format: Hex encoded ethereum address of the deployed contract.
-* `deploy_transaction`:
-    * Required: No
-    * Type: String
-    * Format: [BIP122](https://github.com/bitcoin/bips/blob/master/bip-0122.mediawiki) URI which defines the transaction in which this contract was created.
-* `deploy_block`:
-    * Required: No
-    * Type: String
-    * Format: [BIP122](https://github.com/bitcoin/bips/blob/master/bip-0122.mediawiki) URI which defines the block in which this contract was created.
-* `link_dependencies`:
-    * Reqired: Required to have an entry for each link reference found in either the `bytecode` or `runtime_bytecode` fields.
-    * Type: Object
-    * Format:
-        * All keys **must** be strings which are formatted as valid link targets.
-        * All values **must** conform to *one of* the following formats:
-            * A hex encoded ethereum address.
-            * A [json pointer](https://tools.ietf.org/html/rfc6901) to another *Deployment* object in the release lock file.  The `address` from the resolved *Deployment* object should be used.
-            * An IPFS URI with a JSON point in the fragment portion of the URI.  The IPFS hash must resolves to a valid release lock file.  The json pointer **must** resolves to a *Deployment* object within the release lock file.  The `address` from the resolved *Deployment* object should be used.
+#### Authors: `authors`
+
+The `authors` field defines a list of human readable names for the authors of
+this package.  Release lockfiles **may** include this field. 
+
+* Required: No
+* Key: `authors`
+* Type: List of Strings
 
 
-#### BIP122 URIs
+### License: `license`
+
+The `license` field declares the license under which this package is released.
+This value **should** be conform to the
+[SPDX](https://en.wikipedia.org/wiki/Software_Package_Data_Exchange) format.
+Release lockfiles **should** include this field.
+
+* Required: No
+* Key: `license`
+* Type: String
+
+
+### Description: `description`
+
+The `description` field provides additional detail that may be relevant for the
+package.  Release lockfiles **may** include this field.
+
+* Required: No
+* Key: `description`
+* Type: String
+
+
+### Keywords: `keywords`
+
+The `keywords` field provides relevant keywords related to this package.  
+
+* Required: No
+* Key: `keywords`
+* Type: List of Strings
+
+
+### Links: `links`
+
+The `links` field provides URIs to relevant resources
+associated with this package.  When possible, authors **should** use the
+following keys for the following common resources.
+
+* `website`: Primary website for the package.
+* `documentation`: Package Documentation
+* `repository`: Location of the project source code.
+
+* Key: `links`
+* Type: Object (String: String)
+
+
+### The *Contract Type* Object
+
+A *Contract Type* object is defined to have the following key/value pairs.
+
+
+#### Contract Name `contract_name`
+
+The `contract_name` field defines *contract name* for this *contract type*.
+
+* Required: If the *contract name* and *contract alias* are not the same.
+* Type: String
+* Format: **must** match the regular expression `[a-zA-Z][a-zA-Z0-9_]*`
+
+
+#### Bytecode `bytecode`
+
+The `bytecode` field defines the unlinked `'0x'` prefixed bytecode for this *contract type*
+
+* Required: No
+* Type: String
+* Format: Hex encoded unlinked bytecode for the compiled contract.
+
+
+#### Runtime Bytecode `runtime_bytecode`
+
+* Required: No
+* Type: String
+* Format: Hex encoded unlinked runtime portion of the bytecode for the compiled contract.
+
+
+#### ABI `abi`
+
+* Required: No
+* Type: List
+* Format: see https://github.com/ethereum/wiki/wiki/Ethereum-Contract-ABI#json
+
+
+#### Natspec `natspec`
+
+* Required: No
+* Type: Object
+* Format: The Merged *UserDoc* and *DevDoc*
+    * [UserDoc](https://github.com/ethereum/wiki/wiki/Ethereum-Natural-Specification-Format#user-documentation) 
+    * [DevDoc](https://github.com/ethereum/wiki/wiki/Ethereum-Natural-Specification-Format#developer-documentation)
+
+
+#### Compiler `compiler`
+
+* Required: Required if either `bytecode` or `runtime_bytecode` is present.
+* Type: Object
+* Format: The object must conform to the following format.
+    * `type`:
+        * Required: Yes
+        * Type: String
+        * Allowed Values:
+            * `'solc'` for the solc command line compiler.
+            * `'solcjs'` for the nodejs solc compiler.
+    * `version`:
+        * Required: Yes
+        * Type: String
+    * `settings`:
+        * Required: No
+        * Type: Object
+        * Format: Compiler Specific
+
+For the `'solc'` and `'solcjs'` compilers, the `settings` value must conform to
+the following format.
+
+* Keys:
+    * `optimize`
+        * Required: No
+        * Type: Boolean
+    * `optimize_runs`
+        * Required: No
+        * Type: Integer
+        * Format: Positive Integer
+
+
+### The *Deployed Instance* Object
+
+A *Deployed Instance* object is defined to have the following key/value pairs.
+
+
+#### Contract Type `contract_type`
+
+The `contract_type` field defines the *contract type* for this *contract
+instance*.  This can reference any of the *contract types* included in this
+release lockfile *or* any of the *contract types* found in any of the package
+dependencies from the `build_dependencies` section of the release lockfile.
+
+* Required: Yes
+* Type: String
+* Format: **must** conform to one of the following formats
+
+To reference a *contract type* from this release lockfile, use the format `<contract-alias>`.
+
+* The `<contract-alias>` value **must** be a valid *contract alias*.
+* The value **must** be present in the keys of the `contract_types` section of this release lockfile.
+
+To reference a *contract type* from a dependency, use the format `<package-name>:<contract-alias>`.  
+
+* The `<package-name>` value **must** be present in the keys of the `build_dependencies` of this release lockfile.  
+* The `<contract-alias>` value **must** be be a valid *contract alias* 
+* The resolved release lockfile for `<package-name>` must contain the `<contract-alias>` value in the keys of the `contract_types` section.
+
+
+#### Address `address`
+
+The `address` field defines the address of the *contract instance*
+
+* Required: Yes
+* Type: String
+* Format: Hex encoded `'0x'` prefixed ethereum address matching the regular expression `0x[0-9a-fA-F]{40}`.
+
+
+#### Transaction `transaction`
+
+The `transaction` field defines the transaction hash in which this *contract
+instance* was created.
+
+* Required: No
+* Type: String
+* Format: [BIP122](https://github.com/bitcoin/bips/blob/master/bip-0122.mediawiki) URI which defines the transaction in which this contract was created.
+
+
+#### Block `block`
+
+The `block` field defines the block hash in which this the transaction which
+created this *contract instance* was mined.
+
+* Required: No
+* Type: String
+* Format: [BIP122](https://github.com/bitcoin/bips/blob/master/bip-0122.mediawiki) URI which defines the block in which this contract was created.
+
+
+#### Link Dependencies `link_dependencies`
+
+The `link_dependencies` defines the values which were used to fill in any
+*link* references which are present in the `bytecode` or `runtime_bytecode` of
+the *contract type* defined by the `contract_type` field of this *contract
+instance*.  This field **must** be present if there are any *link references*
+in either the `bytecode` or `runtime_bytecode` for the *contract type* of this
+*contract instance*.  This field **must** contain an entry for all *link
+references* found in both the `bytecode` and the `runtime_bytecode`.
+
+* Required: If there are any *link references* in the `bytecode` or `runtime_bytecode` for the *contract type* of this *contract instance*.
+* Type: Array
+* Format: All values **must** be valid *Link Value* objects
+
+
+### The *Link Value* Object
+
+A *Link Value* object is defined to have the following key/value pairs.
+
+
+#### Offset `offset`
+
+The `offset` field defines the location within the corresponding bytecode where
+the `value` for this *link value* should be written.  This location is a
+0-indexed offset from the beginning of the unprefixed hexidecimal
+representation of the bytecode.
+
+* Required: Yes
+* Type: Integer
+* Format: The integer **must** conform to all of the following:
+    * be greater than or equal to zero 
+    * strictly less than the length of the unprefixed hexidecimal representation of the corresponding bytecode.
+
+
+#### Value `value`
+
+The `value` field defines the value which should be written when *linking* the
+corresponding bytecode.
+
+* Required: Yes
+* Type: String
+* Format: One of the following formats.
+
+To reference address of a *contract instance* from the current release lockfile
+the value should be set to the name of that *contract instance*.  
+
+* This value **must** be a valid *contract instance* name.
+* The chain definition under which the *contract instance* that this *link value* belongs to must contain this value within its keys.
+* This value **may not** reference the same *contract instance* that this *link value* belongs to.
+
+To reference an address of a *contract instance from one of the dependencies of
+this release lockfile the value should be in the format
+`<package-name>:<contract-instance>`.
+
+* The `<package-name>` value **must** be present in the `build_dependencies` for this release lockfile.
+* The `<contract-instance>` value **must** be a valid *contract instance* name.
+* Within the release lockfile of the package dependency defined by `<package-name>` value all of the following must be satisfiable:
+    * There **must** be *exactly* one chain defined under the `deployments` key which matches the chain definition that this *link value* is nested under.
+    * The `<contract-instance>` value **must** be present in the keys of the matching chain.
+
+
+A static address can be used by simply using the `'0x'` prefixed address as the
+value.  Package managers **should not** use this pattern when building releases
+that will be published as open source packages or that are intended to be used
+outside of a closed system.  Package managers **should** require some form of
+explicit input from the user such as a command line flag like
+`--allow-unverifiable-linking` before linking code with this type of *link
+value*. 
+
+
+### BIP122 URIs
 
 BIP122 URIs are used to define a blockchain via a subset of the
 [BIP-122](https://github.com/bitcoin/bips/blob/master/bip-0122.mediawiki) spec.
