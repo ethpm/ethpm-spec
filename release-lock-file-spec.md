@@ -101,6 +101,9 @@ included within this release.
     * All keys **must** be valid contract names matching the regex `[_a-zA-Z][_a-zA-Z0-9]*`.
     * All values **must** conform to the *Contract* object definition.
 
+The *keys* in this object may be *any* valid contract name and are not required
+to match the `contract_name` value of the *Contract* object.
+
 
 ### Build Dependencies: `build_dependencies`
 
@@ -123,6 +126,10 @@ this project depends on.
 
 A *Contract* Object is an object with the following key/values.
 
+* `contract_name`:
+    * Required: Yes
+    * Type: String
+    * Format: The name of the contract as found in source code.  Must match the regular expression `[_a-zA-Z][_a-zA-Z0-9]*`
 * `bytecode`:
     * Required: No
     * Type: String
