@@ -192,15 +192,53 @@ A *Contract* Object is an object with the following key/values.
     * Required: No
     * Type: String
     * Format: [BIP122](https://github.com/bitcoin/bips/blob/master/bip-0122.mediawiki) URI which defines the block in which this contract was created.
-* `link_dependencies`:
-    * Reqired: Required to have an entry for each link reference found in either the `bytecode` or `runtime_bytecode` fields.
-    * Type: Object
-    * Format:
-        * All keys **must** be strings which are formatted as valid link targets.
-        * All values **must** conform to *one of* the following formats:
-            * A hex encoded ethereum address.
-            * A [json pointer](https://tools.ietf.org/html/rfc6901) to another *Deployment* object in the release lock file.  The `address` from the resolved *Deployment* object should be used.
-            * An IPFS URI with a JSON point in the fragment portion of the URI.  The IPFS hash must resolves to a valid release lock file.  The json pointer **must** resolves to a *Deployment* object within the release lock file.  The `address` from the resolved *Deployment* object should be used.
+* `bytecode_link_dependencies`:
+    * Reqired: If the `bytecode` has link references.
+    * Type: Array of *Link Reference* Objects
+* `runtime_bytecode_link_dependencies`:
+    * Reqired: If the `runtime_bytecode` has link references.
+    * Type: Array of *Link Reference* Objects
+
+
+#### Link Reference Object
+
+The *Link Reference* object defines the values that should be substituted for
+any link references present in the `bytecode` or `runtime_bytecode` of a
+contract.  Each Link Reference is an object with the following fields.
+
+* `offset`:
+    * Required: Yes
+    * Type: Integer
+    * Format: 0-indexed offset from the beginning of the hex encoded unprefixed bytecode where the `value` portion of this *Link Reference* should be written to.  The term *unprefixed* means the bytecode without a `'0x'` prefix.
+* `value`:
+    * Required: Yes
+    * Type: String
+    * Format: One of the following formats.
+        * Address:
+            * A `'0x'` prefixed hex encoded ethereum address.
+        * Local Reference:
+            * A URL fragment matching the regular expression `\#[_a-zA-Z][_a-zA-Z0-9]*\:[_a-zA-Z][_a-zA-Z0-9]*`.  
+        * Build Dependency Reference:
+            * An IPFS URI with a URL fragment matching the regular expression `\#[_a-zA-Z][_a-zA-Z0-9]*\:[_a-zA-Z][_a-zA-Z0-9]*`.  
+            * The IPFS URI **must** be present within the `build_dependencies` of this lockfile.
+
+The *Local Reference* and the *Build Dependency Reference* values should be
+validated and resolved as follows.
+
+1. Resolve the lockfile
+    * For a *Local Reference* this is the current lockfile
+    * For a *Build Dependency Reference* this is file found at the IPFS URI
+2. Split the URL fragment on the semicolon `':'`.
+    * The first value is the *Contract Name*
+    * The second value is the *Deployed Contract Name*
+3. In the resolved lockfile lookup the contract whose name matches the *Contract Name*.
+4. Within the `deployments` for that contract, filter out any chain definitions which are not the same chain as the chain definition for the contract being linked.
+5. Filter the deployed contract names from the resulting chains to ones that match the *Deployed Contract Name*.
+6. *If* there is exactly one result use the `address` field for this deployed contract as the link value.  Otherwise the link reference cannot be resolved.
+
+Two chains definitions are considered to reference the same chain *if* they
+both have the same `chain_id` **and** both block hashes can be found on that
+chain.
 
 
 #### BIP122 URIs
