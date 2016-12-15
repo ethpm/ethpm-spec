@@ -41,9 +41,11 @@
       "description": "TODO",
       "patternProperties": {
         "^[a-z][-a-z0-9]{0,213}$": {
-          "title": "Dependency",
+          "title": "IPFS URI to dependency Release Lock File",
           "type": "string",
-          "description": "TODO"
+          "description": "TODO",
+          "format": "uri",
+          "pattern": "^ipfs:/?/?*$"
         }
       }
     },
