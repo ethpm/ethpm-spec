@@ -92,6 +92,14 @@ All manifests **should** include this field.
 * Key: `license`
 * Type: String
 
+### Entry Point: `entry_point`
+
+The `entry_point` field declares the main contract to access and utilize for this package.  This value
+**must** be a `.sol` file.
+
+* Key: `entry_point`
+* Type: String
+
 
 ### Description: `description`
 
