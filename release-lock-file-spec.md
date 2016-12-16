@@ -258,12 +258,12 @@ deployment details for those deployed *contract instances*.  The set of chains
 defined by the BIP122 URI keys for this object **must** be unique.
 
 * Key: `deployments`
-* Type:  Object (String: Object(String: *Deployed Instance* Object))
+* Type:  Object (String: Object(String: *Contract Instance* Object))
 * Format: 
     * Keys **must** be valid BIP122 URI chain definitions.
     * Values **must** be objects which conform to the format:
         * Keys **must** be valid *contract instance* names.
-        * Values **must** be valid *Deployed Instance* objects.
+        * Values **must** be valid *Contract Instance* objects.
 
 
 ### Build Dependencies: `build_dependencies`
@@ -395,39 +395,14 @@ The `bytecode` field defines the unlinked `'0x'` prefixed bytecode for this *con
 
 #### Compiler `compiler`
 
-* Required: Required if either `bytecode` or `runtime_bytecode` is present.
+* Required: If either `bytecode` or `runtime_bytecode` are included in this *contract type*
 * Type: Object
-* Format: The object must conform to the following format.
-    * `type`:
-        * Required: Yes
-        * Type: String
-        * Allowed Values:
-            * `'solc'` for the solc command line compiler.
-            * `'solcjs'` for the nodejs solc compiler.
-    * `version`:
-        * Required: Yes
-        * Type: String
-    * `settings`:
-        * Required: No
-        * Type: Object
-        * Format: Compiler Specific
-
-For the `'solc'` and `'solcjs'` compilers, the `settings` value must conform to
-the following format.
-
-* Keys:
-    * `optimize`
-        * Required: No
-        * Type: Boolean
-    * `optimize_runs`
-        * Required: No
-        * Type: Integer
-        * Format: Positive Integer
+* Format: **must** conform the the *Compiler Information* object format.
 
 
-### The *Deployed Instance* Object
+### The *Contract Instance* Object
 
-A *Deployed Instance* object is defined to have the following key/value pairs.
+A *Contract Instance* object is defined to have the following key/value pairs.
 
 
 #### Contract Type `contract_type`
@@ -480,6 +455,37 @@ created this *contract instance* was mined.
 * Required: No
 * Type: String
 * Format: [BIP122](https://github.com/bitcoin/bips/blob/master/bip-0122.mediawiki) URI which defines the block in which this contract was created.
+
+
+#### Bytecode `bytecode`
+
+The `bytecode` field defines the unlinked `'0x'` prefixed bytecode for this
+*contract instance*. When present, the value from this field should take
+priority over the `bytecode` from the *contract_type* for this
+*contract instance*.
+
+* Required: No
+* Type: String
+* Format: Hex encoded unlinked bytecode for the compiled contract.
+
+
+#### Runtime Bytecode `runtime_bytecode`
+
+The `runtime_bytecode` field defines the unlinked `'0x'` prefixed runtime
+portion of bytecode for this *contract instance*.  When present, the value from
+this field should take priority over the `runtime_bytecode` from the
+*contract_type* for this *contract instance*.
+
+* Required: No
+* Type: String
+* Format: Hex encoded unlinked runtime portion of the bytecode for the compiled contract.
+
+
+#### Compiler `compiler`
+
+* Required: If either `bytecode` or `runtime_bytecode` are included in this *contract instance*
+* Type: Object
+* Format: **must** conform the the *Compiler Information* object format.
 
 
 #### Link Dependencies `link_dependencies`
@@ -550,6 +556,54 @@ outside of a closed system.  Package managers **should** require some form of
 explicit input from the user such as a command line flag like
 `--allow-unverifiable-linking` before linking code with this type of *link
 value*. 
+
+
+### The *Compiler Information* Object
+
+A *Compiler Information* object is defined to have the following key/value pairs.
+
+
+#### Type `type`
+
+The `type` field defines which compiler was used in compilation.
+
+* Required: Yes
+* Key: `type`:
+* Type: String
+* Allowed Values:
+    * `'solc'` for the solc command line compiler.
+    * `'solcjs'` for the nodejs solc compiler.
+
+#### Version `version`
+
+The `version` field defines the version of the compiler.
+
+* Required: Yes
+* Key `version`:
+* Type: String
+
+
+#### Settings `settings`
+
+The `settings` field defines any settings or configuration that was used in
+compilation.
+
+* Required: No
+* Key `settings`:
+* Type: Object
+* Format: Depends on the `type` of the compiler.  See below:
+
+For the `'solc'` and `'solcjs'` compilers, the `settings` value must conform to
+the following format.
+
+* Keys:
+    * `optimize`
+        * Required: No
+        * Type: Boolean
+    * `optimize_runs`
+        * Required: No
+        * Type: Integer
+        * Format: Greater than or equal to 1.
 
 
 ### BIP122 URIs
