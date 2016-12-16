@@ -52,7 +52,8 @@ case all chains are considered valid matches
 
 ## Use Cases
 
-The following use cases were considered during the creation of this specification.
+The following use cases were considered during the creation of this
+specification.  Each use case builds on the previous ones.
 
 
 ### Stand Alone Package with Reusable Code
@@ -78,30 +79,52 @@ intended to be used as a base contract for other contracts to be inherited
 from.  The package does not define any pre-deployed addresses for the *owned*
 contract.
 
-A Release Lock File for this package would look like this:
+The smallest Release Lockfile for this package looks like this:
 
 ```javascript
 {
-    "lockfile_version": "1",
-    "version": "1.0.0",
-    "package_name": "owned",
+  "lockfile_version": "1",
+  "version": "1.0.0",
+  "package_name": "owned",
+  "sources": {
+    "./contracts/owned.sol": "ipfs://Qme6goiKwGZngCJKJSHmbm5zqb8tB7xxbZq8f7ZeeMcsxw"
+  }
+}
+```
+
+A Release Lockfile which includes more than the minimum information would look like this.
+
+
+```javascript
+{
+  "lockfile_version": "1",
+  "version": "1.0.0",
+  "package_name": "owned",
+  "package_meta": {
     "license": "MIT",
-    "sources": {
-        "./contracts/owned.sol": "ipfs://Qme6goiKwGZngCJKJSHmbm5zqb8tB7xxbZq8f7ZeeMcsxw"
+    "authors": [
+      "Piper Merriam <pipermerriam@gmail.com>"
+    ],
+    "description": "Reusable contracts which implement a priviledged 'owner' model for authorization",
+    "keywords": [
+      "authorization"
+    ],
+    "links": {
+      "documentation": "ipfs://QmQiqrwqdav5bV8mtv4PqGksGcDWo43f7PAZYwhJqNEv2j"
     }
+  },
+  "sources": {
+    "./contracts/owned.sol": "ipfs://Qme6goiKwGZngCJKJSHmbm5zqb8tB7xxbZq8f7ZeeMcsxw"
+  }
 }
 ```
 
 
+### Stand Alone Package with Reusable Code and a dependency
 
-### A sim
+Now that we've seen what a simple package looks like, lets see how to dependencies are declared.
+dependencies.
 
-1. Code with zero deployed instances.
-    1. Reusable base contracts.
-2. Code with one or more addresses.
-    1. Libraries: Installation of the package involves having an importable interface for the library and linking against the proper address during deployment.
-    2. Contracts: Installation of the package involves having an importable interface and some manner of templating in the proper addresses into the local source code prior to compilation as well as other non-contract code that may interact with the installed contract.
+The next package will implement the *transferrable* pattern.
 
-
-It is worth pointing out that the *Library* and *Contract* use cases are functionally the same.  Once [Solidity issue #242](https://github.com/ethereum/solidity/issues/242) has been addressed this distinction may no longer need to exist.
-
+The IPFS URI for the previous `owned` Release Lockfile `QmPBCJJBM9SYXU56hHSxpRNBvbNcjjDxrSnV1MwoPmHCqW`
