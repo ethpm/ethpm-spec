@@ -191,59 +191,57 @@ necessary to make the import statement work.
 
 In this next example we'll look at a package which contains a reusable
 contract.  This means that the package provides a contract which can be on its
-own in some manner.  For this example we will be using a *notary* contract.
-This contract uses the EVM logging system to keep a record of hashes and the
-address which submitted them, allowing the submitter of the hash to prove at
-some later time that they had the data represented by the hash. This package
-will contain a single solidity source file `./contracts/Notary.sol`.
+own in some manner.  For this example we will be creating a package which
+includes a reusable standard
+[ERC20](https://github.com/ethereum/EIPs/issues/20) token contract.
 
+> The source code for these contracts was pulled from the [SingularDTV](https://github.com/ConsenSys/singulardtv-contracts) github repository.  Thanks to them for a very well written contract.
 
-```javascript
-pragma solidity ^0.4.0;
+This package will contain two solidity source files.  
 
-/// @title Notary
-/// @author Piper Merriam
-contract Notary {
-	event HashNotarized(address indexed submitter, bytes32 indexed _hash);
+* [`./contracts/AbstractToken.sol`](./examples/standard-token/contracts/AbstractToken.sol)
+* [`./contracts/StandardToken.sol`](./examples/standard-token/contracts/StandardToken.sol)
 
-    /// @dev emits the HashNotarized event to log the hash.
-    /// @notice The submitted hash will be available in the logs of the transaction receipt.
-    /// @param _hash String 32-byte hash of the document being notarized.
-    function notarize(bytes32 _hash) public returns (bool) {
-		HashNotarized(msg.sender, _hash);
-		return true;
-    }
-}
-```
+Given that these source files are relatively large they will not be included
+here within the guide but can be found in the
+[`./examples/standard-token/`](./examples/standard-token/) directory within
+this repository.
 
 Since this package includes a contract which may be used as-is, our Release
-Lockfile is going to contain some additional information that wasn't needed in
-the previous examples.  Since we expect people to compile this contract
-theirselves we won't need to include any of the contract bytecode, but it will
-be useful to include the contract ABI and Natspec information.
+Lockfile is going to contain additional information from our previous examples,
+specifically, the `contract_types` section.  Since we expect people to compile
+this contract theirselves we won't need to include any of the contract
+bytecode, but it will be useful to include the contract ABI and Natspec
+information.  Our lockfile will look something like the following.  The
+contract ABI and NatSpec sections have been truncated to improve legibility.
+The full Release Manifest can be found
+[here](./examples/standard-token/1.0.0.json)
+
 
 ```javascript
 {
   "lockfile_version": "1",
   "version": "1.0.0",
-  "package_name": "notary",
+  "package_name": "standard-token",
   "sources": {
-    "./contracts/notary.sol": "ipfs://QmXtRuSpn1DX3CUk9bbZm8hTKmqXQ5WZB2tMpZYHPS9CUV"
+    "./contracts/AbstractToken.sol": "ipfs://QmQMXDprXxCunfQjA42LXZtzL6YMP8XTuGDB6AjHzpYHgk",
+    "./contracts/StandardToken.sol": "ipfs://QmPm9p7KeP4MY361dREFshrD5mib5dufjTPyn1LXNf7L2S"
   },
   "contract_types": {
-    "notary": {
-      "abi": [{"constant":false,"inputs":[{"name":"_hash","type":"bytes32"}],"name":"notarize","outputs":[{"name":"","type":"bool"}],"payable":false,"type":"function"},{"anonymous":false,"inputs":[{"indexed":true,"name":"submitter","type":"address"},{"indexed":true,"name":"_hash","type":"bytes32"}],"name":"HashNotarized","type":"event"}],
-      natspec: {
-	    "title" : "Notary"
-	    "author": "Piper Merriam",
-	    "methods": {
-	      "notarize(bytes32)": {
-            "notice" : "The submitted hash will be available in the logs of the transaction receipt.",
-	        "details": "emits the HashNotarized event to log the hash.",
-	        "params": {
-	          "_hash": "String 32-byte hash of the document being notarized."
-	        }
-	      }
+    "StandardToken": {
+      "abi": [...],
+      "natspec": {
+        "author": "Stefan George - <stefan.george@consensys.net>",
+        "title": "Standard token contract",
+        "methods": {
+          "allowance(address,address)": {
+            "details": "Returns number of allowed tokens for given address.",
+            "params": {
+              "_owner": "Address of token owner.",
+              "_spender": "Address of token spender."
+            }
+          },
+          ...
         }
       }
     }
@@ -255,3 +253,16 @@ While it is not required to include the contract ABI and NatSpec information,
 it does provide those using this package with they data they would need to
 interact with an instance of this contract without having to regenerate this
 information from source.
+
+
+### Package which uses a Reusable Contract from a depenency
+
+For our next example we'll be creating a package includes the `standard-token`
+contract from our previous example as a dependency and includes a deployed
+version of the `StandardToken` contract in the Release Manifest.  This will be
+our first package which includes the `deployments` section which is the
+location in the Release Lockfile where information about deployed contract
+instances is found.
+
+Our package will be called `piper-coin` and will not contain any source files
+since it merely makes use of the contracts from the `standard-token` package.
