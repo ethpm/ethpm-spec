@@ -300,7 +300,6 @@ library SafeMathLib {
 }
 ```
 
-
 This will be our first package which includes the `deployments` section which is the
 location in the Release Lockfile where information about deployed contract
 instances is found.  Lets look at the Release Lockfile for this package.  Some
@@ -324,7 +323,10 @@ parts have been truncated for readability but the full file can be found
       ],
       "compiler": {
         "type": "solc",
-        "version": "0.4.6+commit.2dabbdf0.Darwin.appleclang"
+        "version": "0.4.6+commit.2dabbdf0.Darwin.appleclang",
+        "settings": {
+            "optimize": true
+        }
       },
       "natspec": {
         "title": "Safe Math Library",
@@ -388,7 +390,9 @@ a deployed version of the `StandardToken` contract.
 
 Our package will be called `piper-coin` and will not contain any source files
 since it merely makes use of the contracts from the `standard-token` package.
-The Release Lockfile 
+The Release Lockfile is listed below with some sections truncated for improved
+readability.  The full Release Lockfile can be found at
+[`./examples/piper-coin/1.0.0.json`](./examples/piper-coin/1.0.0.json)
 
 
 ```javascript
@@ -425,3 +429,99 @@ deployments you should see that the `contract_type` key is set to
 package dependency within the `build_dependencies` that should be used.  The
 later portion indicates the *contract type* that should be used from that
 dependencies *contract types*.
+
+
+### Stand Alone package with a deployed Library and a contract which Links against that Library
+
+In the previous `safe-math-lib` package we demonstrated what a package with a
+deployed instance of one of it's local contracts looks like.  In this example
+we will build on that concept with a package which includes a library and a
+contract which uses that library as well as deployed instances of both.
+
+The package will be called `escrow` and will implementing a simple escrow
+contract.  The escrow contract will make use of a library to safely send ether.
+Both the contract and library will be part of the package found in the
+following two solidity source files.
+
+* [`./contracts/SafeSendLib.sol`](./examples/escrow/SafeSendLib.sol)
+* [`./contracts/Escrow.sol`](./examples/escrow/Escrow.sol)
+
+The full source for these files can be found here:
+[`./examples/escrow/`](./examples/escrow/).
+
+The Release Lockfile is listed below with some sections truncated for improved
+readability.  The full Release Lockfile can be found at
+[`./examples/escrow/1.0.0.json`](./examples/escrow/1.0.0.json)
+
+
+```javascript
+{
+  "lockfile_version": "1",
+  "version": "1.0.0",
+  "package_name": "escrow",
+  "sources": {
+    "./contracts/SafeSendLib.sol": "ipfs://QmcnzhWjaV71qzKntv4burxyix9W2yBA2LrJB4k99tGqkZ",
+    "./contracts/Escrow.sol": "ipfs://QmSwmFLT5B5aag485ZWvHmfdC1cU5EFdcqs1oqE5KsxGMw"
+  },
+  "contract_types": {
+    "SafeSendLib": {
+      ...
+    },
+    "Escrow": {
+      ...
+    }
+  },
+  "deployments": {
+    "blockchain://41941023680923e0fe4d74a34bdac8141f2540e3ae90623718e47d66d1ca4a2d/block/e76cf1f29a4689f836d941d7ffbad4e4b32035a441a509dc53150c2165f8e90d": {
+      "SafeMathLib": {
+        "contract_type": "SafeSendLib",
+        "address": "0x80d7f7a33e551455a909e1b914c4fd4e6d0074cc",
+        "transaction": "0x74561167f360eaa20ea67bd4b4bf99164aabb36b2287061e86137bfa0d35d5fb",
+        "block": "0x46554e3cf7b768b1cc1990ad4e2d3a137fe9373c0dda765f4db450cd5fa64102"
+      },
+      "Escrow": {
+        "contract_type": "Escrow",
+        "address": "0x35b6b723786fd8bd955b70db794a1f1df56e852f",
+        "transaction": "0x905fbbeb6069d8b3c8067d233f58b0196b43da7a20b839f3da41f69c87da2037",
+        "block": "0x9b39dcab3d665a51755dedef56e7c858702f5817ce926a0cd8ff3081c5159b7f",
+        "link_dependencies": [
+          {"offset": 524, "value": "SafeSendLib"},
+          {"offset": 824, "value": "SafeSendLib"}
+        ]
+      }
+    }
+  }
+}
+```
+
+This Release Lockfile is the first one we've seen thus far that include the
+`link_dependencies` section within one of the *contract instances*.  The
+`runtime_bytecode` value for the `Escrow` contract has been excluded from the
+example above for readability, but the full value is as follows (wrapped to 80
+characters).
+
+```
+0x606060405260e060020a600035046366d003ac811461003457806367e404ce1461005d57806369
+d8957514610086575b610000565b3461000057610041610095565b60408051600160a060020a0390
+92168252519081900360200190f35b34610000576100416100a4565b60408051600160a060020a03
+9092168252519081900360200190f35b34610000576100936100b3565b005b600154600160a06002
+0a031681565b600054600160a060020a031681565b60005433600160a060020a0390811691161415
+61014857600154604080516000602091820152815160e260020a6324d048c7028152600160a06002
+0a03938416600482015230909316316024840152905173__SafeSendLib_____________________
+______92639341231c926044808301939192829003018186803b156100005760325a03f415610000
+57506101e2915050565b60015433600160a060020a039081169116141561002f5760008054604080
+51602090810193909352805160e260020a6324d048c7028152600160a060020a0392831660048201
+52309092163160248301525173__SafeSendLib___________________________92639341231c92
+60448082019391829003018186803b156100005760325a03f41561000057506101e2915050565b61
+0000565b5b5b56
+```
+
+You can see that the placeholder `__SafeSendLib___________________________` is
+present in two locations within this bytecode.  This is referred to as a *link
+reference*.  The entries in the `link_dependencies` section of a *contract
+instance* describe how these *link references* should be filled in.
+
+The `offset` value specifies the number of characters into the unprefixed
+bytecode where the replacement should begin.  The `value` defines what address
+should be used to replace the *link reference*.  In this case, the `value` is
+referencing the `SafeSendLib` *contract instance* from this release lockfile.

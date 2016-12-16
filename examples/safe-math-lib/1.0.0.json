@@ -39,7 +39,10 @@
       ],
       "compiler": {
         "type": "solc",
-        "version": "0.4.6+commit.2dabbdf0.Darwin.appleclang"
+        "version": "0.4.6+commit.2dabbdf0.Darwin.appleclang",
+        "settings": {
+            "optimize": true
+        }
       },
       "natspec": {
         "title": "Safe Math Library",
