@@ -150,17 +150,6 @@ The canonical format for the package manifest is a JSON document containing a
 single JSON object.  
 
 
-## Filename
-
-When creating a release, convention is to name this document using one of the following conventions.
-
-* In cases where multiple *Release Lockfiles* are being store alongside one another, convention is to use `<version>.json`.  For example, the `1.0.0` release would be named `1.0.0.json`.  
-* In cases where a single *Release Lockfile* is being stored, convention is to use `lock.json`.
-
-Package managers **should not** rely on these naming conventions nor are they
-required to follow them.
-
-
 ## Document Specification
 
 The following fields are defined for the release lockfile.  Custom fields may
