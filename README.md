@@ -214,7 +214,7 @@ this contract theirselves we won't need to include any of the contract
 bytecode, but it will be useful to include the contract ABI and Natspec
 information.  Our lockfile will look something like the following.  The
 contract ABI and NatSpec sections have been truncated to improve legibility.
-The full Release Manifest can be found
+The full Release Lockfile can be found
 [here](./examples/standard-token/1.0.0.json)
 
 
@@ -255,14 +255,173 @@ interact with an instance of this contract without having to regenerate this
 information from source.
 
 
+### Stand Alone Package with a Deployed Contract
+
+Now that we've seen what a package looks like which includes a fully functional
+contract that is ready to be deployed, lets explore a package that also
+includes a deployed instance of that contract.  
+
+Solidity Libraries are an
+excellend example of this type of package, so for this example we are going to
+write a library for *safe* math operations called `safe-math-lib`.  This
+library will implement functions to allow addition and subtraction without
+needing to check for underflow or overflow conditions.  Our package will have a
+single solidity source file `./contracts/SafeMathLib.sol`
+
+
+```javascript
+pragma solidity ^0.4.0;
+
+
+/// @title Safe Math Library
+/// @author Piper Merriam <pipermerriam@gmail.com>
+library SafeMathLib {
+    /// @dev Subtracts b from a, throwing an error if the operation would cause an underflow.
+    /// @param a The number to be subtracted from
+    /// @param b The amount that should be subtracted
+    function safeAdd(uint a, uint b) returns (uint) {
+        if (a + b > a) {
+            return a + b;
+        } else {
+            throw;
+        }
+    }
+
+    /// @dev Adds a and b, throwing an error if the operation would cause an overflow.
+    /// @param a The first number to add
+    /// @param b The second number to add
+    function safeSub(uint a, uint b) returns (uint) {
+        if (b <= a) {
+            return a - b;
+        } else {
+            throw;
+        }
+    }
+}
+```
+
+
+This will be our first package which includes the `deployments` section which is the
+location in the Release Lockfile where information about deployed contract
+instances is found.  Lets look at the Release Lockfile for this package.  Some
+parts have been truncated for readability but the full file can be found
+[here](./examples/safe-math-lib/1.0.0.json)
+
+```javascript
+{
+  "lockfile_version": "1",
+  "version": "1.0.0",
+  "package_name": "safe-math-lib",
+  "sources": {
+    "./contracts/SafeMathLib.sol": "ipfs://QmVN1p6MmMLYcSq1VTmaSDLC3xWuAUwEFBFtinfzpmtzQG"
+  },
+  "contract_types": {
+    "SafeMathLib": {
+      "bytecode": "0x606060405234610000575b60a9806100176000396000f36504062dabbdf050606060405260e060020a6000350463a293d1e88114602e578063e6cb901314604c575b6000565b603a600435602435606a565b60408051918252519081900360200190f35b603a6004356024356088565b60408051918252519081900360200190f35b6000828211602a57508082036081566081565b6000565b5b92915050565b6000828284011115602a57508181016081566081565b6000565b5b9291505056",
+      "runtime_bytecode": "0x6504062dabbdf050606060405260e060020a6000350463a293d1e88114602e578063e6cb901314604c575b6000565b603a600435602435606a565b60408051918252519081900360200190f35b603a6004356024356088565b60408051918252519081900360200190f35b6000828211602a57508082036081566081565b6000565b5b92915050565b6000828284011115602a57508181016081566081565b6000565b5b9291505056",
+      "abi": [
+        ...
+      ],
+      "compiler": {
+        "type": "solc",
+        "version": "0.4.6+commit.2dabbdf0.Darwin.appleclang"
+      },
+      "natspec": {
+        "title": "Safe Math Library",
+        "author": "Piper Merriam <pipermerriam@gmail.com>",
+        ...
+      }
+    }
+  },
+  "deployments": {
+    "blockchain://41941023680923e0fe4d74a34bdac8141f2540e3ae90623718e47d66d1ca4a2d/block/1e96de11320c83cca02e8b9caf3e489497e8e432befe5379f2f08599f8aecede": {
+      "SafeMathLib": {
+        "contract_type": "SafeMathLib",
+        "address": "0x8d2c532d7d211816a2807a411f947b211569b68c",
+        "transaction": "0xaceef751507a79c2dee6aa0e9d8f759aa24aab081f6dcf6835d792770541cb2b",
+        "block": "0x420cb2b2bd634ef42f9082e1ee87a8d4aeeaf506ea5cdeddaa8ff7cbf911810c"
+      }
+    }
+  }
+}
+```
+
+The first thing to point out is that unlike our `standard-token` contract,
+we've included the `bytecode`, `runtime_bytecode` and `compiler` information in
+the `SafeMathLib` section of the `contract_type` definition.  This is because
+we are also including a deployed instance of this contract and need to require
+adequate information for package managers to verify that the contract sound at
+the deployed address is in fact from the source code included in this package.
+
+The next thing to look at is the `deployments` section. The first thing you
+should see is the
+[BIP122](https://github.com/bitcoin/bips/blob/master/bip-0122.mediawiki) URI.
+
+```
+blockchain://41941023680923e0fe4d74a34bdac8141f2540e3ae90623718e47d66d1ca4a2d/block/1e96de11320c83cca02e8b9caf3e489497e8e432befe5379f2f08599f8aecede
+```
+
+This URI defines the chain on which the `SafeMathLib` library was
+deployed.  The first hash you see,
+`41941023680923e0fe4d74a34bdac8141f2540e3ae90623718e47d66d1ca4a2d` is the
+genesisi block hash for the Ropsten test network.  The later hash
+`1e96de11320c83cca02e8b9caf3e489497e8e432befe5379f2f08599f8aecede` is the block
+hash for block numbr 168,238 from the Ropsten chain.
+
+Under that URI there is a single *contract instance*.  It specifies that it's
+*contract type* is `SafeMathLib`, the address that the *contract instance* can
+be found at, the transaction hash for the transaction that deployed the
+contract, and the block hash in which the deploying transaction was mined.
+
+
 ### Package which uses a Reusable Contract from a depenency
 
-For our next example we'll be creating a package includes the `standard-token`
-contract from our previous example as a dependency and includes a deployed
-version of the `StandardToken` contract in the Release Manifest.  This will be
-our first package which includes the `deployments` section which is the
-location in the Release Lockfile where information about deployed contract
-instances is found.
+For our next example we'll be creating a package includes a deployed instance
+of a *contract type* from that comes from a package dependency.  This differs
+from our previous `safe-math-lib` example where our deployment is referencing a
+local contract from the local `contract_types`.  In this package's Release
+Lockfile we will be referencing a `contract_type` from one of the
+`build_dependencies`
+
+We are going to use the `standard-token` package we created earlier and include
+a deployed version of the `StandardToken` contract.   
 
 Our package will be called `piper-coin` and will not contain any source files
 since it merely makes use of the contracts from the `standard-token` package.
+The Release Lockfile 
+
+
+```javascript
+{
+  "lockfile_version": "1",
+  "version": "1.0.0",
+  "package_name": "piper-coin",
+  "deployments": {
+    "blockchain://41941023680923e0fe4d74a34bdac8141f2540e3ae90623718e47d66d1ca4a2d/block/cff59cd4bc7077ae557eb39f84f869a1ea7955d52071bad439f0458383a78780": {
+      "PiperCoin": {
+        "contract_type": "standard-token:StandardToken",
+        "address": "0x11cbb0604e47e0f8501b8f56c1c05f92088dc1b0",
+        "transaction": "0x1f8206683e4b1dea1fd2e7299b7606ff27440f33cb994b42b4ecc4b0f83a210f",
+        "block": "0xe94a700ef9aa2d7a1b07321838251ea4ade8d4d682121f67899f401433a0d910",
+        "bytecode": "...",
+        "runtime_bytecode": "...",
+        "compiler": {
+          "type": "solc",
+          "version": "0.4.6+commit.2dabbdf0.Darwin.appleclang"
+        }
+      }
+    }
+  },
+  "build_dependencies": {
+    "standard-token": "ipfs://QmegJYswSDXUJbKWBuTj7AGBY15XceKxnF1o1Vo2VvVPLQ"
+  }
+}
+```
+
+Most of this should be familiar but it's worth pointing out how we reference
+*contract types* from dependencies.  Under the `PiperCoin` entry within the
+deployments you should see that the `contract_type` key is set to
+`standard-token:StandardToken`.  The first portion represents the name of the
+package dependency within the `build_dependencies` that should be used.  The
+later portion indicates the *contract type* that should be used from that
+dependencies *contract types*.
