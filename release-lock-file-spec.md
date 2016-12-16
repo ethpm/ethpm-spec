@@ -98,27 +98,14 @@ a projects source files.
 
 #### Contract Alias
 
-This is a name chosen to reference a specific *contract type*.  Contract
-aliases must be unique within a single release lockfile.  
+This is a name used to reference a specific *contract type*.  Contract
+aliases **must** be unique within a single release lockfile.  
 
-In the case where the *contract name* is unique across a project's source files
-the *contract name* and *contract alias* **must** either be the same *or* use
-the alias naming scheme for *contract names* which are not unique.
-
-In the case where there are multiple contracts with the same *contract name* in
-a project's source files the *contract alias* **must** use the naming scheme
-`<contract-name>[<identifier>]` where `<contract-name>` is the *contract name*
-and `<identifier>` is a value conforming to the regular expression
-`[-a-zA-Z0-9_]`.
-
-Package managers **should** use the unprefixed hexidecimal representation of
-the Keccak (SHA-3) hash of the *contract type* bytecode in it's binary
-representation as the `identifier` value.
-
-In the case that the *contract types* with name collisions have the same
-bytecode such as two abstract contracts, package managers **should** fall back
-to the Keccak (SHA-3) hash of the source file in which each *contract type* is
-defined.
+The *contract alias* **must** use the naming scheme
+`<contract-name>[<bytecode-identifier>]` where `<contract-name>` is the
+*contract name* and `<bytecode-identifier>` is the unprefixed hexidecimal
+representation of the Keccak (SHA-3) hash of the *contract type* bytecode in
+it's binary representation 
 
 
 #### Contract Instance 
