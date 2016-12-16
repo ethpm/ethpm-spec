@@ -18,6 +18,15 @@ document lifecycle.
 4. Package manifests will typically be stored alongised the package source code.
 
 
+## Keywords
+
+The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD",
+"SHOULD NOT", "RECOMMENDED",  "MAY", and "OPTIONAL" in this document are to be
+interpreted as described in RFC 2119.
+
+* https://www.ietf.org/rfc/rfc2119.txt
+
+
 ## Format
 
 The canoonical format for the package manifest is a JSON document containing a
