@@ -250,3 +250,8 @@ be useful to include the contract ABI and Natspec information.
   }
 }
 ```
+
+While it is not required to include the contract ABI and NatSpec information,
+it does provide those using this package with they data they would need to
+interact with an instance of this contract without having to regenerate this
+information from source.
