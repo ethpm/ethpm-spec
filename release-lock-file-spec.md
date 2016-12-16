@@ -214,10 +214,10 @@ Sources are declared in a key/value mapping.
 
 ### Contract Types: `contract_types`
 
-The `contract_types` field holds information about *contract types* which
-have been included in this release lockfile.  Release lockfiles **may not**
-include any *contract types* which are not present in the project's source
-code.
+The `contract_types` field holds the *contract types* which have been included
+in this release.  Release lockfiles **should** only include *contract types*
+which can be found in the source files for this package.  Release lockfiles
+**should not** include *contract types* from dependencies.
 
 * Key: `contract_types`
 * Type:  Object (String: *Contract Type* Object)
