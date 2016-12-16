@@ -348,6 +348,9 @@ The `bytecode` field defines the unlinked `'0x'` prefixed bytecode for this *con
 
 #### Runtime Bytecode `runtime_bytecode`
 
+The `runtime_bytecode` field defines the unlinked `'0x'` prefixed runtime
+portion of bytecode for this *contract type*.
+
 * Required: No
 * Type: String
 * Format: Hex encoded unlinked runtime portion of the bytecode for the compiled contract.
@@ -371,7 +374,7 @@ The `bytecode` field defines the unlinked `'0x'` prefixed bytecode for this *con
 
 #### Compiler `compiler`
 
-* Required: If either `bytecode` or `runtime_bytecode` are included in this *contract type*
+* Required: No
 * Type: Object
 * Format: **must** conform the the *Compiler Information* object format.
 
@@ -433,23 +436,11 @@ created this *contract instance* was mined.
 * Format: [BIP122](https://github.com/bitcoin/bips/blob/master/bip-0122.mediawiki) URI which defines the block in which this contract was created.
 
 
-#### Bytecode `bytecode`
-
-The `bytecode` field defines the unlinked `'0x'` prefixed bytecode for this
-*contract instance*. When present, the value from this field should take
-priority over the `bytecode` from the *contract_type* for this
-*contract instance*.
-
-* Required: No
-* Type: String
-* Format: Hex encoded unlinked bytecode for the compiled contract.
-
-
 #### Runtime Bytecode `runtime_bytecode`
 
 The `runtime_bytecode` field defines the unlinked `'0x'` prefixed runtime
 portion of bytecode for this *contract instance*.  When present, the value from
-this field should take priority over the `runtime_bytecode` from the
+this field takes priority over the `runtime_bytecode` from the
 *contract_type* for this *contract instance*.
 
 * Required: No
@@ -459,7 +450,11 @@ this field should take priority over the `runtime_bytecode` from the
 
 #### Compiler `compiler`
 
-* Required: If either `bytecode` or `runtime_bytecode` are included in this *contract instance*
+The `compiler` field defines the compiler information that was used during
+compilation of this *contract class*.  This field **should** be present in all
+*contract types* which include `bytecode` or `runtime_bytecode`.
+
+* Required: No
 * Type: Object
 * Format: **must** conform the the *Compiler Information* object format.
 
@@ -467,14 +462,12 @@ this field should take priority over the `runtime_bytecode` from the
 #### Link Dependencies `link_dependencies`
 
 The `link_dependencies` defines the values which were used to fill in any
-*link* references which are present in the `bytecode` or `runtime_bytecode` of
-the *contract type* defined by the `contract_type` field of this *contract
-instance*.  This field **must** be present if there are any *link references*
-in either the `bytecode` or `runtime_bytecode` for the *contract type* of this
-*contract instance*.  This field **must** contain an entry for all *link
-references* found in both the `bytecode` and the `runtime_bytecode`.
+*link* references which are present in the `runtime_bytecode` for this
+*contract instance*.  This field **must** be present if there are any *link
+references* in the `runtime_bytecode` for this *contract instance*.  This field
+**must** contain an entry for all *link references* found the `runtime_bytecode`.
 
-* Required: If there are any *link references* in the `bytecode` or `runtime_bytecode` for the *contract type* of this *contract instance*.
+* Required: If there are any *link references* in the `runtime_bytecode` for the *contract type* of this *contract instance*.
 * Type: Array
 * Format: All values **must** be valid *Link Value* objects
 
@@ -535,6 +528,10 @@ value*.
 
 
 ### The *Compiler Information* Object
+
+The `compiler` field defines the compiler information that was used during
+compilation of this *contract instance*.  This field **should** be present in all
+*contract instances* which locally declare `runtime_bytecode`.
 
 A *Compiler Information* object is defined to have the following key/value pairs.
 
