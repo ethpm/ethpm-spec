@@ -92,5 +92,9 @@
         ]
       }
     }
+  },
+  "build_dependencies": {
+    "owned": "ipfs://Qm....",
+    "safe-math-lib": "ipfs://..."
   }
 }

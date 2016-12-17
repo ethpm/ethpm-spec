@@ -573,4 +573,64 @@ trimmed to improve readability.  The full Release Lockfile can be found at
 [`./examples/wallet/1.0.0.json`](./examples/wallet/1.0.0.json)
 
 
-TODO: finish
+```javascript
+{
+  "lockfile_version": "1",
+  "version": "1.0.0",
+  "package_name": "escrow",
+  "sources": {
+    "./contracts/Wallet.sol": "ipfs://QmUmsmPyJTWZHzXieecBWLSAAF1epg2xhGUp97qL7wfzER"
+  },
+  "contract_types": {
+    "Wallet": {
+      "bytecode": "...",
+      "runtime_bytecode": "...",
+      ...
+    }
+  },
+  "deployments": {
+    "blockchain://41941023680923e0fe4d74a34bdac8141f2540e3ae90623718e47d66d1ca4a2d/block/3ececfa0e03bce2d348279316100913c42ca2dcd51b8bc8d2d87ef2dc6a479ff": {
+      "Wallet": {
+        "contract_type": "Wallet",
+        "address": "0xcd0f8d7dab6c682d3726693ef3c7aaacc6431d1c",
+        "transaction": "0x5c113857925ae0d866341513bb0732cd799ebc1c18fcec253bbc41d2a029acd4",
+        "block": "0xccd130623ad3b25a357ead2ecfd22d38756b2e6ac09b77a37bd0ecdf16249765",
+        "link_dependencies": [
+          {"offset": 678, "value": "safe-math-lib:SafeMathLib"}
+        ]
+      }
+    }
+  },
+  "build_dependencies": {
+    "owned": "ipfs://Qm....",
+    "safe-math-lib": "ipfs://..."
+  }
+}
+```
+
+Just like our previous example, the `runtime_bytecode` has been omitted for
+improved readability, but the full value is as follows (wrapped to 80
+characters).
+
+```
+0x606060405236156100355760e060020a6000350463095ea7b381146100435780632e1a7d4d1461
+006a578063d0679d341461008e575b34610000576100415b5b565b005b3461000057610056600435
+6024356100b5565b604080519115158252519081900360200190f35b346100005761005660043561
+00f8565b604080519115158252519081900360200190f35b34610000576100566004356024356101
+da565b604080519115158252519081900360200190f35b6000805433600160a060020a0390811691
+16146100d157610000565b50600160a060020a038216600090815260016020819052604090912082
+90555b5b92915050565b600160a060020a0333166000908152600160209081526040808320548151
+830184905281517fa293d1e800000000000000000000000000000000000000000000000000000000
+8152600481019190915260248101859052905173__SafeMathLib___________________________
+9263a293d1e89260448082019391829003018186803b156100005760325a03f41561000057505060
+4080518051600160a060020a0333166000818152600160205293842091909155925084156108fc02
+91859190818181858888f1935050505015156101d157610000565b5060015b919050565b60008054
+33600160a060020a039081169116146101f657610000565b604051600160a060020a038416908315
+6108fc029084906000818181858888f19450505050505b5b9291505056
+```
+
+As you can see, this bytecode contains a *link* reference to the `SafeMathLib`
+library from the `safe-math-lib` package dependency.   If you look in the
+`link_dependencies` sectino of our `Wallet` contract you'll see it's items are
+similar to the ones from our previous example except that the `value` portion
+is prefixed with the package name that the dependency address can be found in.
