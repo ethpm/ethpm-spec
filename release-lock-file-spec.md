@@ -84,7 +84,18 @@ The act of replacing *link references* within some bytecode with *link values*.
 
 This term is used to refer to a specific contract in the package source. This
 term can be used to refer to an abstract contract, a normal contract, or a
-library.
+library.  Two contracts are of the same *contract type* if they have the same
+bytecode.
+
+Example:
+
+```
+contract Wallet {
+    ...
+}
+```
+
+A deployed instance of the `Wallet` contract would be of of type `Wallet`.
 
 
 #### Contract Name
