@@ -525,3 +525,52 @@ The `offset` value specifies the number of characters into the unprefixed
 bytecode where the replacement should begin.  The `value` defines what address
 should be used to replace the *link reference*.  In this case, the `value` is
 referencing the `SafeSendLib` *contract instance* from this release lockfile.
+
+
+### Package with a contract with link dependencies on a contract from a package dependency
+
+Now that we've seen how we can handle linking dependencies that rely on
+deployed *contract instances* from the local package we'll explore an example
+with link dependencies that rely on contracts from the package dependencies.  
+
+In this example we'll be writing the `wallet` package which includes a wallet
+contract which makes use of the previous `safe-math-lib` package.  We will also
+make use of the `owned` package from our very first example to handle
+authorization.  Our package will contain a single solidity source file
+[`./contracts/Wallet.sol`](./examples/wallet/contracts/Wallet.sol).  The
+version below has been trimmed for readability.
+
+
+```javascript
+import {SafeMathLib} from "safe-math-lib/contracts/SafeMathLib.sol";
+import {owned} from "owned/contracts/owned.sol";
+
+contract Wallet is owned {
+    using SafeMathLib for uint;
+
+    mapping (address => uint) allowances;
+
+    function() {
+    }
+
+    function send(address recipient, uint value) public onlyowner {
+        recipient.send(value);
+    }
+
+    function approve(address recipient, uint value) public onlyowner {
+        allowances[recipient] = value;
+    }
+
+    function withdraw(uint value) public {
+        allowances[msg.sender] = allowances[msg.sender].safeSub(value);
+        if (!msg.sender.send(value)) throw;
+    }
+}
+```
+
+The Release Lockfile for our `wallet` package can been seen below.  It has been
+trimmed to improve readability.  The full Release Lockfile can be found at
+[`./examples/wallet/1.0.0.json`](./examples/wallet/1.0.0.json)
+
+
+TODO: finish
