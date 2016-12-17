@@ -82,8 +82,9 @@ The act of replacing *link references* within some bytecode with *link values*.
 
 #### Contract Type
 
-This term is used to refer to a specific contract or library in the package
-source.
+This term is used to refer to a specific contract in the package source. This
+term can be used to refer to an abstract contract, a normal contract, or a
+library.
 
 
 #### Contract Name
