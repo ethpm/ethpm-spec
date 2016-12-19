@@ -117,7 +117,11 @@ The *contract alias* **must** use the naming scheme
 `<contract-name>[<bytecode-identifier>]` where `<contract-name>` is the
 *contract name* and `<bytecode-identifier>` is the unprefixed hexidecimal
 representation of the Keccak (SHA-3) hash of the *contract type* bytecode in
-it's binary representation 
+it's binary representation.  This hash value **may** be truncated at byte
+granularity to as few as 4 bytes to improve legibility.  When using truncated
+hashes all *contract alias* names within a lockfile **must** be truncated to
+the same length.  When truncating hashes, the uniqueness of the *contract
+alias* names **must** be preserved.
 
 
 #### Contract Instance 
@@ -236,6 +240,10 @@ which can be found in the source files for this package.  Release lockfiles
 * Format: 
     * Keys **must** be valid *contract aliases*.
     * Values **must** conform to the *Contract Type* object definition.
+
+
+Packages **should** not include abstract contracts in the *contract types*
+section of a release.
 
 
 ### Deployments: `deployments`
