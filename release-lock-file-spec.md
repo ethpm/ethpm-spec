@@ -242,7 +242,7 @@ which can be found in the source files for this package.  Release lockfiles
     * Values **must** conform to the *Contract Type* object definition.
 
 
-Packages **should** not include abstract contracts in the *contract types*
+Packages **should not** include abstract contracts in the *contract types*
 section of a release.
 
 
