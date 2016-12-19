@@ -149,7 +149,7 @@ way.
 
 ## Format
 
-The canonical format for the package manifest is a JSON document containing a
+The canonical format for the release lockfile is a JSON document containing a
 single JSON object.  
 
 

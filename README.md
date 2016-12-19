@@ -45,5 +45,4 @@ An URI in the format `ipfs://<multihash>[/<path>]`
 
 ## Specifications
 
-* [Package Manifest](./package-manifest-spec.md)
 * [Release Lock File](./release-lock-file-spec.md)
