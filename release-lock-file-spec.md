@@ -82,8 +82,20 @@ The act of replacing *link references* within some bytecode with *link values*.
 
 #### Contract Type
 
-This term is used to refer to a specific contract or library in the package
-source.
+This term is used to refer to a specific contract in the package source. This
+term can be used to refer to an abstract contract, a normal contract, or a
+library.  Two contracts are of the same *contract type* if they have the same
+bytecode.
+
+Example:
+
+```
+contract Wallet {
+    ...
+}
+```
+
+A deployed instance of the `Wallet` contract would be of of type `Wallet`.
 
 
 #### Contract Name
@@ -98,27 +110,18 @@ a projects source files.
 
 #### Contract Alias
 
-This is a name chosen to reference a specific *contract type*.  Contract
-aliases must be unique within a single release lockfile.  
+This is a name used to reference a specific *contract type*.  Contract
+aliases **must** be unique within a single release lockfile.  
 
-In the case where the *contract name* is unique across a project's source files
-the *contract name* and *contract alias* **must** either be the same *or* use
-the alias naming scheme for *contract names* which are not unique.
-
-In the case where there are multiple contracts with the same *contract name* in
-a project's source files the *contract alias* **must** use the naming scheme
-`<contract-name>[<identifier>]` where `<contract-name>` is the *contract name*
-and `<identifier>` is a value conforming to the regular expression
-`[-a-zA-Z0-9_]`.
-
-Package managers **should** use the unprefixed hexidecimal representation of
-the Keccak (SHA-3) hash of the *contract type* bytecode in it's binary
-representation as the `identifier` value.
-
-In the case that the *contract types* with name collisions have the same
-bytecode such as two abstract contracts, package managers **should** fall back
-to the Keccak (SHA-3) hash of the source file in which each *contract type* is
-defined.
+The *contract alias* **must** use the naming scheme
+`<contract-name>[<bytecode-identifier>]` where `<contract-name>` is the
+*contract name* and `<bytecode-identifier>` is the unprefixed hexidecimal
+representation of the Keccak (SHA-3) hash of the *contract type* bytecode in
+it's binary representation.  This hash value **may** be truncated at byte
+granularity to as few as 4 bytes to improve legibility.  When using truncated
+hashes all *contract alias* names within a lockfile **must** be truncated to
+the same length.  When truncating hashes, the uniqueness of the *contract
+alias* names **must** be preserved.
 
 
 #### Contract Instance 
@@ -146,19 +149,8 @@ way.
 
 ## Format
 
-The canonical format for the package manifest is a JSON document containing a
+The canonical format for the release lockfile is a JSON document containing a
 single JSON object.  
-
-
-## Filename
-
-When creating a release, convention is to name this document using one of the following conventions.
-
-* In cases where multiple *Release Lockfiles* are being store alongside one another, convention is to use `<version>.json`.  For example, the `1.0.0` release would be named `1.0.0.json`.  
-* In cases where a single *Release Lockfile* is being stored, convention is to use `lock.json`.
-
-Package managers **should not** rely on these naming conventions nor are they
-required to follow them.
 
 
 ## Document Specification
@@ -238,16 +230,20 @@ Sources are declared in a key/value mapping.
 
 ### Contract Types: `contract_types`
 
-The `contract_types` field holds information about *contract types* which
-have been included in this release lockfile.  Release lockfiles **may not**
-include any *contract types* which are not present in the project's source
-code.
+The `contract_types` field holds the *contract types* which have been included
+in this release.  Release lockfiles **should** only include *contract types*
+which can be found in the source files for this package.  Release lockfiles
+**should not** include *contract types* from dependencies.
 
 * Key: `contract_types`
 * Type:  Object (String: *Contract Type* Object)
 * Format: 
     * Keys **must** be valid *contract aliases*.
     * Values **must** conform to the *Contract Type* object definition.
+
+
+Packages **should not** include abstract contracts in the *contract types*
+section of a release.
 
 
 ### Deployments: `deployments`
@@ -258,12 +254,12 @@ deployment details for those deployed *contract instances*.  The set of chains
 defined by the BIP122 URI keys for this object **must** be unique.
 
 * Key: `deployments`
-* Type:  Object (String: Object(String: *Deployed Instance* Object))
+* Type:  Object (String: Object(String: *Contract Instance* Object))
 * Format: 
     * Keys **must** be valid BIP122 URI chain definitions.
     * Values **must** be objects which conform to the format:
         * Keys **must** be valid *contract instance* names.
-        * Values **must** be valid *Deployed Instance* objects.
+        * Values **must** be valid *Contract Instance* objects.
 
 
 ### Build Dependencies: `build_dependencies`
@@ -372,6 +368,9 @@ The `bytecode` field defines the unlinked `'0x'` prefixed bytecode for this *con
 
 #### Runtime Bytecode `runtime_bytecode`
 
+The `runtime_bytecode` field defines the unlinked `'0x'` prefixed runtime
+portion of bytecode for this *contract type*.
+
 * Required: No
 * Type: String
 * Format: Hex encoded unlinked runtime portion of the bytecode for the compiled contract.
@@ -395,39 +394,14 @@ The `bytecode` field defines the unlinked `'0x'` prefixed bytecode for this *con
 
 #### Compiler `compiler`
 
-* Required: Required if either `bytecode` or `runtime_bytecode` is present.
+* Required: No
 * Type: Object
-* Format: The object must conform to the following format.
-    * `type`:
-        * Required: Yes
-        * Type: String
-        * Allowed Values:
-            * `'solc'` for the solc command line compiler.
-            * `'solcjs'` for the nodejs solc compiler.
-    * `version`:
-        * Required: Yes
-        * Type: String
-    * `settings`:
-        * Required: No
-        * Type: Object
-        * Format: Compiler Specific
-
-For the `'solc'` and `'solcjs'` compilers, the `settings` value must conform to
-the following format.
-
-* Keys:
-    * `optimize`
-        * Required: No
-        * Type: Boolean
-    * `optimize_runs`
-        * Required: No
-        * Type: Integer
-        * Format: Positive Integer
+* Format: **must** conform the the *Compiler Information* object format.
 
 
-### The *Deployed Instance* Object
+### The *Contract Instance* Object
 
-A *Deployed Instance* object is defined to have the following key/value pairs.
+A *Contract Instance* object is defined to have the following key/value pairs.
 
 
 #### Contract Type `contract_type`
@@ -482,17 +456,38 @@ created this *contract instance* was mined.
 * Format: [BIP122](https://github.com/bitcoin/bips/blob/master/bip-0122.mediawiki) URI which defines the block in which this contract was created.
 
 
+#### Runtime Bytecode `runtime_bytecode`
+
+The `runtime_bytecode` field defines the unlinked `'0x'` prefixed runtime
+portion of bytecode for this *contract instance*.  When present, the value from
+this field takes priority over the `runtime_bytecode` from the
+*contract_type* for this *contract instance*.
+
+* Required: No
+* Type: String
+* Format: Hex encoded unlinked runtime portion of the bytecode for the compiled contract.
+
+
+#### Compiler `compiler`
+
+The `compiler` field defines the compiler information that was used during
+compilation of this *contract class*.  This field **should** be present in all
+*contract types* which include `bytecode` or `runtime_bytecode`.
+
+* Required: No
+* Type: Object
+* Format: **must** conform the the *Compiler Information* object format.
+
+
 #### Link Dependencies `link_dependencies`
 
 The `link_dependencies` defines the values which were used to fill in any
-*link* references which are present in the `bytecode` or `runtime_bytecode` of
-the *contract type* defined by the `contract_type` field of this *contract
-instance*.  This field **must** be present if there are any *link references*
-in either the `bytecode` or `runtime_bytecode` for the *contract type* of this
-*contract instance*.  This field **must** contain an entry for all *link
-references* found in both the `bytecode` and the `runtime_bytecode`.
+*link* references which are present in the `runtime_bytecode` for this
+*contract instance*.  This field **must** be present if there are any *link
+references* in the `runtime_bytecode` for this *contract instance*.  This field
+**must** contain an entry for all *link references* found the `runtime_bytecode`.
 
-* Required: If there are any *link references* in the `bytecode` or `runtime_bytecode` for the *contract type* of this *contract instance*.
+* Required: If there are any *link references* in the `runtime_bytecode` for the *contract type* of this *contract instance*.
 * Type: Array
 * Format: All values **must** be valid *Link Value* objects
 
@@ -550,6 +545,58 @@ outside of a closed system.  Package managers **should** require some form of
 explicit input from the user such as a command line flag like
 `--allow-unverifiable-linking` before linking code with this type of *link
 value*. 
+
+
+### The *Compiler Information* Object
+
+The `compiler` field defines the compiler information that was used during
+compilation of this *contract instance*.  This field **should** be present in all
+*contract instances* which locally declare `runtime_bytecode`.
+
+A *Compiler Information* object is defined to have the following key/value pairs.
+
+
+#### Type `type`
+
+The `type` field defines which compiler was used in compilation.
+
+* Required: Yes
+* Key: `type`:
+* Type: String
+* Allowed Values:
+    * `'solc'` for the solc command line compiler.
+    * `'solcjs'` for the nodejs solc compiler.
+
+#### Version `version`
+
+The `version` field defines the version of the compiler.
+
+* Required: Yes
+* Key `version`:
+* Type: String
+
+
+#### Settings `settings`
+
+The `settings` field defines any settings or configuration that was used in
+compilation.
+
+* Required: No
+* Key `settings`:
+* Type: Object
+* Format: Depends on the `type` of the compiler.  See below:
+
+For the `'solc'` and `'solcjs'` compilers, the `settings` value must conform to
+the following format.
+
+* Keys:
+    * `optimize`
+        * Required: No
+        * Type: Boolean
+    * `optimize_runs`
+        * Required: No
+        * Type: Integer
+        * Format: Greater than or equal to 1.
 
 
 ### BIP122 URIs
