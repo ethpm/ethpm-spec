@@ -52,10 +52,21 @@ case all chains are considered valid matches
 ## Use Cases
 
 The following use cases were considered during the creation of this
-specification.  Each use case builds on the previous ones.
+specification.  
+
+1. [`owned`](#stand-alone-package-with-inheritable-contract): A package which contains contracts which are not meant to be used by themselves but rather as base contracts to provide functionality to other contracts through inheritance.
+2. [`transferable`](#package-with-inheritable-contract-and-a-dependency): A package which has a single dependency.
+3. [`standard-token`](#stand-alone-package-with-reusable-contract): A package which contains a reusable contract.
+4. [`safe-math-lib`](#stand-alone-package-with-a-deployed-contract): A package which contains deployed instance of one of the package contracts.
+5. [`piper-coin`](#package-which-uses-a-reusable-contract-from-a-dependency): A package which contains a deployed instance of a reusable contract from a dependency.
+6. [`escrow`](#stand-alone-package-that-links-against-local-library): A package which contains a deployed instance of a local contract which is linked against a deployed instance of a local library.
+7. [`wallet`](#package-with-deployed-instance-which-links-against-a-dependency-library): A package with a deployed instance of a local contract which is linked against a deployed instance of a library from a dependency.
 
 
-### Stand Alone Package with an Inheritable Contract
+Each use case builds incrementally on the previous one.
+
+
+### <a id="stand-alone-package-with-inheritable-contract" /> Stand Alone Package with an Inheritable Contract
 
 For the first example we'll look at a package which only contains contracts
 which serve as base contracts for other contracts to inherit from but do not
@@ -129,7 +140,7 @@ examples we will be using minimalistic lockfiles to keep our examples as
 succinct as possible.
 
 
-### Package with an Inheritable Contract and a Dependency
+### <a id="package-with-inheritable-contract-and-a-dependency" /> Package with an Inheritable Contract and a Dependency
 
 Now that we've seen what a simple package looks like, lets see how to
 dependencies are declared.
@@ -176,7 +187,7 @@ Lockfile for our package looks like the following.
     "./contracts/transferable.sol": "ipfs://QmZ6Zg1iEejuJ18LFczowe7dyaxXm4KC4xTgnCkqwJZmAp"
   },
   "build_dependencies": {
-	"owned": "ipfs://QmbhPhntTueo8EBq98uc46h3KRhwMKJJqiqKyPv5CxienM"
+	"owned": "ipfs://QmPBCJJBM9SYXU56hHSxpRNBvbNcjjDxrSnV1MwoPmHCqW"
   },
 }
 ```
@@ -186,7 +197,7 @@ dependency actually gets installed as well as handling any import remappings
 necessary to make the import statement work.
 
 
-### Stand Alone Package with a Reusable Contract
+### <a id="stand-alone-package-with-reusable-contract" /> Stand Alone Package with a Reusable Contract
 
 In this next example we'll look at a package which contains a reusable
 contract.  This means that the package provides a contract which can be on its
@@ -224,7 +235,7 @@ The full Release Lockfile can be found
   "package_name": "standard-token",
   "sources": {
     "./contracts/AbstractToken.sol": "ipfs://QmQMXDprXxCunfQjA42LXZtzL6YMP8XTuGDB6AjHzpYHgk",
-    "./contracts/StandardToken.sol": "ipfs://QmPm9p7KeP4MY361dREFshrD5mib5dufjTPyn1LXNf7L2S"
+    "./contracts/StandardToken.sol": "ipfs://QmNLr7DzmiaQvk25C8bADBnh9bF5V3JfbwHS49kyoGGEHz"
   },
   "contract_types": {
     "StandardToken": {
@@ -254,7 +265,7 @@ interact with an instance of this contract without having to regenerate this
 information from source.
 
 
-### Stand Alone Package with a Deployed Contract
+### <a id="stand-alone-package-with-a-deployed-contract" /> Stand Alone Package with a Deployed Contract
 
 Now that we've seen what a package looks like which includes a fully functional
 contract that is ready to be deployed, lets explore a package that also
@@ -375,7 +386,7 @@ be found at, the transaction hash for the transaction that deployed the
 contract, and the block hash in which the deploying transaction was mined.
 
 
-### Package which uses a Reusable Contract from a depenency
+### <a id="package-which-uses-a-reusable-contract-from-a-dependency" /> Package which uses a Reusable Contract from a depenency
 
 For our next example we'll be creating a package includes a deployed instance
 of a *contract type* from that comes from a package dependency.  This differs
@@ -430,7 +441,7 @@ later portion indicates the *contract type* that should be used from that
 dependencies *contract types*.
 
 
-### Stand Alone package with a deployed Library and a contract which Links against that Library
+### <a id="stand-alone-package-that-links-against-local-library" /> Stand Alone package with a deployed Library and a contract which Links against that Library
 
 In the previous `safe-math-lib` package we demonstrated what a package with a
 deployed instance of one of it's local contracts looks like.  In this example
@@ -526,7 +537,7 @@ should be used to replace the *link reference*.  In this case, the `value` is
 referencing the `SafeSendLib` *contract instance* from this release lockfile.
 
 
-### Package with a contract with link dependencies on a contract from a package dependency
+### <a id="package-with-deployed-instance-which-links-against-a-dependency-library" /> Package with a contract with link dependencies on a contract from a package dependency
 
 Now that we've seen how we can handle linking dependencies that rely on
 deployed *contract instances* from the local package we'll explore an example
@@ -576,9 +587,9 @@ trimmed to improve readability.  The full Release Lockfile can be found at
 {
   "lockfile_version": "1",
   "version": "1.0.0",
-  "package_name": "escrow",
+  "package_name": "wallet",
   "sources": {
-    "./contracts/Wallet.sol": "ipfs://QmUmsmPyJTWZHzXieecBWLSAAF1epg2xhGUp97qL7wfzER"
+    "./contracts/Wallet.sol": "ipfs://QmYKibsXPSTR5UjywQHX8SM4za1K3QHadtFGWmZqGA4uE9"
   },
   "contract_types": {
     "Wallet": {
@@ -601,8 +612,8 @@ trimmed to improve readability.  The full Release Lockfile can be found at
     }
   },
   "build_dependencies": {
-    "owned": "ipfs://Qm....",
-    "safe-math-lib": "ipfs://..."
+    "owned": "ipfs://QmPBCJJBM9SYXU56hHSxpRNBvbNcjjDxrSnV1MwoPmHCqW",
+    "safe-math-lib": "ipfs://QmfUwis9K2SLwnUh62PDb929JzU5J2aFKd4kS1YErYajdq"
   }
 }
 ```
@@ -630,6 +641,17 @@ da565b604080519115158252519081900360200190f35b6000805433600160a060020a0390811691
 
 As you can see, this bytecode contains a *link* reference to the `SafeMathLib`
 library from the `safe-math-lib` package dependency.   If you look in the
-`link_dependencies` sectino of our `Wallet` contract you'll see it's items are
-similar to the ones from our previous example except that the `value` portion
-is prefixed with the package name that the dependency address can be found in.
+`link_dependencies` section of our `Wallet` contract you'll see it's items are
+similar to the ones from our previous example.
+
+
+```javascript
+"link_dependencies": [
+  {"offset": 678, "value": "safe-math-lib:SafeMathLib"}
+]
+```
+
+
+However, unlike the previous example which linked against a *local* contract
+type,  `value` portion is prefixed with the name of the package which contains
+the address of the contract instance that this should be linked against.
