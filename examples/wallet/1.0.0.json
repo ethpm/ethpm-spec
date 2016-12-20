@@ -1,9 +1,9 @@
 {
   "lockfile_version": "1",
   "version": "1.0.0",
-  "package_name": "escrow",
+  "package_name": "wallet",
   "sources": {
-    "./contracts/Wallet.sol": "ipfs://QmUmsmPyJTWZHzXieecBWLSAAF1epg2xhGUp97qL7wfzER"
+    "./contracts/Wallet.sol": "ipfs://QmYKibsXPSTR5UjywQHX8SM4za1K3QHadtFGWmZqGA4uE9"
   },
   "contract_types": {
     "Wallet": {
@@ -94,7 +94,7 @@
     }
   },
   "build_dependencies": {
-    "owned": "ipfs://Qm....",
-    "safe-math-lib": "ipfs://..."
+    "owned": "ipfs://QmPBCJJBM9SYXU56hHSxpRNBvbNcjjDxrSnV1MwoPmHCqW",
+    "safe-math-lib": "ipfs://QmfUwis9K2SLwnUh62PDb929JzU5J2aFKd4kS1YErYajdq"
   }
 }

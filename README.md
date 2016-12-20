@@ -227,7 +227,7 @@ The full Release Lockfile can be found
     "./contracts/StandardToken.sol": "ipfs://QmNLr7DzmiaQvk25C8bADBnh9bF5V3JfbwHS49kyoGGEHz"
   },
   "contract_types": {
-    "StandardToken[ab28aedf]": {
+    "StandardToken": {
       "abi": [...],
       "natspec": {
         "author": "Stefan George - <stefan.george@consensys.net>",
@@ -576,9 +576,9 @@ trimmed to improve readability.  The full Release Lockfile can be found at
 {
   "lockfile_version": "1",
   "version": "1.0.0",
-  "package_name": "escrow",
+  "package_name": "wallet",
   "sources": {
-    "./contracts/Wallet.sol": "ipfs://QmUmsmPyJTWZHzXieecBWLSAAF1epg2xhGUp97qL7wfzER"
+    "./contracts/Wallet.sol": "ipfs://QmYKibsXPSTR5UjywQHX8SM4za1K3QHadtFGWmZqGA4uE9"
   },
   "contract_types": {
     "Wallet": {
@@ -601,8 +601,8 @@ trimmed to improve readability.  The full Release Lockfile can be found at
     }
   },
   "build_dependencies": {
-    "owned": "ipfs://Qm....",
-    "safe-math-lib": "ipfs://..."
+    "owned": "ipfs://QmPBCJJBM9SYXU56hHSxpRNBvbNcjjDxrSnV1MwoPmHCqW",
+    "safe-math-lib": "ipfs://QmfUwis9K2SLwnUh62PDb929JzU5J2aFKd4kS1YErYajdq"
   }
 }
 ```
@@ -630,6 +630,17 @@ da565b604080519115158252519081900360200190f35b6000805433600160a060020a0390811691
 
 As you can see, this bytecode contains a *link* reference to the `SafeMathLib`
 library from the `safe-math-lib` package dependency.   If you look in the
-`link_dependencies` sectino of our `Wallet` contract you'll see it's items are
-similar to the ones from our previous example except that the `value` portion
-is prefixed with the package name that the dependency address can be found in.
+`link_dependencies` section of our `Wallet` contract you'll see it's items are
+similar to the ones from our previous example.
+
+
+```javascript
+"link_dependencies": [
+  {"offset": 678, "value": "safe-math-lib:SafeMathLib"}
+]
+```
+
+
+However, unlike the previous example which linked against a *local* contract
+type,  `value` portion is prefixed with the name of the package which contains
+the address of the contract instance that this should be linked against.
