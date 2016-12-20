@@ -1,8 +1,0 @@
-{
-    "manifest_version": 1,
-    "package_manifest": "ipfs://QmWPhXEKDMudmTyTogX9VgsxkBFNfibznop5vxc7e9hodw",
-    "version": "1.0.0",
-    "sources": {
-        "./contracts": "ipfs://QmdKpyD3ayZDW7UahaFYjwUj8zJCGAVEw5gkUzwgmYkbwR"
-    }
-}
