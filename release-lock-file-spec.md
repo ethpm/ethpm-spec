@@ -113,15 +113,16 @@ a projects source files.
 This is a name used to reference a specific *contract type*.  Contract
 aliases **must** be unique within a single release lockfile.  
 
-The *contract alias* **must** use the naming scheme
-`<contract-name>[<bytecode-identifier>]` where `<contract-name>` is the
-*contract name* and `<bytecode-identifier>` is the unprefixed hexidecimal
-representation of the Keccak (SHA-3) hash of the *contract type* bytecode in
-it's binary representation.  This hash value **may** be truncated at byte
-granularity to as few as 4 bytes to improve legibility.  When using truncated
-hashes all *contract alias* names within a lockfile **must** be truncated to
-the same length.  When truncating hashes, the uniqueness of the *contract
-alias* names **must** be preserved.
+The *contract alias* **must** use *one of* the following naming schemes.
+
+* `<contract-name>`
+* `<contract-name>[<identifier>]`
+    
+The `<contract-name>` portion **must** be the same as the *contract name* for
+this *contract type*.
+
+The `[<identifier>]` portion **must** match the regular expression
+`\[[-a-zA-Z0-9]{1,256}\]`.
 
 
 #### Contract Instance 
