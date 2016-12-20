@@ -176,7 +176,7 @@ Lockfile for our package looks like the following.
     "./contracts/transferable.sol": "ipfs://QmZ6Zg1iEejuJ18LFczowe7dyaxXm4KC4xTgnCkqwJZmAp"
   },
   "build_dependencies": {
-	"owned": "ipfs://QmbhPhntTueo8EBq98uc46h3KRhwMKJJqiqKyPv5CxienM"
+	"owned": "ipfs://QmPBCJJBM9SYXU56hHSxpRNBvbNcjjDxrSnV1MwoPmHCqW"
   },
 }
 ```
@@ -224,10 +224,10 @@ The full Release Lockfile can be found
   "package_name": "standard-token",
   "sources": {
     "./contracts/AbstractToken.sol": "ipfs://QmQMXDprXxCunfQjA42LXZtzL6YMP8XTuGDB6AjHzpYHgk",
-    "./contracts/StandardToken.sol": "ipfs://QmPm9p7KeP4MY361dREFshrD5mib5dufjTPyn1LXNf7L2S"
+    "./contracts/StandardToken.sol": "ipfs://QmNLr7DzmiaQvk25C8bADBnh9bF5V3JfbwHS49kyoGGEHz"
   },
   "contract_types": {
-    "StandardToken": {
+    "StandardToken[ab28aedf]": {
       "abi": [...],
       "natspec": {
         "author": "Stefan George - <stefan.george@consensys.net>",
