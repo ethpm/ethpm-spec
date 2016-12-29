@@ -129,7 +129,7 @@ A Release Lockfile which includes more than the minimum information would look l
     }
   },
   "sources": {
-    "./contracts/owned.sol": "ipfs://Qme6goiKwGZngCJKJSHmbm5zqb8tB7xxbZq8f7ZeeMcsxw"
+    "./contracts/owned.sol": "ipfs://QmUjYUcX9kLv2FQH8nwc3RLLXtU3Yv5XFpvEjFcAKXB6xD"
   }
 }
 ```
@@ -173,7 +173,7 @@ content addressed URIs.  This ensures that when a package manager fetches a
 dependency it always gets the right one.
 
 The IPFS URI for the previous `owned` Release Lockfile turns out to be
-`ipfs://QmbhPhntTueo8EBq98uc46h3KRhwMKJJqiqKyPv5CxienM` which is what we will
+`ipfs://QmXDf2GP67otcF2gjWUxFt4AzFkfwGiuzfexhGuotGTLJH` which is what we will
 use in our `transferable` package to declare the dependency.  The Release
 Lockfile for our package looks like the following.
 
@@ -187,8 +187,8 @@ Lockfile for our package looks like the following.
     "./contracts/transferable.sol": "ipfs://QmZ6Zg1iEejuJ18LFczowe7dyaxXm4KC4xTgnCkqwJZmAp"
   },
   "build_dependencies": {
-	"owned": "ipfs://QmPBCJJBM9SYXU56hHSxpRNBvbNcjjDxrSnV1MwoPmHCqW"
-  },
+	"owned": "ipfs://QmXDf2GP67otcF2gjWUxFt4AzFkfwGiuzfexhGuotGTLJH"
+  }
 }
 ```
 
@@ -612,7 +612,7 @@ trimmed to improve readability.  The full Release Lockfile can be found at
     }
   },
   "build_dependencies": {
-    "owned": "ipfs://QmPBCJJBM9SYXU56hHSxpRNBvbNcjjDxrSnV1MwoPmHCqW",
+    "owned": "ipfs://QmXDf2GP67otcF2gjWUxFt4AzFkfwGiuzfexhGuotGTLJH",
     "safe-math-lib": "ipfs://QmfUwis9K2SLwnUh62PDb929JzU5J2aFKd4kS1YErYajdq"
   }
 }

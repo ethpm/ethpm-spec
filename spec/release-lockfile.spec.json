@@ -1,6 +1,5 @@
 {
   "title": "Release Lock File Specification",
-  "description": "TODO",
   "type": "object",
   "required": [
     "lockfile_version",
@@ -13,38 +12,35 @@
     "lockfile_version": {
       "type": "string",
       "title": "Lock File Version",
-      "description": "TODO",
       "default": "1",
       "enum": ["1"]
     },
     "package_name": {
       "title": "The name of the package that this release is for",
       "type": "string",
-      "pattern": "TODO"
+      "pattern": "^[a-z][-a-z0-9]{0,213}$"
     },
     "meta": {
       "$ref": "#/definitions/PackageMeta"
     },
     "version": {
       "title": "Version",
-      "type": "string",
-      "description": "TODO"
+      "type": "string"
     },
     "sources": {
       "title": "Sources",
       "type": "object",
-      "description": "TODO",
       "patternProperties": {
         "\\.\\/.*": {
           "anyOf": [
             {
               "title": "Source code",
-              "type": "string",
-              "description": "TODO"
+              "type": "string"
             },
             {
               "$ref": "IPFS-URI"
             }
+          ]
         }
       }
     },
@@ -52,7 +48,7 @@
       "title": "The contract types included in this release",
       "type": "object",
       "patternProperties": {
-        "TODO": {
+        "[a-zA-Z][-a-zA-Z0-9_]*(?:\\[[-a-zA-Z0-9]{1,256}\\])$": {
           "$ref": "#/definitions/ContractType"
         }
       }
@@ -61,10 +57,10 @@
       "title": "The deployed contract instances in this release",
       "type": "object",
       "patternProperties": {
-        "TODO-BIP122-URI": {
+        "^blockchain\\://[0-9a-zA-Z]{64}/block/[0-9a-zA-Z]{64}$": {
           "type": "object",
           "patternProperties": {
-            "TODO-contract-instance-name": {
+            "^[a-zA-Z][a-zA-Z0-9_]*$": {
               "$ref": "#/definitions/ContractInstance"
             }
           }
@@ -74,7 +70,6 @@
     "build_dependencies": {
       "title": "Build Dependencies",
       "type": "object",
-      "description": "TODO",
       "patternProperties": {
         "^[a-z][-a-z0-9]{0,213}$": {
           "$ref": "#/definitions/IPFS-URI"
@@ -159,23 +154,23 @@
         "contract_type": {
           "title": "The contract type of this contract instance",
           "type": "string",
-          "pattern": "TODO"
+          "pattern": "^(?:[a-z][-a-z0-9]{0,213}\\:)?[a-zA-Z][-a-zA-Z0-9_]*(?:\\[[-a-zA-Z0-9]{1,256}\\])?$"
         },
         "address": {
           "$ref": "#/definitions/Address"
         },
         "transaction": {
-          "$ref": "#/definitions/TransactionURI"
+          "$ref": "#/definitions/TransactionHash"
         },
         "block": {
-          "$ref": "#/definitions/BlockURI"
+          "$ref": "#/definitions/BlockHash"
         },
         "runtime_bytecode": {
           "title": "The on-chain bytecode for this contract instance.",
           "type": "string"
         },
         "compiler": {
-          "$ref": "CompilerInformation"
+          "$ref": "#/definitions/CompilerInformation"
         },
         "link_dependencies": {
           "title": "The values for the link references found within this contract instances runtime bytecode",
@@ -208,6 +203,16 @@
           ]
         }
       }
+    },
+    "ContractInstanceName": {
+      "title": "The name of the deployed contract instance",
+      "type": "string",
+      "pattern": "^[a-zA-Z][a-zA-Z0-9_]*$"
+    },
+    "PackageContractInstanceName": {
+      "title": "The name of the deployed contract instance in a package",
+      "type": "string",
+      "pattern": "^[a-z][-a-z0-9]{0,213}\\:[a-zA-Z][a-zA-Z0-9_]*$"
     },
     "CompilerInformation": {
       "title": "Information about the software that was used to compile a contract type or instance",
@@ -254,21 +259,21 @@
       "type": "string",
       "pattern": "^0x[0-9a-fA-F]{40}$"
     },
-    "TransactionURI": {
+    "TransactionHash": {
       "title": "An Ethereum transaction hash",
       "type": "string",
-      "pattern": "TODO"
+      "pattern": "^0x[0-9a-zA-Z]{64}$"
     },
-    "BlockURI": {
+    "BlockHash": {
       "title": "An Ethereum block hash",
       "type": "string",
-      "pattern": "TODO"
+      "pattern": "^0x[0-9a-zA-Z]{64}$"
     },
     "IPFS-URI": {
       "title": "An IPFS URI",
       "type": "string",
       "format": "uri",
-      "pattern": "TODO"
+      "pattern": "^ipfs:/?/?.*$"
     }
   }
 }
