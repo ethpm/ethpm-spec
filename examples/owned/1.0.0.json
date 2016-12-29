@@ -7,7 +7,7 @@
     "authors": [
       "Piper Merriam <pipermerriam@gmail.com>"
     ],
-    "description": "Reusable contracts which implement a priviledged 'owner' model for authorization",
+    "description": "Reusable contracts which implement a privileged'owner' model for authorization",
     "keywords": [
       "authorization"
     ],

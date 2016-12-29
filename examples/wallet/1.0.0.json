@@ -94,7 +94,7 @@
     }
   },
   "build_dependencies": {
-    "owned": "ipfs://QmPBCJJBM9SYXU56hHSxpRNBvbNcjjDxrSnV1MwoPmHCqW",
+    "owned": "ipfs://QmUwVUMVtkVctrLDeL12SoeCPUacELBU8nAxRtHUzvtjND",
     "safe-math-lib": "ipfs://QmfUwis9K2SLwnUh62PDb929JzU5J2aFKd4kS1YErYajdq"
   }
 }
