@@ -444,7 +444,7 @@ instance* was created.
 
 * Required: No
 * Type: String
-* Format: [BIP122](https://github.com/bitcoin/bips/blob/master/bip-0122.mediawiki) URI which defines the transaction in which this contract was created.
+* Format: `0x` prefixed hex encoded transaction hash.
 
 
 #### Block `block`
@@ -454,7 +454,7 @@ created this *contract instance* was mined.
 
 * Required: No
 * Type: String
-* Format: [BIP122](https://github.com/bitcoin/bips/blob/master/bip-0122.mediawiki) URI which defines the block in which this contract was created.
+* Format: `0x` prefixed hex encoded block hash.
 
 
 #### Runtime Bytecode `runtime_bytecode`
