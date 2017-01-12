@@ -189,13 +189,13 @@ exceed 214 characters in length.
 
 ### Package Meta: `meta`
 
-The `package_meta` field defines a location for metadata about the package
+The `meta` field defines a location for metadata about the package
 which is not integral in nature for package installation, but may be important
 or convenient to have on-hand for other reasons. This field **should** be
 included in all release lockfiles.
 
 * Required: No
-* Key: `package_meta`
+* Key: `meta`
 * Type:  Object (String: *Package Meta* object)
 
 
