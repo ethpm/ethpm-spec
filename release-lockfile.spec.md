@@ -570,7 +570,10 @@ The `type` field defines which compiler was used in compilation.
 
 #### Version `version`
 
-The `version` field defines the version of the compiler.
+The `version` field defines the version of the compiler. The field **should** be OS 
+agnostic (OS not included in the string) and take the form of either the stable version
+in semver format or if built on a nightly should be denoted in the form of 
+`<semver>-<commit-hash>` ex: `0.4.8-commit.60cc1668`.
 
 * Required: Yes
 * Key `version`:
