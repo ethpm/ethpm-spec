@@ -273,7 +273,7 @@
       "title": "An IPFS URI",
       "type": "string",
       "format": "uri",
-      "pattern": "^ipfs:(//)?.*$"
+      "pattern": "^ipfs:/?/?.*$"
     }
   }
 }

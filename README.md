@@ -27,7 +27,7 @@ A string matching the regular expression `[a-zA-Z][-_a-zA-Z0-9]*`
 
 ### IPFS URI
 
-An URI which matches the regular expression `^ipfs:(//)?.*$`
+An URI which matches the regular expression `^ipfs:/?/?.*$`
 
 
 ### Chain Definition via BIP122 URI
