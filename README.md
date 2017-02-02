@@ -27,7 +27,7 @@ A string matching the regular expression `[a-zA-Z][-_a-zA-Z0-9]*`
 
 ### IPFS URI
 
-An URI in the format `ipfs://<multihash>[/<path>]`
+An URI which matches the regular expression `^ipfs:(//)?.*$`
 
 
 ### Chain Definition via BIP122 URI
@@ -52,7 +52,7 @@ case all chains are considered valid matches
 ## Use Cases
 
 The following use cases were considered during the creation of this
-specification.  
+specification.
 
 1. [`owned`](#stand-alone-package-with-inheritable-contract): A package which contains contracts which are not meant to be used by themselves but rather as base contracts to provide functionality to other contracts through inheritance.
 2. [`transferable`](#package-with-inheritable-contract-and-a-dependency): A package which has a single dependency.
@@ -207,7 +207,7 @@ includes a reusable standard
 
 > The source code for these contracts was pulled from the [SingularDTV](https://github.com/ConsenSys/singulardtv-contracts) github repository.  Thanks to them for a very well written contract.
 
-This package will contain two solidity source files.  
+This package will contain two solidity source files.
 
 * [`./contracts/AbstractToken.sol`](./examples/standard-token/contracts/AbstractToken.sol)
 * [`./contracts/StandardToken.sol`](./examples/standard-token/contracts/StandardToken.sol)
@@ -269,7 +269,7 @@ information from source.
 
 Now that we've seen what a package looks like which includes a fully functional
 contract that is ready to be deployed, lets explore a package that also
-includes a deployed instance of that contract.  
+includes a deployed instance of that contract.
 
 Solidity Libraries are an
 excellend example of this type of package, so for this example we are going to
@@ -396,7 +396,7 @@ Lockfile we will be referencing a `contract_type` from one of the
 `build_dependencies`
 
 We are going to use the `standard-token` package we created earlier and include
-a deployed version of the `StandardToken` contract.   
+a deployed version of the `StandardToken` contract.
 
 Our package will be called `piper-coin` and will not contain any source files
 since it merely makes use of the contracts from the `standard-token` package.
@@ -541,7 +541,7 @@ referencing the `SafeSendLib` *contract instance* from this release lockfile.
 
 Now that we've seen how we can handle linking dependencies that rely on
 deployed *contract instances* from the local package we'll explore an example
-with link dependencies that rely on contracts from the package dependencies.  
+with link dependencies that rely on contracts from the package dependencies.
 
 In this example we'll be writing the `wallet` package which includes a wallet
 contract which makes use of the previous `safe-math-lib` package.  We will also
