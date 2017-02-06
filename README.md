@@ -29,6 +29,12 @@ A string matching the regular expression `[a-zA-Z][-_a-zA-Z0-9]*`
 
 An URI which matches the regular expression `^ipfs:/?/?.*$`
 
+This allows for either one of the following ipfs supported formats:
+
+- `ipfs://Qm...`
+- `ipfs:/Qm...`
+- `ipfs:Qm...`
+
 
 ### Chain Definition via BIP122 URI
 
