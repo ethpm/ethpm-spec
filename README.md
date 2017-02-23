@@ -61,6 +61,7 @@ specification.
 5. [`piper-coin`](#package-which-uses-a-reusable-contract-from-a-dependency): A package which contains a deployed instance of a reusable contract from a dependency.
 6. [`escrow`](#stand-alone-package-that-links-against-local-library): A package which contains a deployed instance of a local contract which is linked against a deployed instance of a local library.
 7. [`wallet`](#package-with-deployed-instance-which-links-against-a-dependency-library): A package with a deployed instance of a local contract which is linked against a deployed instance of a library from a dependency.
+8. [`wallet-with-send`](#package-with-deployed-instance-which-links-against-deep-dependencies): A package with a deployed instance which links against a deep dependency.
 
 
 Each use case builds incrementally on the previous one.
@@ -655,3 +656,91 @@ similar to the ones from our previous example.
 However, unlike the previous example which linked against a *local* contract
 type,  `value` portion is prefixed with the name of the package which contains
 the address of the contract instance that this should be linked against.
+
+
+### <a id="package-with-deployed-instance-which-links-against-deep-dependencies" /> Package with a deployed instance which links against a deep dependency.
+
+In the previous example we saw how link dependencies against direct package
+dependencies are handled.  In this example we will look at how this works when
+the link dependency is against a package deeper in the dependency tree.
+
+This package will contain a single solidity source file
+[`./contracts/WalletWithSend.sol`](./examples/wallet-with-send/WalletWithSend.sol)
+which extends our previous `Wallet` contract, adding a new `approvedSend` function.
+
+
+```javascript
+import {Wallet} from "wallet/contracts/Wallet.sol";
+
+contract WalletWithSend is Wallet {
+    function approvedSend(uint value, address to) public {
+        allowances[msg.sender] = allowances[msg.sender].safeSub(value);
+        if (!to.send(value)) throw;
+    }
+}
+```
+
+This new `approvedSend` function allows spending an address's provided *allowance* by
+sending it to a specified address.
+
+The Release Lockfile for our `wallet-with-send` package can been seen below.
+It has been trimmed to improve readability.  The full Release Lockfile can be
+found at [`./examples/wallet-with-send/1.0.0.json`](./examples/wallet-with-send/1.0.0.json)
+
+
+```javascript
+
+{
+  "lockfile_version": "1",
+  "version": "1.0.0",
+  "package_name": "wallet-with-send",
+  "sources": {
+    "./contracts/WalletWithSend.sol": "ipfs://QmWAKLzXaxES3tszDXDPP9xvf7xqsB9FU3W7MtapQ47naU"
+  },
+  "contract_types": {
+    "WalletWithSend": {
+      "bytecode": "...",
+      "runtime_bytecode": "...",
+      "abi": [
+        ...
+      ],
+      "compiler": {
+        ...
+      },
+      "natspec": {
+        ...
+      }
+    }
+  },
+  "deployments": {
+    "blockchain://41941023680923e0fe4d74a34bdac8141f2540e3ae90623718e47d66d1ca4a2d/block/bfb631d770940a93296e9b93f034f9f920ae311a8b37acd57ff0b55605beee73": {
+      "Wallet": {
+        "contract_type": "WalletWithSend",
+        "address": "0x7817d93f681a72758335398913136069c945d34b",
+        "transaction": "0xe37d5691b58472f9932545d1d44fc95463a69adb1a3da5b06da2d9f3ff5c2939",
+        "block": "0x5479e2f948184e13581d13e6a3d5bd5e5263d898d4514c5ec6fab37e2a1e9d6c",
+        "link_dependencies": [
+          {"offset": 764, "value": "wallet:safe-math-lib:SafeMathLib"}
+        ]
+      }
+    }
+  },
+  "build_dependencies": {
+    "wallet": "ipfs://QmSg2QvGhQrYgQqbTGVYjGmF9hkEZrxQNmSXsr8fFyYtD4"
+  }
+}
+```
+
+The important part of this lockfile is the `link_dependencies` section.
+
+```jacascript
+"link_dependencies": [
+    {"offset": 764, "value": "wallet:safe-math-lib:SafeMathLib"}
+]
+```
+
+The `value` portion here means that the bytecode for this contract is linked
+against the `SafeMathLib` deployed instance from the `safe-math-lib` dependency
+from the `wallet` dependency of this package.  This defines the traversal path
+through the dependency tree to the deployed instance of the `SafeMathLib`
+library which was used for linking during deployment.
