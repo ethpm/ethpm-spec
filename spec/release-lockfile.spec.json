@@ -7,7 +7,6 @@
     "version"
   ],
   "version": "1",
-  "additionalProperties": false,
   "properties": {
     "lockfile_version": {
       "type": "string",
