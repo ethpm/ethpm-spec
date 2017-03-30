@@ -1,6 +1,6 @@
 {
   "name": "ethpm-spec",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Ethereum Package Manager Specifications",
   "main": "index.js",
   "scripts": {
