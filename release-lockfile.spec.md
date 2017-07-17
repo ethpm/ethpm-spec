@@ -521,27 +521,30 @@ corresponding bytecode.
 * Type: String
 * Format: One of the following formats.
 
-To reference address of a *contract instance* from the current release lockfile
-the value should be set to the name of that *contract instance*.  
+To reference the address of a *contract instance* from the current release lockfile
+the value should be the name of that *contract instance*.  
 
 * This value **must** be a valid *contract instance* name.
 * The chain definition under which the *contract instance* that this *link value* belongs to must contain this value within its keys.
 * This value **may not** reference the same *contract instance* that this *link value* belongs to.
 
-To reference an address of a *contract instance from one of the dependencies of
-this release lockfile the value should be in the format
-`<package-name>:<contract-instance>`.
 
-* The `<package-name>` value **must** be present in the `build_dependencies` for this release lockfile.
+To reference a *contract instance* from a lockfile from somewhere within the
+dependency tree the value is constructed as follows.
+
+* Let `[p1, p2, .. pn]` define the path down the dependency tree.
+* Each of `p1, p2, pn` are dependency names.
+* `p1` **must** be present in keys of the `build_dependencies` for the current release lockfile.
+* For every `pn` where `n > 1`, `pn` **must** be present in the keys of the `build_dependencies` of the lockfile for `pn-1`.
+* The value is represented by the string `<p1>:<p2>:<...>:<pn>:<contract-instance>` where all of `<p1>`, `<p2>`, `<pn>` are valid package names and `<contract-instance>` is a valid contract name.
 * The `<contract-instance>` value **must** be a valid *contract instance* name.
-* Within the release lockfile of the package dependency defined by `<package-name>` value all of the following must be satisfiable:
+* Within the release lockfile of the package dependency defined by `<pn>`, all of the following must be satisfiable:
     * There **must** be *exactly* one chain defined under the `deployments` key which matches the chain definition that this *link value* is nested under.
     * The `<contract-instance>` value **must** be present in the keys of the matching chain.
 
-
-A static address can be used by simply using the `'0x'` prefixed address as the
-value.  Package managers **should not** use this pattern when building releases
-that will be published as open source packages or that are intended to be used
+To references a static address use the `'0x'` prefixed address as the value.
+Package managers **should not** use this pattern when building releases that
+will be published as open source packages or that are intended to be used
 outside of a closed system.  Package managers **should** require some form of
 explicit input from the user such as a command line flag like
 `--allow-unverifiable-linking` before linking code with this type of *link
