@@ -460,8 +460,8 @@ contract.  The escrow contract will make use of a library to safely send ether.
 Both the contract and library will be part of the package found in the
 following two solidity source files.
 
-* [`./contracts/SafeSendLib.sol`](./examples/escrow/SafeSendLib.sol)
-* [`./contracts/Escrow.sol`](./examples/escrow/Escrow.sol)
+* [`./contracts/SafeSendLib.sol`](./examples/escrow/contracts/SafeSendLib.sol)
+* [`./contracts/Escrow.sol`](./examples/escrow/contracts/Escrow.sol)
 
 The full source for these files can be found here:
 [`./examples/escrow/`](./examples/escrow/).
