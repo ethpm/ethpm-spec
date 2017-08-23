@@ -671,7 +671,7 @@ dependencies are handled.  In this example we will look at how this works when
 the link dependency is against a package deeper in the dependency tree.
 
 This package will contain a single solidity source file
-[`./contracts/WalletWithSend.sol`](./examples/wallet-with-send/WalletWithSend.sol)
+[`./contracts/WalletWithSend.sol`](./examples/wallet-with-send/contracts/WalletWithSend.sol)
 which extends our previous `Wallet` contract, adding a new `approvedSend` function.
 
 
