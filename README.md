@@ -7,7 +7,7 @@ Ethereum Packaging Specification
 
 ## Specification
 
-* [Release Lock File](./release-lock-file-spec.md)
+* [Release Lock File](./release-lockfile.spec.md)
 
 
 ## Definitions
