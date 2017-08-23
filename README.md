@@ -279,7 +279,7 @@ contract that is ready to be deployed, lets explore a package that also
 includes a deployed instance of that contract.
 
 Solidity Libraries are an
-excellend example of this type of package, so for this example we are going to
+excellent example of this type of package, so for this example we are going to
 write a library for *safe* math operations called `safe-math-lib`.  This
 library will implement functions to allow addition and subtraction without
 needing to check for underflow or overflow conditions.  Our package will have a
