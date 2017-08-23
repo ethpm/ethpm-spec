@@ -385,7 +385,7 @@ deployed.  The first hash you see,
 `41941023680923e0fe4d74a34bdac8141f2540e3ae90623718e47d66d1ca4a2d` is the
 genesis block hash for the Ropsten test network.  The later hash
 `1e96de11320c83cca02e8b9caf3e489497e8e432befe5379f2f08599f8aecede` is the block
-hash for block numbr 168,238 from the Ropsten chain.
+hash for block number 168,238 from the Ropsten chain.
 
 Under that URI there is a single *contract instance*.  It specifies that it's
 *contract type* is `SafeMathLib`, the address that the *contract instance* can
