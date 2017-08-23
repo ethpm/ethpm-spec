@@ -383,7 +383,7 @@ blockchain://41941023680923e0fe4d74a34bdac8141f2540e3ae90623718e47d66d1ca4a2d/bl
 This URI defines the chain on which the `SafeMathLib` library was
 deployed.  The first hash you see,
 `41941023680923e0fe4d74a34bdac8141f2540e3ae90623718e47d66d1ca4a2d` is the
-genesisi block hash for the Ropsten test network.  The later hash
+genesis block hash for the Ropsten test network.  The later hash
 `1e96de11320c83cca02e8b9caf3e489497e8e432befe5379f2f08599f8aecede` is the block
 hash for block numbr 168,238 from the Ropsten chain.
 
