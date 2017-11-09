@@ -286,7 +286,7 @@ this project depends on.
     * Values **must** be valid IPFS URIs which resolve to a valid *Release Lock File*
 
 
-## Object Definitions
+## Definitions
 
 Definitions for different objects used within the release lockfile.  All
 objects allow custom fields to be included.  Custom fields **should** be
@@ -297,14 +297,17 @@ specification.
 ### The *Link Reference * Object
 
 A link reference object has the following key/value pairs.  All link references
-**must** be associated with some corresponding bytecode.
+are assumed to be associated with some corresponding bytecode.
 
 #### Offset: `offset`
 
 The `offset` field is an integer which defines the start position for the link
-reference in the binary representation of the corresponding bytecode.  This
-field is invalid if it references a position that is beyond the end of the
-bytecode.
+reference.  The location is a 0-indexed offset from the beginning of the binary
+representation of the corresponding bytecode.  This field is invalid if it
+references a position that is beyond the end of the bytecode.
+
+* Required: Yes
+* Type: Integer
 
 
 #### Length: `length`
@@ -313,12 +316,19 @@ The `length` field is an integer which defines the length of the link
 reference.  This field is invalid if the end of the defined link reference
 exceeds the end of the bytecode.
 
+* Required: Yes
+* Type: Integer
+
 
 #### Name: `name`
 
 The `name` field is a string which **must** be a valid *Contract Name*.  Any
 link references which **should** be linked with the same *link value*
 **should** be given the same name.
+
+* Required: No
+* Type: String
+* Format: **must** conform to the *Contract Name* format.
 
 
 ### The *Link Value* Object
@@ -329,9 +339,9 @@ A *Link Value* object is defined to have the following key/value pairs.
 #### Offset `offset`
 
 The `offset` field defines the location within the corresponding bytecode where
-the `value` for this *link value* should be written.  This location is a
-0-indexed offset from the beginning of the unprefixed binary
-representation of the bytecode.
+the `value` for this *link value* was written.  This location is a
+0-indexed offset from the beginning of the binary representation of the
+corresponding bytecode.
 
 * Required: Yes
 * Type: Integer
@@ -388,11 +398,16 @@ A bytecode object has the following key/value pairs.
 The `bytecode` field is a string containing the `0x` prefixed hexidecimal
 representation of the bytecode.
 
+* Required: Yes
+* Type: String
+* Format: `0x` prefixed hexidecimal.
+
 #### Link References: `link_references`
 
 The `link_references` field defines the locations in the corresponding bytecode
 which require linking.  
 
+* Required: No
 * Type: Array
 * Format: All values **must** be valid *Link Reference* objects
 
@@ -408,6 +423,7 @@ Intersection is defined as two link references which overlap.
 The `link_dependencies` defines the *link values* that have been used to link
 the corresponding bytecode.  
 
+* Required: No
 * Type: Array
 * Format: All values **must** be valid *Link Value* objects
 
