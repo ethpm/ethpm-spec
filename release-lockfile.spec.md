@@ -312,7 +312,7 @@ references a position that is beyond the end of the bytecode.
 
 #### Length: `length`
 
-The `length` field is an integer which defines the length of the link
+The `length` field is an integer which defines the length in bytes of the link
 reference.  This field is invalid if the end of the defined link reference
 exceeds the end of the bytecode.
 
@@ -370,8 +370,8 @@ the value should be the name of that *contract instance*.
 To reference a *contract instance* from a lockfile from somewhere within the
 dependency tree the value is constructed as follows.
 
-* Let `[p1, p2, .. pn]` define the path down the dependency tree.
-* Each of `p1, p2, pn` are dependency names.
+* Let `[p1, p2, .. pn]` define a path down the dependency tree.
+* Each of `p1, p2, pn` **must** be valid package names.
 * `p1` **must** be present in keys of the `build_dependencies` for the current release lockfile.
 * For every `pn` where `n > 1`, `pn` **must** be present in the keys of the `build_dependencies` of the lockfile for `pn-1`.
 * The value is represented by the string `<p1>:<p2>:<...>:<pn>:<contract-instance>` where all of `<p1>`, `<p2>`, `<pn>` are valid package names and `<contract-instance>` is a valid contract name.
