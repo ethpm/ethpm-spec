@@ -10,51 +10,6 @@ Ethereum Packaging Specification
 * [Release Lock File](./release-lockfile.spec.md)
 
 
-## Definitions
-
-The following *types* are used within this specification.
-
-
-### Contract Name
-
-A string matching the regular expression `[_a-zA-Z][_a-zA-Z0-9]*`
-
-
-### Package Name
-
-A string matching the regular expression `[a-zA-Z][-_a-zA-Z0-9]*`
-
-
-### IPFS URI
-
-An URI which matches the regular expression `^ipfs:/?/?.*$`
-
-This allows for either one of the following ipfs supported formats:
-
-- `ipfs://Qm...`
-- `ipfs:/Qm...`
-- `ipfs:Qm...`
-
-
-### Chain Definition via BIP122 URI
-
-An URI in the format `blockchain://<chain_id>/block/<block_hash>`
-
-* `chain_id` is the unprefixed genesis hash for the chain.
-* `block_hash` is the hash of a block on the chain.
-
-A chain is considered to match a chain definition if the the genesis block hash
-matches the `chain_id` and the block defined by `block_hash` can be found on
-that chain.  It is possible for multiple chains to match a single URI, in which
-case all chains are considered valid matches
-
-
-## Resources
-
-* https://pad.riseup.net/p/7x3G896a3NLA
-* https://medium.com/@sdboyer/so-you-want-to-write-a-package-manager-4ae9c17d9527
-
-
 ## Use Cases
 
 The following use cases were considered during the creation of this
