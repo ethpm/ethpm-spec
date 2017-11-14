@@ -202,7 +202,7 @@ included in all release lockfiles.
 ### Version: `version`
 
 The `version` field declares the version number of this release.  This value
-**must** be included in all release lockfiles.  This value **should** be conform
+**must** be included in all release lockfiles.  This value **should** conform
 to the [semver](http://semver.org/) version numbering specification.
 
 * Required: Yes
