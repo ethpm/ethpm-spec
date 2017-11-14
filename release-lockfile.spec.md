@@ -202,7 +202,7 @@ included in all release lockfiles.
 ### Version: `version`
 
 The `version` field declares the version number of this release.  This value
-**must** be included in all release lockfiles.  This value **should** be conform
+**must** be included in all release lockfiles.  This value **should** conform
 to the [semver](http://semver.org/) version numbering specification.
 
 * Required: Yes
@@ -302,7 +302,7 @@ this package.  Release lockfiles **may** include this field.
 ### License: `license`
 
 The `license` field declares the license under which this package is released.
-This value **should** be conform to the
+This value **should** conform to the
 [SPDX](https://en.wikipedia.org/wiki/Software_Package_Data_Exchange) format.
 Release lockfiles **should** include this field.
 
