@@ -25,6 +25,7 @@ interpreted as described in RFC 2119.
 
 * https://www.ietf.org/rfc/rfc2119.txt
 
+
 ### Custom
 
 #### Prefixed vs Unprefixed
@@ -157,6 +158,8 @@ A string matching the regular expression `[a-zA-Z][-_a-zA-Z0-9]{0,213}`
 
 Any URI which contains a cryptographic hash which can be used to verify the
 integrity of the content found at the URI.
+
+The URI format is defined in RFC3986
 
 It is **recommended** that tools support IPFS and Swarm.
 
