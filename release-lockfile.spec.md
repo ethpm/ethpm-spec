@@ -150,8 +150,12 @@ way.
 
 ## Format
 
-The canonical format for the release lockfile is a JSON document containing a
-single JSON object.  
+The canonical format for the release lockfile JSON document containing a
+single JSON object.  Lockfiles **must** conform to the following serialization rules.
+
+* The document must be tighly packed, meaning no linebreaks or extra whitespace.
+* The *all* keys in all objects must be sorted alphabetically.
+* The document **must** use utf8 encoding.
 
 
 ## Document Specification
