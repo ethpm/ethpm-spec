@@ -294,7 +294,7 @@ prefixed with `x-` to prevent name collisions with future versions of the
 specification.
 
 
-### The *Link Reference * Object
+### The *Link Reference* Object
 
 A link reference object has the following key/value pairs.  All link references
 are assumed to be associated with some corresponding bytecode.
