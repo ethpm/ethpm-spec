@@ -37,7 +37,7 @@
               "type": "string"
             },
             {
-              "$ref": "IPFS-URI"
+              "$ref": "#/definitions/ContentURI"
             }
           ]
         }
@@ -71,7 +71,7 @@
       "type": "object",
       "patternProperties": {
         "^[a-z][-a-z0-9]{0,213}$": {
-          "$ref": "#/definitions/IPFS-URI"
+          "$ref": "#/definitions/ContentURI"
         }
       }
     }
@@ -268,11 +268,10 @@
       "type": "string",
       "pattern": "^0x[0-9a-zA-Z]{64}$"
     },
-    "IPFS-URI": {
-      "title": "An IPFS URI",
+    "ContentURI": {
+      "title": "An content addressable URI",
       "type": "string",
-      "format": "uri",
-      "pattern": "^ipfs:/?/?.*$"
+      "format": "uri"
     }
   }
 }
