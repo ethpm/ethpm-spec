@@ -255,7 +255,7 @@ Sources are declared in a key/value mapping.
 * Values **must** conform to *one of* the following formats.
     * Source string.
         * When the value is a source string the key should be interpreted as a file path.
-    * Content Addressable URI
+    * Content Addressable URI.
         * *If* the resulting document is a directory the key should be interpreted as a directory path.
         * *If* the resulting document is a file the key should be interpreted as a file path.
 
@@ -307,7 +307,7 @@ this project depends on.
 * Type: Object (String: String)
 * Format:
     * Keys **must** be valid package names matching the regular expression `[a-z][-a-z0-9]{0,213}`
-    * Values **must** be valid IPFS URIs which resolve to a valid *Package*
+    * Values **must** be valid content addressed URIs which resolve to a valid *Package*
 
 
 ## Object Definitions
