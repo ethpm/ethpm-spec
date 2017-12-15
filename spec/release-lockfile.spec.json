@@ -123,12 +123,10 @@
           "pattern": "[a-zA-Z][a-zA-Z0-9_]*"
         },
         "bytecode": {
-          "title": "The unlinked '0x' prefixed bytecode for this contract type",
-          "type": "string"
+          "$ref": "#/definitions/BytecodeObject"
         },
         "runtime_bytecode": {
-          "title": "The unlinked '0x' prefixed runtime portion of the bytecode for this contract type",
-          "type": "string"
+          "$ref": "#/definitions/BytecodeObject"
         },
         "abi": {
           "title": "The ABI for this contract type",
@@ -165,8 +163,7 @@
           "$ref": "#/definitions/BlockHash"
         },
         "runtime_bytecode": {
-          "title": "The on-chain bytecode for this contract instance.",
-          "type": "string"
+          "$ref": "#/definitions/BytecodeObject"
         },
         "compiler": {
           "$ref": "#/definitions/CompilerInformation"
@@ -177,6 +174,51 @@
           "items": {
             "$ref": "#/definitions/LinkValue"
           }
+        }
+      }
+    },
+    "BytecodeObject": {
+      "title": "Contract bytecode",
+      "type": "object",
+      "required": ["bytecode"],
+      "properties": {
+        "bytecode": {
+          "type": "string",
+          "pattern": "^0x[0-9a-fA-F]*$"
+        },
+        "link_references": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/LinkReference"
+          }
+        },
+        "link_dependencies": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/LinkValue"
+          }
+        }
+      }
+    },
+    "LinkReference": {
+      "title": "A defined location in some bytecode which requires linking",
+      "type": "object",
+      "required": [
+        "offset",
+        "length",
+        "name"
+      ],
+      "properties": {
+        "offset": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "length": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "name": {
+          "$ref": "#/definitions/ContractInstanceName"
         }
       }
     },
