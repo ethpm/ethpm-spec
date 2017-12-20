@@ -381,12 +381,6 @@ dependency tree the value is constructed as follows.
     * The `<contract-instance>` value **must** be present in the keys of the matching chain.
 
 To references a static address use the `'0x'` prefixed address as the value.
-Package managers **should not** use this pattern when building releases that
-will be published as open source packages or that are intended to be used
-outside of a closed system.  Package managers **should** require some form of
-explicit input from the user such as a command line flag like
-`--allow-unverifiable-linking` before linking code with this type of *link
-value*. 
 
 
 ### The *Bytecode* Object
