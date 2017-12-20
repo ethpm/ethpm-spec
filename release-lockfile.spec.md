@@ -52,7 +52,7 @@ The binary representation of bytecode is defined as the raw bytes.
 #### Unlinked Bytecode
 
 Unlinked bytecode is the hexidecimal representation of a contract's EVM
-instructions which contains sections of code which require *linking* fort he
+instructions which contains sections of code which require *linking* for the
 contract to be functional.  
 
 The sections of code which are unlinked **must** be filled in with zero bytes.
@@ -64,7 +64,7 @@ The sections of code which are unlinked **must** be filled in with zero bytes.
 #### Linked Bytecode
 
 Linked bytecode is the hexidecimal representation of a contract's EVM
-instructions which has hadd all *link references* replaced with the desired
+instructions which has had all *link references* replaced with the desired
 *link values*
 
 * linked bytecode: `606060405260e06000736fe36000604051602001526040518160e060020a634d536f`
