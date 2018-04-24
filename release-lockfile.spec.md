@@ -75,7 +75,7 @@ instructions which has had all *link references* replaced with the desired
 A location within a contract's bytecode which needs to be linked.  A link
 reference has the following properties.
 
-* `offset`: Defines the location within the bytecode where the link reference begins.
+* `offsets`: Defines the location within the bytecode where the link reference begins.
 * `length`: Defines the length of the reference.
 * `name`: A string that **must** be a valid *Contract Name*
 
@@ -305,15 +305,16 @@ specification.
 A link reference object has the following key/value pairs.  All link references
 are assumed to be associated with some corresponding bytecode.
 
-#### Offset: `offset`
+#### Offset: `offsets`
 
-The `offset` field is an integer which defines the start position for the link
-reference.  The location is a 0-indexed offset from the beginning of the binary
-representation of the corresponding bytecode.  This field is invalid if it
-references a position that is beyond the end of the bytecode.
+The `offsets` field is an array of integers, corresponding to each of the
+start positions where the link reference appears in the bytecode.
+Locations are 0-indexed from the beginning of the binary representation of
+the corresponding bytecode.  This field is invalid if it references a position
+that is beyond the end of the bytecode.
 
 * Required: Yes
-* Type: Integer
+* Type: Array
 
 
 #### Length: `length`
@@ -342,16 +343,16 @@ link references which **should** be linked with the same *link value*
 A *Link Value* object is defined to have the following key/value pairs.
 
 
-#### Offset `offset`
+#### Offset `offsets`
 
-The `offset` field defines the location within the corresponding bytecode where
-the `value` for this *link value* was written.  This location is a
-0-indexed offset from the beginning of the binary representation of the
+The `offsets` field defines the locations within the corresponding bytecode
+where the `value` for this *link value* was written.  These locations are
+0-indexed from the beginning of the binary representation of the
 corresponding bytecode.
 
 * Required: Yes
-* Type: Integer
-* Format: The integer **must** conform to all of the following:
+* Type: Array
+* Format: Array of integers, where each integer **must** conform to all of the following:
     * be greater than or equal to zero
     * strictly less than the length of the unprefixed hexidecimal representation of the corresponding bytecode.
 
@@ -429,7 +430,7 @@ the corresponding bytecode.
 
 Validation of this field includes the following:
 
-* No two link value objects may contain the same `offset`.
+* No two link value objects may contain any of the same values for `offsets`.
 * Each link value object **must** have a corresponding link reference object under the `link_references` field.
 * The length of the resolved `value` **must** be equal to the `length` of the corresponding link reference.
 
