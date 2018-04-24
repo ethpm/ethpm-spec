@@ -58,7 +58,7 @@ contract to be functional.
 The sections of code which are unlinked **must** be filled in with zero bytes.
 
 
-* unlinked bytecode: `606060405260e06000730000000000000000000000000000000000000000634d536f`
+* unlinked bytecode: `0x606060405260e06000730000000000000000000000000000000000000000634d536f`
 
 
 #### Linked Bytecode
@@ -67,7 +67,7 @@ Linked bytecode is the hexidecimal representation of a contract's EVM
 instructions which has had all *link references* replaced with the desired
 *link values*
 
-* linked bytecode: `606060405260e06000736fe36000604051602001526040518160e060020a634d536f`
+* linked bytecode: `0x606060405260e06000736fe36000604051602001526040518160e060020a634d536f`
 
 
 #### Link Reference
