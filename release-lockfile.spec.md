@@ -53,7 +53,7 @@ The binary representation of bytecode is defined as the raw bytes.
 
 Unlinked bytecode is the hexidecimal representation of a contract's EVM
 instructions which contains sections of code which require *linking* for the
-contract to be functional.  
+contract to be functional.
 
 The sections of code which are unlinked **must** be filled in with zero bytes.
 
@@ -352,7 +352,7 @@ corresponding bytecode.
 * Required: Yes
 * Type: Integer
 * Format: The integer **must** conform to all of the following:
-    * be greater than or equal to zero 
+    * be greater than or equal to zero
     * strictly less than the length of the unprefixed hexidecimal representation of the corresponding bytecode.
 
 
@@ -366,7 +366,7 @@ corresponding bytecode.
 * Format: One of the following formats.
 
 To reference the address of a *contract instance* from the current release lockfile
-the value should be the name of that *contract instance*.  
+the value should be the name of that *contract instance*.
 
 * This value **must** be a valid *contract instance* name.
 * The chain definition under which the *contract instance* that this *link value* belongs to must contain this value within its keys.
@@ -405,7 +405,7 @@ representation of the bytecode.
 #### Link References: `link_references`
 
 The `link_references` field defines the locations in the corresponding bytecode
-which require linking.  
+which require linking.
 
 * Required: No
 * Type: Array
@@ -421,7 +421,7 @@ Intersection is defined as two link references which overlap.
 #### Link Dependencies: `link_dependencies`
 
 The `link_dependencies` defines the *link values* that have been used to link
-the corresponding bytecode.  
+the corresponding bytecode.
 
 * Required: No
 * Type: Array
@@ -430,7 +430,7 @@ the corresponding bytecode.
 Validation of this field includes the following:
 
 * No two link value objects may contain the same `offset`.
-* Each link value object **must** have a corresponding link reference object under the `link_references` field.  
+* Each link value object **must** have a corresponding link reference object under the `link_references` field.
 * The length of the resolved `value` **must** be equal to the `length` of the corresponding link reference.
 
 
