@@ -121,13 +121,13 @@ a projects source files.
 #### Contract Alias
 
 This is a name used to reference a specific *contract type*.  Contract
-aliases **must** be unique within a single release lockfile.  
+aliases **must** be unique within a single release lockfile.
 
 The *contract alias* **must** use *one of* the following naming schemes.
 
 * `<contract-name>`
 * `<contract-name>[<identifier>]`
-    
+
 The `<contract-name>` portion **must** be the same as the *contract name* for
 this *contract type*.
 
@@ -135,7 +135,7 @@ The `[<identifier>]` portion **must** match the regular expression
 `\[[-a-zA-Z0-9]{1,256}\]`.
 
 
-#### Contract Instance 
+#### Contract Instance
 
 A contract instance a specific deployed version of a *contract type*.  All
 contract instances have an address on some specific chain.
@@ -160,8 +160,14 @@ way.
 
 ## Format
 
-The canonical format for the release lockfile is a JSON document containing a
-single JSON object.  
+The canonical format for the release lockfile JSON document containing a
+single JSON object.  Lockfiles **must** conform to the following serialization rules.
+
+* The document **must** be tightly packed, meaning no linebreaks or extra whitespace.
+* The keys in all objects must be sorted alphabetically.
+* Duplicate keys in the same object are invalid.
+* The document **must** use utf8 encoding.
+* The document **must** not have a trailing newline.
 
 
 ## Document Specification
@@ -212,7 +218,7 @@ included in all release lockfiles.
 ### Version: `version`
 
 The `version` field declares the version number of this release.  This value
-**must** be included in all release lockfiles.  This value **should** be conform
+**must** be included in all release lockfiles.  This value **should** conform
 to the [semver](http://semver.org/) version numbering specification.
 
 * Required: Yes
@@ -224,7 +230,7 @@ to the [semver](http://semver.org/) version numbering specification.
 
 The `sources` field defines a source tree that **should** comprise the full
 source tree necessary to recompile the contracts contained in this release.
-Sources are declared in a key/value mapping.  
+Sources are declared in a key/value mapping.
 
 * Keys **must** be relative filesystem paths beginning with a `./`.  Paths **must** resolve to a path that is within the current working directory.
 
@@ -248,7 +254,7 @@ which can be found in the source files for this package.  Release lockfiles
 
 * Key: `contract_types`
 * Type:  Object (String: *Contract Type* Object)
-* Format: 
+* Format:
     * Keys **must** be valid *contract aliases*.
     * Values **must** conform to the *Contract Type* object definition.
 
@@ -266,7 +272,7 @@ defined by the BIP122 URI keys for this object **must** be unique.
 
 * Key: `deployments`
 * Type:  Object (String: Object(String: *Contract Instance* Object))
-* Format: 
+* Format:
     * Keys **must** be valid BIP122 URI chain definitions.
     * Values **must** be objects which conform to the format:
         * Keys **must** be valid *contract instance* names.
@@ -436,7 +442,7 @@ The *Package Meta* object is defined to have the following key/value pairs.
 #### Authors: `authors`
 
 The `authors` field defines a list of human readable names for the authors of
-this package.  Release lockfiles **may** include this field. 
+this package.  Release lockfiles **may** include this field.
 
 * Required: No
 * Key: `authors`
@@ -446,7 +452,7 @@ this package.  Release lockfiles **may** include this field.
 ### License: `license`
 
 The `license` field declares the license under which this package is released.
-This value **should** be conform to the
+This value **should** conform to the
 [SPDX](https://en.wikipedia.org/wiki/Software_Package_Data_Exchange) format.
 Release lockfiles **should** include this field.
 
@@ -467,7 +473,7 @@ package.  Release lockfiles **may** include this field.
 
 ### Keywords: `keywords`
 
-The `keywords` field provides relevant keywords related to this package.  
+The `keywords` field provides relevant keywords related to this package.
 
 * Required: No
 * Key: `keywords`
@@ -533,7 +539,7 @@ portion of bytecode for this *contract type*.
 * Required: No
 * Type: Object
 * Format: The Merged *UserDoc* and *DevDoc*
-    * [UserDoc](https://github.com/ethereum/wiki/wiki/Ethereum-Natural-Specification-Format#user-documentation) 
+    * [UserDoc](https://github.com/ethereum/wiki/wiki/Ethereum-Natural-Specification-Format#user-documentation)
     * [DevDoc](https://github.com/ethereum/wiki/wiki/Ethereum-Natural-Specification-Format#developer-documentation)
 
 
@@ -565,10 +571,10 @@ To reference a *contract type* from this release lockfile, use the format `<cont
 * The `<contract-alias>` value **must** be a valid *contract alias*.
 * The value **must** be present in the keys of the `contract_types` section of this release lockfile.
 
-To reference a *contract type* from a dependency, use the format `<package-name>:<contract-alias>`.  
+To reference a *contract type* from a dependency, use the format `<package-name>:<contract-alias>`.
 
-* The `<package-name>` value **must** be present in the keys of the `build_dependencies` of this release lockfile.  
-* The `<contract-alias>` value **must** be be a valid *contract alias* 
+* The `<package-name>` value **must** be present in the keys of the `build_dependencies` of this release lockfile.
+* The `<contract-alias>` value **must** be be a valid *contract alias*
 * The resolved release lockfile for `<package-name>` must contain the `<contract-alias>` value in the keys of the `contract_types` section.
 
 
@@ -649,9 +655,9 @@ The `type` field defines which compiler was used in compilation.
 
 #### Version `version`
 
-The `version` field defines the version of the compiler. The field **should** be OS 
+The `version` field defines the version of the compiler. The field **should** be OS
 agnostic (OS not included in the string) and take the form of either the stable version
-in semver format or if built on a nightly should be denoted in the form of 
+in semver format or if built on a nightly should be denoted in the form of
 `<semver>-<commit-hash>` ex: `0.4.8-commit.60cc1668`.
 
 * Required: Yes
