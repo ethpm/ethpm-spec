@@ -77,8 +77,8 @@ reference has the following properties.
 
 * `offsets`: Defines the location within the bytecode where the link reference begins.
 * `length`: Defines the length of the reference.
-* `name`: A string that **must** be a valid *Contract Name*
-
+* `name`: A string that **must** match the regular expression
+`[a-zA-Z][-a-zA-Z0-9_]*`.
 
 #### Link Value
 

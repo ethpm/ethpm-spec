@@ -221,7 +221,7 @@
           "minimum": 1
         },
         "name": {
-          "$ref": "#/definitions/ContractInstanceName"
+          "$ref": "#/definitions/Identifier"
         }
       }
     },
@@ -250,6 +250,10 @@
           ]
         }
       }
+    },
+    "Identifier": {
+      "type": "string",
+      "pattern": "^[a-zA-Z][a-zA-Z0-9_]*$"
     },
     "ContractInstanceName": {
       "title": "The name of the deployed contract instance",
