@@ -7,7 +7,7 @@ Ethereum Packaging Specification
 
 ## Specification
 
-* [Release Lock File](./release-lockfile.spec.md)
+* [Package](./package.spec.md)
 
 
 ## Definitions
@@ -101,11 +101,11 @@ intended to be used as a base contract for other contracts to be inherited
 from.  The package does not define any pre-deployed addresses for the *owned*
 contract.
 
-The smallest Release Lockfile for this package looks like this:
+The smallest Package for this example looks like this:
 
 ```javascript
 {
-  "lockfile_version": "1",
+  "manifest_version": "2",
   "version": "1.0.0",
   "package_name": "owned",
   "sources": {
@@ -114,12 +114,12 @@ The smallest Release Lockfile for this package looks like this:
 }
 ```
 
-A Release Lockfile which includes more than the minimum information would look like this.
+A Package which includes more than the minimum information would look like this.
 
 
 ```javascript
 {
-  "lockfile_version": "1",
+  "manifest_version": "2",
   "version": "1.0.0",
   "package_name": "owned",
   "package_meta": {
@@ -141,9 +141,9 @@ A Release Lockfile which includes more than the minimum information would look l
 }
 ```
 
-This fully fleshed out Release Lockfile is meant to demonstrate various pieces
+This fully fleshed out Package is meant to demonstrate various pieces
 of optional data that can be included.  However, for the remainder of our
-examples we will be using minimalistic lockfiles to keep our examples as
+examples we will be using minimalistic Packages to keep our examples as
 succinct as possible.
 
 
@@ -179,15 +179,15 @@ gets the *exact* dependencies it needs, all dependencies are declared as
 content addressed URIs.  This ensures that when a package manager fetches a
 dependency it always gets the right one.
 
-The IPFS URI for the previous `owned` Release Lockfile turns out to be
+The IPFS URI for the previous `owned` Package turns out to be
 `ipfs://QmXDf2GP67otcF2gjWUxFt4AzFkfwGiuzfexhGuotGTLJH` which is what we will
-use in our `transferable` package to declare the dependency.  The Release
-Lockfile for our package looks like the following.
+use in our `transferable` package to declare the dependency.  The
+Package looks like the following.
 
 
 ```javascript
 {
-  "lockfile_version": "1",
+  "manifest_version": "2",
   "version": "1.0.0",
   "package_name": "transferable",
   "sources": {
@@ -224,20 +224,20 @@ here within the guide but can be found in the
 [`./examples/standard-token/`](./examples/standard-token/) directory within
 this repository.
 
-Since this package includes a contract which may be used as-is, our Release
-Lockfile is going to contain additional information from our previous examples,
+Since this package includes a contract which may be used as-is, our 
+Package is going to contain additional information from our previous examples,
 specifically, the `contract_types` section.  Since we expect people to compile
 this contract theirselves we won't need to include any of the contract
 bytecode, but it will be useful to include the contract ABI and Natspec
-information.  Our lockfile will look something like the following.  The
+information.  Our Package will look something like the following.  The
 contract ABI and NatSpec sections have been truncated to improve legibility.
-The full Release Lockfile can be found
+The full Package can be found
 [here](./examples/standard-token/1.0.0.json)
 
 
 ```javascript
 {
-  "lockfile_version": "1",
+  "manifest_version": "2",
   "version": "1.0.0",
   "package_name": "standard-token",
   "sources": {
@@ -318,14 +318,14 @@ library SafeMathLib {
 ```
 
 This will be our first package which includes the `deployments` section which is the
-location in the Release Lockfile where information about deployed contract
-instances is found.  Lets look at the Release Lockfile for this package.  Some
+location where information about deployed contract
+instances is found.  Lets look at the Package, some
 parts have been truncated for readability but the full file can be found
 [here](./examples/safe-math-lib/1.0.0.json)
 
 ```javascript
 {
-  "lockfile_version": "1",
+  "manifest_version": "2",
   "version": "1.0.0",
   "package_name": "safe-math-lib",
   "sources": {
@@ -398,23 +398,22 @@ contract, and the block hash in which the deploying transaction was mined.
 For our next example we'll be creating a package includes a deployed instance
 of a *contract type* from that comes from a package dependency.  This differs
 from our previous `safe-math-lib` example where our deployment is referencing a
-local contract from the local `contract_types`.  In this package's Release
-Lockfile we will be referencing a `contract_type` from one of the
-`build_dependencies`
+local contract from the local `contract_types`.  In this package
+we will be referencing a `contract_type` from one of the `build_dependencies`
 
 We are going to use the `standard-token` package we created earlier and include
 a deployed version of the `StandardToken` contract.
 
 Our package will be called `piper-coin` and will not contain any source files
 since it merely makes use of the contracts from the `standard-token` package.
-The Release Lockfile is listed below with some sections truncated for improved
-readability.  The full Release Lockfile can be found at
+The Package is listed below with some sections truncated for improved
+readability.  The full Package can be found at
 [`./examples/piper-coin/1.0.0.json`](./examples/piper-coin/1.0.0.json)
 
 
 ```javascript
 {
-  "lockfile_version": "1",
+  "manifest_version": "2",
   "version": "1.0.0",
   "package_name": "piper-coin",
   "deployments": {
@@ -466,14 +465,14 @@ following two solidity source files.
 The full source for these files can be found here:
 [`./examples/escrow/`](./examples/escrow/).
 
-The Release Lockfile is listed below with some sections truncated for improved
-readability.  The full Release Lockfile can be found at
+The Package is listed below with some sections truncated for improved
+readability.  The full Package can be found at
 [`./examples/escrow/1.0.0.json`](./examples/escrow/1.0.0.json)
 
 
 ```javascript
 {
-  "lockfile_version": "1",
+  "manifest_version": "2",
   "version": "1.0.0",
   "package_name": "escrow",
   "sources": {
@@ -511,7 +510,7 @@ readability.  The full Release Lockfile can be found at
 }
 ```
 
-This Release Lockfile is the first one we've seen thus far that include the
+This Package is the first one we've seen thus far that include the
 `link_dependencies` section within one of the *contract instances*.  The
 `runtime_bytecode` value for the `Escrow` contract has been excluded from the
 example above for readability, but the full value is as follows (wrapped to 80
@@ -541,7 +540,7 @@ instance* describe how these *link references* should be filled in.
 The `offset` value specifies the number of characters into the unprefixed
 bytecode where the replacement should begin.  The `value` defines what address
 should be used to replace the *link reference*.  In this case, the `value` is
-referencing the `SafeSendLib` *contract instance* from this release lockfile.
+referencing the `SafeSendLib` *contract instance* from this Package.
 
 
 ### <a id="package-with-deployed-instance-which-links-against-a-dependency-library" /> Package with a contract with link dependencies on a contract from a package dependency
@@ -585,14 +584,14 @@ contract Wallet is owned {
 }
 ```
 
-The Release Lockfile for our `wallet` package can been seen below.  It has been
-trimmed to improve readability.  The full Release Lockfile can be found at
+The Package for our `wallet` package can been seen below.  It has been
+trimmed to improve readability.  The full Package can be found at
 [`./examples/wallet/1.0.0.json`](./examples/wallet/1.0.0.json)
 
 
 ```javascript
 {
-  "lockfile_version": "1",
+  "manifest_version": "2",
   "version": "1.0.0",
   "package_name": "wallet",
   "sources": {
@@ -689,15 +688,15 @@ contract WalletWithSend is Wallet {
 This new `approvedSend` function allows spending an address's provided *allowance* by
 sending it to a specified address.
 
-The Release Lockfile for our `wallet-with-send` package can been seen below.
-It has been trimmed to improve readability.  The full Release Lockfile can be
+The Package for our `wallet-with-send` package can been seen below.
+It has been trimmed to improve readability.  The full Package can be
 found at [`./examples/wallet-with-send/1.0.0.json`](./examples/wallet-with-send/1.0.0.json)
 
 
 ```javascript
 
 {
-  "lockfile_version": "1",
+  "manifest_version": "2",
   "version": "1.0.0",
   "package_name": "wallet-with-send",
   "sources": {
@@ -737,9 +736,9 @@ found at [`./examples/wallet-with-send/1.0.0.json`](./examples/wallet-with-send/
 }
 ```
 
-The important part of this lockfile is the `link_dependencies` section.
+The important part of this Package is the `link_dependencies` section.
 
-```jacascript
+```javascript
 "link_dependencies": [
     {"offset": 764, "value": "wallet:safe-math-lib:SafeMathLib"}
 ]
