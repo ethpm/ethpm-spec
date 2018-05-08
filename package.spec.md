@@ -151,7 +151,7 @@ way.
 
 ### Package Name
 
-A string matching the regular expression `[a-zA-Z][-_a-zA-Z0-9]{0,213}`
+A string matching the regular expression `[a-zA-Z][-_a-zA-Z0-9]{0,255}`
 
 
 #### Content Addressable URI
@@ -167,6 +167,7 @@ It is **recommended** that tools support IPFS and Swarm.
 #### Chain Definition 
 
 This definition originates from BIP122 URI
+See BIP122 definition [here](https://github.com/bitcoin/bips/blob/master/bip-0122.mediawiki).
 
 An URI in the format `blockchain://<chain_id>/block/<block_hash>`
 
