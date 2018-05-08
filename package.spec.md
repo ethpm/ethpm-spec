@@ -25,6 +25,7 @@ interpreted as described in RFC 2119.
 
 * https://www.ietf.org/rfc/rfc2119.txt
 
+
 ### Custom
 
 #### Prefixed vs Unprefixed
@@ -102,7 +103,7 @@ A deployed instance of the `Wallet` contract would be of of type `Wallet`.
 
 The name found in the source code which defines a specific *contract type*.
 These names **must** conform to the regular expression
-`[a-zA-Z][-a-zA-Z0-9_]*`.
+`[a-zA-Z][-a-zA-Z0-9_]{0,255}`
 
 There can be multiple contracts with the same *contract name* in
 a projects source files.
@@ -136,7 +137,7 @@ contract instances have an address on some specific chain.
 A name which refers to a specific *contract instance* on a specific chain from
 the deployments of a single Package.  This name **must** be unique
 across all other *contract instances* for the given chain.  The name must
-conform to the regular expression `[a-zA-Z][a-zA-Z0-9_]*`.
+conform to the regular expression `[a-zA-Z][a-zA-Z0-9_]{0,255}`
 
 In cases where there is a single deployed instance of a given *contract type*
 package managers **should** use the *contract alias* for that *contract type*
@@ -146,6 +147,37 @@ In cases where there are multiple deployed instances of a given *contract type*
 package managers **should** use a name which provides some added semantic
 information as to help differentiate the two deployed instances in a meaningful
 way.
+
+
+### Package Name
+
+A string matching the regular expression `[a-zA-Z][-_a-zA-Z0-9]{0,255}`
+
+
+#### Content Addressable URI
+
+Any URI which contains a cryptographic hash which can be used to verify the
+integrity of the content found at the URI.
+
+The URI format is defined in RFC3986
+
+It is **recommended** that tools support IPFS and Swarm.
+
+
+#### Chain Definition 
+
+This definition originates from BIP122 URI
+See BIP122 definition [here](https://github.com/bitcoin/bips/blob/master/bip-0122.mediawiki).
+
+An URI in the format `blockchain://<chain_id>/block/<block_hash>`
+
+* `chain_id` is the unprefixed hexidecimal representation of the genesis hash for the chain.
+* `block_hash` is the unprefixed hexidecimal representation of the hash of a block on the chain.
+
+A chain is considered to match a chain definition if the the genesis block hash
+matches the `chain_id` and the block defined by `block_hash` can be found on
+that chain.  It is possible for multiple chains to match a single URI, in which
+case all chains are considered valid matches
 
 
 ## Format
@@ -190,7 +222,7 @@ exceed 214 characters in length.
 * Required: Yes
 * Key: `package_name`
 * Type: String
-* Format: Package names must conform to the following regular expression. `[a-z][-a-z0-9]{0,213}`
+* Format: **must** be a valid package name.
 
 
 ### Package Meta: `meta`
@@ -227,7 +259,7 @@ Sources are declared in a key/value mapping.
 * Values **must** conform to *one of* the following formats.
     * Source string.
         * When the value is a source string the key should be interpreted as a file path.
-    * IPFS URI
+    * Content Addressable URI.
         * *If* the resulting document is a directory the key should be interpreted as a directory path.
         * *If* the resulting document is a file the key should be interpreted as a file path.
 
@@ -361,7 +393,7 @@ The `contract_name` field defines *contract name* for this *contract type*.
 
 * Required: If the *contract name* and *contract alias* are not the same.
 * Type: String
-* Format: **must** match the regular expression `[a-zA-Z][a-zA-Z0-9_]*`
+* Format: **must** be a valid contract name.
 
 
 #### Bytecode `bytecode`
