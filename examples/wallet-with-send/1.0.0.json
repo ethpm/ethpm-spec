@@ -1,5 +1,5 @@
 {
-  "lockfile_version": "1",
+  "manifest_version": "2",
   "version": "1.0.0",
   "package_name": "wallet-with-send",
   "sources": {

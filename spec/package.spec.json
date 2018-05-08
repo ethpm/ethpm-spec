@@ -1,18 +1,18 @@
 {
-  "title": "Release Lock File Specification",
+  "title": "Package Specification",
   "type": "object",
   "required": [
-    "lockfile_version",
+    "manifest_version",
     "package_name",
     "version"
   ],
-  "version": "1",
+  "version": "2",
   "properties": {
-    "lockfile_version": {
+    "manifest_version": {
       "type": "string",
-      "title": "Lock File Version",
-      "default": "1",
-      "enum": ["1"]
+      "title": "EthPM Manifest Version",
+      "default": "2",
+      "enum": ["2"]
     },
     "package_name": {
       "title": "The name of the package that this release is for",
