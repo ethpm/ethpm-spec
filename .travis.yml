@@ -6,3 +6,6 @@ install:
   - pip install -r requirements.txt
 script:
   - python ./bin/validate.py
+  - cd docs && make html && cd ..
+after_success:
+  - ./bin/deploy
