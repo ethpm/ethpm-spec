@@ -3,3 +3,5 @@ yarn.lock
 
 # python virtualenv
 env
+
+docs/build
