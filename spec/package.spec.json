@@ -47,7 +47,7 @@
       "title": "The contract types included in this release",
       "type": "object",
       "patternProperties": {
-        "[a-zA-Z][-a-zA-Z0-9_]{0,255}(?:\\[[-a-zA-Z0-9]{1,256}\\])$": {
+        "[a-zA-Z][-a-zA-Z0-9_]{0,255}(?:\\[[-a-zA-Z0-9]{1,256}\\])?$": {
           "$ref": "#/definitions/ContractType"
         }
       }
@@ -235,12 +235,12 @@
         "settings": {
           "title": "The settings used for compilation",
           "anyOf": [
-            {"$ref": "solc_Settings"}
+            {"$ref": "#/definitions/solcSettings"}
           ]
         }
       }
     },
-    "solc_Settings": {
+    "solcSettings": {
       "title": "Settings for use with the solc or solcjs compiler",
       "type": "object",
       "properties": {
