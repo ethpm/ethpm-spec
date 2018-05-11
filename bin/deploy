@@ -1,0 +1,100 @@
+#!/usr/bin/env bash
+#
+
+NAME="Travis Deployer"
+EMAIL="no-reply@ethpm.com"
+
+DEPLOY_BRANCH=gh-pages
+REPO_URL="git@github.com:ethpm/ethpm-spec.git"
+
+SOURCE_DIR="$( pwd )"
+DEPLOY_DIR="$( dirname $SOURCE_DIR )/${DEPLOY_BRANCH}"  # separate checkout
+
+set -e
+
+configure-git () {
+  # configure ssh to use travis-encrypted deploy-key,
+  # set git user config
+
+  echo "Configuring ssh..."
+  openssl aes-256-cbc \
+    -K $encrypted_6b4a531ca0b7_key \
+    -iv $encrypted_6b4a531ca0b7_iv \
+    -in deploy-key.enc \
+    -out deploy-key -d
+
+  chmod 600 deploy-key
+  eval `ssh-agent -s`
+  ssh-add deploy-key
+
+  echo "Configuring git..."
+  git config user.name "${NAME}"
+  git config user.email "${GIT_EMAIL}"
+}
+
+clone-deploy-branch () {
+  # clone repo's deployment branch in a separate directory
+
+  echo "Cloning repo, deployment branch..."
+  git clone -b $DEPLOY_BRANCH $REPO_URL $DEPLOY_DIR
+}
+
+copy-docs () {
+  # copy built docs into destination directory:
+  # for builds on master, use main deploy directory
+  # for builds from PRs, etc., use prefix directories for remote and branch
+
+  local remote
+  local branch
+  local destination
+
+  if [ "${TRAVIS_PULL_REQUEST_SLUG}" != "" ];
+  then
+    remote=$( dirname "${TRAVIS_PULL_REQUEST_SLUG}" )
+  else
+    remote=$( dirname "${TRAVIS_REPO_SLUG}" )
+  fi
+
+  if [ "${TRAVIS_PULL_REQUEST_BRANCH}" != "" ];
+  then
+    branch="${TRAVIS_PULL_REQUEST_BRANCH}"
+  else
+    branch="${TRAVIS_BRANCH}"
+  fi
+
+  if [ "${remote}" = "ethpm" -a "${branch}" = "master" ];
+  then
+    destination="${DEPLOY_DIR}/"
+  else
+    destination="${DEPLOY_DIR}/contrib/${remote}/${branch}/"
+  fi
+
+  echo "Preparing directory for build artifacts: ${destination}..."
+  # ensure output directory exists
+  mkdir -p "${destination}"
+
+  echo "Copying build output..."
+  # copy gh-pages output
+  cp -R ${SOURCE_DIR}/docs/build/html/* ${destination}
+}
+
+publish () {
+  # commit and push to git
+
+  echo "Committing changes..."
+  cd ${DEPLOY_DIR}
+  git add -A .
+  git commit -m "Update docs"
+
+  echo "Pushing..."
+  git push origin ${DEPLOY_BRANCH}
+}
+
+main () {
+  configure-git
+  clone-deploy-branch
+  copy-docs
+  publish
+}
+
+main
