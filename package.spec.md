@@ -149,7 +149,7 @@ information as to help differentiate the two deployed instances in a meaningful
 way.
 
 
-### Package Name
+#### Package Name
 
 A string matching the regular expression `[a-zA-Z][-_a-zA-Z0-9]{0,255}`
 
@@ -164,7 +164,7 @@ The URI format is defined in RFC3986
 It is **recommended** that tools support IPFS and Swarm.
 
 
-#### Chain Definition 
+#### Chain Definition
 
 This definition originates from BIP122 URI
 See BIP122 definition [here](https://github.com/bitcoin/bips/blob/master/bip-0122.mediawiki).
@@ -271,7 +271,7 @@ Sources are declared in a key/value mapping.
 
 The `contract_types` field holds the *contract types* which have been included
 in this release.  Packages **should** only include *contract types*
-which can be found in the source files for this package. Packages 
+which can be found in the source files for this package. Packages
 **should not** include *contract types* from dependencies.
 
 * Key: `contract_types`
@@ -559,7 +559,7 @@ corresponding bytecode.
 * Type: String
 * Format: One of the following formats.
 
-To reference the address of a *contract instance* from the current Package 
+To reference the address of a *contract instance* from the current Package
 the value should be the name of that *contract instance*.
 
 * This value **must** be a valid *contract instance* name.
