@@ -19,14 +19,14 @@ import os
 
 # -- Project information -----------------------------------------------------
 
-project = u'EthPM Package Manifest Specification'
-copyright = u'2018, Piper Merriam, et al.'
-author = u'Piper Merriam, et al.'
+project = 'EthPM Package Manifest Specification'
+copyright = '2018, Piper Merriam, et al.'
+author = 'Piper Merriam, et al.'
 
 # The short X.Y version
-version = u''
+version = ''
 # The full version, including alpha/beta/rc tags
-release = u''
+release = ''
 
 
 # -- General configuration ---------------------------------------------------
@@ -143,8 +143,8 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'EthPMPackageManifestSpecification.tex', u'EthPM Package Manifest Specification Documentation',
-     u'Piper Merriam, et al.', 'manual'),
+    (master_doc, 'EthPMPackageManifestSpecification.tex', 'EthPM Package Manifest Specification Documentation',
+     'Piper Merriam, et al.', 'manual'),
 ]
 
 
@@ -153,7 +153,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'ethpmpackagemanifestspecification', u'EthPM Package Manifest Specification Documentation',
+    (master_doc, 'ethpmpackagemanifestspecification', 'EthPM Package Manifest Specification Documentation',
      [author], 1)
 ]
 
@@ -164,7 +164,7 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'EthPMPackageManifestSpecification', u'EthPM Package Manifest Specification Documentation',
+    (master_doc, 'EthPMPackageManifestSpecification', 'EthPM Package Manifest Specification Documentation',
      author, 'EthPMPackageManifestSpecification', 'One line description of project.',
      'Miscellaneous'),
 ]
