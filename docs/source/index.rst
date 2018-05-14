@@ -10,6 +10,8 @@ EthPM Package Manifest Documentation
    :maxdepth: 2
    :caption: Contents:
 
+   overview
+   glossary
    package-spec
 
 Indices and tables
