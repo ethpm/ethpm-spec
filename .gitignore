@@ -4,4 +4,6 @@ yarn.lock
 # python virtualenv
 env
 
-docs/build
+docs/_build
+.DS_Store
+venv/
