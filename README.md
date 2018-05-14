@@ -7,7 +7,7 @@ Ethereum Packaging Specification
 
 ## Specification
 
-* [Package](./package.spec.md)
+* [Package](http://ethpm.github.io/ethpm-spec/package-spec.html)
 
 
 ## Use Cases
@@ -179,7 +179,7 @@ here within the guide but can be found in the
 [`./examples/standard-token/`](./examples/standard-token/) directory within
 this repository.
 
-Since this package includes a contract which may be used as-is, our 
+Since this package includes a contract which may be used as-is, our
 Package is going to contain additional information from our previous examples,
 specifically, the `contract_types` section.  Since we expect people to compile
 this contract theirselves we won't need to include any of the contract
