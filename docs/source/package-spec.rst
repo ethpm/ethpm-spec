@@ -688,18 +688,15 @@ present in all *contract instances* which locally declare
 A *Compiler Information* object is defined to have the following
 key/value pairs.
 
-Type ``type``
+Name ``name``
 ^^^^^^^^^^^^^
 
-The ``type`` field defines which compiler was used in compilation.
+The ``name`` field defines which compiler was used in compilation.
 
 -  Required: Yes
 -  Key: ``type``:
 -  Type: String
--  Allowed Values:
 
-   -  ``'solc'`` for the solc command line compiler.
-   -  ``'solcjs'`` for the nodejs solc compiler.
 
 .. _version-version-1:
 
@@ -720,28 +717,12 @@ Settings ``settings``
 ^^^^^^^^^^^^^^^^^^^^^
 
 The ``settings`` field defines any settings or configuration that was
-used in compilation.
+used in compilation. For the ``'solc'`` compiler, this **should** conform
+to the `Compiler Input and Output Description <http://solidity.readthedocs.io/en/latest/using-the-compiler.html#compiler-input-and-output-json-description>`_.
 
 -  Required: No
 -  Key ``settings``:
 -  Type: Object
--  Format: Depends on the ``type`` of the compiler. See below:
-
-For the ``'solc'`` and ``'solcjs'`` compilers, the ``settings`` value
-must conform to the following format.
-
--  Keys:
-
-   -  ``optimize``
-
-      -  Required: No
-      -  Type: Boolean
-
-   -  ``optimize_runs``
-
-      -  Required: No
-      -  Type: Integer
-      -  Format: Greater than or equal to 1.
 
 BIP122 URIs
 ~~~~~~~~~~~

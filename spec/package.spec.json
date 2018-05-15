@@ -217,16 +217,13 @@
       "title": "Information about the software that was used to compile a contract type or instance",
       "type": "object",
       "required": [
-        "type",
+        "name",
         "version"
       ],
       "properties": {
-        "type": {
+        "name": {
           "title": "The name of the compiler",
-          "enum": [
-            "solc",
-            "solcjs"
-          ]
+          "type": "string"
         },
         "version": {
           "title": "The version string for the compiler",
@@ -234,22 +231,7 @@
         },
         "settings": {
           "title": "The settings used for compilation",
-          "anyOf": [
-            {"$ref": "#/definitions/solcSettings"}
-          ]
-        }
-      }
-    },
-    "solcSettings": {
-      "title": "Settings for use with the solc or solcjs compiler",
-      "type": "object",
-      "properties": {
-        "optimize": {
-          "type": "boolean"
-        },
-        "optimize_runs": {
-          "type": "integer",
-          "minimum": 1
+          "type": "object"
         }
       }
     },
