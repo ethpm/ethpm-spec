@@ -204,14 +204,17 @@
       "title": "A defined location in some bytecode which requires linking",
       "type": "object",
       "required": [
-        "offset",
+        "offsets",
         "length",
         "name"
       ],
       "properties": {
-        "offset": {
-          "type": "integer",
-          "minimum": 0
+        "offsets": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          }
         },
         "length": {
           "type": "integer",
@@ -226,13 +229,16 @@
       "title": "A value for an individual link reference in a contract's bytecode",
       "type": "object",
       "required": [
-        "offset",
+        "offsets",
         "value"
       ],
       "properties": {
-        "offset": {
-          "type": "integer",
-          "minimum": 0
+        "offsets": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          }
         },
         "value": {
           "title": "The value for the link reference",
