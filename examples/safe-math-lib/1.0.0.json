@@ -38,7 +38,7 @@
         }
       ],
       "compiler": {
-        "type": "solc",
+        "name": "solc",
         "version": "0.4.6+commit.2dabbdf0.Darwin.appleclang",
         "settings": {
             "optimize": true
