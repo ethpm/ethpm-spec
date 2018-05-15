@@ -46,6 +46,11 @@ should be represented with the ``'0x'`` prefix.
 -  Prefixed: ``0xdeadbeef``
 -  Unprefixed: ``deadbeef``
 
+Binary Bytecode
+^^^^^^^^^^^^^^^
+
+The binary representation of bytecode is defined as the raw bytes.
+
 Bytecode
 ^^^^^^^^
 
@@ -57,35 +62,32 @@ Unlinked Bytecode
 ^^^^^^^^^^^^^^^^^
 
 Unlinked bytecode is the hexidecimal representation of a contract's EVM
-instructions which contains placeholders which are referred to as *link
-references*.
+instructions which contains sections of code which require *linking* for the
+contract to be functional.
 
--  Unlinked Bytecode:
-   ``606060405260e0600073__MathLib_______________________________634d536f``
+The sections of code which are unlinked **must** be filled in with zero bytes.
+
+-  unlinked bytecode: `606060405260e06000730000000000000000000000000000000000000000634d536f`
 
 Linked Bytecode
 ^^^^^^^^^^^^^^^
 
-Linked bytecode is the hexidecimal representation of a contract's EVM
-instructions which has hadd all *link references* replaced with the
-desired *link values*
+Linked bytecode is the hexadecimal representation of a contract's EVM
+instructions which has had all *link references* replaced with the desired
+*link values*
 
--  linked Bytecode:
+-  linked bytecode:
    ``606060405260e06000736fe36000604051602001526040518160e060020a634d536f``
 
 Link Reference
 ^^^^^^^^^^^^^^
 
-A placeholder within the hexidecimal representation of a contract's EVM
-instructions.
+A location within a contract's bytecode which needs to be linked.  A link
+reference has the following properties.
 
-``606060405260e0600073__MathLib_______________________________634d536f``
-the
-
-In the bytecode
-``606060405260e0600073__MathLib_______________________________634d536f``,
-the substring ``__MathLib_______________________________`` is a link
-reference.
+-  ``offset``: Defines the location within the bytecode where the link reference begins.
+-  ``length``: Defines the length of the reference.
+-  ``name``: A string that **must** be a valid *Contract Name*
 
 Link Value
 ^^^^^^^^^^
@@ -355,13 +357,172 @@ packages that this project depends on.
    -  Values **must** be valid IPFS URIs which resolve to a valid
       *Package*
 
-Object Definitions
-------------------
+Definitions
+-----------
 
 Definitions for different objects used within the Package. All objects
 allow custom fields to be included. Custom fields **should** be prefixed
 with ``x-`` to prevent name collisions with future versions of the
 specification.
+
+The *Link Reference* Object
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+A link reference object has the following key/value pairs. All link
+references are assumed to be associated with some corresponding bytecode.
+
+Offset: ``offset``
+^^^^^^^^^^^^^^^^^^
+
+The ``offset`` field is an integer which defines the start position for
+the link reference.  The location is a 0-indexed offset from the beginning
+of the binary representation of the corresponding bytecode.  This field is
+invalid if it references a position that is beyond the end of the bytecode.
+
+-  Required: Yes
+-  Type: Integer
+
+Length: ``length``
+^^^^^^^^^^^^^^^^^^
+
+The ``length`` field is an integer which defines the length in bytes
+of the link reference. This field is invalid if the end of the defined
+link reference exceeds the end of the bytecode.
+
+-  Required: Yes
+-  Type: Integer
+
+Name: ``name``
+^^^^^^^^^^^^^^
+
+The ``name`` field is a string which **must** be a valid *Contract
+Name*. Any link references which **should** be linked with the same
+*link value* **should** be given the same name.
+
+-  Required: No
+-  Type: String
+-  Format: **must** conform to the *Contract Name* format.
+
+
+The *Link Value* Object
+~~~~~~~~~~~~~~~~~~~~~~~
+
+A *Link Value* object is defined to have the following key/value pairs.
+
+.. _offset-offset-1:
+
+Offset ``offset``
+^^^^^^^^^^^^^^^^^
+
+The ``offset`` field defines the location within the corresponding
+bytecode where the ``value`` for this *link value* was written.
+This location is a 0-indexed offset from the beginning of the binary
+representation of the corresponding bytecode.
+
+-  Required: Yes
+-  Type: Integer
+-  Format: The integer **must** conform to all of the following:
+
+   -  be greater than or equal to zero
+   -  strictly less than the length of the unprefixed hexidecimal
+      representation of the corresponding bytecode.
+
+Value ``value``
+^^^^^^^^^^^^^^^
+
+The ``value`` field defines the value which should be written when
+*linking* the corresponding bytecode.
+
+-  Required: Yes
+-  Type: String
+-  Format: One of the following formats.
+
+To reference the address of a *contract instance* from the current
+release lockfile the value should be the name of that *contract
+instance*.
+
+-  This value **must** be a valid *contract instance* name.
+-  The chain definition under which the *contract instance* that this
+   *link value* belongs to must contain this value within its keys.
+-  This value **may not** reference the same *contract instance* that
+   this *link value* belongs to.
+
+To reference a *contract instance* from a lockfile from somewhere within
+the dependency tree the value is constructed as follows.
+
+-  Let ``[p1, p2, .. pn]`` define a path down the dependency tree.
+-  Each of ``p1, p2, pn`` **must** be valid package names.
+-  ``p1`` **must** be present in keys of the ``build_dependencies`` for
+   the current release lockfile.
+-  For every ``pn`` where ``n > 1``, ``pn`` **must** be present in the
+   keys of the ``build_dependencies`` of the lockfile for ``pn-1``.
+-  The value is represented by the string
+   ``<p1>:<p2>:<...>:<pn>:<contract-instance>`` where all of ``<p1>``,
+   ``<p2>``, ``<pn>`` are valid package names and
+   ``<contract-instance>`` is a valid contract name.
+-  The ``<contract-instance>`` value **must** be a valid *contract
+   instance* name.
+-  Within the release lockfile of the package dependency defined by
+   ``<pn>``, all of the following must be satisfiable:
+
+   -  There **must** be *exactly* one chain defined under the
+      ``deployments`` key which matches the chain definition that this
+      *link value* is nested under.
+   -  The ``<contract-instance>`` value **must** be present in the keys
+      of the matching chain.
+
+To references a static address use the ``'0x'`` prefixed address as the
+value.
+
+The *Bytecode* Object
+~~~~~~~~~~~~~~~~~~~~~
+
+A bytecode object has the following key/value pairs.
+
+Bytecode: ``bytecode``
+^^^^^^^^^^^^^^^^^^^^^^
+
+The ``bytecode`` field is a string containing the ``0x`` prefixed
+hexidecimal representation of the bytecode.
+
+-  Required: Yes
+-  Type: String
+-  Format: `0x` prefixed hexadecimal.
+
+
+Link References: ``link_references``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The ``link_references`` field defines the locations in the corresponding
+bytecode which require linking.
+
+-  Required: No
+-  Type: Array
+-  Format: All values **must** be valid *Link Reference* objects
+
+This field is considered invalid if *any* of the link references are
+invalid when applied to the corresponding ``bytecode`` field, *or* if
+any of the link references intersect.
+
+Intersection is defined as two link references which overlap.
+
+Link Dependencies: ``link_dependencies``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The ``link_dependencies`` defines the *link values* that have been used
+to link the corresponding bytecode.
+
+-  Required: No
+-  Type: Array
+-  Format: All values **must** be valid *Link Value* objects
+
+Validation of this field includes the following:
+
+-  No two link value objects may contain the same ``offset``.
+-  Each link value object **must** have a corresponding link reference
+   object under the ``link_references`` field.
+-  The length of the resolved ``value`` **must** be equal to the
+   ``length`` of the corresponding link reference.
 
 The *Package Meta* Object
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -448,12 +609,11 @@ type*.
 Bytecode ``bytecode``
 ^^^^^^^^^^^^^^^^^^^^^
 
-The ``bytecode`` field defines the unlinked ``'0x'`` prefixed bytecode
-for this *contract type*
+The `bytecode` field defines the bytecode for this *contract type*
 
 -  Required: No
--  Type: String
--  Format: Hex encoded unlinked bytecode for the compiled contract.
+-  Type: Object
+-  Format: **must** conform to the *Bytecode* object format.
 
 Runtime Bytecode ``runtime_bytecode``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -462,9 +622,8 @@ The ``runtime_bytecode`` field defines the unlinked ``'0x'`` prefixed
 runtime portion of bytecode for this *contract type*.
 
 -  Required: No
--  Type: String
--  Format: Hex encoded unlinked runtime portion of the bytecode for the
-   compiled contract.
+-  Type: Object
+-  Format: **must** conform to the *Bytecode* object format.
 
 ABI ``abi``
 ^^^^^^^^^^^
@@ -564,15 +723,18 @@ which created this *contract instance* was mined.
 Runtime Bytecode ``runtime_bytecode``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The ``runtime_bytecode`` field defines the unlinked ``'0x'`` prefixed
-runtime portion of bytecode for this *contract instance*. When present,
-the value from this field takes priority over the ``runtime_bytecode``
-from the *contract_type* for this *contract instance*.
+The ``runtime_bytecode`` field defines the runtime portion of bytecode for this
+*contract instance*.  When present, the value from this field supersedes
+the ``runtime_bytecode`` from the *contract_type* for this *contract
+instance*.
+
 
 -  Required: No
--  Type: String
--  Format: Hex encoded unlinked runtime portion of the bytecode for the
-   compiled contract.
+-  Type: Object
+-  Format: **must** conform to the *Bytecode* object format.
+
+Every entry in the ``link_references`` for this bytecode **must** have a
+corresponding entry in the ``link_dependencies`` section.
 
 .. _compiler-compiler-1:
 
@@ -588,94 +750,6 @@ present in all *contract types* which include ``bytecode`` or
 -  Type: Object
 -  Format: **must** conform the the *Compiler Information* object
    format.
-
-Link Dependencies ``link_dependencies``
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-The ``link_dependencies`` defines the values which were used to fill in
-any *link* references which are present in the ``runtime_bytecode`` for
-this *contract instance*. This field **must** be present if there are
-any *link references* in the ``runtime_bytecode`` for this *contract
-instance*. This field **must** contain an entry for all *link
-references* found the ``runtime_bytecode``.
-
--  Required: If there are any *link references* in the
-   ``runtime_bytecode`` for the *contract type* of this *contract
-   instance*.
--  Type: Array
--  Format: All values **must** be valid *Link Value* objects
-
-The *Link Value* Object
-~~~~~~~~~~~~~~~~~~~~~~~
-
-A *Link Value* object is defined to have the following key/value pairs.
-
-Offset ``offset``
-^^^^^^^^^^^^^^^^^
-
-The ``offset`` field defines the location within the corresponding
-bytecode where the ``value`` for this *link value* should be written.
-This location is a 0-indexed offset from the beginning of the unprefixed
-hexidecimal representation of the bytecode.
-
--  Required: Yes
--  Type: Integer
--  Format: The integer **must** conform to all of the following:
-
-   -  be greater than or equal to zero
-   -  strictly less than the length of the unprefixed hexidecimal
-      representation of the corresponding bytecode.
-
-Value ``value``
-^^^^^^^^^^^^^^^
-
-The ``value`` field defines the value which should be written when
-*linking* the corresponding bytecode.
-
--  Required: Yes
--  Type: String
--  Format: One of the following formats.
-
-To reference the address of a *contract instance* from the current
-Package the value should be the name of that *contract instance*.
-
--  This value **must** be a valid *contract instance* name.
--  The chain definition under which the *contract instance* that this
-   *link value* belongs to must contain this value within its keys.
--  This value **may not** reference the same *contract instance* that
-   this *link value* belongs to.
-
-To reference a *contract instance* from a Package from somewhere within
-the dependency tree the value is constructed as follows.
-
--  Let ``[p1, p2, .. pn]`` define the path down the dependency tree.
--  Each of ``p1, p2, pn`` are dependency names.
--  ``p1`` **must** be present in keys of the ``build_dependencies`` for
-   the current Package.
--  For every ``pn`` where ``n > 1``, ``pn`` **must** be present in the
-   keys of the ``build_dependencies`` of the package for ``pn-1``.
--  The value is represented by the string
-   ``<p1>:<p2>:<...>:<pn>:<contract-instance>`` where all of ``<p1>``,
-   ``<p2>``, ``<pn>`` are valid package names and
-   ``<contract-instance>`` is a valid contract name.
--  The ``<contract-instance>`` value **must** be a valid *contract
-   instance* name.
--  Within the Package of the package dependency defined by ``<pn>``, all
-   of the following must be satisfiable:
-
-   -  There **must** be *exactly* one chain defined under the
-      ``deployments`` key which matches the chain definition that this
-      *link value* is nested under.
-   -  The ``<contract-instance>`` value **must** be present in the keys
-      of the matching chain.
-
-To references a static address use the ``'0x'`` prefixed address as the
-value. Package managers **should not** use this pattern when building
-releases that will be published as open source packages or that are
-intended to be used outside of a closed system. Package managers
-**should** require some form of explicit input from the user such as a
-command line flag like ``--allow-unverifiable-linking`` before linking
-code with this type of *link value*.
 
 The *Compiler Information* Object
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
