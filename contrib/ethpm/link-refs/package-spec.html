@@ -99,6 +99,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#contract-alias">Contract Alias</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#contract-instance">Contract Instance</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#contract-instance-name">Contract Instance Name</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#identifier">Identifier</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#package-name">Package Name</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#content-addressable-uri">Content Addressable URI</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#chain-definition">Chain Definition</a></li>
@@ -390,6 +391,11 @@ type</em> package managers <strong>should</strong> use the <em>contract alias</e
 some added semantic information as to help differentiate the two
 deployed instances in a meaningful way.</p>
 </div>
+<div class="section" id="identifier">
+<h4>Identifier<a class="headerlink" href="#identifier" title="Permalink to this headline">¶</a></h4>
+<p>A string matching the regular expression
+<code class="docutils literal notranslate"><span class="pre">[a-zA-Z][-_a-zA-Z0-9]{0,255}</span></code></p>
+</div>
 <div class="section" id="package-name">
 <h4>Package Name<a class="headerlink" href="#package-name" title="Permalink to this headline">¶</a></h4>
 <p>A string matching the regular expression
@@ -607,13 +613,13 @@ link reference exceeds the end of the bytecode.</p>
 </div>
 <div class="section" id="name-name">
 <h4>Name: <code class="docutils literal notranslate"><span class="pre">name</span></code><a class="headerlink" href="#name-name" title="Permalink to this headline">¶</a></h4>
-<p>The <code class="docutils literal notranslate"><span class="pre">name</span></code> field is a string which <strong>must</strong> be a valid <em>Contract
-Name</em>. Any link references which <strong>should</strong> be linked with the same
+<p>The <code class="docutils literal notranslate"><span class="pre">name</span></code> field is a string which <strong>must</strong> be a valid <em>Identifier</em>.
+Any link references which <strong>should</strong> be linked with the same
 <em>link value</em> <strong>should</strong> be given the same name.</p>
 <ul class="simple">
 <li>Required: No</li>
 <li>Type: String</li>
-<li>Format: <strong>must</strong> conform to the <em>Contract Name</em> format.</li>
+<li>Format: <strong>must</strong> conform to the <em>Identifier</em> format.</li>
 </ul>
 </div>
 </div>

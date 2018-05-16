@@ -172,6 +172,12 @@ In cases where there are multiple deployed instances of a given
 some added semantic information as to help differentiate the two
 deployed instances in a meaningful way.
 
+Identifier
+^^^^^^^^^^
+
+A string matching the regular expression
+``[a-zA-Z][-_a-zA-Z0-9]{0,255}``
+
 Package Name
 ^^^^^^^^^^^^
 
@@ -397,13 +403,13 @@ link reference exceeds the end of the bytecode.
 Name: ``name``
 ^^^^^^^^^^^^^^
 
-The ``name`` field is a string which **must** be a valid *Contract
-Name*. Any link references which **should** be linked with the same
+The ``name`` field is a string which **must** be a valid *Identifier*.
+Any link references which **should** be linked with the same
 *link value* **should** be given the same name.
 
 -  Required: No
 -  Type: String
--  Format: **must** conform to the *Contract Name* format.
+-  Format: **must** conform to the *Identifier* format.
 
 
 The *Link Value* Object
