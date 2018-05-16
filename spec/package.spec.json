@@ -180,7 +180,10 @@
     "BytecodeObject": {
       "title": "Contract bytecode",
       "type": "object",
-      "required": ["bytecode"],
+      "anyOf": [
+        {"required": ["bytecode"]},
+        {"required": ["link_dependencies"]}
+      ],
       "properties": {
         "bytecode": {
           "type": "string",
