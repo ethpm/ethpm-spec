@@ -550,7 +550,7 @@ authors of this package. Packages **may** include this field.
 -  Type: List of Strings
 
 License: ``license``
-~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^
 
 The ``license`` field declares the license under which this package is
 released. This value **should** conform to the
@@ -562,7 +562,7 @@ format. Packages **should** include this field.
 -  Type: String
 
 Description: ``description``
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The ``description`` field provides additional detail that may be
 relevant for the package. Packages **may** include this field.
@@ -572,7 +572,7 @@ relevant for the package. Packages **may** include this field.
 -  Type: String
 
 Keywords: ``keywords``
-~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^
 
 The ``keywords`` field provides relevant keywords related to this
 package.
@@ -582,7 +582,7 @@ package.
 -  Type: List of Strings
 
 Links: ``links``
-~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^
 
 The ``links`` field provides URIs to relevant resources associated with
 this package. When possible, authors **should** use the following keys
