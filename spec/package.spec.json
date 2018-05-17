@@ -122,13 +122,11 @@
           "type": "string",
           "pattern": "[a-zA-Z][a-zA-Z0-9_]{0,255}"
         },
-        "bytecode": {
-          "title": "The unlinked '0x' prefixed bytecode for this contract type",
-          "type": "string"
+        "deployment_bytecode": {
+          "$ref": "#/definitions/BytecodeObject"
         },
         "runtime_bytecode": {
-          "title": "The unlinked '0x' prefixed runtime portion of the bytecode for this contract type",
-          "type": "string"
+          "$ref": "#/definitions/BytecodeObject"
         },
         "abi": {
           "title": "The ABI for this contract type",
@@ -165,8 +163,7 @@
           "$ref": "#/definitions/BlockHash"
         },
         "runtime_bytecode": {
-          "title": "The on-chain bytecode for this contract instance.",
-          "type": "string"
+          "$ref": "#/definitions/BytecodeObject"
         },
         "compiler": {
           "$ref": "#/definitions/CompilerInformation"
@@ -180,28 +177,113 @@
         }
       }
     },
+    "ByteString": {
+      "title": "Byte String",
+      "description": "0x-prefixed hexadecimal string representing bytes",
+      "type": "string",
+      "pattern": "^0x([0-9a-fA-F]{2})*$"
+    },
+    "BytecodeObject": {
+      "title": "Contract bytecode",
+      "type": "object",
+      "anyOf": [
+        {"required": ["bytecode"]},
+        {"required": ["link_dependencies"]}
+      ],
+      "properties": {
+        "bytecode": {
+          "$ref": "#/definitions/ByteString"
+        },
+        "link_references": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/LinkReference"
+          }
+        },
+        "link_dependencies": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/LinkValue"
+          }
+        }
+      }
+    },
+    "LinkReference": {
+      "title": "A defined location in some bytecode which requires linking",
+      "type": "object",
+      "required": [
+        "offsets",
+        "length",
+        "name"
+      ],
+      "properties": {
+        "offsets": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "length": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "name": {
+          "$ref": "#/definitions/Identifier"
+        }
+      }
+    },
     "LinkValue": {
       "title": "A value for an individual link reference in a contract's bytecode",
       "type": "object",
       "required": [
-        "offset",
+        "offsets",
+        "type",
         "value"
       ],
       "properties": {
-        "offset": {
-          "type": "integer",
-          "minimum": 0
+        "offsets": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "type": {
+          "title": "The type of link value",
+          "type": "string"
         },
         "value": {
-          "title": "The value for the link reference",
-          "type": "string",
-          "anyOf": [
-            {"$ref": "#/definitions/Address"},
-            {"$ref": "#/definitions/ContractInstanceName"},
-            {"$ref": "#/definitions/PackageContractInstanceName"}
-          ]
+          "title": "The value for the link reference"
         }
-      }
+      },
+      "oneOf": [{
+        "properties": {
+          "type": {
+            "enum": ["literal"]
+          },
+          "value": {
+            "$ref": "#/definitions/ByteString"
+          }
+        }
+      }, {
+        "properties": {
+          "type": {
+            "enum": ["reference"]
+          },
+          "value": {
+            "anyOf": [
+              {"$ref": "#/definitions/ContractInstanceName"},
+              {"$ref": "#/definitions/PackageContractInstanceName"}
+            ]
+          }
+        }
+      }]
+    },
+    "Identifier": {
+      "title": "Identifier",
+      "type": "string",
+      "pattern": "^[a-zA-Z][a-zA-Z0-9_]{0,255}$"
     },
     "ContractInstanceName": {
       "title": "The name of the deployed contract instance",
@@ -255,18 +337,24 @@
     },
     "Address": {
       "title": "An Ethereum address",
-      "type": "string",
-      "pattern": "^0x[0-9a-fA-F]{40}$"
+      "allOf": [
+        { "$ref": "#/definitions/ByteString" },
+        { "minLength": 42, "maxLength": 42 }
+      ]
     },
     "TransactionHash": {
       "title": "An Ethereum transaction hash",
-      "type": "string",
-      "pattern": "^0x[0-9a-zA-Z]{64}$"
+      "allOf": [
+        { "$ref": "#/definitions/ByteString" },
+        { "minLength": 66, "maxLength": 66 }
+      ]
     },
     "BlockHash": {
       "title": "An Ethereum block hash",
-      "type": "string",
-      "pattern": "^0x[0-9a-zA-Z]{64}$"
+      "allOf": [
+        { "$ref": "#/definitions/ByteString" },
+        { "minLength": 66, "maxLength": 66 }
+      ]
     },
     "ContentURI": {
       "title": "An content addressable URI",
