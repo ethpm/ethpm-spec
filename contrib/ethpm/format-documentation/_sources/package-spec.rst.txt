@@ -89,8 +89,8 @@ the substring ``__MathLib_______________________________`` is a `link reference`
 Link Value
 ^^^^^^^^^^
 
-A link value is the value which can be inserted in place of a link
-reference.
+A link value is the value which can be inserted in place of a `link
+reference`_.
 
 Linking
 ^^^^^^^
