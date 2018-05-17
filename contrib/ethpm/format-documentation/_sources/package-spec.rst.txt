@@ -89,15 +89,14 @@ reference has the following properties.
 
   :``offset``: Defines the location within the bytecode where the link reference begins.
   :``length``: Defines the length of the reference.
-  :``name``: A string that **must** be a valid *Contract Name*
+  :``name``: A string that **must** be a valid `Contract Name`_
 
 .. _link values:
 
 Link Value
 ^^^^^^^^^^
 
-A link value is the value which can be inserted in place of a `link
-reference`_.
+A link value is the value which can be inserted in place of a `link reference`_.
 
 Linking
 ^^^^^^^
