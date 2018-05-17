@@ -147,7 +147,7 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#the-contract-type-object">The <em>Contract Type</em> Object</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#contract-name-contract-name">Contract Name <code class="docutils literal notranslate"><span class="pre">contract_name</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id2">Bytecode <code class="docutils literal notranslate"><span class="pre">bytecode</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#deployment-bytecode-deployment-bytecode">Deployment Bytecode <code class="docutils literal notranslate"><span class="pre">deployment_bytecode</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#runtime-bytecode-runtime-bytecode">Runtime Bytecode <code class="docutils literal notranslate"><span class="pre">runtime_bytecode</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#abi-abi">ABI <code class="docutils literal notranslate"><span class="pre">abi</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#natspec-natspec">Natspec <code class="docutils literal notranslate"><span class="pre">natspec</span></code></a></li>
@@ -813,9 +813,9 @@ same.</li>
 <li>Format: <strong>must</strong> be a valid contract name.</li>
 </ul>
 </div>
-<div class="section" id="id2">
-<h4>Bytecode <code class="docutils literal notranslate"><span class="pre">bytecode</span></code><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
-<p>The <cite>bytecode</cite> field defines the bytecode for this <em>contract type</em></p>
+<div class="section" id="deployment-bytecode-deployment-bytecode">
+<h4>Deployment Bytecode <code class="docutils literal notranslate"><span class="pre">deployment_bytecode</span></code><a class="headerlink" href="#deployment-bytecode-deployment-bytecode" title="Permalink to this headline">¶</a></h4>
+<p>The <code class="docutils literal notranslate"><span class="pre">deployment_bytecode</span></code> field defines the bytecode for this <em>contract type</em></p>
 <ul class="simple">
 <li>Required: No</li>
 <li>Type: Object</li>
@@ -929,7 +929,7 @@ which created this <em>contract instance</em> was mined.</p>
 </ul>
 </div>
 <div class="section" id="runtime-bytecode-runtime-bytecode-1">
-<span id="id3"></span><h4>Runtime Bytecode <code class="docutils literal notranslate"><span class="pre">runtime_bytecode</span></code><a class="headerlink" href="#runtime-bytecode-runtime-bytecode-1" title="Permalink to this headline">¶</a></h4>
+<span id="id2"></span><h4>Runtime Bytecode <code class="docutils literal notranslate"><span class="pre">runtime_bytecode</span></code><a class="headerlink" href="#runtime-bytecode-runtime-bytecode-1" title="Permalink to this headline">¶</a></h4>
 <p>The <code class="docutils literal notranslate"><span class="pre">runtime_bytecode</span></code> field defines the runtime portion of bytecode for this
 <em>contract instance</em>.  When present, the value from this field supersedes
 the <code class="docutils literal notranslate"><span class="pre">runtime_bytecode</span></code> from the <em>contract_type</em> for this <em>contract
@@ -943,7 +943,7 @@ instance</em>.</p>
 corresponding entry in the <code class="docutils literal notranslate"><span class="pre">link_dependencies</span></code> section.</p>
 </div>
 <div class="section" id="compiler-compiler-1">
-<span id="id4"></span><h4>Compiler <code class="docutils literal notranslate"><span class="pre">compiler</span></code><a class="headerlink" href="#compiler-compiler-1" title="Permalink to this headline">¶</a></h4>
+<span id="id3"></span><h4>Compiler <code class="docutils literal notranslate"><span class="pre">compiler</span></code><a class="headerlink" href="#compiler-compiler-1" title="Permalink to this headline">¶</a></h4>
 <p>The <code class="docutils literal notranslate"><span class="pre">compiler</span></code> field defines the compiler information that was used
 during compilation of this <em>contract class</em>. This field <strong>should</strong> be
 present in all <em>contract types</em> which include <code class="docutils literal notranslate"><span class="pre">bytecode</span></code> or
@@ -979,7 +979,7 @@ key/value pairs.</p>
 </ul>
 </div>
 <div class="section" id="version-version-1">
-<span id="id5"></span><h4>Version <code class="docutils literal notranslate"><span class="pre">version</span></code><a class="headerlink" href="#version-version-1" title="Permalink to this headline">¶</a></h4>
+<span id="id4"></span><h4>Version <code class="docutils literal notranslate"><span class="pre">version</span></code><a class="headerlink" href="#version-version-1" title="Permalink to this headline">¶</a></h4>
 <p>The <code class="docutils literal notranslate"><span class="pre">version</span></code> field defines the version of the compiler. The field
 <strong>should</strong> be OS agnostic (OS not included in the string) and take the
 form of either the stable version in semver format or if built on a

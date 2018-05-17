@@ -615,10 +615,10 @@ type*.
 -  Type: String
 -  Format: **must** be a valid contract name.
 
-Bytecode ``bytecode``
-^^^^^^^^^^^^^^^^^^^^^
+Deployment Bytecode ``deployment_bytecode``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The `bytecode` field defines the bytecode for this *contract type*
+The ``deployment_bytecode`` field defines the bytecode for this *contract type*
 
 -  Required: No
 -  Type: Object
