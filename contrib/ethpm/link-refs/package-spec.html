@@ -663,23 +663,19 @@ when <em>linking</em> the corresponding bytecode.</p>
 <h4>Value <code class="docutils literal notranslate"><span class="pre">value</span></code><a class="headerlink" href="#value-value" title="Permalink to this headline">¶</a></h4>
 <p>The <code class="docutils literal notranslate"><span class="pre">value</span></code> field defines the value which should be written when
 <em>linking</em> the corresponding bytecode.</p>
-<ul>
-<li><p class="first">Required: Yes</p>
-</li>
-<li><p class="first">Type: String</p>
-</li>
-<li><p class="first">Format: determined based on <code class="docutils literal notranslate"><span class="pre">type</span></code>:</p>
-<blockquote>
-<div><dl class="docutils">
+<ul class="simple">
+<li>Required: Yes</li>
+<li>Type: String</li>
+<li>Format: determined based on <code class="docutils literal notranslate"><span class="pre">type</span></code>:</li>
+</ul>
+<dl class="docutils">
 <dt>Type <code class="docutils literal notranslate"><span class="pre">literal</span></code></dt>
-<dd><p class="first last">For static value literals (e.g. address), value <strong>must</strong> be a
+<dd>For static value literals (e.g. address), value <strong>must</strong> be a
 <code class="docutils literal notranslate"><span class="pre">'0x'</span></code>-prefixed hexadecimal string with representing a whole number of
-bytes.</p>
-</dd>
+bytes.</dd>
 <dt>Type <code class="docutils literal notranslate"><span class="pre">reference</span></code></dt>
 <dd><p class="first">To reference the address of a <em>contract instance</em> from the current
-release lockfile the value should be the name of that
-<em>contract instance</em>.</p>
+release lockfile the value should be the name of that <em>contract instance</em>.</p>
 <ul class="simple">
 <li>This value <strong>must</strong> be a valid <em>contract instance</em> name.</li>
 <li>The chain definition under which the <em>contract instance</em> that this
@@ -687,8 +683,8 @@ release lockfile the value should be the name of that
 <li>This value <strong>may not</strong> reference the same <em>contract instance</em> that
 this <em>link value</em> belongs to.</li>
 </ul>
-<p>To reference a <em>contract instance</em> from a lockfile from somewhere
-within the dependency tree the value is constructed as follows.</p>
+<p>To reference a <em>contract instance</em> from a lockfile from somewhere within
+the dependency tree the value is constructed as follows.</p>
 <ul class="simple">
 <li>Let <code class="docutils literal notranslate"><span class="pre">[p1,</span> <span class="pre">p2,</span> <span class="pre">..</span> <span class="pre">pn]</span></code> define a path down the dependency tree.</li>
 <li>Each of <code class="docutils literal notranslate"><span class="pre">p1,</span> <span class="pre">p2,</span> <span class="pre">pn</span></code> <strong>must</strong> be valid package names.</li>
@@ -703,8 +699,7 @@ keys of the <code class="docutils literal notranslate"><span class="pre">build_d
 <li>The <code class="docutils literal notranslate"><span class="pre">&lt;contract-instance&gt;</span></code> value <strong>must</strong> be a valid</li>
 </ul>
 <blockquote>
-<div><p><em>contract instance</em> name.</p>
-</div></blockquote>
+<div><em>contract instance</em> name.</div></blockquote>
 <ul class="last simple">
 <li>Within the release lockfile of the package dependency defined by
 <code class="docutils literal notranslate"><span class="pre">&lt;pn&gt;</span></code>, all of the following must be satisfiable:<ul>
@@ -718,9 +713,6 @@ of the matching chain.</li>
 </ul>
 </dd>
 </dl>
-</div></blockquote>
-</li>
-</ul>
 </div>
 </div>
 <div class="section" id="the-bytecode-object">
