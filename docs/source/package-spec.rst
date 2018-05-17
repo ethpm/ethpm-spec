@@ -55,8 +55,8 @@ Bytecode
 ^^^^^^^^
 
 The set of EVM instructions as produced by a compiler. Unless otherwise
-specified this should be assumed to be hexidecimal encoded and prefixed
-with a ``'0x'``.
+specified this should be assumed to be hexadecimal encoded, representing
+a whole number of bytes, and prefixed with a ``'0x'``.
 
 Unlinked Bytecode
 ^^^^^^^^^^^^^^^^^
@@ -461,8 +461,7 @@ The ``value`` field defines the value which should be written when
 
     Type ``literal``
       For static value literals (e.g. address), value **must** be a
-      ``'0x'``-prefixed hexadecimal string with representing a whole number of
-      bytes.
+      *byte string*
 
     Type ``reference``
         To reference the address of a *contract instance* from the current
