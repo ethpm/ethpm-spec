@@ -132,7 +132,7 @@
         "block": "0x9b39dcab3d665a51755dedef56e7c858702f5817ce926a0cd8ff3081c5159b7f",
         "runtime_bytecode": {
           "link_dependencies": [
-            {"offsets": [262, 412], "value": "SafeSendLib"}
+            {"offsets": [262, 412], "type": "reference", "value": "SafeSendLib"}
           ]
         }
       }

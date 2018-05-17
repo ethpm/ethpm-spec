@@ -103,7 +103,7 @@
         "block": "0xccd130623ad3b25a357ead2ecfd22d38756b2e6ac09b77a37bd0ecdf16249765",
         "runtime_bytecode": {
           "link_dependencies": [
-            {"offsets": [340], "value": "safe-math-lib:SafeMathLib"}
+            {"offsets": [340], "type": "reference", "value": "safe-math-lib:SafeMathLib"}
           ]
         }
       }

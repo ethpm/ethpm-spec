@@ -118,7 +118,7 @@
         "block": "0x5479e2f948184e13581d13e6a3d5bd5e5263d898d4514c5ec6fab37e2a1e9d6c",
         "runtime_bytecode": {
           "link_dependencies": [
-            {"offsets": [383, 587], "value": "wallet:safe-math-lib:SafeMathLib"}
+            {"offsets": [383, 587], "type": "reference", "value": "wallet:safe-math-lib:SafeMathLib"}
           ]
         }
       }

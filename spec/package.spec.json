@@ -238,6 +238,7 @@
       "type": "object",
       "required": [
         "offsets",
+        "type",
         "value"
       ],
       "properties": {
@@ -248,16 +249,36 @@
             "minimum": 0
           }
         },
+        "type": {
+          "title": "The type of link value",
+          "type": "string"
+        },
         "value": {
-          "title": "The value for the link reference",
-          "type": "string",
-          "anyOf": [
-            {"$ref": "#/definitions/Address"},
-            {"$ref": "#/definitions/ContractInstanceName"},
-            {"$ref": "#/definitions/PackageContractInstanceName"}
-          ]
+          "title": "The value for the link reference"
         }
-      }
+      },
+      "oneOf": [{
+        "properties": {
+          "type": {
+            "enum": ["literal"]
+          },
+          "value": {
+            "$ref": "#/definitions/ByteString"
+          }
+        }
+      }, {
+        "properties": {
+          "type": {
+            "enum": ["reference"]
+          },
+          "value": {
+            "anyOf": [
+              {"$ref": "#/definitions/ContractInstanceName"},
+              {"$ref": "#/definitions/PackageContractInstanceName"}
+            ]
+          }
+        }
+      }]
     },
     "Identifier": {
       "title": "Identifier",
