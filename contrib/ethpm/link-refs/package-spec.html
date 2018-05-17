@@ -128,6 +128,7 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#the-link-value-object">The <em>Link Value</em> Object</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#offset-offset-1">Offsets <code class="docutils literal notranslate"><span class="pre">offsets</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#type-type">Type <code class="docutils literal notranslate"><span class="pre">type</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#value-value">Value <code class="docutils literal notranslate"><span class="pre">value</span></code></a></li>
 </ul>
 </li>
@@ -164,7 +165,7 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#the-compiler-information-object">The <em>Compiler Information</em> Object</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#type-type">Type <code class="docutils literal notranslate"><span class="pre">type</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">Type <code class="docutils literal notranslate"><span class="pre">type</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#version-version-1">Version <code class="docutils literal notranslate"><span class="pre">version</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#settings-settings">Settings <code class="docutils literal notranslate"><span class="pre">settings</span></code></a></li>
 </ul>
@@ -644,18 +645,41 @@ representation of the corresponding bytecode.</li>
 </li>
 </ul>
 </div>
+<div class="section" id="type-type">
+<h4>Type <code class="docutils literal notranslate"><span class="pre">type</span></code><a class="headerlink" href="#type-type" title="Permalink to this headline">¶</a></h4>
+<p>The <code class="docutils literal notranslate"><span class="pre">type</span></code> field defines the <code class="docutils literal notranslate"><span class="pre">value</span></code> type for determining what is encoded
+when <em>linking</em> the corresponding bytecode.</p>
+<ul class="simple">
+<li>Required: Yes</li>
+<li>Type: String</li>
+<li>Allowed Values:<ul>
+<li><code class="docutils literal notranslate"><span class="pre">'literal'</span></code> for bytecode literals</li>
+<li><code class="docutils literal notranslate"><span class="pre">'reference'</span></code> for named references to a particular <em>contract instance</em></li>
+</ul>
+</li>
+</ul>
+</div>
 <div class="section" id="value-value">
 <h4>Value <code class="docutils literal notranslate"><span class="pre">value</span></code><a class="headerlink" href="#value-value" title="Permalink to this headline">¶</a></h4>
 <p>The <code class="docutils literal notranslate"><span class="pre">value</span></code> field defines the value which should be written when
 <em>linking</em> the corresponding bytecode.</p>
-<ul class="simple">
-<li>Required: Yes</li>
-<li>Type: String</li>
-<li>Format: One of the following formats.</li>
-</ul>
-<p>To reference the address of a <em>contract instance</em> from the current
-release lockfile the value should be the name of that <em>contract
-instance</em>.</p>
+<ul>
+<li><p class="first">Required: Yes</p>
+</li>
+<li><p class="first">Type: String</p>
+</li>
+<li><p class="first">Format: determined based on <code class="docutils literal notranslate"><span class="pre">type</span></code>:</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>Type <code class="docutils literal notranslate"><span class="pre">literal</span></code></dt>
+<dd><p class="first last">For static value literals (e.g. address), value <strong>must</strong> be a
+<code class="docutils literal notranslate"><span class="pre">'0x'</span></code>-prefixed hexadecimal string with representing a whole number of
+bytes.</p>
+</dd>
+<dt>Type <code class="docutils literal notranslate"><span class="pre">reference</span></code></dt>
+<dd><p class="first">To reference the address of a <em>contract instance</em> from the current
+release lockfile the value should be the name of that
+<em>contract instance</em>.</p>
 <ul class="simple">
 <li>This value <strong>must</strong> be a valid <em>contract instance</em> name.</li>
 <li>The chain definition under which the <em>contract instance</em> that this
@@ -663,8 +687,8 @@ instance</em>.</p>
 <li>This value <strong>may not</strong> reference the same <em>contract instance</em> that
 this <em>link value</em> belongs to.</li>
 </ul>
-<p>To reference a <em>contract instance</em> from a lockfile from somewhere within
-the dependency tree the value is constructed as follows.</p>
+<p>To reference a <em>contract instance</em> from a lockfile from somewhere
+within the dependency tree the value is constructed as follows.</p>
 <ul class="simple">
 <li>Let <code class="docutils literal notranslate"><span class="pre">[p1,</span> <span class="pre">p2,</span> <span class="pre">..</span> <span class="pre">pn]</span></code> define a path down the dependency tree.</li>
 <li>Each of <code class="docutils literal notranslate"><span class="pre">p1,</span> <span class="pre">p2,</span> <span class="pre">pn</span></code> <strong>must</strong> be valid package names.</li>
@@ -676,8 +700,12 @@ keys of the <code class="docutils literal notranslate"><span class="pre">build_d
 <code class="docutils literal notranslate"><span class="pre">&lt;p1&gt;:&lt;p2&gt;:&lt;...&gt;:&lt;pn&gt;:&lt;contract-instance&gt;</span></code> where all of <code class="docutils literal notranslate"><span class="pre">&lt;p1&gt;</span></code>,
 <code class="docutils literal notranslate"><span class="pre">&lt;p2&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;pn&gt;</span></code> are valid package names and
 <code class="docutils literal notranslate"><span class="pre">&lt;contract-instance&gt;</span></code> is a valid contract name.</li>
-<li>The <code class="docutils literal notranslate"><span class="pre">&lt;contract-instance&gt;</span></code> value <strong>must</strong> be a valid <em>contract
-instance</em> name.</li>
+<li>The <code class="docutils literal notranslate"><span class="pre">&lt;contract-instance&gt;</span></code> value <strong>must</strong> be a valid</li>
+</ul>
+<blockquote>
+<div><p><em>contract instance</em> name.</p>
+</div></blockquote>
+<ul class="last simple">
 <li>Within the release lockfile of the package dependency defined by
 <code class="docutils literal notranslate"><span class="pre">&lt;pn&gt;</span></code>, all of the following must be satisfiable:<ul>
 <li>There <strong>must</strong> be <em>exactly</em> one chain defined under the
@@ -688,8 +716,11 @@ of the matching chain.</li>
 </ul>
 </li>
 </ul>
-<p>To references a static address use the <code class="docutils literal notranslate"><span class="pre">'0x'</span></code> prefixed address as the
-value.</p>
+</dd>
+</dl>
+</div></blockquote>
+</li>
+</ul>
 </div>
 </div>
 <div class="section" id="the-bytecode-object">
@@ -964,8 +995,8 @@ present in all <em>contract instances</em> which locally declare
 <code class="docutils literal notranslate"><span class="pre">runtime_bytecode</span></code>.</p>
 <p>A <em>Compiler Information</em> object is defined to have the following
 key/value pairs.</p>
-<div class="section" id="type-type">
-<h4>Type <code class="docutils literal notranslate"><span class="pre">type</span></code><a class="headerlink" href="#type-type" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id4">
+<h4>Type <code class="docutils literal notranslate"><span class="pre">type</span></code><a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h4>
 <p>The <code class="docutils literal notranslate"><span class="pre">type</span></code> field defines which compiler was used in compilation.</p>
 <ul class="simple">
 <li>Required: Yes</li>
@@ -979,7 +1010,7 @@ key/value pairs.</p>
 </ul>
 </div>
 <div class="section" id="version-version-1">
-<span id="id4"></span><h4>Version <code class="docutils literal notranslate"><span class="pre">version</span></code><a class="headerlink" href="#version-version-1" title="Permalink to this headline">¶</a></h4>
+<span id="id5"></span><h4>Version <code class="docutils literal notranslate"><span class="pre">version</span></code><a class="headerlink" href="#version-version-1" title="Permalink to this headline">¶</a></h4>
 <p>The <code class="docutils literal notranslate"><span class="pre">version</span></code> field defines the version of the compiler. The field
 <strong>should</strong> be OS agnostic (OS not included in the string) and take the
 form of either the stable version in semver format or if built on a

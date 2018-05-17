@@ -436,6 +436,19 @@ corresponding bytecode.
    -  strictly less than the length of the unprefixed hexidecimal
       representation of the corresponding bytecode.
 
+Type ``type``
+^^^^^^^^^^^^^
+
+The ``type`` field defines the ``value`` type for determining what is encoded
+when *linking* the corresponding bytecode.
+
+-  Required: Yes
+-  Type: String
+-  Allowed Values:
+
+   -  ``'literal'`` for bytecode literals
+   -  ``'reference'`` for named references to a particular *contract instance*
+
 Value ``value``
 ^^^^^^^^^^^^^^^
 
@@ -444,44 +457,47 @@ The ``value`` field defines the value which should be written when
 
 -  Required: Yes
 -  Type: String
--  Format: One of the following formats.
+-  Format: determined based on ``type``:
 
-To reference the address of a *contract instance* from the current
-release lockfile the value should be the name of that *contract
-instance*.
+    Type ``literal``
+      For static value literals (e.g. address), value **must** be a
+      ``'0x'``-prefixed hexadecimal string with representing a whole number of
+      bytes.
 
--  This value **must** be a valid *contract instance* name.
--  The chain definition under which the *contract instance* that this
-   *link value* belongs to must contain this value within its keys.
--  This value **may not** reference the same *contract instance* that
-   this *link value* belongs to.
+    Type ``reference``
+        To reference the address of a *contract instance* from the current
+        release lockfile the value should be the name of that
+        *contract instance*.
 
-To reference a *contract instance* from a lockfile from somewhere within
-the dependency tree the value is constructed as follows.
+        -  This value **must** be a valid *contract instance* name.
+        -  The chain definition under which the *contract instance* that this
+           *link value* belongs to must contain this value within its keys.
+        -  This value **may not** reference the same *contract instance* that
+           this *link value* belongs to.
 
--  Let ``[p1, p2, .. pn]`` define a path down the dependency tree.
--  Each of ``p1, p2, pn`` **must** be valid package names.
--  ``p1`` **must** be present in keys of the ``build_dependencies`` for
-   the current release lockfile.
--  For every ``pn`` where ``n > 1``, ``pn`` **must** be present in the
-   keys of the ``build_dependencies`` of the lockfile for ``pn-1``.
--  The value is represented by the string
-   ``<p1>:<p2>:<...>:<pn>:<contract-instance>`` where all of ``<p1>``,
-   ``<p2>``, ``<pn>`` are valid package names and
-   ``<contract-instance>`` is a valid contract name.
--  The ``<contract-instance>`` value **must** be a valid *contract
-   instance* name.
--  Within the release lockfile of the package dependency defined by
-   ``<pn>``, all of the following must be satisfiable:
+        To reference a *contract instance* from a lockfile from somewhere
+        within the dependency tree the value is constructed as follows.
 
-   -  There **must** be *exactly* one chain defined under the
-      ``deployments`` key which matches the chain definition that this
-      *link value* is nested under.
-   -  The ``<contract-instance>`` value **must** be present in the keys
-      of the matching chain.
+        -  Let ``[p1, p2, .. pn]`` define a path down the dependency tree.
+        -  Each of ``p1, p2, pn`` **must** be valid package names.
+        -  ``p1`` **must** be present in keys of the ``build_dependencies`` for
+           the current release lockfile.
+        -  For every ``pn`` where ``n > 1``, ``pn`` **must** be present in the
+           keys of the ``build_dependencies`` of the lockfile for ``pn-1``.
+        -  The value is represented by the string
+           ``<p1>:<p2>:<...>:<pn>:<contract-instance>`` where all of ``<p1>``,
+           ``<p2>``, ``<pn>`` are valid package names and
+           ``<contract-instance>`` is a valid contract name.
+        -  The ``<contract-instance>`` value **must** be a valid
+          *contract instance* name.
+        -  Within the release lockfile of the package dependency defined by
+           ``<pn>``, all of the following must be satisfiable:
 
-To references a static address use the ``'0x'`` prefixed address as the
-value.
+           -  There **must** be *exactly* one chain defined under the
+              ``deployments`` key which matches the chain definition that this
+              *link value* is nested under.
+           -  The ``<contract-instance>`` value **must** be present in the keys
+              of the matching chain.
 
 The *Bytecode* Object
 ~~~~~~~~~~~~~~~~~~~~~
