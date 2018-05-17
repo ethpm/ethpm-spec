@@ -165,7 +165,7 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#the-compiler-information-object">The <em>Compiler Information</em> Object</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id4">Type <code class="docutils literal notranslate"><span class="pre">type</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">Name <code class="docutils literal notranslate"><span class="pre">name</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#version-version-1">Version <code class="docutils literal notranslate"><span class="pre">version</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#settings-settings">Settings <code class="docutils literal notranslate"><span class="pre">settings</span></code></a></li>
 </ul>
@@ -995,17 +995,12 @@ present in all <em>contract instances</em> which locally declare
 <p>A <em>Compiler Information</em> object is defined to have the following
 key/value pairs.</p>
 <div class="section" id="id4">
-<h4>Type <code class="docutils literal notranslate"><span class="pre">type</span></code><a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h4>
-<p>The <code class="docutils literal notranslate"><span class="pre">type</span></code> field defines which compiler was used in compilation.</p>
+<h4>Name <code class="docutils literal notranslate"><span class="pre">name</span></code><a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h4>
+<p>The <code class="docutils literal notranslate"><span class="pre">name</span></code> field defines which compiler was used in compilation.</p>
 <ul class="simple">
 <li>Required: Yes</li>
 <li>Key: <code class="docutils literal notranslate"><span class="pre">type</span></code>:</li>
 <li>Type: String</li>
-<li>Allowed Values:<ul>
-<li><code class="docutils literal notranslate"><span class="pre">'solc'</span></code> for the solc command line compiler.</li>
-<li><code class="docutils literal notranslate"><span class="pre">'solcjs'</span></code> for the nodejs solc compiler.</li>
-</ul>
-</li>
 </ul>
 </div>
 <div class="section" id="version-version-1">
@@ -1024,30 +1019,12 @@ nightly should be denoted in the form of <code class="docutils literal notransla
 <div class="section" id="settings-settings">
 <h4>Settings <code class="docutils literal notranslate"><span class="pre">settings</span></code><a class="headerlink" href="#settings-settings" title="Permalink to this headline">¶</a></h4>
 <p>The <code class="docutils literal notranslate"><span class="pre">settings</span></code> field defines any settings or configuration that was
-used in compilation.</p>
+used in compilation. For the <code class="docutils literal notranslate"><span class="pre">'solc'</span></code> compiler, this <strong>should</strong> conform
+to the <a class="reference external" href="http://solidity.readthedocs.io/en/latest/using-the-compiler.html#compiler-input-and-output-json-description">Compiler Input and Output Description</a>.</p>
 <ul class="simple">
 <li>Required: No</li>
 <li>Key <code class="docutils literal notranslate"><span class="pre">settings</span></code>:</li>
 <li>Type: Object</li>
-<li>Format: Depends on the <code class="docutils literal notranslate"><span class="pre">type</span></code> of the compiler. See below:</li>
-</ul>
-<p>For the <code class="docutils literal notranslate"><span class="pre">'solc'</span></code> and <code class="docutils literal notranslate"><span class="pre">'solcjs'</span></code> compilers, the <code class="docutils literal notranslate"><span class="pre">settings</span></code> value
-must conform to the following format.</p>
-<ul class="simple">
-<li>Keys:<ul>
-<li><code class="docutils literal notranslate"><span class="pre">optimize</span></code><ul>
-<li>Required: No</li>
-<li>Type: Boolean</li>
-</ul>
-</li>
-<li><code class="docutils literal notranslate"><span class="pre">optimize_runs</span></code><ul>
-<li>Required: No</li>
-<li>Type: Integer</li>
-<li>Format: Greater than or equal to 1.</li>
-</ul>
-</li>
-</ul>
-</li>
 </ul>
 </div>
 </div>
