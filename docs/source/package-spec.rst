@@ -1,5 +1,9 @@
+.. _package-specification:
+
 Package Specification
 =====================
+
+.. include:: _include.rst
 
 This document defines the specification for a **Package**. The Package
 JSON document provides metadata about itself and in most cases should
@@ -46,92 +50,16 @@ should be represented with the ``'0x'`` prefix.
   :Prefixed: ``0xdeadbeef``
   :Unprefixed: ``deadbeef``
 
-Binary Bytecode
-^^^^^^^^^^^^^^^
-
-The binary representation of bytecode is defined as the raw bytes.
-
-Bytecode
-^^^^^^^^
-
-The set of EVM instructions as produced by a compiler. Unless otherwise
-specified this should be assumed to be hexadecimal encoded, representing
-a whole number of bytes, and prefixed with a ``'0x'``.
-
-Unlinked Bytecode
-^^^^^^^^^^^^^^^^^
-
-Unlinked bytecode is the hexadecimal representation of a contract's EVM
-instructions which contains sections of code which require `linking`_ for the
-contract to be functional.
-
-The sections of code which are unlinked **must** be filled in with zero bytes.
-
-  :unlinked bytecode: ``0x606060405260e06000730000000000000000000000000000000000000000634d536f``
-
-Linked Bytecode
-^^^^^^^^^^^^^^^
-
-Linked bytecode is the hexadecimal representation of a contract's EVM
-instructions which has had all `link references`_ replaced with the desired
-`link values`_.
-
-  :linked bytecode:
-   ``0x606060405260e06000736fe36000604051602001526040518160e060020a634d536f``
-
-.. _link references:
-
-Link Reference
-^^^^^^^^^^^^^^
-
-A location within a contract's bytecode which needs to be linked.  A link
-reference has the following properties.
-
-  :``offset``: Defines the location within the bytecode where the link reference begins.
-  :``length``: Defines the length of the reference.
-  :``name``: A string that **must** be a valid `Contract Name`_
-
-.. _link values:
-
-Link Value
-^^^^^^^^^^
-
-A link value is the value which can be inserted in place of a `link reference`_.
-
-Linking
-^^^^^^^
-
-The act of replacing `link references`_ within some bytecode with `link values`_.
-
-.. _contract types:
-
-Contract Type
-^^^^^^^^^^^^^
-
-This term is used to refer to a specific contract in the package source.
-This term can be used to refer to an abstract contract, a normal
-contract, or a library. Two contracts are of the same `contract type`_ if
-they have the same bytecode.
-
-Example:
-
-::
-
-   contract Wallet {
-       ...
-   }
-
-A deployed instance of the ``Wallet`` contract would be of of type
-``Wallet``.
+.. _contract names:
 
 Contract Name
 ^^^^^^^^^^^^^
 
-The name found in the source code which defines a specific `contract
-type`_. These names **must** conform to the regular expression
+The name found in the source code which defines a specific |ContractType|.
+These names **must** conform to the regular expression
 ``[a-zA-Z][-a-zA-Z0-9_]{0,255}``
 
-There can be multiple contracts with the same `contract name`_ in a
+There can be multiple contracts with the same contract name in a
 projects source files.
 
 .. _contract aliases:
@@ -139,8 +67,8 @@ projects source files.
 Contract Alias
 ^^^^^^^^^^^^^^
 
-This is a name used to reference a specific `contract type`_. Contract
-aliases **must** be unique within a single Package.
+This is a name used to reference a specific |ContractType|. Contract
+aliases **must** be unique within a single |Package|.
 
 The `contract alias`_ **must** use *one of* the following naming schemes.
 
@@ -148,34 +76,26 @@ The `contract alias`_ **must** use *one of* the following naming schemes.
 -  ``<contract-name>[<identifier>]``
 
 The ``<contract-name>`` portion **must** be the same as the `contract
-name`_ for this `contract type`_.
+name`_ for this contract type.
 
 The ``[<identifier>]`` portion **must** match the regular expression
 ``\[[-a-zA-Z0-9]{1,256}\]``.
 
-.. _contract instances:
-
-Contract Instance
-^^^^^^^^^^^^^^^^^
-
-A contract instance a specific deployed version of a `contract type`_.
-All contract instances have an `address`_ on some specific chain.
-
 Contract Instance Name
 ^^^^^^^^^^^^^^^^^^^^^^
 
-A name which refers to a specific `contract instance`_ on a specific
-chain from the deployments of a single Package. This name **must** be
-unique across all other `contract instances`_ for the given chain. The
+A name which refers to a specific |ContractInstance| on a specific
+chain from the deployments of a single |Package|. This name **must** be
+unique across all other contract instances for the given chain. The
 name must conform to the regular expression
 ``[a-zA-Z][a-zA-Z0-9_]{0,255}``
 
-In cases where there is a single deployed instance of a given `contract
-type`_ package managers **should** use the `contract alias`_ for that
-`contract type`_ for this name.
+In cases where there is a single deployed instance of a given |ContractType|,
+package managers **should** use the `contract alias`_ for that
+contract type for this name.
 
 In cases where there are multiple deployed instances of a given
-`contract type`_ package managers **should** use a name which provides
+contract type, package managers **should** use a name which provides
 some added semantic information as to help differentiate the two
 deployed instances in a meaningful way.
 
@@ -318,14 +238,13 @@ release. Sources are declared in a key/value mapping.
       -  *If* the resulting document is a file the key should be
          interpreted as a file path.
 
-
-
 Contract Types: ``contract_types``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The ``contract_types`` field holds the `contract types`_ which have been
-included in this release. Packages **should** only include `contract types`_ which can be found in the source files for this package. Packages
-**should not** include `contract types`_ from dependencies.
+The ``contract_types`` field holds the |ContractTypes| which have been
+included in this release. |Packages| **should** only include contract types
+that can be found in the source files for this package. Packages
+**should not** include contract types from dependencies.
 
   :Key: ``contract_types``
   :Type: Object (String: `Contract Type Object`_)
@@ -334,14 +253,15 @@ included in this release. Packages **should** only include `contract types`_ whi
    -  Keys **must** be valid `contract aliases`_.
    -  Values **must** conform to the `Contract Type Object`_ definition.
 
-Packages **should not** include abstract contracts in the `contract types`_ section of a release.
+Packages **should not** include abstract contracts in the contract types
+section of a release.
 
 Deployments: ``deployments``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The ``deployments`` field holds the information for the chains on which
-this release has `contract instances`_ as well as the `contract types`_
-and other deployment details for those deployed `contract instances`_.
+this release has |ContractInstances| as well as the |ContractTypes|
+and other deployment details for those deployed contract instances.
 The set of chains defined by the BIP122 URI keys for this object
 **must** be unique.
 
@@ -384,15 +304,15 @@ specification.
 The *Link Reference* Object
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-A `link reference`_ object has the following key/value pairs. All `link
-references`_ are assumed to be associated with some corresponding bytecode.
+A **|LinkReference| object** has the following key/value pairs. All
+link references are assumed to be associated with some corresponding bytecode.
 
 Offsets: ``offsets``
 ^^^^^^^^^^^^^^^^^^^^
 
 The ``offsets`` field is an array of integers, corresponding to each of the
 start positions where the link reference appears in the bytecode.
-Locations are 0-indexed from the beginning of the binary representation of
+Locations are 0-indexed from the beginning of the bytes representation of
 the corresponding bytecode.  This field is invalid if it references a position
 that is beyond the end of the bytecode.
 
@@ -403,8 +323,8 @@ Length: ``length``
 ^^^^^^^^^^^^^^^^^^
 
 The ``length`` field is an integer which defines the length in bytes
-of the `link reference`_. This field is invalid if the end of the defined
-`link reference`_ exceeds the end of the bytecode.
+of the link reference. This field is invalid if the end of the defined
+link reference exceeds the end of the bytecode.
 
   :Required: Yes
   :Type: Integer
@@ -413,8 +333,8 @@ Name: ``name``
 ^^^^^^^^^^^^^^
 
 The ``name`` field is a string which **must** be a valid `Identifier`_.
-Any `link references`_ which **should** be linked with the same
-`link value`_ **should** be given the same name.
+Any link references which **should** be linked with the same
+link value **should** be given the same name.
 
   :Required: No
   :Type: String
@@ -426,7 +346,7 @@ Any `link references`_ which **should** be linked with the same
 The *Link Value* Object
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-A `Link Value`_ object is defined to have the following key/value pairs.
+A **|LinkValue| object** is defined to have the following key/value pairs.
 
 .. _offset-offset-1:
 
@@ -434,8 +354,8 @@ Offsets: ``offsets``
 ^^^^^^^^^^^^^^^^^^^^
 
 The ``offsets`` field defines the locations within the corresponding bytecode
-where the ``value`` for this `link value`_ was written.  These locations are
-0-indexed from the beginning of the binary representation of the
+where the ``value`` for this link value was written.  These locations are
+0-indexed from the beginning of the bytes representation of the
 corresponding bytecode.
 
   :Required: Yes
@@ -450,19 +370,19 @@ Type: ``type``
 ^^^^^^^^^^^^^^
 
 The ``type`` field defines the ``value`` type for determining what is encoded
-when `linking`_ the corresponding bytecode.
+when |linking| the corresponding bytecode.
 
   :Required: Yes
   :Type: String
   :Allowed  Values:
      -  ``'literal'`` for bytecode literals
-     -  ``'reference'`` for named references to a particular `contract instance`_
+     -  ``'reference'`` for named references to a particular |ContractInstance|
 
 Value: ``value``
 ^^^^^^^^^^^^^^^^
 
 The ``value`` field defines the value which should be written when
-`linking`_ the corresponding bytecode.
+|linking| the corresponding bytecode.
 
   :Required: Yes
   :Type: String
@@ -473,16 +393,16 @@ The ``value`` field defines the value which should be written when
       *byte string*
 
     Type ``reference``
-        To reference the address of a `contract instance`_ from the current
-        package the value should be the name of that `contract instance`_.
+        To reference the address of a |ContractInstance| from the current
+        package the value should be the name of that contract instance.
 
-        -  This value **must** be a valid `contract instance`_ name.
-        -  The chain definition under which the `contract instance`_ that this
-           `link value`_ belongs to must contain this value within its keys.
-        -  This value **may not** reference the same `contract instance`_ that
-           this `link value`_ belongs to.
+        -  This value **must** be a valid contract instance name.
+        -  The chain definition under which the contract instance that this
+           link value belongs to must contain this value within its keys.
+        -  This value **may not** reference the same contract instance that
+           this link value belongs to.
 
-        To reference a `contract instance`_ from a package from somewhere
+        To reference a contract instance from a |Package| from somewhere
         within the dependency tree the value is constructed as follows.
 
         -  Let ``[p1, p2, .. pn]`` define a path down the dependency tree.
@@ -495,13 +415,14 @@ The ``value`` field defines the value which should be written when
            ``<p1>:<p2>:<...>:<pn>:<contract-instance>`` where all of ``<p1>``,
            ``<p2>``, ``<pn>`` are valid package names and
            ``<contract-instance>`` is a valid `contract name`_.
-        -  The ``<contract-instance>`` value **must** be a valid `contract instance`_ name.
+        -  The ``<contract-instance>`` value **must** be a valid
+           `contract instance name`_.
         -  Within the package of the dependency defined by
            ``<pn>``, all of the following must be satisfiable:
 
            -  There **must** be *exactly* one chain defined under the
               ``deployments`` key which matches the chain definition that this
-              `link value`_ is nested under.
+              link value is nested under.
            -  The ``<contract-instance>`` value **must** be present in the keys
               of the matching chain.
 
@@ -525,22 +446,22 @@ Link References: ``link_references``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The ``link_references`` field defines the locations in the corresponding
-bytecode which require `linking`_.
+bytecode which require |linking|.
 
   :Required: No
   :Type: Array
   :Format: All values **must** be valid `Link Reference objects`_
 
-This field is considered invalid if *any* of the `link references`_ are
+This field is considered invalid if *any* of the |LinkReferences| are
 invalid when applied to the corresponding ``bytecode`` field, *or* if
-any of the `link references`_ intersect.
+any of the link references intersect.
 
-Intersection is defined as two `link references`_ which overlap.
+Intersection is defined as two link references which overlap.
 
 Link Dependencies: ``link_dependencies``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The ``link_dependencies`` defines the `link values`_ that have been used
+The ``link_dependencies`` defines the |LinkValues| that have been used
 to link the corresponding bytecode.
 
 -  Required: No
@@ -553,7 +474,7 @@ Validation of this field includes the following:
 -  Each `link value object`_ **must** have a corresponding `link reference
    object`_ under the ``link_references`` field.
 -  The length of the resolved ``value`` **must** be equal to the
-   ``length`` of the corresponding `link reference`_.
+   ``length`` of the corresponding |LinkReference|.
 
 The *Package Meta* Object
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -631,8 +552,8 @@ pairs.
 Contract Name: ``contract_name``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The ``contract_name`` field defines the `contract name`_ for this `contract
-type`_.
+The ``contract_name`` field defines the `contract name`_ for this
+|ContractType|.
 
   :Required: If the `contract name`_ and `contract alias`_ are not the
    same.
@@ -642,7 +563,7 @@ type`_.
 Deployment Bytecode: ``deployment_bytecode``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The ``deployment_bytecode`` field defines the bytecode for this `contract type`_
+The ``deployment_bytecode`` field defines the bytecode for this |ContractType|.
 
   :Required: No
   :Type: Object
@@ -653,7 +574,7 @@ Runtime Bytecode: ``runtime_bytecode``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The ``runtime_bytecode`` field defines the unlinked ``'0x'`` prefixed
-runtime portion of `bytecode`_ for this `contract type`_.
+runtime portion of |Bytecode| for this |ContractType|.
 
   :Required: No
   :Type: Object
@@ -689,30 +610,30 @@ Compiler: ``compiler``
 The *Contract Instance* Object
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-A `Contract Instance`_ Object is defined to have the following key/value
+A **|ContractInstance| Object** is defined to have the following key/value
 pairs.
 
 Contract Type: ``contract_type``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The ``contract_type`` field defines the `contract type`_ for this
-`contract instance`_. This can reference any of the `contract types`_
-included in this Package *or* any of the `contract types`_ found in any
+The ``contract_type`` field defines the |ContractType| for this
+|ContractInstance|. This can reference any of the contract types
+included in this |Package| *or* any of the contract types found in any
 of the package dependencies from the ``build_dependencies`` section of
-the Package.
+the |PackageManifest|.
 
   :Required: Yes
   :Type: String
   :Format: **must** conform to one of the following formats
 
-To reference a `contract type`_ from this Package, use the format
+To reference a contract type from this Package, use the format
 ``<contract-alias>``.
 
 -  The ``<contract-alias>`` value **must** be a valid `contract alias`_.
 -  The value **must** be present in the keys of the ``contract_types``
    section of this Package.
 
-To reference a `contract type`_ from a dependency, use the format
+To reference a contract type from a dependency, use the format
 ``<package-name>:<contract-alias>``.
 
 -  The ``<package-name>`` value **must** be present in the keys of the
@@ -728,7 +649,7 @@ To reference a `contract type`_ from a dependency, use the format
 Address: ``address``
 ^^^^^^^^^^^^^^^^^^^^
 
-The ``address`` field defines the address of the `contract instance`_.
+The ``address`` field defines the |Address| of the |ContractInstance|.
 
   :Required: Yes
   :Type: String
@@ -739,7 +660,7 @@ Transaction: ``transaction``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The ``transaction`` field defines the transaction hash in which this
-`contract instance`_ was created.
+|ContractInstance| was created.
 
   :Required: No
   :Type: String
@@ -761,10 +682,8 @@ Runtime Bytecode: ``runtime_bytecode``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The ``runtime_bytecode`` field defines the runtime portion of bytecode for this
-`contract instance`_.  When present, the value from this field supersedes
-the ``runtime_bytecode`` from the `contract type`_ for this `contract
-instance`_.
-
+|ContractInstance|.  When present, the value from this field supersedes
+the ``runtime_bytecode`` from the |ContractType| for this |ContractInstance|.
 
   :Required: No
   :Type: Object
@@ -780,8 +699,8 @@ Compiler: ``compiler``
 ^^^^^^^^^^^^^^^^^^^^^^
 
 The ``compiler`` field defines the compiler information that was used
-during compilation of this `contract instance`_. This field **should** be
-present in all `contract types`_ which include ``bytecode`` or
+during compilation of this |ContractInstance|. This field **should** be
+present in all |ContractTypes| which include ``bytecode`` or
 ``runtime_bytecode``.
 
   :Required: No
@@ -795,9 +714,8 @@ The *Compiler Information* Object
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The ``compiler`` field defines the compiler information that was used
-during compilation of this `contract instance`_. This field **should** be
-present in all `contract instances`_ which locally declare
-``runtime_bytecode``.
+during compilation of this |ContractInstance|. This field **should** be
+present in all contract instances that locally declare ``runtime_bytecode``.
 
 A *Compiler Information* object is defined to have the following
 key/value pairs.
