@@ -6,7 +6,9 @@ Glossary
 .. glossary::
 
    ABI
-      A JSON description of the external interface for a ABI
+      The JSON representation of the application binary interface.
+      See the official `specification <https://solidity.readthedocs.io/en/develop/abi-spec.html>`_
+      for more information.
 
    Address
       A public identifier for an account on a particular chain
