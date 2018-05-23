@@ -160,7 +160,6 @@ improve legibility. The full Package can be found
       '
 
 .. code-block:: json
-   :linenos:
 
    {
      "manifest_version": "2",
