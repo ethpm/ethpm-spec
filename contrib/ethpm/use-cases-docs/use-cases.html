@@ -526,16 +526,16 @@ deployed. The first hash you see,
 the genesis block hash for the Ropsten test network. The later hash
 <code class="docutils literal notranslate"><span class="pre">1e96de11320c83cca02e8b9caf3e489497e8e432befe5379f2f08599f8aecede</span></code> is
 the block hash for block number 168,238 from the Ropsten chain.</p>
-<p>Under that URI there is a single <em>contract instance</em>. It specifies that
-it’s <em>contract type</em> is <code class="docutils literal notranslate"><span class="pre">SafeMathLib</span></code>, the address that the <em>contract
-instance</em> can be found at, the transaction hash for the transaction that
+<p>Under that URI there is a single <a class="reference internal" href="glossary.html#term-contract-instance"><span class="xref std std-term">Contract Instance</span></a>. It specifies that
+it’s <a class="reference internal" href="glossary.html#term-contract-type"><span class="xref std std-term">Contract Type</span></a> is <code class="docutils literal notranslate"><span class="pre">SafeMathLib</span></code>, the address that the contract
+instance can be found at, the transaction hash for the transaction that
 deployed the contract, and the block hash in which the deploying
 transaction was mined.</p>
 </div>
 <div class="section" id="package-which-uses-a-reusable-contract-from-a-depenency">
 <span id="id5"></span><h2>Package which uses a Reusable Contract from a depenency<a class="headerlink" href="#package-which-uses-a-reusable-contract-from-a-depenency" title="Permalink to this headline">¶</a></h2>
 <p>For our next example we’ll be creating a package includes a deployed
-instance of a <em>contract type</em> from that comes from a package dependency.
+instance of a <a class="reference internal" href="glossary.html#term-contract-type"><span class="xref std std-term">Contract Type</span></a> from that comes from a package dependency.
 This differs from our previous <code class="docutils literal notranslate"><span class="pre">safe-math-lib</span></code> example where our
 deployment is referencing a local contract from the local
 <code class="docutils literal notranslate"><span class="pre">contract_types</span></code>. In this package we will be referencing a
@@ -577,13 +577,13 @@ source files since it merely makes use of the contracts from the
 </pre></div>
 </div>
 <p>Most of this should be familiar but it’s worth pointing out how we
-reference <em>contract types</em> from dependencies. Under the <code class="docutils literal notranslate"><span class="pre">PiperCoin</span></code>
+reference <a class="reference internal" href="glossary.html#term-contract-type"><span class="xref std std-term">Contract Types</span></a> from dependencies. Under the <code class="docutils literal notranslate"><span class="pre">PiperCoin</span></code>
 entry within the deployments you should see that the <code class="docutils literal notranslate"><span class="pre">contract_type</span></code>
 key is set to <code class="docutils literal notranslate"><span class="pre">standard-token:StandardToken</span></code>. The first portion
 represents the name of the package dependency within the
 <code class="docutils literal notranslate"><span class="pre">build_dependencies</span></code> that should be used. The later portion indicates
-the <em>contract type</em> that should be used from that dependencies <em>contract
-types</em>.</p>
+the contract type that should be used from that dependencies contract
+types.</p>
 </div>
 <div class="section" id="stand-alone-package-with-a-deployed-library-and-a-contract-which-links-against-that-library">
 <span id="id6"></span><h2>Stand Alone package with a deployed Library and a contract which Links against that Library<a class="headerlink" href="#stand-alone-package-with-a-deployed-library-and-a-contract-which-links-against-that-library" title="Permalink to this headline">¶</a></h2>
@@ -653,7 +653,7 @@ readability. The full Package can be found at
 </pre></div>
 </div>
 <p>This Package is the first one we’ve seen thus far that include the
-<code class="docutils literal notranslate"><span class="pre">link_dependencies</span></code> section within one of the <em>contract instances</em>.
+<code class="docutils literal notranslate"><span class="pre">link_dependencies</span></code> section within one of the <a class="reference internal" href="glossary.html#term-contract-instance"><span class="xref std std-term">Contract Instances</span></a>.
 The <code class="docutils literal notranslate"><span class="pre">runtime_bytecode</span></code> value for the <code class="docutils literal notranslate"><span class="pre">Escrow</span></code> contract has been
 excluded from the example above for readability, but the full value is
 as follows (wrapped to 80 characters).</p>
@@ -675,17 +675,17 @@ as follows (wrapped to 80 characters).</p>
 <p>This bytecode is unlinked, meaning it has missing portions of data, populated
 instead with zeroes (<code class="docutils literal notranslate"><span class="pre">0000000000000000000000000000000000000000</span></code>).
 This section of zeroes is referred to as a <a class="reference internal" href="glossary.html#term-link-reference"><span class="xref std std-term">Link Reference</span></a>. The
-entries in the <code class="docutils literal notranslate"><span class="pre">link_dependencies</span></code> section of a <em>contract instance</em>
+entries in the <code class="docutils literal notranslate"><span class="pre">link_dependencies</span></code> section of a <a class="reference internal" href="glossary.html#term-contract-instance"><span class="xref std std-term">Contract Instance</span></a>
 describe how these link references should be filled in.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">offsets</span></code> value specifies the locations (as byte offset) where the
 replacement should begin. The <code class="docutils literal notranslate"><span class="pre">value</span></code> defines what should be used to replace
-the <em>link reference</em>. In this case, the <code class="docutils literal notranslate"><span class="pre">value</span></code> is referencing the
-<code class="docutils literal notranslate"><span class="pre">SafeSendLib</span></code> <em>contract instance</em> from this Package.</p>
+the link reference. In this case, the <code class="docutils literal notranslate"><span class="pre">value</span></code> is referencing the
+<code class="docutils literal notranslate"><span class="pre">SafeSendLib</span></code> contract instance from this Package.</p>
 </div>
 <div class="section" id="package-with-a-contract-with-link-dependencies-on-a-contract-from-a-package-dependency">
 <span id="id7"></span><h2>Package with a contract with link dependencies on a contract from a package dependency<a class="headerlink" href="#package-with-a-contract-with-link-dependencies-on-a-contract-from-a-package-dependency" title="Permalink to this headline">¶</a></h2>
 <p>Now that we’ve seen how we can handle linking dependencies that rely on
-deployed <em>contract instances</em> from the local package we’ll explore an
+deployed <a class="reference internal" href="glossary.html#term-contract-instance"><span class="xref std std-term">Contract Instances</span></a> from the local package we’ll explore an
 example with link dependencies that rely on contracts from the package
 dependencies.</p>
 <p>In this example we’ll be writing the <code class="docutils literal notranslate"><span class="pre">wallet</span></code> package which includes a

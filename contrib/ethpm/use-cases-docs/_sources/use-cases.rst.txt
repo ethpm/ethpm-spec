@@ -306,9 +306,9 @@ the genesis block hash for the Ropsten test network. The later hash
 ``1e96de11320c83cca02e8b9caf3e489497e8e432befe5379f2f08599f8aecede`` is
 the block hash for block number 168,238 from the Ropsten chain.
 
-Under that URI there is a single *contract instance*. It specifies that
-it's *contract type* is ``SafeMathLib``, the address that the *contract
-instance* can be found at, the transaction hash for the transaction that
+Under that URI there is a single |ContractInstance|. It specifies that
+it's |ContractType| is ``SafeMathLib``, the address that the contract
+instance can be found at, the transaction hash for the transaction that
 deployed the contract, and the block hash in which the deploying
 transaction was mined.
 
@@ -318,7 +318,7 @@ Package which uses a Reusable Contract from a depenency
 -------------------------------------------------------
 
 For our next example we'll be creating a package includes a deployed
-instance of a *contract type* from that comes from a package dependency.
+instance of a |ContractType| from that comes from a package dependency.
 This differs from our previous ``safe-math-lib`` example where our
 deployment is referencing a local contract from the local
 ``contract_types``. In this package we will be referencing a
@@ -336,13 +336,13 @@ source files since it merely makes use of the contracts from the
    :language: json
 
 Most of this should be familiar but it's worth pointing out how we
-reference *contract types* from dependencies. Under the ``PiperCoin``
+reference |ContractTypes| from dependencies. Under the ``PiperCoin``
 entry within the deployments you should see that the ``contract_type``
 key is set to ``standard-token:StandardToken``. The first portion
 represents the name of the package dependency within the
 ``build_dependencies`` that should be used. The later portion indicates
-the *contract type* that should be used from that dependencies *contract
-types*.
+the contract type that should be used from that dependencies contract
+types.
 
 .. _stand-alone-package-with-a-deployed-library-and-a-contract-which-links-against-that-library:
 
@@ -425,7 +425,7 @@ readability. The full Package can be found at
    }
 
 This Package is the first one we've seen thus far that include the
-``link_dependencies`` section within one of the *contract instances*.
+``link_dependencies`` section within one of the |ContractInstances|.
 The ``runtime_bytecode`` value for the ``Escrow`` contract has been
 excluded from the example above for readability, but the full value is
 as follows (wrapped to 80 characters).
@@ -435,6 +435,7 @@ as follows (wrapped to 80 characters).
       cat ./examples/escrow/1.0.0.json |
          jq '.contract_types.Escrow.runtime_bytecode.bytecode' |
          sed -E 's/^"(.*)"$/\1/' | sed -E 's/(.{79})/\1 /g' | tr ' ' '\n'
+
 ::
 
    0x606060405260e060020a600035046366d003ac811461003457806367e404ce1461005d5780636
@@ -454,13 +455,13 @@ as follows (wrapped to 80 characters).
 This bytecode is unlinked, meaning it has missing portions of data, populated
 instead with zeroes (``0000000000000000000000000000000000000000``).
 This section of zeroes is referred to as a |LinkReference|. The
-entries in the ``link_dependencies`` section of a *contract instance*
+entries in the ``link_dependencies`` section of a |ContractInstance|
 describe how these link references should be filled in.
 
 The ``offsets`` value specifies the locations (as byte offset) where the
 replacement should begin. The ``value`` defines what should be used to replace
-the *link reference*. In this case, the ``value`` is referencing the
-``SafeSendLib`` *contract instance* from this Package.
+the link reference. In this case, the ``value`` is referencing the
+``SafeSendLib`` contract instance from this Package.
 
 .. _package-with-a-contract-with-link-dependencies-on-a-contract-from-a-package-dependency:
 
@@ -468,7 +469,7 @@ Package with a contract with link dependencies on a contract from a package depe
 --------------------------------------------------------------------------------------
 
 Now that we've seen how we can handle linking dependencies that rely on
-deployed *contract instances* from the local package we'll explore an
+deployed |ContractInstances| from the local package we'll explore an
 example with link dependencies that rely on contracts from the package
 dependencies.
 
@@ -553,6 +554,7 @@ omitted for improved readability, but the full value is as follows
       cat ./examples/wallet/1.0.0.json |
          jq '.contract_types.Wallet.runtime_bytecode.bytecode' |
          sed -E 's/^"(.*)"$/\1/' | sed -E 's/(.{79})/\1 /g' | tr ' ' '\n'
+
 ::
 
    0x606060405236156100355760e060020a6000350463095ea7b381146100435780632e1a7d4d146
