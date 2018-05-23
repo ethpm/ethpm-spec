@@ -1,4 +1,5 @@
 alabaster==0.7.10
+antlr4-python3-runtime==4.7.1
 Babel==2.5.3
 certifi==2018.4.16
 chardet==3.0.4
@@ -10,7 +11,9 @@ jsonpointer==2.0
 jsonschema==2.6.0
 MarkupSafe==1.0
 packaging==17.1
+peewee==3.4.0
 Pygments==2.2.0
+pygments-lexer-solidity==0.2.0
 pyparsing==2.2.0
 pytz==2018.4
 PyYAML==3.12
@@ -22,5 +25,6 @@ sphinx-jsonschema==1.7
 sphinx-rtd-theme==0.3.1
 sphinxcontrib-contentui==0.2.2
 sphinxcontrib-plantuml==0.11
+sphinxcontrib-soliditydomain==0.3.0
 sphinxcontrib-websupport==1.0.1
 urllib3==1.22
