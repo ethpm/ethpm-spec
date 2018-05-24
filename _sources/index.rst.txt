@@ -12,6 +12,7 @@ EthPM Package Manifest Documentation
 
    overview
    glossary
+   use-cases
    package-spec
 
 Indices and tables
