@@ -84,8 +84,8 @@ succinct as possible.
 Package with an Inheritable Contract and a Dependency
 -----------------------------------------------------
 
-Now that we've seen what a simple package looks like, lets see how to
-dependencies are declared.
+Now that we've seen what a simple package looks like, let's see how to declare
+dependencies.
 
 The next package will implement the *transferable* pattern and will
 depend on our ``owned`` package for the authorization mechanism to
@@ -194,7 +194,7 @@ improve legibility. The full Package can be found
 
 
 While it is not required to include the contract ABI and NatSpec
-information, it does provide those using this package with they data
+information, it does provide those using this package with the data
 they would need to interact with an instance of this contract without
 having to regenerate this information from source.
 
@@ -285,7 +285,7 @@ contract, we've included the ``bytecode``, ``runtime_bytecode`` and
 ``compiler`` information in the ``SafeMathLib`` section of the
 ``contract_type`` definition. This is because we are also including a
 deployed instance of this contract and need to require adequate
-information for package managers to verify that the contract sound at
+information for package managers to verify that the contract found at
 the deployed address is in fact from the source code included in this
 package.
 
