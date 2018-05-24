@@ -13,6 +13,9 @@
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
 import os
+from sphinx.highlighting import lexers
+from pygments_lexer_solidity import SolidityLexer
+lexers['solidity'] = SolidityLexer()
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
 
@@ -44,6 +47,7 @@ extensions = [
     'sphinxcontrib.plantuml',
     'sphinx-jsonschema',
     'sphinxcontrib.contentui',
+    'sphinxcontrib.soliditydomain',
 ]
 
 # this file: docs/source/conf.py
