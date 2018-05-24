@@ -259,8 +259,8 @@ succinct as possible.</p>
 </div>
 <div class="section" id="package-with-an-inheritable-contract-and-a-dependency">
 <span id="id2"></span><h2>Package with an Inheritable Contract and a Dependency<a class="headerlink" href="#package-with-an-inheritable-contract-and-a-dependency" title="Permalink to this headline">¶</a></h2>
-<p>Now that we’ve seen what a simple package looks like, lets see how to
-dependencies are declared.</p>
+<p>Now that we’ve seen what a simple package looks like, let’s see how to declare
+dependencies.</p>
 <p>The next package will implement the <em>transferable</em> pattern and will
 depend on our <code class="docutils literal notranslate"><span class="pre">owned</span></code> package for the authorization mechanism to
 ensure that only the contract owner may transfer ownership. The
@@ -381,7 +381,7 @@ improve legibility. The full Package can be found
 </pre></div>
 </div>
 <p>While it is not required to include the contract ABI and NatSpec
-information, it does provide those using this package with they data
+information, it does provide those using this package with the data
 they would need to interact with an instance of this contract without
 having to regenerate this information from source.</p>
 </div>
@@ -481,7 +481,7 @@ contract, we’ve included the <code class="docutils literal notranslate"><span 
 <code class="docutils literal notranslate"><span class="pre">compiler</span></code> information in the <code class="docutils literal notranslate"><span class="pre">SafeMathLib</span></code> section of the
 <code class="docutils literal notranslate"><span class="pre">contract_type</span></code> definition. This is because we are also including a
 deployed instance of this contract and need to require adequate
-information for package managers to verify that the contract sound at
+information for package managers to verify that the contract found at
 the deployed address is in fact from the source code included in this
 package.</p>
 <p>The next thing to look at is the <code class="docutils literal notranslate"><span class="pre">deployments</span></code> section. The first
