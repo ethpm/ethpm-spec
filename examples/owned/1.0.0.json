@@ -7,15 +7,15 @@
     "authors": [
       "Piper Merriam <pipermerriam@gmail.com>"
     ],
-    "description": "Reusable contracts which implement a privileged'owner' model for authorization",
+    "description": "Reusable contracts which implement a privileged 'owner' model for authorization.",
     "keywords": [
       "authorization"
     ],
     "links": {
-      "documentation": "ipfs://QmQiqrwqdav5bV8mtv4PqGksGcDWo43f7PAZYwhJqNEv2j"
+      "documentation": "ipfs://QmUYcVzTfSwJoigggMxeo2g5STWAgJdisQsqcXHws7b1FW"
     }
   },
   "sources": {
-    "./contracts/owned.sol": "ipfs://QmUjYUcX9kLv2FQH8nwc3RLLXtU3Yv5XFpvEjFcAKXB6xD"
+    "./contracts/owned.sol": "ipfs://Qme4otpS88NV8yQi8TfTP89EsQC5bko3F5N1yhRoi6cwGV"
   }
 }
