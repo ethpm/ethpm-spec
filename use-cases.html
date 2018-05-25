@@ -196,16 +196,16 @@ dependency.</li>
 contracts which serve as base contracts for other contracts to inherit
 from but do not provide any real useful functionality on their own. The
 common <em>owned</em> pattern is a example for this use case.</p>
-<div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kr">pragma solidity</span> <span class="o">^</span><span class="mi">0</span><span class="p">.</span><span class="mi">4</span><span class="p">.</span><span class="mi">0</span><span class="p">;</span>
+<div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kr">pragma solidity</span> <span class="o">^</span><span class="mi">0</span><span class="p">.</span><span class="mi">4</span><span class="p">.</span><span class="mi">24</span><span class="p">;</span>
 
-<span class="kd">contract</span> <span class="n">owned</span> <span class="p">{</span>
+<span class="kd">contract</span> <span class="n">Owned</span> <span class="p">{</span>
     <span class="kt">address</span> <span class="n">owner</span><span class="p">;</span>
+    
+    <span class="kd">modifier</span> <span class="n">onlyOwner</span> <span class="p">{</span> <span class="nf">require</span><span class="p">(</span><span class="nb">msg</span><span class="p">.</span><span class="nb">sender</span> <span class="o">==</span> <span class="n">owner</span><span class="p">);</span> <span class="kr">_</span><span class="p">;</span> <span class="p">}</span>
 
-    <span class="kd">function</span> <span class="n">owned</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">constructor</span><span class="p">()</span> <span class="kr">public</span> <span class="p">{</span>
         <span class="n">owner</span> <span class="o">=</span> <span class="nb">msg</span><span class="p">.</span><span class="nb">sender</span><span class="p">;</span>
     <span class="p">}</span>
-
-    <span class="kd">modifier</span> <span class="n">onlyowner</span> <span class="p">{</span> <span class="k">if</span> <span class="p">(</span><span class="nb">msg</span><span class="p">.</span><span class="nb">sender</span> <span class="o">!=</span> <span class="n">owner</span><span class="p">)</span> <span class="k">throw</span><span class="p">;</span> <span class="kr">_</span><span class="p">;</span> <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -238,16 +238,16 @@ like this.</p>
     <span class="nt">&quot;authors&quot;</span><span class="p">:</span> <span class="p">[</span>
       <span class="s2">&quot;Piper Merriam &lt;pipermerriam@gmail.com&gt;&quot;</span>
     <span class="p">],</span>
-    <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Reusable contracts which implement a privileged&#39;owner&#39; model for authorization&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Reusable contracts which implement a privileged &#39;owner&#39; model for authorization.&quot;</span><span class="p">,</span>
     <span class="nt">&quot;keywords&quot;</span><span class="p">:</span> <span class="p">[</span>
       <span class="s2">&quot;authorization&quot;</span>
     <span class="p">],</span>
     <span class="nt">&quot;links&quot;</span><span class="p">:</span> <span class="p">{</span>
-      <span class="nt">&quot;documentation&quot;</span><span class="p">:</span> <span class="s2">&quot;ipfs://QmQiqrwqdav5bV8mtv4PqGksGcDWo43f7PAZYwhJqNEv2j&quot;</span>
+      <span class="nt">&quot;documentation&quot;</span><span class="p">:</span> <span class="s2">&quot;ipfs://QmUYcVzTfSwJoigggMxeo2g5STWAgJdisQsqcXHws7b1FW&quot;</span>
     <span class="p">}</span>
   <span class="p">},</span>
   <span class="nt">&quot;sources&quot;</span><span class="p">:</span> <span class="p">{</span>
-    <span class="nt">&quot;./contracts/owned.sol&quot;</span><span class="p">:</span> <span class="s2">&quot;ipfs://QmUjYUcX9kLv2FQH8nwc3RLLXtU3Yv5XFpvEjFcAKXB6xD&quot;</span>
+    <span class="nt">&quot;./contracts/owned.sol&quot;</span><span class="p">:</span> <span class="s2">&quot;ipfs://Qme4otpS88NV8yQi8TfTP89EsQC5bko3F5N1yhRoi6cwGV&quot;</span>
   <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
