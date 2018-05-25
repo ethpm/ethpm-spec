@@ -16,6 +16,6 @@
     }
   },
   "sources": {
-    "./contracts/owned.sol": "ipfs://Qme4otpS88NV8yQi8TfTP89EsQC5bko3F5N1yhRoi6cwGV"
+    "./contracts/Owned.sol": "ipfs://Qme4otpS88NV8yQi8TfTP89EsQC5bko3F5N1yhRoi6cwGV"
   }
 }

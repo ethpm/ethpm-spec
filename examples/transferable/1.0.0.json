@@ -7,15 +7,15 @@
     "authors": [
       "Piper Merriam <pipermerriam@gmail.com>"
     ],
-    "description": "Reusable contracts which implement a privileged'owner' model for authorization with functionality for transfering ownership.",
+    "description": "Reusable contracts which implement a privileged 'owner' model for authorization with functionality for transfering ownership.",
     "keywords": [
       "authorization"
     ]
   },
   "sources": {
-    "./contracts/transferable.sol": "ipfs://QmZ6Zg1iEejuJ18LFczowe7dyaxXm4KC4xTgnCkqwJZmAp"
+    "./contracts/Transferable.sol": "ipfs://QmZM6vXzwoenmCEU4zVQW44LPt2nEyYXAw9fhftiyEvfDC"
   },
   "build_dependencies": {
-	"owned": "ipfs://QmUwVUMVtkVctrLDeL12SoeCPUacELBU8nAxRtHUzvtjND"
+	"owned": "ipfs://Qme4otpS88NV8yQi8TfTP89EsQC5bko3F5N1yhRoi6cwGV"
   }
 }
