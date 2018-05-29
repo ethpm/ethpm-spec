@@ -42,7 +42,7 @@ contracts which serve as base contracts for other contracts to inherit
 from but do not provide any real useful functionality on their own. The
 common *owned* pattern is a example for this use case.
 
-.. literalinclude:: ../../examples/owned/contracts/owned.sol
+.. literalinclude:: ../../examples/owned/contracts/Owned.sol
    :language: solidity
 
 ..
@@ -93,7 +93,7 @@ ensure that only the contract owner may transfer ownership. The
 ``transferable`` package will contain a single solidity source file
 ``./contracts/transferable.sol``.
 
-.. literalinclude:: ../../examples/transferable/contracts/transferable.sol
+.. literalinclude:: ../../examples/transferable/contracts/Transferable.sol
    :language: solidity
 
 The EPM spec is designed to provide as high a guarantee as possible that
