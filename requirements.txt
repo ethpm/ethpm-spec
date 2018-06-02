@@ -11,6 +11,7 @@ jsonpointer==2.0
 jsonschema==2.6.0
 MarkupSafe==1.0
 packaging==17.1
+pbr==4.0.3
 peewee==3.4.0
 Pygments==2.2.0
 pygments-lexer-solidity==0.2.0
@@ -21,6 +22,7 @@ requests==2.18.4
 six==1.11.0
 snowballstemmer==1.2.1
 Sphinx==1.7.4
+sphinx-asciidoc==1.0.1
 sphinx-jsonschema==1.7
 sphinx-rtd-theme==0.3.1
 sphinxcontrib-contentui==0.2.2

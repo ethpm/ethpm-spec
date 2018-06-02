@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+
+set -e
+
+post-process () {
+    python ../bin/post-process.py
+}
+
+export-via-asciidoc () {
+    rm -rf build/asciidoc
+    rm -rf build/docbook
+    rm -rf build/gfm
+
+    mkdir -p build/docbook
+    mkdir -p build/gfm
+
+    make asciidoc
+
+    # hack: asciidoc doesn't like certain sections, rename temporarily
+    sed -E -i '.bak' 's/(Glossary|Abstract)/_\1/g' \
+        build/asciidoc/*.adoc
+
+
+    asciidoc \
+        --backend="docbook" \
+        --out-file="build/docbook/index.docbook" \
+        build/asciidoc/index.adoc
+
+        # --toc \
+    pandoc \
+        --from="docbook" \
+        --to=markdown_github+header_attributes \
+        --template=source/_templates/eip.md.template \
+        "build/docbook/index.docbook" \
+    | post-process > "build/gfm/index.md"
+
+    # cleanup Glossary section name hack
+    sed -E -i '.bak' 's/\\_(Glossary|Abstract)/\1/g' \
+        build/gfm/index.md
+}
+
+export-via-asciidoc
