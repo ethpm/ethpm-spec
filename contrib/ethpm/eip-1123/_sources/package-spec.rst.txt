@@ -199,7 +199,7 @@ object **must** be unique.
 Format
 ^^^^^^
 
-Keys **must** be a valid BIP122 URI `chain definition`_.
+Keys **must** be a valid BIP122 URI chain definition.
 
 Values **must** be objects which conform to the following format.
 
