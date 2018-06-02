@@ -21,11 +21,11 @@
    ==========
 
    This standard aims to encourage the Ethereum development ecosystem towards
-   software best practices around code reuse. By defining an open, community-
-   driven package data format standard, this effort seeks to provide
-   support for package management tools development by offering a general-
-   purpose solution that has been designed with observed common practices in
-   mind.
+   software best practices around code reuse. By defining an open,
+   community-driven package data format standard, this effort seeks to provide
+   support for package management tools development by offering a
+   general-purpose solution that has been designed with observed common
+   practices in mind.
 
    As version 2 of this specification, this standard seeks to address a number
    of areas of improvement found for the previous version (defined in `EIP-190
@@ -44,7 +44,7 @@
         gaps in bytecode (besides only addresses), in a more straightforward
         way.
 
-      - Force format strictness, requiring that package manifests contain
+      - Forces format strictness, requiring that package manifests contain
         no extraneous whitespace, and sort object keys in alphabetical order,
         to prevent hash mismatches.
 
