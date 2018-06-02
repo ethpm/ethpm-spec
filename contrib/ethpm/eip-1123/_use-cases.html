@@ -255,6 +255,21 @@ depend on our <code class="docutils literal notranslate"><span class="pre">owned
 ensure that only the contract owner may transfer ownership. The
 <code class="docutils literal notranslate"><span class="pre">transferable</span></code> package will contain a single solidity source file
 <code class="docutils literal notranslate"><span class="pre">./contracts/transferable.sol</span></code>.</p>
+<div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kr">pragma solidity</span> <span class="o">^</span><span class="mi">0</span><span class="p">.</span><span class="mi">4</span><span class="p">.</span><span class="mi">24</span><span class="p">;</span>
+
+<span class="kn">import</span> <span class="p">{</span><span class="n">Owned</span><span class="p">}</span> <span class="kr">from</span> <span class="s">&quot;owned/contracts/Owned.sol&quot;</span><span class="p">;</span>
+
+<span class="kd">contract</span> <span class="n">Transferable</span> <span class="kr">is</span> <span class="n">Owned</span> <span class="p">{</span>
+    <span class="kd">event</span> <span class="n">OwnerChanged</span><span class="p">(</span><span class="kt">address</span> <span class="kr">indexed</span> <span class="n">prevOwner</span><span class="p">,</span> <span class="kt">address</span> <span class="kr">indexed</span> <span class="n">newOwner</span><span class="p">);</span>
+
+    <span class="kd">function</span> <span class="n">transferOwner</span><span class="p">(</span><span class="kt">address</span> <span class="n">newOwner</span><span class="p">)</span> <span class="kr">public</span> <span class="n">onlyOwner</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">bool</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kr">emit</span> <span class="n">OwnerChanged</span><span class="p">(</span><span class="n">owner</span><span class="p">,</span> <span class="n">newOwner</span><span class="p">);</span>
+        <span class="n">owner</span> <span class="o">=</span> <span class="n">newOwner</span><span class="p">;</span>
+        <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
 <p>The EPM spec is designed to provide as high a guarantee as possible that
 builds are deterministic and reproducable. To ensure that each package
 you install gets the <em>exact</em> dependencies it needs, all dependencies are
@@ -265,24 +280,24 @@ manager fetches a dependency it always gets the right one.</p>
 we will use in our <code class="docutils literal notranslate"><span class="pre">transferable</span></code> package to declare the dependency.
 The Package looks like the following.</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-  <span class="nt">&quot;manifest_version&quot;</span><span class="p">:</span> <span class="s2">&quot;2&quot;</span><span class="p">,</span>
-  <span class="nt">&quot;version&quot;</span><span class="p">:</span> <span class="s2">&quot;1.0.0&quot;</span><span class="p">,</span>
-  <span class="nt">&quot;package_name&quot;</span><span class="p">:</span> <span class="s2">&quot;transferable&quot;</span><span class="p">,</span>
-  <span class="nt">&quot;meta&quot;</span><span class="p">:</span> <span class="p">{</span>
-    <span class="nt">&quot;license&quot;</span><span class="p">:</span> <span class="s2">&quot;MIT&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;authors&quot;</span><span class="p">:</span> <span class="p">[</span>
+  <span class="nt">&quot;manifest_version&quot;</span><span class="p">:</span><span class="s2">&quot;2&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="s2">&quot;1.0.0&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;package_name&quot;</span><span class="p">:</span><span class="s2">&quot;transferable&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;meta&quot;</span><span class="p">:{</span>
+    <span class="nt">&quot;license&quot;</span><span class="p">:</span><span class="s2">&quot;MIT&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;authors&quot;</span><span class="p">:[</span>
       <span class="s2">&quot;Piper Merriam &lt;pipermerriam@gmail.com&gt;&quot;</span>
     <span class="p">],</span>
-    <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Reusable contracts which implement a privileged &#39;owner&#39; model for authorization with functionality for transfering ownership.&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;keywords&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="s2">&quot;Reusable contracts which implement a privileged &#39;owner&#39; model for authorization with functionality for transfering ownership.&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;keywords&quot;</span><span class="p">:[</span>
       <span class="s2">&quot;authorization&quot;</span>
     <span class="p">]</span>
   <span class="p">},</span>
-  <span class="nt">&quot;sources&quot;</span><span class="p">:</span> <span class="p">{</span>
-    <span class="nt">&quot;./contracts/Transferable.sol&quot;</span><span class="p">:</span> <span class="s2">&quot;ipfs://QmZM6vXzwoenmCEU4zVQW44LPt2nEyYXAw9fhftiyEvfDC&quot;</span>
+  <span class="nt">&quot;sources&quot;</span><span class="p">:{</span>
+    <span class="nt">&quot;./contracts/Transferable.sol&quot;</span><span class="p">:</span><span class="s2">&quot;ipfs://QmZM6vXzwoenmCEU4zVQW44LPt2nEyYXAw9fhftiyEvfDC&quot;</span>
   <span class="p">},</span>
-  <span class="nt">&quot;build_dependencies&quot;</span><span class="p">:</span> <span class="p">{</span>
-	<span class="nt">&quot;owned&quot;</span><span class="p">:</span> <span class="s2">&quot;ipfs://Qme4otpS88NV8yQi8TfTP89EsQC5bko3F5N1yhRoi6cwGV&quot;</span>
+  <span class="nt">&quot;build_dependencies&quot;</span><span class="p">:{</span>
+    <span class="nt">&quot;owned&quot;</span><span class="p">:</span><span class="s2">&quot;ipfs://Qme4otpS88NV8yQi8TfTP89EsQC5bko3F5N1yhRoi6cwGV&quot;</span>
   <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
