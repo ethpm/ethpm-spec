@@ -114,7 +114,7 @@ ensure that only the contract owner may transfer ownership. The
 ``transferable`` package will contain a single solidity source file
 ``./contracts/transferable.sol``.
 
-.. literalinclude:: ../../examples/transferable/contracts/transferable.sol
+.. literalinclude:: ../../examples/transferable/contracts/Transferable.sol
    :language: solidity
 
 The EPM spec is designed to provide as high a guarantee as possible that

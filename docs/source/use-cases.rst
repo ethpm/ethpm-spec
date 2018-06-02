@@ -48,5 +48,3 @@
 
 
    .. include:: _use-cases.rst
-
-
