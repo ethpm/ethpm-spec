@@ -46,9 +46,9 @@ document are to be interpreted as described in RFC 2119.
 Prefixed vs Unprefixed
 ~~~~~~~~~~~~~~~~~~~~~~
 
-A |prefixed| hexadecimal value begins with ``'0x'``. |Unprefixed| values
+A |prefixed| hexadecimal value begins with ``0x``. |Unprefixed| values
 have no prefix. Unless otherwise specified, all hexadecimal values
-**should** be represented with the ``'0x'`` prefix.
+**should** be represented with the ``0x`` prefix.
 
   :Prefixed: ``0xdeadbeef``
   :Unprefixed: ``deadbeef``
@@ -98,7 +98,7 @@ Package Name: ``package_name``
 The ``package_name`` field defines a human readable name for this
 package. Packages **must** include this field. Package names **must**
 begin with a lowercase letter and be comprised of only lowercase
-letters, numeric characters, and the dash character ``'-'``. Package
+letters, numeric characters, and the dash character ``-``. Package
 names **must** not exceed 214 characters in length.
 
   :Required: Yes
@@ -311,9 +311,9 @@ when |linking| the corresponding bytecode.
   :Required: Yes
   :Type: String
   :Allowed Values:
-      ``'literal'`` for bytecode literals
+      ``"literal"`` for bytecode literals
 
-      ``'reference'`` for named references to a particular |ContractInstance|
+      ``"reference"`` for named references to a particular |ContractInstance|
 
 Value: ``value``
 ^^^^^^^^^^^^^^^^
@@ -700,7 +700,7 @@ Settings: ``settings``
 ^^^^^^^^^^^^^^^^^^^^^^
 
 The ``settings`` field defines any settings or configuration that was
-used in compilation. For the ``'solc'`` compiler, this **should** conform
+used in compilation. For the ``"solc"`` compiler, this **should** conform
 to the `Compiler Input and Output Description <http://solidity.readthedocs.io/en/latest/using-the-compiler.html#compiler-input-and-output-json-description>`_.
 
   :Required: No

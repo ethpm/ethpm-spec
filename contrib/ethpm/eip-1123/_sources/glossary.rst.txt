@@ -16,7 +16,7 @@ Glossary
    Bytecode
       The set of EVM instructions as produced by a compiler. Unless otherwise
       specified this should be assumed to be hexadecimal encoded, representing
-      a whole number of bytes, and |prefixed| with ``'0x'``.
+      a whole number of bytes, and |prefixed| with ``0x``.
 
       Bytecode can either be linked or unlinked. (see |Linking|)
 
@@ -154,7 +154,7 @@ Glossary
       manifests.)
 
    Prefixed
-      |Bytecode| string with leading ``'0x'``.
+      |Bytecode| string with leading ``0x``.
 
         :Example: ``0xdeadbeef``
 

@@ -264,9 +264,9 @@ document are to be interpreted as described in RFC 2119.</p>
 </div>
 <div class="section" id="prefixed-vs-unprefixed">
 <h3>Prefixed vs Unprefixed<a class="headerlink" href="#prefixed-vs-unprefixed" title="Permalink to this headline">¶</a></h3>
-<p>A <a class="reference internal" href="glossary.html#term-prefixed"><span class="xref std std-term">prefixed</span></a> hexadecimal value begins with <code class="docutils literal notranslate"><span class="pre">'0x'</span></code>. <a class="reference internal" href="glossary.html#term-unprefixed"><span class="xref std std-term">Unprefixed</span></a> values
+<p>A <a class="reference internal" href="glossary.html#term-prefixed"><span class="xref std std-term">prefixed</span></a> hexadecimal value begins with <code class="docutils literal notranslate"><span class="pre">0x</span></code>. <a class="reference internal" href="glossary.html#term-unprefixed"><span class="xref std std-term">Unprefixed</span></a> values
 have no prefix. Unless otherwise specified, all hexadecimal values
-<strong>should</strong> be represented with the <code class="docutils literal notranslate"><span class="pre">'0x'</span></code> prefix.</p>
+<strong>should</strong> be represented with the <code class="docutils literal notranslate"><span class="pre">0x</span></code> prefix.</p>
 <blockquote>
 <div><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -338,7 +338,7 @@ this document conforms to. Packages <strong>must</strong> include this field.</p
 <p>The <code class="docutils literal notranslate"><span class="pre">package_name</span></code> field defines a human readable name for this
 package. Packages <strong>must</strong> include this field. Package names <strong>must</strong>
 begin with a lowercase letter and be comprised of only lowercase
-letters, numeric characters, and the dash character <code class="docutils literal notranslate"><span class="pre">'-'</span></code>. Package
+letters, numeric characters, and the dash character <code class="docutils literal notranslate"><span class="pre">-</span></code>. Package
 names <strong>must</strong> not exceed 214 characters in length.</p>
 <blockquote>
 <div><table class="docutils field-list" frame="void" rules="none">
@@ -649,8 +649,8 @@ when <a class="reference internal" href="glossary.html#term-linking"><span class
 <tr class="field-even field"><th class="field-name">Type:</th><td class="field-body"><p class="first">String</p>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Allowed Values:</th><td class="field-body"><p class="first"><code class="docutils literal notranslate"><span class="pre">'literal'</span></code> for bytecode literals</p>
-<p class="last"><code class="docutils literal notranslate"><span class="pre">'reference'</span></code> for named references to a particular <a class="reference internal" href="glossary.html#term-contract-instance"><span class="xref std std-term">Contract Instance</span></a></p>
+<tr class="field-odd field"><th class="field-name">Allowed Values:</th><td class="field-body"><p class="first"><code class="docutils literal notranslate"><span class="pre">&quot;literal&quot;</span></code> for bytecode literals</p>
+<p class="last"><code class="docutils literal notranslate"><span class="pre">&quot;reference&quot;</span></code> for named references to a particular <a class="reference internal" href="glossary.html#term-contract-instance"><span class="xref std std-term">Contract Instance</span></a></p>
 </td>
 </tr>
 </tbody>
@@ -1216,7 +1216,7 @@ nightly should be denoted in the form of <code class="docutils literal notransla
 <div class="section" id="settings-settings">
 <h4>Settings: <code class="docutils literal notranslate"><span class="pre">settings</span></code><a class="headerlink" href="#settings-settings" title="Permalink to this headline">¶</a></h4>
 <p>The <code class="docutils literal notranslate"><span class="pre">settings</span></code> field defines any settings or configuration that was
-used in compilation. For the <code class="docutils literal notranslate"><span class="pre">'solc'</span></code> compiler, this <strong>should</strong> conform
+used in compilation. For the <code class="docutils literal notranslate"><span class="pre">&quot;solc&quot;</span></code> compiler, this <strong>should</strong> conform
 to the <a class="reference external" href="http://solidity.readthedocs.io/en/latest/using-the-compiler.html#compiler-input-and-output-json-description">Compiler Input and Output Description</a>.</p>
 <blockquote>
 <div><table class="docutils field-list" frame="void" rules="none">
