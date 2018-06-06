@@ -34,8 +34,7 @@
       - Generalizes storage URIs to represent any content addressable URI
         scheme, not only IPFS.
 
-      - Renames *release lockfile* to *package manifest*, or *package* for
-        short.
+      - Renames *release lockfile* to *package manifest*.
 
       - Adds support for languages other than Solidity by generalizing the
         compiler information format.
