@@ -4,54 +4,71 @@
 The following use cases were considered during the creation of this
 specification.
 
-owned
-   A package which contains contracts which are not meant to be
-   used by themselves but rather as base contracts to provide
-   functionality to other contracts through inheritance.
+Stand Alone Package with an Inheritable Contract
+   i.e. ``owned``
 
    See `full description <#stand-alone-package-with-an-inheritable-contract>`__.
 
-transferable
-   A package which has a single dependency.
+Dependent Package with an Inheritable Contract
+   i.e. ``transferable``
 
-   See `full description <#package-with-an-inheritable-contract-and-a-dependency>`_.
+   See `full description <#dependent-package-with-an-inheritable-contract>`_.
 
-standard-token
-   A package which contains a reusable contract.
+Stand Alone Package with a Reusable Contract
+   i.e. ``standard-token``
 
    See `full description <#stand-alone-package-with-a-reusable-contract>`_.
 
-safe-math-lib
-   A package which contains deployed instance of one of the package
-   contracts.
+Stand Alone Package with a Deployed Contract
+   i.e. ``safe-math-lib``
 
    See `full description <#stand-alone-package-with-a-deployed-contract>`_.
 
-piper-coin
-   A package which contains a deployed instance of a reusable contract
-   from a dependency.
+Dependent Package with a Reusable Contract
+   i.e. ``piper-coin``
 
-   See `full description <#package-which-uses-a-reusable-contract-from-a-depenency>`_.
+   See `full description <#dependent-package-with-a-reusable-contract>`_.
 
-escrow
-   A package which contains a deployed instance of a local contract
-   which is linked against a deployed instance of a local library.
+Stand Alone Package with a Deployed Contract Linked against a Deployed Library
+   i.e. ``escrow``
 
-   See `full description <#stand-alone-package-with-a-deployed-library-and-a-contract-which-links-against-that-library>`_.
+   See `full description <#stand-alone-package-with-a-deployed-contract-linked-against-a-deployed-library>`_.
 
-wallet
-   A package with a deployed instance of a local contract which is
-   linked against a deployed instance of a library from a dependency.
+Dependent Package with a Deployed Contract Linked against a Package Dependency
+   i.e. ``wallet``
 
-   See `full description <#package-with-a-contract-with-link-dependencies-on-a-contract-from-a-package-dependency>`_.
+   See `full description <#dependent-package-with-a-deployed-contract-linked-against-a-package-dependency>`_.
 
-wallet-with-send
-   A package with a deployed instance which links against a deep
-   dependency.
+Dependent Package with a Deployed Contract Linked Against a Deep Dependency
+   i.e. ``wallet-with-send``
 
-   See `full description <#package-with-a-deployed-instance-which-links-against-a-deep-dependency>`_.
+   See `full description <#dependent-package-with-a-deployed-contract-linked-against-a-deep-dependency>`_.
 
-Each use case builds incrementally on the previous one.
+*Each use case builds incrementally on the previous one.*
+
+Keywords
+--------
+
+:Stand Alone:                
+                              Package has no external dependencies (i.e. no ``build_dependencies``),
+                              contains all contract data needed without reaching into another package.
+
+:Dependent:                   Package does not contain all necessary contract data (i.e. has ``build_dependencies``),
+                              **must** reach into a package dependency to retrieve data.
+
+:Inheritable:                 Contract doesn't provide useful functionality on it's own and is meant 
+                              to serve as a base contract for others to inherit from.
+
+:Reusable:                    Contract is useful on it's own, meant to be used as-is.
+
+:Deployed Contract/Library:   Refers to an instance of a contract/library that has already been
+                              deployed to a specific address on a chain.
+
+:Package Dependency:          External dependency directly referenced via the ``build_dependencies`` of a package.
+
+:Deep Dependency:             External dependency referenced via the ``build_dependencies`` of a package dependency
+                              (or by reaching down dependency tree as far as necessary).
+
 
 .. _stand-alone-package-with-an-inheritable-contract:
 
@@ -100,10 +117,10 @@ optional data that can be included. However, for the remainder of our
 examples we will be using minimalistic Packages to keep our examples as
 succinct as possible.
 
-.. _package-with-an-inheritable-contract-and-a-dependency:
+.. _dependent-package-with-an-inheritable-contract:
 
-Package with an Inheritable Contract and a Dependency
------------------------------------------------------
+Dependent Package with an Inheritable Contract
+----------------------------------------------
 
 Now that we've seen what a simple package looks like, let's see how to declare
 dependencies.
@@ -332,10 +349,10 @@ instance can be found at, the transaction hash for the transaction that
 deployed the contract, and the block hash in which the deploying
 transaction was mined.
 
-.. _package-which-uses-a-reusable-contract-from-a-depenency:
+.. _dependent-package-with-a-reusable-contract:
 
-Package which uses a Reusable Contract from a depenency
--------------------------------------------------------
+Dependent Package with a Reusable Contract
+------------------------------------------
 
 For our next example we'll be creating a package includes a deployed
 instance of a |ContractType| from that comes from a package dependency.
@@ -364,10 +381,10 @@ represents the name of the package dependency within the
 the contract type that should be used from that dependencies contract
 types.
 
-.. _stand-alone-package-with-a-deployed-library-and-a-contract-which-links-against-that-library:
+.. _stand-alone-package-with-a-deployed-contract-linked-against-a-deployed-library:
 
-Stand Alone package with a deployed Library and a contract which Links against that Library
--------------------------------------------------------------------------------------------
+Stand Alone Package with a Deployed Contract Linked against a Deployed Library
+------------------------------------------------------------------------------
 
 In the previous ``safe-math-lib`` package we demonstrated what a package
 with a deployed instance of one of it's local contracts looks like. In
@@ -483,10 +500,10 @@ replacement should begin. The ``value`` defines what should be used to replace
 the link reference. In this case, the ``value`` is referencing the
 ``SafeSendLib`` contract instance from this Package.
 
-.. _package-with-a-contract-with-link-dependencies-on-a-contract-from-a-package-dependency:
+.. _dependent-package-with-a-deployed-contract-linked-against-a-package-dependency:
 
-Package with a contract with link dependencies on a contract from a package dependency
---------------------------------------------------------------------------------------
+Dependent Package with a Deployed Contract Linked against a Package Dependency
+------------------------------------------------------------------------------
 
 Now that we've seen how we can handle linking dependencies that rely on
 deployed |ContractInstances| from the local package we'll explore an
@@ -624,10 +641,10 @@ contract type, ``value`` portion is prefixed with the name of the
 package which contains the address of the contract instance that this
 should be linked against.
 
-.. _package-with-a-deployed-instance-which-links-against-a-deep-dependency:
+.. _dependent-package-with-a-deployed-contract-linked-against-a-deep-dependency:
 
-Package with a deployed instance which links against a deep dependency.
------------------------------------------------------------------------
+Dependent Package with a Deployed Contract Linked against a Deep Dependency
+---------------------------------------------------------------------------
 
 In the previous example we saw how link dependencies against direct
 package dependencies are handled. In this example we will look at how
