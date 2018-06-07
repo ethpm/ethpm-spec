@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Rationale &mdash; EthPM Package Manifest  documentation</title>
+  <title>Keywords &mdash; EthPM Package Manifest  documentation</title>
   
 
   
@@ -29,9 +29,7 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="_static/contentui.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Glossary" href="glossary.html" />
-    <link rel="prev" title="Specification" href="package-spec.html" /> 
+    <link rel="search" title="Search" href="search.html" /> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -84,18 +82,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="overview.html#overview">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="package-spec.html">Specification</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#id1">Use Cases</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#keywords">Keywords</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#stand-alone-package-with-an-inheritable-contract">Stand Alone Package with an Inheritable Contract</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#dependent-package-with-an-inheritable-contract">Dependent Package with an Inheritable Contract</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#stand-alone-package-with-a-reusable-contract">Stand Alone Package with a Reusable Contract</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#stand-alone-package-with-a-deployed-contract">Stand Alone Package with a Deployed Contract</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#dependent-package-with-a-reusable-contract">Dependent Package with a Reusable Contract</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#stand-alone-package-with-a-deployed-contract-linked-against-a-deployed-library">Stand Alone Package with a Deployed Contract Linked against a Deployed Library</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#dependent-package-with-a-deployed-contract-linked-against-a-package-dependency">Dependent Package with a Deployed Contract Linked against a Package Dependency</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#dependent-package-with-a-deployed-contract-linked-against-a-deep-dependency">Dependent Package with a Deployed Contract Linked against a Deep Dependency</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="use-cases.html#id1">Use Cases</a></li>
 <li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
 </ul>
 
@@ -142,13 +129,13 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>Rationale</li>
+      <li>Keywords</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="_sources/use-cases.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/_use-cases.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -161,9 +148,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="id1">
-<h1>Use Cases<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
-<p>The following use cases were considered during the creation of this
+  <p>The following use cases were considered during the creation of this
 specification.</p>
 <dl class="docutils">
 <dt>Stand Alone Package with an Inheritable Contract</dt>
@@ -201,7 +186,7 @@ specification.</p>
 </dl>
 <p><em>Each use case builds incrementally on the previous one.</em></p>
 <div class="section" id="keywords">
-<h2>Keywords<a class="headerlink" href="#keywords" title="Permalink to this headline">¶</a></h2>
+<h1>Keywords<a class="headerlink" href="#keywords" title="Permalink to this headline">¶</a></h1>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -232,7 +217,7 @@ deployed to a specific address on a chain.</td>
 </table>
 </div>
 <div class="section" id="stand-alone-package-with-an-inheritable-contract">
-<span id="id8"></span><h2>Stand Alone Package with an Inheritable Contract<a class="headerlink" href="#stand-alone-package-with-an-inheritable-contract" title="Permalink to this headline">¶</a></h2>
+<span id="id7"></span><h1>Stand Alone Package with an Inheritable Contract<a class="headerlink" href="#stand-alone-package-with-an-inheritable-contract" title="Permalink to this headline">¶</a></h1>
 <p>For the first example we’ll look at a package which only contains
 contracts which serve as base contracts for other contracts to inherit
 from but do not provide any real useful functionality on their own. The
@@ -286,7 +271,7 @@ examples we will be using minimalistic Packages to keep our examples as
 succinct as possible.</p>
 </div>
 <div class="section" id="dependent-package-with-an-inheritable-contract">
-<span id="id9"></span><h2>Dependent Package with an Inheritable Contract<a class="headerlink" href="#dependent-package-with-an-inheritable-contract" title="Permalink to this headline">¶</a></h2>
+<span id="id8"></span><h1>Dependent Package with an Inheritable Contract<a class="headerlink" href="#dependent-package-with-an-inheritable-contract" title="Permalink to this headline">¶</a></h1>
 <p>Now that we’ve seen what a simple package looks like, let’s see how to declare
 dependencies.</p>
 <p>The next package will implement the <em>transferable</em> pattern and will
@@ -346,7 +331,7 @@ The Package looks like the following.</p>
 import remappings necessary to make the import statement work.</p>
 </div>
 <div class="section" id="stand-alone-package-with-a-reusable-contract">
-<span id="id10"></span><h2>Stand Alone Package with a Reusable Contract<a class="headerlink" href="#stand-alone-package-with-a-reusable-contract" title="Permalink to this headline">¶</a></h2>
+<span id="id9"></span><h1>Stand Alone Package with a Reusable Contract<a class="headerlink" href="#stand-alone-package-with-a-reusable-contract" title="Permalink to this headline">¶</a></h1>
 <p>In this next example we’ll look at a package which contains a reusable
 contract. This means that the package provides a contract which can be
 on its own in some manner. For this example we will be creating a
@@ -414,7 +399,7 @@ they would need to interact with an instance of this contract without
 having to regenerate this information from source.</p>
 </div>
 <div class="section" id="stand-alone-package-with-a-deployed-contract">
-<span id="id11"></span><h2>Stand Alone Package with a Deployed Contract<a class="headerlink" href="#stand-alone-package-with-a-deployed-contract" title="Permalink to this headline">¶</a></h2>
+<span id="id10"></span><h1>Stand Alone Package with a Deployed Contract<a class="headerlink" href="#stand-alone-package-with-a-deployed-contract" title="Permalink to this headline">¶</a></h1>
 <p>Now that we’ve seen what a package looks like which includes a fully
 functional contract that is ready to be deployed, lets explore a package
 that also includes a deployed instance of that contract.</p>
@@ -532,7 +517,7 @@ deployed the contract, and the block hash in which the deploying
 transaction was mined.</p>
 </div>
 <div class="section" id="dependent-package-with-a-reusable-contract">
-<span id="id12"></span><h2>Dependent Package with a Reusable Contract<a class="headerlink" href="#dependent-package-with-a-reusable-contract" title="Permalink to this headline">¶</a></h2>
+<span id="id11"></span><h1>Dependent Package with a Reusable Contract<a class="headerlink" href="#dependent-package-with-a-reusable-contract" title="Permalink to this headline">¶</a></h1>
 <p>For our next example we’ll be creating a package includes a deployed
 instance of a <a class="reference internal" href="glossary.html#term-contract-type"><span class="xref std std-term">Contract Type</span></a> from that comes from a package dependency.
 This differs from our previous <code class="docutils literal notranslate"><span class="pre">safe-math-lib</span></code> example where our
@@ -585,7 +570,7 @@ the contract type that should be used from that dependencies contract
 types.</p>
 </div>
 <div class="section" id="stand-alone-package-with-a-deployed-contract-linked-against-a-deployed-library">
-<span id="id13"></span><h2>Stand Alone Package with a Deployed Contract Linked against a Deployed Library<a class="headerlink" href="#stand-alone-package-with-a-deployed-contract-linked-against-a-deployed-library" title="Permalink to this headline">¶</a></h2>
+<span id="id12"></span><h1>Stand Alone Package with a Deployed Contract Linked against a Deployed Library<a class="headerlink" href="#stand-alone-package-with-a-deployed-contract-linked-against-a-deployed-library" title="Permalink to this headline">¶</a></h1>
 <p>In the previous <code class="docutils literal notranslate"><span class="pre">safe-math-lib</span></code> package we demonstrated what a package
 with a deployed instance of one of it’s local contracts looks like. In
 this example we will build on that concept with a package which includes
@@ -682,7 +667,7 @@ the link reference. In this case, the <code class="docutils literal notranslate"
 <code class="docutils literal notranslate"><span class="pre">SafeSendLib</span></code> contract instance from this Package.</p>
 </div>
 <div class="section" id="dependent-package-with-a-deployed-contract-linked-against-a-package-dependency">
-<span id="id14"></span><h2>Dependent Package with a Deployed Contract Linked against a Package Dependency<a class="headerlink" href="#dependent-package-with-a-deployed-contract-linked-against-a-package-dependency" title="Permalink to this headline">¶</a></h2>
+<span id="id13"></span><h1>Dependent Package with a Deployed Contract Linked against a Package Dependency<a class="headerlink" href="#dependent-package-with-a-deployed-contract-linked-against-a-package-dependency" title="Permalink to this headline">¶</a></h1>
 <p>Now that we’ve seen how we can handle linking dependencies that rely on
 deployed <a class="reference internal" href="glossary.html#term-contract-instance"><span class="xref std std-term">Contract Instances</span></a> from the local package we’ll explore an
 example with link dependencies that rely on contracts from the package
@@ -826,7 +811,7 @@ package which contains the address of the contract instance that this
 should be linked against.</p>
 </div>
 <div class="section" id="dependent-package-with-a-deployed-contract-linked-against-a-deep-dependency">
-<span id="id15"></span><h2>Dependent Package with a Deployed Contract Linked against a Deep Dependency<a class="headerlink" href="#dependent-package-with-a-deployed-contract-linked-against-a-deep-dependency" title="Permalink to this headline">¶</a></h2>
+<span id="id14"></span><h1>Dependent Package with a Deployed Contract Linked against a Deep Dependency<a class="headerlink" href="#dependent-package-with-a-deployed-contract-linked-against-a-deep-dependency" title="Permalink to this headline">¶</a></h1>
 <p>In the previous example we saw how link dependencies against direct
 package dependencies are handled. In this example we will look at how
 this works when the link dependency is against a package deeper in the
@@ -927,22 +912,12 @@ package. This defines the traversal path through the dependency tree to
 the deployed instance of the <code class="docutils literal notranslate"><span class="pre">SafeMathLib</span></code> library which was used for
 linking during deployment.</p>
 </div>
-</div>
 
 
            </div>
            
           </div>
           <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="glossary.html" class="btn btn-neutral float-right" title="Glossary" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="package-spec.html" class="btn btn-neutral" title="Specification" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
-    </div>
   
 
   <hr/>

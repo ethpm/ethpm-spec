@@ -30,8 +30,8 @@
   <link rel="stylesheet" href="_static/contentui.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Use Cases" href="use-cases.html" />
-    <link rel="prev" title="Overview" href="overview.html" /> 
+    <link rel="next" title="Backwards Compatibility" href="postfix.html" />
+    <link rel="prev" title="Rationale" href="use-cases.html" /> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -82,10 +82,10 @@
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html#overview">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="package-spec.html">Specification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="use-cases.html#id1">Use Cases</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Glossary</a></li>
-<li class="toctree-l1"><a class="reference internal" href="use-cases.html">Use Cases</a></li>
-<li class="toctree-l1"><a class="reference internal" href="package-spec.html">Package Specification</a></li>
 </ul>
 
             
@@ -162,7 +162,7 @@ for more information.</dd>
 <dt id="term-bytecode">Bytecode</dt>
 <dd><p class="first">The set of EVM instructions as produced by a compiler. Unless otherwise
 specified this should be assumed to be hexadecimal encoded, representing
-a whole number of bytes, and prefixed with a <code class="docutils literal notranslate"><span class="pre">'0x'</span></code>.</p>
+a whole number of bytes, and <a class="reference internal" href="#term-prefixed"><span class="xref std std-term">prefixed</span></a> with <code class="docutils literal notranslate"><span class="pre">0x</span></code>.</p>
 <p>Bytecode can either be linked or unlinked. (see <a class="reference internal" href="#term-linking"><span class="xref std std-term">Linking</span></a>)</p>
 <table class="last docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -186,9 +186,64 @@ desired <a class="reference internal" href="#term-link-value"><span class="xref 
 </tbody>
 </table>
 </dd>
+<dt id="term-chain-definition">Chain Definition</dt>
+<dd><p class="first">This definition originates from <a class="reference external" href="https://github.com/bitcoin/bips/blob/master/bip-0122.mediawiki">BIP122 URI</a>.</p>
+<p>A URI in the format <code class="docutils literal notranslate"><span class="pre">blockchain://&lt;chain_id&gt;/block/&lt;block_hash&gt;</span></code></p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">chain_id</span></code> is the unprefixed hexadecimal representation of the
+genesis hash for the chain.</li>
+<li><code class="docutils literal notranslate"><span class="pre">block_hash</span></code> is the unprefixed hexadecimal representation of the
+hash of a block on the chain.</li>
+</ul>
+<p class="last">A chain is considered to match a chain definition if the the genesis
+block hash matches the <code class="docutils literal notranslate"><span class="pre">chain_id</span></code> and the block defined by
+<code class="docutils literal notranslate"><span class="pre">block_hash</span></code> can be found on that chain. It is possible for multiple
+chains to match a single URI, in which case all chains are considered
+valid matches</p>
+</dd>
+<dt id="term-content-addressable-uri">Content Addressable URI</dt>
+<dd><p class="first">Any URI which contains a cryptographic hash which can be used to verify
+the integrity of the content found at the URI.</p>
+<p>The URI format is defined in RFC3986</p>
+<p class="last">It is <strong>recommended</strong> that tools support IPFS and Swarm.</p>
+</dd>
+<dt id="term-contract-alias">Contract Alias</dt>
+<dd><p class="first">This is a name used to reference a specific <a class="reference internal" href="#term-contract-type"><span class="xref std std-term">Contract Type</span></a>. Contract
+aliases <strong>must</strong> be unique within a single <a class="reference internal" href="#term-package"><span class="xref std std-term">Package</span></a>.</p>
+<p>The contract alias <strong>must</strong> use <em>one of</em> the following naming schemes:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">&lt;contract-name&gt;</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">&lt;contract-name&gt;[&lt;identifier&gt;]</span></code></li>
+</ul>
+<p>The <code class="docutils literal notranslate"><span class="pre">&lt;contract-name&gt;</span></code> portion <strong>must</strong> be the same as the
+<a class="reference internal" href="#term-contract-name"><span class="xref std std-term">Contract Name</span></a> for this contract type.</p>
+<p class="last">The <code class="docutils literal notranslate"><span class="pre">[&lt;identifier&gt;]</span></code> portion <strong>must</strong> match the regular expression
+<code class="docutils literal notranslate"><span class="pre">\[[-a-zA-Z0-9]{1,256}\]</span></code>.</p>
+</dd>
 <dt id="term-contract-instance">Contract Instance</dt>
 <dd><p class="first">A contract instance a specific deployed version of a <a class="reference internal" href="#term-contract-type"><span class="xref std std-term">Contract Type</span></a>.</p>
 <p class="last">All contract instances have an <a class="reference internal" href="#term-address"><span class="xref std std-term">Address</span></a> on some specific chain.</p>
+</dd>
+<dt id="term-contract-instance-name">Contract Instance Name</dt>
+<dd><p class="first">A name which refers to a specific <a class="reference internal" href="#term-contract-instance"><span class="xref std std-term">Contract Instance</span></a> on a specific
+chain from the deployments of a single <a class="reference internal" href="#term-package"><span class="xref std std-term">Package</span></a>. This name <strong>must</strong> be
+unique across all other contract instances for the given chain. The
+name must conform to the regular expression
+<code class="docutils literal notranslate"><span class="pre">[a-zA-Z][a-zA-Z0-9_]{0,255}</span></code></p>
+<p>In cases where there is a single deployed instance of a given
+<a class="reference internal" href="#term-contract-type"><span class="xref std std-term">Contract Type</span></a>, package managers <strong>should</strong> use the <a class="reference internal" href="#term-contract-alias"><span class="xref std std-term">Contract Alias</span></a> for
+that contract type for this name.</p>
+<p class="last">In cases where there are multiple deployed instances of a given
+contract type, package managers <strong>should</strong> use a name which provides
+some added semantic information as to help differentiate the two
+deployed instances in a meaningful way.</p>
+</dd>
+<dt id="term-contract-name">Contract Name</dt>
+<dd><p class="first">The name found in the source code that defines a specific <a class="reference internal" href="#term-contract-type"><span class="xref std std-term">Contract Type</span></a>.
+These names <strong>must</strong> conform to the regular expression
+<code class="docutils literal notranslate"><span class="pre">[a-zA-Z][-a-zA-Z0-9_]{0,255}</span></code>.</p>
+<p class="last">There can be multiple contracts with the same contract name in a
+projects source files.</p>
 </dd>
 <dt id="term-contract-type">Contract Type</dt>
 <dd><p class="first">Refers to a specific contract in the package source.
@@ -203,6 +258,10 @@ they have the same bytecode.</p>
 </div>
 <p class="last">A deployed instance of the <code class="docutils literal notranslate"><span class="pre">Wallet</span></code> contract would be of of type
 <code class="docutils literal notranslate"><span class="pre">Wallet</span></code>.</p>
+</dd>
+<dt id="term-identifier">Identifier</dt>
+<dd><p class="first">Refers generally to a named entity in the <a class="reference internal" href="#term-package"><span class="xref std std-term">Package</span></a>.</p>
+<p class="last">A string matching the regular expression <code class="docutils literal notranslate"><span class="pre">[a-zA-Z][-_a-zA-Z0-9]{0,255}</span></code></p>
 </dd>
 <dt id="term-link-reference">Link Reference</dt>
 <dd><p class="first">A location within a contract’s bytecode which needs to be linked.  A link
@@ -237,8 +296,34 @@ metadata related to authorship, license, versioning, et al.</p>
 </dd>
 <dt id="term-package-manifest">Package Manifest</dt>
 <dd>A machine-readable description of a package (See
-<a class="reference internal" href="package-spec.html#package-specification"><span class="std std-ref">Package Specification</span></a> for information about the format for package
+<a class="reference internal" href="package-spec.html#package-specification"><span class="std std-ref">Specification</span></a> for information about the format for package
 manifests.)</dd>
+<dt id="term-prefixed">Prefixed</dt>
+<dd><p class="first"><a class="reference internal" href="#term-bytecode"><span class="xref std std-term">Bytecode</span></a> string with leading <code class="docutils literal notranslate"><span class="pre">0x</span></code>.</p>
+<blockquote class="last">
+<div><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"><code class="docutils literal notranslate"><span class="pre">0xdeadbeef</span></code></td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</dd>
+<dt id="term-unprefixed">Unprefixed</dt>
+<dd><p class="first">Not <a class="reference internal" href="#term-prefixed"><span class="xref std std-term">Prefixed</span></a>.</p>
+<blockquote class="last">
+<div><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"><code class="docutils literal notranslate"><span class="pre">deadbeef</span></code></td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</dd>
 </dl>
 </div>
 
@@ -250,10 +335,10 @@ manifests.)</dd>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="use-cases.html" class="btn btn-neutral float-right" title="Use Cases" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="postfix.html" class="btn btn-neutral float-right" title="Backwards Compatibility" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="overview.html" class="btn btn-neutral" title="Overview" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="use-cases.html" class="btn btn-neutral" title="Rationale" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
