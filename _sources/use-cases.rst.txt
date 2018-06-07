@@ -46,5 +46,4 @@
    Use Cases
    =========
 
-
    .. include:: _use-cases.rst

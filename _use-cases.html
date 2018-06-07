@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Stand Alone Package with an Inheritable Contract &mdash; EthPM Package Manifest  documentation</title>
+  <title>Keywords &mdash; EthPM Package Manifest  documentation</title>
   
 
   
@@ -129,7 +129,7 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>Stand Alone Package with an Inheritable Contract</li>
+      <li>Keywords</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -151,47 +151,71 @@
   <p>The following use cases were considered during the creation of this
 specification.</p>
 <dl class="docutils">
-<dt>owned</dt>
-<dd><p class="first">A package which contains contracts which are not meant to be
-used by themselves but rather as base contracts to provide
-functionality to other contracts through inheritance.</p>
+<dt>Stand Alone Package with an Inheritable Contract</dt>
+<dd><p class="first">i.e. <code class="docutils literal notranslate"><span class="pre">owned</span></code></p>
 <p class="last">See <a class="reference external" href="#stand-alone-package-with-an-inheritable-contract">full description</a>.</p>
 </dd>
-<dt>transferable</dt>
-<dd><p class="first">A package which has a single dependency.</p>
-<p class="last">See <a class="reference external" href="#package-with-an-inheritable-contract-and-a-dependency">full description</a>.</p>
+<dt>Dependent Package with an Inheritable Contract</dt>
+<dd><p class="first">i.e. <code class="docutils literal notranslate"><span class="pre">transferable</span></code></p>
+<p class="last">See <a class="reference external" href="#dependent-package-with-an-inheritable-contract">full description</a>.</p>
 </dd>
-<dt>standard-token</dt>
-<dd><p class="first">A package which contains a reusable contract.</p>
+<dt>Stand Alone Package with a Reusable Contract</dt>
+<dd><p class="first">i.e. <code class="docutils literal notranslate"><span class="pre">standard-token</span></code></p>
 <p class="last">See <a class="reference external" href="#stand-alone-package-with-a-reusable-contract">full description</a>.</p>
 </dd>
-<dt>safe-math-lib</dt>
-<dd><p class="first">A package which contains deployed instance of one of the package
-contracts.</p>
+<dt>Stand Alone Package with a Deployed Contract</dt>
+<dd><p class="first">i.e. <code class="docutils literal notranslate"><span class="pre">safe-math-lib</span></code></p>
 <p class="last">See <a class="reference external" href="#stand-alone-package-with-a-deployed-contract">full description</a>.</p>
 </dd>
-<dt>piper-coin</dt>
-<dd><p class="first">A package which contains a deployed instance of a reusable contract
-from a dependency.</p>
-<p class="last">See <a class="reference external" href="#package-which-uses-a-reusable-contract-from-a-depenency">full description</a>.</p>
+<dt>Dependent Package with a Reusable Contract</dt>
+<dd><p class="first">i.e. <code class="docutils literal notranslate"><span class="pre">piper-coin</span></code></p>
+<p class="last">See <a class="reference external" href="#dependent-package-with-a-reusable-contract">full description</a>.</p>
 </dd>
-<dt>escrow</dt>
-<dd><p class="first">A package which contains a deployed instance of a local contract
-which is linked against a deployed instance of a local library.</p>
-<p class="last">See <a class="reference external" href="#stand-alone-package-with-a-deployed-library-and-a-contract-which-links-against-that-library">full description</a>.</p>
+<dt>Stand Alone Package with a Deployed Contract Linked against a Deployed Library</dt>
+<dd><p class="first">i.e. <code class="docutils literal notranslate"><span class="pre">escrow</span></code></p>
+<p class="last">See <a class="reference external" href="#stand-alone-package-with-a-deployed-contract-linked-against-a-deployed-library">full description</a>.</p>
 </dd>
-<dt>wallet</dt>
-<dd><p class="first">A package with a deployed instance of a local contract which is
-linked against a deployed instance of a library from a dependency.</p>
-<p class="last">See <a class="reference external" href="#package-with-a-contract-with-link-dependencies-on-a-contract-from-a-package-dependency">full description</a>.</p>
+<dt>Dependent Package with a Deployed Contract Linked against a Package Dependency</dt>
+<dd><p class="first">i.e. <code class="docutils literal notranslate"><span class="pre">wallet</span></code></p>
+<p class="last">See <a class="reference external" href="#dependent-package-with-a-deployed-contract-linked-against-a-package-dependency">full description</a>.</p>
 </dd>
-<dt>wallet-with-send</dt>
-<dd><p class="first">A package with a deployed instance which links against a deep
-dependency.</p>
-<p class="last">See <a class="reference external" href="#package-with-a-deployed-instance-which-links-against-a-deep-dependency">full description</a>.</p>
+<dt>Dependent Package with a Deployed Contract Linked Against a Deep Dependency</dt>
+<dd><p class="first">i.e. <code class="docutils literal notranslate"><span class="pre">wallet-with-send</span></code></p>
+<p class="last">See <a class="reference external" href="#dependent-package-with-a-deployed-contract-linked-against-a-deep-dependency">full description</a>.</p>
 </dd>
 </dl>
-<p>Each use case builds incrementally on the previous one.</p>
+<p><em>Each use case builds incrementally on the previous one.</em></p>
+<div class="section" id="keywords">
+<h1>Keywords<a class="headerlink" href="#keywords" title="Permalink to this headline">¶</a></h1>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Stand Alone:</th><td class="field-body">Package has no external dependencies (i.e. no <code class="docutils literal notranslate"><span class="pre">build_dependencies</span></code>),
+contains all contract data needed without reaching into another package.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Dependent:</th><td class="field-body">Package does not contain all necessary contract data (i.e. has <code class="docutils literal notranslate"><span class="pre">build_dependencies</span></code>),
+<strong>must</strong> reach into a package dependency to retrieve data.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Inheritable:</th><td class="field-body">Contract doesn’t provide useful functionality on it’s own and is meant
+to serve as a base contract for others to inherit from.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Reusable:</th><td class="field-body">Contract is useful on it’s own, meant to be used as-is.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Deployed Contract/Library:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">Refers to an instance of a contract/library that has already been
+deployed to a specific address on a chain.</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Package Dependency:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body">External dependency directly referenced via the <code class="docutils literal notranslate"><span class="pre">build_dependencies</span></code> of a package.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Deep Dependency:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">External dependency referenced via the <code class="docutils literal notranslate"><span class="pre">build_dependencies</span></code> of a package dependency
+(or by reaching down dependency tree as far as necessary).</td>
+</tr>
+</tbody>
+</table>
+</div>
 <div class="section" id="stand-alone-package-with-an-inheritable-contract">
 <span id="id7"></span><h1>Stand Alone Package with an Inheritable Contract<a class="headerlink" href="#stand-alone-package-with-an-inheritable-contract" title="Permalink to this headline">¶</a></h1>
 <p>For the first example we’ll look at a package which only contains
@@ -246,8 +270,8 @@ optional data that can be included. However, for the remainder of our
 examples we will be using minimalistic Packages to keep our examples as
 succinct as possible.</p>
 </div>
-<div class="section" id="package-with-an-inheritable-contract-and-a-dependency">
-<span id="id8"></span><h1>Package with an Inheritable Contract and a Dependency<a class="headerlink" href="#package-with-an-inheritable-contract-and-a-dependency" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="dependent-package-with-an-inheritable-contract">
+<span id="id8"></span><h1>Dependent Package with an Inheritable Contract<a class="headerlink" href="#dependent-package-with-an-inheritable-contract" title="Permalink to this headline">¶</a></h1>
 <p>Now that we’ve seen what a simple package looks like, let’s see how to declare
 dependencies.</p>
 <p>The next package will implement the <em>transferable</em> pattern and will
@@ -492,8 +516,8 @@ instance can be found at, the transaction hash for the transaction that
 deployed the contract, and the block hash in which the deploying
 transaction was mined.</p>
 </div>
-<div class="section" id="package-which-uses-a-reusable-contract-from-a-depenency">
-<span id="id11"></span><h1>Package which uses a Reusable Contract from a depenency<a class="headerlink" href="#package-which-uses-a-reusable-contract-from-a-depenency" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="dependent-package-with-a-reusable-contract">
+<span id="id11"></span><h1>Dependent Package with a Reusable Contract<a class="headerlink" href="#dependent-package-with-a-reusable-contract" title="Permalink to this headline">¶</a></h1>
 <p>For our next example we’ll be creating a package includes a deployed
 instance of a <a class="reference internal" href="glossary.html#term-contract-type"><span class="xref std std-term">Contract Type</span></a> from that comes from a package dependency.
 This differs from our previous <code class="docutils literal notranslate"><span class="pre">safe-math-lib</span></code> example where our
@@ -545,8 +569,8 @@ represents the name of the package dependency within the
 the contract type that should be used from that dependencies contract
 types.</p>
 </div>
-<div class="section" id="stand-alone-package-with-a-deployed-library-and-a-contract-which-links-against-that-library">
-<span id="id12"></span><h1>Stand Alone package with a deployed Library and a contract which Links against that Library<a class="headerlink" href="#stand-alone-package-with-a-deployed-library-and-a-contract-which-links-against-that-library" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="stand-alone-package-with-a-deployed-contract-linked-against-a-deployed-library">
+<span id="id12"></span><h1>Stand Alone Package with a Deployed Contract Linked against a Deployed Library<a class="headerlink" href="#stand-alone-package-with-a-deployed-contract-linked-against-a-deployed-library" title="Permalink to this headline">¶</a></h1>
 <p>In the previous <code class="docutils literal notranslate"><span class="pre">safe-math-lib</span></code> package we demonstrated what a package
 with a deployed instance of one of it’s local contracts looks like. In
 this example we will build on that concept with a package which includes
@@ -642,8 +666,8 @@ replacement should begin. The <code class="docutils literal notranslate"><span c
 the link reference. In this case, the <code class="docutils literal notranslate"><span class="pre">value</span></code> is referencing the
 <code class="docutils literal notranslate"><span class="pre">SafeSendLib</span></code> contract instance from this Package.</p>
 </div>
-<div class="section" id="package-with-a-contract-with-link-dependencies-on-a-contract-from-a-package-dependency">
-<span id="id13"></span><h1>Package with a contract with link dependencies on a contract from a package dependency<a class="headerlink" href="#package-with-a-contract-with-link-dependencies-on-a-contract-from-a-package-dependency" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="dependent-package-with-a-deployed-contract-linked-against-a-package-dependency">
+<span id="id13"></span><h1>Dependent Package with a Deployed Contract Linked against a Package Dependency<a class="headerlink" href="#dependent-package-with-a-deployed-contract-linked-against-a-package-dependency" title="Permalink to this headline">¶</a></h1>
 <p>Now that we’ve seen how we can handle linking dependencies that rely on
 deployed <a class="reference internal" href="glossary.html#term-contract-instance"><span class="xref std std-term">Contract Instances</span></a> from the local package we’ll explore an
 example with link dependencies that rely on contracts from the package
@@ -786,8 +810,8 @@ contract type, <code class="docutils literal notranslate"><span class="pre">valu
 package which contains the address of the contract instance that this
 should be linked against.</p>
 </div>
-<div class="section" id="package-with-a-deployed-instance-which-links-against-a-deep-dependency">
-<span id="id14"></span><h1>Package with a deployed instance which links against a deep dependency.<a class="headerlink" href="#package-with-a-deployed-instance-which-links-against-a-deep-dependency" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="dependent-package-with-a-deployed-contract-linked-against-a-deep-dependency">
+<span id="id14"></span><h1>Dependent Package with a Deployed Contract Linked against a Deep Dependency<a class="headerlink" href="#dependent-package-with-a-deployed-contract-linked-against-a-deep-dependency" title="Permalink to this headline">¶</a></h1>
 <p>In the previous example we saw how link dependencies against direct
 package dependencies are handled. In this example we will look at how
 this works when the link dependency is against a package deeper in the
