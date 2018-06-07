@@ -1,0 +1,33 @@
+---
+eip: 1123
+title: Revised Ethereum Smart Contract Packaging Standard
+author: g. nicholas d’andrea (@gnidan), Piper Merriam (@pipermerriam), Nick Gheorghita (@njgheorghita), Danny Ryan (@djrtwo)
+discussions-to: https://github.com/ethereum/EIPs/issues/1123
+status: Draft
+type: Standards Track
+category: ERC
+created: 2018-06-01
+replaces: 190
+---
+
+$if(titleblock)$
+$titleblock$
+
+$endif$
+$for(header-includes)$
+$header-includes$
+
+$endfor$
+$for(include-before)$
+$include-before$
+
+$endfor$
+$if(toc)$
+$toc$
+
+$endif$
+$body$
+$for(include-after)$
+
+$include-after$
+$endfor$
