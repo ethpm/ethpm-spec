@@ -1,4 +1,4 @@
-pragma solidity ^0.4.0;
+pragma solidity ^0.4.24;
 
 
 import {SafeSendLib} from "./SafeSendLib.sol";
@@ -12,20 +12,20 @@ contract Escrow {
     address public sender;
     address public recipient;
 
-    function Escrow(address _recipient) payable {
+    constructor(address _recipient) public payable {
         sender = msg.sender;
         recipient = _recipient;
     }
 
     /// @dev Releases the escrowed funds to the other party.
     /// @notice This will release the escrowed funds to the other party.
-    function releaseFunds() {
+    function releaseFunds() public {
         if (msg.sender == sender) {
-            recipient.sendOrThrow(this.balance);
+            recipient.sendOrThrow(address(this).balance);
         } else if (msg.sender == recipient) {
-            sender.sendOrThrow(this.balance);
+            sender.sendOrThrow(address(this).balance);
         } else {
-            throw;
+            revert();
         }
     }
 }
