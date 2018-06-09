@@ -1,7 +1,7 @@
-pragma solidity ^0.4.0;
+pragma solidity ^0.4.24;
 
 
-import {Wallet} from "wallet/contracts/Wallet.sol";
+import {Wallet} from "./wallet/contracts/Wallet.sol";
 
 
 /// @title Wallet contract with simple send and approval spending functionality
@@ -11,6 +11,7 @@ contract WalletWithSend is Wallet {
     /// @notice This will send the reciepient the specified amount.
     function approvedSend(uint value, address to) public {
         allowances[msg.sender] = allowances[msg.sender].safeSub(value);
-        if (!to.send(value)) throw;
+        if (!to.send(value))
+            revert();
     }
 }
