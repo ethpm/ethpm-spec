@@ -1,5 +1,5 @@
 {
-  "title": "Package Specification",
+  "title": "EthPM Manifest Specification",
   "type": "object",
   "required": [
     "manifest_version",
