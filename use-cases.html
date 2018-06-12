@@ -696,33 +696,33 @@ package. We will also make use of the <code class="docutils literal notranslate"
 first example to handle authorization. Our package will contain a single
 solidity source file
 <a class="reference external" href="https://github.com/ethpm/ethpm-spec/blob/master/examples/wallet/contracts/Wallet.sol">./contracts/Wallet.sol</a>, shown below.</p>
-<div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kr">pragma solidity</span> <span class="o">^</span><span class="mi">0</span><span class="p">.</span><span class="mi">4</span><span class="p">.</span><span class="mi">0</span><span class="p">;</span>
+<div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kr">pragma solidity</span> <span class="o">^</span><span class="mi">0</span><span class="p">.</span><span class="mi">4</span><span class="p">.</span><span class="mi">24</span><span class="p">;</span>
 
 
-<span class="kn">import</span> <span class="p">{</span><span class="n">SafeMathLib</span><span class="p">}</span> <span class="kr">from</span> <span class="s">&quot;safe-math-lib/contracts/SafeMathLib.sol&quot;</span><span class="p">;</span>
-<span class="kn">import</span> <span class="p">{</span><span class="n">owned</span><span class="p">}</span> <span class="kr">from</span> <span class="s">&quot;owned/contracts/owned.sol&quot;</span><span class="p">;</span>
+<span class="kn">import</span> <span class="p">{</span><span class="n">SafeMathLib</span><span class="p">}</span> <span class="kr">from</span> <span class="s">&quot;./safe-math-lib/contracts/SafeMathLib.sol&quot;</span><span class="p">;</span>
+<span class="kn">import</span> <span class="p">{</span><span class="n">Owned</span><span class="p">}</span> <span class="kr">from</span> <span class="s">&quot;./owned/contracts/Owned.sol&quot;</span><span class="p">;</span>
 
 
 <span class="c1">/// @title Contract for holding funds in escrow between two semi trusted parties.</span>
 <span class="c1">/// @author Piper Merriam &lt;pipermerriam@gmail.com&gt;</span>
-<span class="kd">contract</span> <span class="n">Wallet</span> <span class="kr">is</span> <span class="n">owned</span> <span class="p">{</span>
+<span class="kd">contract</span> <span class="n">Wallet</span> <span class="kr">is</span> <span class="n">Owned</span> <span class="p">{</span>
     <span class="kn">using</span> <span class="n">SafeMathLib</span> <span class="k">for</span> <span class="kt">uint</span><span class="p">;</span>
 
     <span class="kd">mapping</span> <span class="p">(</span><span class="kt">address</span> <span class="o">=&gt;</span> <span class="kt">uint</span><span class="p">)</span> <span class="n">allowances</span><span class="p">;</span>
 
     <span class="c1">/// @dev Fallback function for depositing funds</span>
-    <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">function</span><span class="p">()</span> <span class="kr">public</span> <span class="p">{</span>
     <span class="p">}</span>
 
     <span class="c1">/// @dev Sends the recipient the specified amount</span>
     <span class="c1">/// @notice This will send the reciepient the specified amount.</span>
-    <span class="kd">function</span> <span class="nf">send</span><span class="p">(</span><span class="kt">address</span> <span class="n">recipient</span><span class="p">,</span> <span class="kt">uint</span> <span class="nb">value</span><span class="p">)</span> <span class="kr">public</span> <span class="n">onlyowner</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">bool</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">function</span> <span class="nf">send</span><span class="p">(</span><span class="kt">address</span> <span class="n">recipient</span><span class="p">,</span> <span class="kt">uint</span> <span class="nb">value</span><span class="p">)</span> <span class="kr">public</span> <span class="n">onlyOwner</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">bool</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">return</span> <span class="n">recipient</span><span class="p">.</span><span class="nf">send</span><span class="p">(</span><span class="nb">value</span><span class="p">);</span>
     <span class="p">}</span>
 
     <span class="c1">/// @dev Sets recipient to be approved to withdraw the specified amount</span>
     <span class="c1">/// @notice This will set the recipient to be approved to withdraw the specified amount.</span>
-    <span class="kd">function</span> <span class="n">approve</span><span class="p">(</span><span class="kt">address</span> <span class="n">recipient</span><span class="p">,</span> <span class="kt">uint</span> <span class="nb">value</span><span class="p">)</span> <span class="kr">public</span> <span class="n">onlyowner</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">bool</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">function</span> <span class="n">approve</span><span class="p">(</span><span class="kt">address</span> <span class="n">recipient</span><span class="p">,</span> <span class="kt">uint</span> <span class="nb">value</span><span class="p">)</span> <span class="kr">public</span> <span class="n">onlyOwner</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">bool</span><span class="p">)</span> <span class="p">{</span>
         <span class="n">allowances</span><span class="p">[</span><span class="n">recipient</span><span class="p">]</span> <span class="o">=</span> <span class="nb">value</span><span class="p">;</span>
         <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
     <span class="p">}</span>
@@ -731,7 +731,8 @@ solidity source file
     <span class="c1">/// @notice This will withdraw provided value, deducting it from your total allowance.</span>
     <span class="kd">function</span> <span class="n">withdraw</span><span class="p">(</span><span class="kt">uint</span> <span class="nb">value</span><span class="p">)</span> <span class="kr">public</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">bool</span><span class="p">)</span> <span class="p">{</span>
         <span class="n">allowances</span><span class="p">[</span><span class="nb">msg</span><span class="p">.</span><span class="nb">sender</span><span class="p">]</span> <span class="o">=</span> <span class="n">allowances</span><span class="p">[</span><span class="nb">msg</span><span class="p">.</span><span class="nb">sender</span><span class="p">].</span><span class="n">safeSub</span><span class="p">(</span><span class="nb">value</span><span class="p">);</span>
-        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nb">msg</span><span class="p">.</span><span class="nb">sender</span><span class="p">.</span><span class="nf">send</span><span class="p">(</span><span class="nb">value</span><span class="p">))</span> <span class="k">throw</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nb">msg</span><span class="p">.</span><span class="nb">sender</span><span class="p">.</span><span class="nf">send</span><span class="p">(</span><span class="nb">value</span><span class="p">))</span>
+            <span class="nf">revert</span><span class="p">();</span>
         <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
     <span class="p">}</span>
 <span class="p">}</span>
