@@ -409,32 +409,27 @@ operations called <code class="docutils literal notranslate"><span class="pre">s
 functions to allow addition and subtraction without needing to check for
 underflow or overflow conditions. Our package will have a single
 solidity source file <code class="docutils literal notranslate"><span class="pre">./contracts/SafeMathLib.sol</span></code></p>
-<div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kr">pragma solidity</span> <span class="o">^</span><span class="mi">0</span><span class="p">.</span><span class="mi">4</span><span class="p">.</span><span class="mi">0</span><span class="p">;</span>
+<div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kr">pragma solidity</span> <span class="o">^</span><span class="mi">0</span><span class="p">.</span><span class="mi">4</span><span class="p">.</span><span class="mi">24</span><span class="p">;</span>
 
 
 <span class="c1">/// @title Safe Math Library</span>
 <span class="c1">/// @author Piper Merriam &lt;pipermerriam@gmail.com&gt;</span>
 <span class="kd">library</span> <span class="n">SafeMathLib</span> <span class="p">{</span>
-    <span class="c1">/// @dev Subtracts b from a, throwing an error if the operation would cause an underflow.</span>
-    <span class="c1">/// @param a The number to be subtracted from</span>
-    <span class="c1">/// @param b The amount that should be subtracted</span>
-    <span class="kd">function</span> <span class="n">safeAdd</span><span class="p">(</span><span class="kt">uint</span> <span class="n">a</span><span class="p">,</span> <span class="kt">uint</span> <span class="n">b</span><span class="p">)</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">uint</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span> <span class="o">&gt;</span> <span class="n">a</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">;</span>
-        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-            <span class="k">throw</span><span class="p">;</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-
     <span class="c1">/// @dev Adds a and b, throwing an error if the operation would cause an overflow.</span>
     <span class="c1">/// @param a The first number to add</span>
     <span class="c1">/// @param b The second number to add</span>
-    <span class="kd">function</span> <span class="n">safeSub</span><span class="p">(</span><span class="kt">uint</span> <span class="n">a</span><span class="p">,</span> <span class="kt">uint</span> <span class="n">b</span><span class="p">)</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">uint</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">b</span> <span class="o">&lt;=</span> <span class="n">a</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">return</span> <span class="n">a</span> <span class="o">-</span> <span class="n">b</span><span class="p">;</span>
-        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-            <span class="k">throw</span><span class="p">;</span>
-        <span class="p">}</span>
+    <span class="kd">function</span> <span class="n">safeAdd</span><span class="p">(</span><span class="kt">uint256</span> <span class="n">a</span><span class="p">,</span> <span class="kt">uint256</span> <span class="n">b</span><span class="p">)</span> <span class="kr">public</span> <span class="kr">pure</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">uint256</span> <span class="n">c</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">;</span>
+        <span class="nf">assert</span><span class="p">(</span><span class="n">c</span> <span class="o">&gt;=</span> <span class="n">a</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">c</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">/// @dev Subtracts b from a, throwing an error if the operation would cause an underflow.</span>
+    <span class="c1">/// @param a The number to be subtracted from</span>
+    <span class="c1">/// @param b The amount that should be subtracted</span>
+    <span class="kd">function</span> <span class="n">safeSub</span><span class="p">(</span><span class="kt">uint256</span> <span class="n">a</span><span class="p">,</span> <span class="kt">uint256</span> <span class="n">b</span><span class="p">)</span> <span class="kr">public</span> <span class="kr">pure</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">uint256</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nf">assert</span><span class="p">(</span><span class="n">b</span> <span class="o">&lt;=</span> <span class="n">a</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">a</span> <span class="o">-</span> <span class="n">b</span><span class="p">;</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
