@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "package_name": "wallet",
   "sources": {
-    "./contracts/Wallet.sol": "ipfs://QmTYzCJyP9o3DoZPmeBRsc83t18JvBgDMajUF2AjAyjVBv"
+    "./contracts/Wallet.sol": "ipfs://QmdvZEW3AaUntDfFkcbdnYzeLAAeD4YFeixQsdmHF88T6Q"
   },
   "contract_types": {
     "Wallet": {
@@ -114,7 +114,7 @@
     }
   },
   "build_dependencies": {
-    "owned": "ipfs://Qmarga5f45wGaYHdAqdSSfTeRHxbxncdtpaiRJEZv6qd2w",
-    "safe-math-lib": "ipfs://Qmf8XgwQ1mQ43AsgG4RFKnW4xg4o1txHjMahyJqc6ZYHVL"
+    "owned": "ipfs://QmbeVyFLSuEUxiXKwSsEjef6icpdTdA4kGG9BcrJXKNKUW",
+    "safe-math-lib": "ipfs://QmWgvM8yXGyHoGWqLFXvareJsoCZVsdrpKNCLMun3RaSJm"
   }
 }

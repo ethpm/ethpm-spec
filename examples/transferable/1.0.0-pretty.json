@@ -13,9 +13,9 @@
     ]
   },
   "sources":{
-    "./contracts/Transferable.sol":"ipfs://QmZM6vXzwoenmCEU4zVQW44LPt2nEyYXAw9fhftiyEvfDC"
+    "./contracts/Transferable.sol":"ipfs://QmZYkdUUTwREjfy4vQc3enzu6WKk8eNyvGERqy1cNNVkAD"
   },
   "build_dependencies":{
-    "owned":"ipfs://Qme4otpS88NV8yQi8TfTP89EsQC5bko3F5N1yhRoi6cwGV"
+    "owned":"ipfs://QmbeVyFLSuEUxiXKwSsEjef6icpdTdA4kGG9BcrJXKNKUW"
   }
 }
