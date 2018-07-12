@@ -99,7 +99,7 @@ The ``package_name`` field defines a human readable name for this
 package. Packages **must** include this field. Package names **must**
 begin with a lowercase letter and be comprised of only lowercase
 letters, numeric characters, and the dash character ``-``. Package
-names **must** not exceed 214 characters in length.
+names **must** not exceed 255 characters in length.
 
   :Required: Yes
   :Key: ``package_name``
@@ -190,7 +190,8 @@ The ``deployments`` field holds the information for the chains on which
 this release has |ContractInstances| as well as the |ContractTypes|
 and other deployment details for those deployed contract instances.
 The set of chains defined by the `BIP122 URI <#bip122-uris>` keys for this
-object **must** be unique.
+object **must** be unique. There cannot be two different URI keys in a deployments
+field representing the same blockchain.
 
   :Key: ``deployments``
   :Type: Object (String: Object(String: `Contract Instance Object`_))
@@ -217,7 +218,7 @@ The ``build_dependencies`` field defines a key/value mapping of Ethereum
   :Type: Object (String: String)
   :Format:
       Keys **must** be valid `package names`_ matching the regular expression
-      ``[a-z][-a-z0-9]{0,213}``.
+      ``[a-z][-a-z0-9]{0,255}``.
 
       Values **must** be valid IPFS URIs which resolve to a valid package.
 

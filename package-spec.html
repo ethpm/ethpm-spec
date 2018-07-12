@@ -339,7 +339,7 @@ this document conforms to. Packages <strong>must</strong> include this field.</p
 package. Packages <strong>must</strong> include this field. Package names <strong>must</strong>
 begin with a lowercase letter and be comprised of only lowercase
 letters, numeric characters, and the dash character <code class="docutils literal notranslate"><span class="pre">-</span></code>. Package
-names <strong>must</strong> not exceed 214 characters in length.</p>
+names <strong>must</strong> not exceed 255 characters in length.</p>
 <blockquote>
 <div><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -475,7 +475,8 @@ release.</p>
 this release has <a class="reference internal" href="glossary.html#term-contract-instance"><span class="xref std std-term">Contract Instances</span></a> as well as the <a class="reference internal" href="glossary.html#term-contract-type"><span class="xref std std-term">Contract Types</span></a>
 and other deployment details for those deployed contract instances.
 The set of chains defined by the <cite>BIP122 URI &lt;#bip122-uris&gt;</cite> keys for this
-object <strong>must</strong> be unique.</p>
+object <strong>must</strong> be unique. There cannot be two different URI keys in a deployments
+field representing the same blockchain.</p>
 <blockquote>
 <div><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -521,7 +522,7 @@ object <strong>must</strong> be unique.</p>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">Format:</th><td class="field-body"><p class="first">Keys <strong>must</strong> be valid <a class="reference internal" href="#package-names">package names</a> matching the regular expression
-<code class="docutils literal notranslate"><span class="pre">[a-z][-a-z0-9]{0,213}</span></code>.</p>
+<code class="docutils literal notranslate"><span class="pre">[a-z][-a-z0-9]{0,255}</span></code>.</p>
 <p class="last">Values <strong>must</strong> be valid IPFS URIs which resolve to a valid package.</p>
 </td>
 </tr>
