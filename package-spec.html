@@ -236,8 +236,10 @@
 A package manifest provides metadata about a <a class="reference internal" href="glossary.html#term-package"><span class="xref std std-term">Package</span></a>, and in most cases
 should provide sufficient information about the packaged contracts and its
 dependencies to do bytecode verification of its contracts.</p>
+<hr class="docutils" />
 <div class="section" id="guiding-principles">
 <h2>Guiding Principles<a class="headerlink" href="#guiding-principles" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
 <p>This specification makes the following assumptions about the
 document lifecycle.</p>
 <ol class="arabic simple">
@@ -251,8 +253,10 @@ rather by package registries <em>or</em> referenced by package registries
 and stored in something akin to IPFS.</li>
 </ol>
 </div>
+<hr class="docutils" />
 <div class="section" id="conventions">
 <h2>Conventions<a class="headerlink" href="#conventions" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
 <div class="section" id="rfc2119">
 <h3>RFC2119<a class="headerlink" href="#rfc2119" title="Permalink to this headline">¶</a></h3>
 <p>The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”,
@@ -281,8 +285,10 @@ have no prefix. Unless otherwise specified, all hexadecimal values
 </div></blockquote>
 </div>
 </div>
+<hr class="docutils" />
 <div class="section" id="document-format">
 <h2>Document Format<a class="headerlink" href="#document-format" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
 <p>The canonical format is a single JSON object. Packages <strong>must</strong> conform to the
 following serialization rules.</p>
 <ul class="simple">
@@ -294,8 +300,10 @@ extra whitespace.</li>
 <li>The document <strong>must</strong> not have a trailing newline.</li>
 </ul>
 </div>
+<hr class="docutils" />
 <div class="section" id="document-specification">
 <h2>Document Specification<a class="headerlink" href="#document-specification" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
 <p>The following fields are defined for the package. Custom fields <strong>may</strong> be
 included. Custom fields <strong>should</strong> be prefixed with <code class="docutils literal notranslate"><span class="pre">x-</span></code> to prevent
 name collisions with future versions of the specification.</p>
@@ -312,8 +320,9 @@ this specification: <a class="reference external" href="https://github.com/ethpm
 </tbody>
 </table>
 </div></blockquote>
+<hr class="docutils" id="manifest-version" />
 <div class="section" id="ethpm-manifest-version-manifest-version">
-<span id="manifest-version"></span><h3>EthPM Manifest Version: <code class="docutils literal notranslate"><span class="pre">manifest_version</span></code><a class="headerlink" href="#ethpm-manifest-version-manifest-version" title="Permalink to this headline">¶</a></h3>
+<h3>EthPM Manifest Version: <code class="docutils literal notranslate"><span class="pre">manifest_version</span></code><a class="headerlink" href="#ethpm-manifest-version-manifest-version" title="Permalink to this headline">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">manifest_version</span></code> field defines the specification version that
 this document conforms to. Packages <strong>must</strong> include this field.</p>
 <blockquote>
@@ -333,8 +342,9 @@ this document conforms to. Packages <strong>must</strong> include this field.</p
 </table>
 </div></blockquote>
 </div>
+<hr class="docutils" id="package-names" />
 <div class="section" id="package-name-package-name">
-<span id="package-names"></span><h3>Package Name: <code class="docutils literal notranslate"><span class="pre">package_name</span></code><a class="headerlink" href="#package-name-package-name" title="Permalink to this headline">¶</a></h3>
+<h3>Package Name: <code class="docutils literal notranslate"><span class="pre">package_name</span></code><a class="headerlink" href="#package-name-package-name" title="Permalink to this headline">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">package_name</span></code> field defines a human readable name for this
 package. Packages <strong>must</strong> include this field. Package names <strong>must</strong>
 begin with a lowercase letter and be comprised of only lowercase
@@ -358,6 +368,7 @@ names <strong>must</strong> not exceed 255 characters in length.</p>
 </table>
 </div></blockquote>
 </div>
+<hr class="docutils" />
 <div class="section" id="package-meta-meta">
 <h3>Package Meta: <code class="docutils literal notranslate"><span class="pre">meta</span></code><a class="headerlink" href="#package-meta-meta" title="Permalink to this headline">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">meta</span></code> field defines a location for metadata about the package
@@ -379,6 +390,7 @@ important or convenient to have on-hand for other reasons. This field
 </table>
 </div></blockquote>
 </div>
+<hr class="docutils" />
 <div class="section" id="version-version">
 <h3>Version: <code class="docutils literal notranslate"><span class="pre">version</span></code><a class="headerlink" href="#version-version" title="Permalink to this headline">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">version</span></code> field declares the version number of this release. This
@@ -400,6 +412,7 @@ specification.</p>
 </table>
 </div></blockquote>
 </div>
+<hr class="docutils" />
 <div class="section" id="sources-sources">
 <h3>Sources: <code class="docutils literal notranslate"><span class="pre">sources</span></code><a class="headerlink" href="#sources-sources" title="Permalink to this headline">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">sources</span></code> field defines a source tree that <strong>should</strong> comprise the
@@ -442,6 +455,7 @@ interpreted as a file path.</li>
 </div></blockquote>
 </div>
 </div>
+<hr class="docutils" />
 <div class="section" id="contract-types-contract-types">
 <h3>Contract Types: <code class="docutils literal notranslate"><span class="pre">contract_types</span></code><a class="headerlink" href="#contract-types-contract-types" title="Permalink to this headline">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">contract_types</span></code> field holds the <a class="reference internal" href="glossary.html#term-contract-type"><span class="xref std std-term">Contract Types</span></a> which have been
@@ -469,6 +483,7 @@ release.</p>
 </table>
 </div></blockquote>
 </div>
+<hr class="docutils" />
 <div class="section" id="deployments-deployments">
 <h3>Deployments: <code class="docutils literal notranslate"><span class="pre">deployments</span></code><a class="headerlink" href="#deployments-deployments" title="Permalink to this headline">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">deployments</span></code> field holds the information for the chains on which
@@ -503,6 +518,7 @@ field representing the same blockchain.</p>
 </div></blockquote>
 </div>
 </div>
+<hr class="docutils" />
 <div class="section" id="build-dependencies-build-dependencies">
 <h3>Build Dependencies: <code class="docutils literal notranslate"><span class="pre">build_dependencies</span></code><a class="headerlink" href="#build-dependencies-build-dependencies" title="Permalink to this headline">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">build_dependencies</span></code> field defines a key/value mapping of Ethereum
@@ -523,7 +539,7 @@ field representing the same blockchain.</p>
 </tr>
 <tr class="field-even field"><th class="field-name">Format:</th><td class="field-body"><p class="first">Keys <strong>must</strong> be valid <a class="reference internal" href="#package-names">package names</a> matching the regular expression
 <code class="docutils literal notranslate"><span class="pre">[a-z][-a-z0-9]{0,255}</span></code>.</p>
-<p class="last">Values <strong>must</strong> be valid IPFS URIs which resolve to a valid package.</p>
+<p class="last">Values <strong>must</strong> be a <a class="reference internal" href="glossary.html#term-content-addressable-uri"><span class="xref std std-term">Content Addressable URI</span></a> which resolves to a valid package.</p>
 </td>
 </tr>
 </tbody>
@@ -531,12 +547,15 @@ field representing the same blockchain.</p>
 </div></blockquote>
 </div>
 </div>
+<hr class="docutils" />
 <div class="section" id="definitions">
 <h2>Definitions<a class="headerlink" href="#definitions" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
 <p>Definitions for different objects used within the Package. All objects
 allow custom fields to be included. Custom fields <strong>should</strong> be prefixed
 with <code class="docutils literal notranslate"><span class="pre">x-</span></code> to prevent name collisions with future versions of the
 specification.</p>
+<hr class="docutils" />
 <div class="section" id="the-link-reference-object">
 <span id="link-reference-object"></span><h3>The <em>Link Reference</em> Object<a class="headerlink" href="#the-link-reference-object" title="Permalink to this headline">¶</a></h3>
 <p>A <a class="reference internal" href="glossary.html#term-link-reference"><span class="xref std std-term">Link Reference</span></a> object has the following key/value pairs. All
@@ -599,6 +618,7 @@ link value <strong>should</strong> be given the same name.</p>
 </tbody>
 </table>
 </div></blockquote>
+<hr class="docutils" />
 </div>
 </div>
 <div class="section" id="the-link-value-object">
@@ -719,6 +739,7 @@ of the matching chain.</li>
 </div></blockquote>
 </div>
 </div>
+<hr class="docutils" />
 <div class="section" id="the-bytecode-object">
 <h3>The <em>Bytecode</em> Object<a class="headerlink" href="#the-bytecode-object" title="Permalink to this headline">¶</a></h3>
 <p>A bytecode object has the following key/value pairs.</p>
@@ -796,6 +817,7 @@ the <code class="docutils literal notranslate"><span class="pre">link_references
 <li>The length of the resolved <code class="docutils literal notranslate"><span class="pre">value</span></code> <strong>must</strong> be equal to the
 <code class="docutils literal notranslate"><span class="pre">length</span></code> of the corresponding <a class="reference internal" href="glossary.html#term-link-reference"><span class="xref std std-term">Link Reference</span></a>.</li>
 </ul>
+<hr class="docutils" />
 </div>
 </div>
 <div class="section" id="the-package-meta-object">
@@ -902,6 +924,7 @@ for the following common resources.</p>
 </tbody>
 </table>
 </div></blockquote>
+<hr class="docutils" />
 </div>
 </div>
 <div class="section" id="the-contract-type-object">
@@ -1018,6 +1041,7 @@ format.</td>
 </tbody>
 </table>
 </div></blockquote>
+<hr class="docutils" />
 </div>
 </div>
 <div class="section" id="the-contract-instance-object">
@@ -1165,6 +1189,7 @@ format.</td>
 </tbody>
 </table>
 </div></blockquote>
+<hr class="docutils" />
 </div>
 </div>
 <div class="section" id="the-compiler-information-object">
@@ -1235,6 +1260,7 @@ to the <a class="reference external" href="http://solidity.readthedocs.io/en/lat
 </div></blockquote>
 </div>
 </div>
+<hr class="docutils" />
 <div class="section" id="bip122-uris">
 <h3>BIP122 URIs<a class="headerlink" href="#bip122-uris" title="Permalink to this headline">¶</a></h3>
 <p>BIP122 URIs are used to define a blockchain via a subset of the
