@@ -90,7 +90,7 @@ included. Custom fields **should** be prefixed with ``x-`` to prevent
 name collisions with future versions of the specification.
 
   :See Also: Formalized (`JSON-Schema <http://json-schema.org>`_) version of
-    this specification: `package.spec.json <https://github.com/ethpm/ethpm-spec/tree/v2.0.0/spec/package.spec.json>`_
+    this specification: `package.spec.json <https://github.com/ethpm/ethpm-spec/tree/v2.0.0-prerelease.0/spec/package.spec.json>`_
   :Jump To: `Definitions`_
 
 .. _manifest-version:
