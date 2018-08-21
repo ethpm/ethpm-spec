@@ -161,7 +161,8 @@
       "description": "Data for a deployed instance of a contract",
       "type": "object",
       "required": [
-        "contract_type"
+        "contract_type",
+        "address"
       ],
       "properties": {
         "contract_type": {
