@@ -1,0 +1,1349 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Specification &mdash; EthPM Package Manifest  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/contentui.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Rationale" href="use-cases.html" />
+    <link rel="prev" title="Simple Summary" href="overview.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> EthPM Package Manifest
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html#overview">Overview</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Specification</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#guiding-principles">Guiding Principles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#conventions">Conventions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#rfc2119">RFC2119</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#prefixed-vs-unprefixed">Prefixed vs Unprefixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#document-format">Document Format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#document-specification">Document Specification</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ethpm-manifest-version-manifest-version">EthPM Manifest Version: <code class="docutils literal notranslate"><span class="pre">manifest_version</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#package-name-package-name">Package Name: <code class="docutils literal notranslate"><span class="pre">package_name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#package-meta-meta">Package Meta: <code class="docutils literal notranslate"><span class="pre">meta</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#version-version">Version: <code class="docutils literal notranslate"><span class="pre">version</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sources-sources">Sources: <code class="docutils literal notranslate"><span class="pre">sources</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#format">Format</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#contract-types-contract-types">Contract Types: <code class="docutils literal notranslate"><span class="pre">contract_types</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#deployments-deployments">Deployments: <code class="docutils literal notranslate"><span class="pre">deployments</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">Format</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#build-dependencies-build-dependencies">Build Dependencies: <code class="docutils literal notranslate"><span class="pre">build_dependencies</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#definitions">Definitions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#the-link-reference-object">The <em>Link Reference</em> Object</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#offsets-offsets">Offsets: <code class="docutils literal notranslate"><span class="pre">offsets</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#length-length">Length: <code class="docutils literal notranslate"><span class="pre">length</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#name-name">Name: <code class="docutils literal notranslate"><span class="pre">name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#the-link-value-object">The <em>Link Value</em> Object</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#offset-offset-1">Offsets: <code class="docutils literal notranslate"><span class="pre">offsets</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#type-type">Type: <code class="docutils literal notranslate"><span class="pre">type</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#value-value">Value: <code class="docutils literal notranslate"><span class="pre">value</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#the-bytecode-object">The <em>Bytecode</em> Object</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#bytecode-bytecode">Bytecode: <code class="docutils literal notranslate"><span class="pre">bytecode</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#link-references-link-references">Link References: <code class="docutils literal notranslate"><span class="pre">link_references</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#link-dependencies-link-dependencies">Link Dependencies: <code class="docutils literal notranslate"><span class="pre">link_dependencies</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#the-package-meta-object">The <em>Package Meta</em> Object</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#authors-authors">Authors: <code class="docutils literal notranslate"><span class="pre">authors</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#license-license">License: <code class="docutils literal notranslate"><span class="pre">license</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#description-description">Description: <code class="docutils literal notranslate"><span class="pre">description</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#keywords-keywords">Keywords: <code class="docutils literal notranslate"><span class="pre">keywords</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#links-links">Links: <code class="docutils literal notranslate"><span class="pre">links</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#the-contract-type-object">The <em>Contract Type</em> Object</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#contract-name-contract-name">Contract Name: <code class="docutils literal notranslate"><span class="pre">contract_name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#deployment-bytecode-deployment-bytecode">Deployment Bytecode: <code class="docutils literal notranslate"><span class="pre">deployment_bytecode</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#runtime-bytecode-runtime-bytecode">Runtime Bytecode: <code class="docutils literal notranslate"><span class="pre">runtime_bytecode</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#abi-abi">ABI: <code class="docutils literal notranslate"><span class="pre">abi</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#natspec-natspec">Natspec: <code class="docutils literal notranslate"><span class="pre">natspec</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#compiler-compiler">Compiler: <code class="docutils literal notranslate"><span class="pre">compiler</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#the-contract-instance-object">The <em>Contract Instance</em> Object</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#contract-type-contract-type">Contract Type: <code class="docutils literal notranslate"><span class="pre">contract_type</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#address-address">Address: <code class="docutils literal notranslate"><span class="pre">address</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#transaction-transaction">Transaction: <code class="docutils literal notranslate"><span class="pre">transaction</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#block-block">Block: <code class="docutils literal notranslate"><span class="pre">block</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#runtime-bytecode-runtime-bytecode-1">Runtime Bytecode: <code class="docutils literal notranslate"><span class="pre">runtime_bytecode</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#compiler-compiler-1">Compiler: <code class="docutils literal notranslate"><span class="pre">compiler</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#the-compiler-information-object">The <em>Compiler Information</em> Object</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id5">Name <code class="docutils literal notranslate"><span class="pre">name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#version-version-1">Version: <code class="docutils literal notranslate"><span class="pre">version</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#settings-settings">Settings: <code class="docutils literal notranslate"><span class="pre">settings</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#bip122-uris">BIP122 URIs</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="use-cases.html#id1">Use Cases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">EthPM Package Manifest</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Specification</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/package-spec.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="specification">
+<span id="package-specification"></span><h1>Specification<a class="headerlink" href="#specification" title="Permalink to this headline">¶</a></h1>
+<p>This document defines the specification for an EthPM package manifest.
+A package manifest provides metadata about a <a class="reference internal" href="glossary.html#term-package"><span class="xref std std-term">Package</span></a>, and in most cases
+should provide sufficient information about the packaged contracts and its
+dependencies to do bytecode verification of its contracts.</p>
+<hr class="docutils" />
+<div class="section" id="guiding-principles">
+<h2>Guiding Principles<a class="headerlink" href="#guiding-principles" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
+<p>This specification makes the following assumptions about the
+document lifecycle.</p>
+<ol class="arabic simple">
+<li>Package manifests are intended to be generated programatically by package
+management software as part of the release process.</li>
+<li>Package manifests will be consumed by package managers during tasks like
+installing package dependencies or building and deploying new
+releases.</li>
+<li>Package manifests will typically <strong>not</strong> be stored alongside the source, but
+rather by package registries <em>or</em> referenced by package registries
+and stored in something akin to IPFS.</li>
+</ol>
+</div>
+<hr class="docutils" />
+<div class="section" id="conventions">
+<h2>Conventions<a class="headerlink" href="#conventions" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
+<div class="section" id="rfc2119">
+<h3>RFC2119<a class="headerlink" href="#rfc2119" title="Permalink to this headline">¶</a></h3>
+<p>The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”,
+“SHOULD”, “SHOULD NOT”, “RECOMMENDED”, “MAY”, and “OPTIONAL” in this
+document are to be interpreted as described in RFC 2119.</p>
+<ul class="simple">
+<li><a class="reference external" href="https://www.ietf.org/rfc/rfc2119.txt">https://www.ietf.org/rfc/rfc2119.txt</a></li>
+</ul>
+</div>
+<div class="section" id="prefixed-vs-unprefixed">
+<h3>Prefixed vs Unprefixed<a class="headerlink" href="#prefixed-vs-unprefixed" title="Permalink to this headline">¶</a></h3>
+<p>A <a class="reference internal" href="glossary.html#term-prefixed"><span class="xref std std-term">prefixed</span></a> hexadecimal value begins with <code class="docutils literal notranslate"><span class="pre">0x</span></code>. <a class="reference internal" href="glossary.html#term-unprefixed"><span class="xref std std-term">Unprefixed</span></a> values
+have no prefix. Unless otherwise specified, all hexadecimal values
+<strong>should</strong> be represented with the <code class="docutils literal notranslate"><span class="pre">0x</span></code> prefix.</p>
+<blockquote>
+<div><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Prefixed:</th><td class="field-body"><code class="docutils literal notranslate"><span class="pre">0xdeadbeef</span></code></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Unprefixed:</th><td class="field-body"><code class="docutils literal notranslate"><span class="pre">deadbeef</span></code></td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="document-format">
+<h2>Document Format<a class="headerlink" href="#document-format" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
+<p>The canonical format is a single JSON object. Packages <strong>must</strong> conform to the
+following serialization rules.</p>
+<ul class="simple">
+<li>The document <strong>must</strong> be tightly packed, meaning no linebreaks or
+extra whitespace.</li>
+<li>The keys in all objects must be sorted alphabetically.</li>
+<li>Duplicate keys in the same object are invalid.</li>
+<li>The document <strong>must</strong> use <a class="reference external" href="https://en.wikipedia.org/wiki/UTF-8">UTF-8</a> encoding.</li>
+<li>The document <strong>must</strong> not have a trailing newline.</li>
+</ul>
+</div>
+<hr class="docutils" />
+<div class="section" id="document-specification">
+<h2>Document Specification<a class="headerlink" href="#document-specification" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
+<p>The following fields are defined for the package. Custom fields <strong>may</strong> be
+included. Custom fields <strong>should</strong> be prefixed with <code class="docutils literal notranslate"><span class="pre">x-</span></code> to prevent
+name collisions with future versions of the specification.</p>
+<blockquote>
+<div><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">See Also:</th><td class="field-body">Formalized (<a class="reference external" href="http://json-schema.org">JSON-Schema</a>) version of
+this specification: <a class="reference external" href="https://github.com/ethpm/ethpm-spec/tree/v2.0.0-prerelease.0/spec/package.spec.json">package.spec.json</a></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Jump To:</th><td class="field-body"><a class="reference internal" href="#definitions">Definitions</a></td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<hr class="docutils" id="manifest-version" />
+<div class="section" id="ethpm-manifest-version-manifest-version">
+<h3>EthPM Manifest Version: <code class="docutils literal notranslate"><span class="pre">manifest_version</span></code><a class="headerlink" href="#ethpm-manifest-version-manifest-version" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">manifest_version</span></code> field defines the specification version that
+this document conforms to. Packages <strong>must</strong> include this field.</p>
+<blockquote>
+<div><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Required:</th><td class="field-body">Yes</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Key:</th><td class="field-body"><code class="docutils literal notranslate"><span class="pre">manifest_version</span></code></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">String</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Allowed Values:</th><td class="field-body"><code class="docutils literal notranslate"><span class="pre">2</span></code></td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</div>
+<hr class="docutils" id="package-names" />
+<div class="section" id="package-name-package-name">
+<h3>Package Name: <code class="docutils literal notranslate"><span class="pre">package_name</span></code><a class="headerlink" href="#package-name-package-name" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">package_name</span></code> field defines a human readable name for this
+package. Packages <strong>must</strong> include this field. Package names <strong>must</strong>
+begin with a lowercase letter and be comprised of only lowercase
+letters, numeric characters, and the dash character <code class="docutils literal notranslate"><span class="pre">-</span></code>. Package
+names <strong>must</strong> not exceed 255 characters in length.</p>
+<blockquote>
+<div><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Required:</th><td class="field-body">Yes</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Key:</th><td class="field-body"><code class="docutils literal notranslate"><span class="pre">package_name</span></code></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">String</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Format:</th><td class="field-body"><strong>must</strong> match the regular expression
+<code class="docutils literal notranslate"><span class="pre">^[a-zA-Z][a-zA-Z0-9_]{0,255}$</span></code></td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</div>
+<hr class="docutils" />
+<div class="section" id="package-meta-meta">
+<h3>Package Meta: <code class="docutils literal notranslate"><span class="pre">meta</span></code><a class="headerlink" href="#package-meta-meta" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">meta</span></code> field defines a location for metadata about the package
+which is not integral in nature for package installation, but may be
+important or convenient to have on-hand for other reasons. This field
+<strong>should</strong> be included in all Packages.</p>
+<blockquote>
+<div><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Required:</th><td class="field-body">No</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Key:</th><td class="field-body"><code class="docutils literal notranslate"><span class="pre">meta</span></code></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference internal" href="#package-meta-object">Package Meta Object</a></td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</div>
+<hr class="docutils" />
+<div class="section" id="version-version">
+<h3>Version: <code class="docutils literal notranslate"><span class="pre">version</span></code><a class="headerlink" href="#version-version" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">version</span></code> field declares the version number of this release. This
+value <strong>must</strong> be included in all Packages. This value <strong>should</strong>
+conform to the <a class="reference external" href="http://semver.org/">semver</a> version numbering
+specification.</p>
+<blockquote>
+<div><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Required:</th><td class="field-body">Yes</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Key:</th><td class="field-body"><code class="docutils literal notranslate"><span class="pre">version</span></code></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">String</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</div>
+<hr class="docutils" />
+<div class="section" id="sources-sources">
+<h3>Sources: <code class="docutils literal notranslate"><span class="pre">sources</span></code><a class="headerlink" href="#sources-sources" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">sources</span></code> field defines a source tree that <strong>should</strong> comprise the
+full source tree necessary to recompile the contracts contained in this
+release. Sources are declared in a key/value mapping.</p>
+<blockquote>
+<div><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Key:</th><td class="field-body"><code class="docutils literal notranslate"><span class="pre">sources</span></code></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">Object (String: String)</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Format:</th><td class="field-body">See Below.</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<div class="section" id="format">
+<h4>Format<a class="headerlink" href="#format" title="Permalink to this headline">¶</a></h4>
+<p>Keys <strong>must</strong> be relative filesystem paths beginning with a <code class="docutils literal notranslate"><span class="pre">./</span></code>.</p>
+<p>Paths <strong>must</strong> resolve to a path that is within the current working directory.</p>
+<p>Values <strong>must</strong> conform to <em>one of</em> the following formats.</p>
+<blockquote>
+<div><ul class="simple">
+<li>Source string.</li>
+<li><a class="reference internal" href="glossary.html#term-content-addressable-uri"><span class="xref std std-term">Content Addressable URI</span></a>.</li>
+</ul>
+</div></blockquote>
+<p>When the value is a source string the key should be interpreted as a
+file path.</p>
+<blockquote>
+<div><ul class="simple">
+<li>If the resulting document is a directory the key should be
+interpreted as a directory path.</li>
+<li>If the resulting document is a file the key should be
+interpreted as a file path.</li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="contract-types-contract-types">
+<h3>Contract Types: <code class="docutils literal notranslate"><span class="pre">contract_types</span></code><a class="headerlink" href="#contract-types-contract-types" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">contract_types</span></code> field holds the <a class="reference internal" href="glossary.html#term-contract-type"><span class="xref std std-term">Contract Types</span></a> which have been
+included in this release. <a class="reference internal" href="glossary.html#term-package"><span class="xref std std-term">Packages</span></a> <strong>should</strong> only include contract types
+that can be found in the source files for this package. Packages
+<strong>should not</strong> include contract types from dependencies. Packages
+<strong>should not</strong> include abstract contracts in the contract types section of a
+release.</p>
+<blockquote>
+<div><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Key:</th><td class="field-body"><p class="first"><code class="docutils literal notranslate"><span class="pre">contract_types</span></code></p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body"><p class="first">Object (String: <a class="reference internal" href="#contract-type-object">Contract Type Object</a>)</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Format:</th><td class="field-body"><p class="first">Keys <strong>must</strong> be valid <a class="reference internal" href="glossary.html#term-contract-alias"><span class="xref std std-term">Contract Aliases</span></a>.</p>
+<p class="last">Values <strong>must</strong> conform to the <a class="reference internal" href="#contract-type-object">Contract Type Object</a> definition.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</div>
+<hr class="docutils" />
+<div class="section" id="deployments-deployments">
+<h3>Deployments: <code class="docutils literal notranslate"><span class="pre">deployments</span></code><a class="headerlink" href="#deployments-deployments" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">deployments</span></code> field holds the information for the chains on which
+this release has <a class="reference internal" href="glossary.html#term-contract-instance"><span class="xref std std-term">Contract Instances</span></a> as well as the <a class="reference internal" href="glossary.html#term-contract-type"><span class="xref std std-term">Contract Types</span></a>
+and other deployment details for those deployed contract instances.
+The set of chains defined by the <cite>BIP122 URI &lt;#bip122-uris&gt;</cite> keys for this
+object <strong>must</strong> be unique. There cannot be two different URI keys in a deployments
+field representing the same blockchain.</p>
+<blockquote>
+<div><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Key:</th><td class="field-body"><code class="docutils literal notranslate"><span class="pre">deployments</span></code></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">Object (String: Object(String: <a class="reference internal" href="#contract-instance-object">Contract Instance Object</a>))</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Format:</th><td class="field-body">See Below.</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<div class="section" id="id1">
+<h4>Format<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
+<p>Keys <strong>must</strong> be a valid BIP122 URI chain definition.</p>
+<p>Values <strong>must</strong> be objects which conform to the following format.</p>
+<blockquote>
+<div><ul class="simple">
+<li>Keys <strong>must</strong> be valid <a class="reference internal" href="glossary.html#term-contract-instance-name"><span class="xref std std-term">Contract Instance Names</span></a>.</li>
+<li>Values <strong>must</strong> be a valid <a class="reference internal" href="#contract-instance-object">Contract Instance Object</a>.</li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="build-dependencies-build-dependencies">
+<h3>Build Dependencies: <code class="docutils literal notranslate"><span class="pre">build_dependencies</span></code><a class="headerlink" href="#build-dependencies-build-dependencies" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">build_dependencies</span></code> field defines a key/value mapping of Ethereum
+<a class="reference internal" href="glossary.html#term-package"><span class="xref std std-term">Packages</span></a> that this project depends on.</p>
+<blockquote>
+<div><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Required:</th><td class="field-body"><p class="first">No</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Key:</th><td class="field-body"><p class="first"><code class="docutils literal notranslate"><span class="pre">build_dependencies</span></code></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><p class="first">Object (String: String)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Format:</th><td class="field-body"><p class="first">Keys <strong>must</strong> be valid <a class="reference internal" href="#package-names">package names</a> matching the regular expression
+<code class="docutils literal notranslate"><span class="pre">[a-z][-a-z0-9]{0,255}</span></code>.</p>
+<p class="last">Values <strong>must</strong> be a <a class="reference internal" href="glossary.html#term-content-addressable-uri"><span class="xref std std-term">Content Addressable URI</span></a> which resolves to a valid package.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="definitions">
+<h2>Definitions<a class="headerlink" href="#definitions" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
+<p>Definitions for different objects used within the Package. All objects
+allow custom fields to be included. Custom fields <strong>should</strong> be prefixed
+with <code class="docutils literal notranslate"><span class="pre">x-</span></code> to prevent name collisions with future versions of the
+specification.</p>
+<hr class="docutils" />
+<div class="section" id="the-link-reference-object">
+<span id="link-reference-object"></span><h3>The <em>Link Reference</em> Object<a class="headerlink" href="#the-link-reference-object" title="Permalink to this headline">¶</a></h3>
+<p>A <a class="reference internal" href="glossary.html#term-link-reference"><span class="xref std std-term">Link Reference</span></a> object has the following key/value pairs. All
+link references are assumed to be associated with some corresponding
+<a class="reference internal" href="glossary.html#term-bytecode"><span class="xref std std-term">Bytecode</span></a>.</p>
+<div class="section" id="offsets-offsets">
+<h4>Offsets: <code class="docutils literal notranslate"><span class="pre">offsets</span></code><a class="headerlink" href="#offsets-offsets" title="Permalink to this headline">¶</a></h4>
+<p>The <code class="docutils literal notranslate"><span class="pre">offsets</span></code> field is an array of integers, corresponding to each of the
+start positions where the link reference appears in the bytecode.
+Locations are 0-indexed from the beginning of the bytes representation of
+the corresponding bytecode.  This field is invalid if it references a position
+that is beyond the end of the bytecode.</p>
+<blockquote>
+<div><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Required:</th><td class="field-body">Yes</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">Array</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</div>
+<div class="section" id="length-length">
+<h4>Length: <code class="docutils literal notranslate"><span class="pre">length</span></code><a class="headerlink" href="#length-length" title="Permalink to this headline">¶</a></h4>
+<p>The <code class="docutils literal notranslate"><span class="pre">length</span></code> field is an integer which defines the length in bytes
+of the link reference. This field is invalid if the end of the defined
+link reference exceeds the end of the bytecode.</p>
+<blockquote>
+<div><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Required:</th><td class="field-body">Yes</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">Integer</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</div>
+<div class="section" id="name-name">
+<h4>Name: <code class="docutils literal notranslate"><span class="pre">name</span></code><a class="headerlink" href="#name-name" title="Permalink to this headline">¶</a></h4>
+<p>The <code class="docutils literal notranslate"><span class="pre">name</span></code> field is a string which <strong>must</strong> be a valid <a class="reference internal" href="glossary.html#term-identifier"><span class="xref std std-term">Identifier</span></a>.
+Any link references which <strong>should</strong> be linked with the same
+link value <strong>should</strong> be given the same name.</p>
+<blockquote>
+<div><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Required:</th><td class="field-body">No</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">String</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Format:</th><td class="field-body"><strong>must</strong> conform to the <a class="reference internal" href="glossary.html#term-identifier"><span class="xref std std-term">Identifier</span></a> format.</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<hr class="docutils" />
+</div>
+</div>
+<div class="section" id="the-link-value-object">
+<span id="link-value-object"></span><h3>The <em>Link Value</em> Object<a class="headerlink" href="#the-link-value-object" title="Permalink to this headline">¶</a></h3>
+<p>Describes a single <a class="reference internal" href="glossary.html#term-link-value"><span class="xref std std-term">Link Value</span></a>.</p>
+<p>A <strong>Link Value object</strong> is defined to have the following key/value pairs.</p>
+<div class="section" id="offset-offset-1">
+<span id="id2"></span><h4>Offsets: <code class="docutils literal notranslate"><span class="pre">offsets</span></code><a class="headerlink" href="#offset-offset-1" title="Permalink to this headline">¶</a></h4>
+<p>The <code class="docutils literal notranslate"><span class="pre">offsets</span></code> field defines the locations within the corresponding bytecode
+where the <code class="docutils literal notranslate"><span class="pre">value</span></code> for this link value was written.  These locations are
+0-indexed from the beginning of the bytes representation of the
+corresponding bytecode.</p>
+<blockquote>
+<div><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Required:</th><td class="field-body">Yes</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">Integer</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Format:</th><td class="field-body">See Below.</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<p><strong>Format</strong></p>
+<p>Array of integers, where each integer <strong>must</strong> conform to all of the following.</p>
+<blockquote>
+<div><ul class="simple">
+<li>greater than or equal to zero</li>
+<li>strictly less than the length of the unprefixed hexadecimal
+representation of the corresponding bytecode.</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="type-type">
+<h4>Type: <code class="docutils literal notranslate"><span class="pre">type</span></code><a class="headerlink" href="#type-type" title="Permalink to this headline">¶</a></h4>
+<p>The <code class="docutils literal notranslate"><span class="pre">type</span></code> field defines the <code class="docutils literal notranslate"><span class="pre">value</span></code> type for determining what is encoded
+when <a class="reference internal" href="glossary.html#term-linking"><span class="xref std std-term">linking</span></a> the corresponding bytecode.</p>
+<blockquote>
+<div><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Required:</th><td class="field-body"><p class="first">Yes</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body"><p class="first">String</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Allowed Values:</th><td class="field-body"><p class="first"><code class="docutils literal notranslate"><span class="pre">&quot;literal&quot;</span></code> for bytecode literals</p>
+<p class="last"><code class="docutils literal notranslate"><span class="pre">&quot;reference&quot;</span></code> for named references to a particular <a class="reference internal" href="glossary.html#term-contract-instance"><span class="xref std std-term">Contract Instance</span></a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</div>
+<div class="section" id="value-value">
+<h4>Value: <code class="docutils literal notranslate"><span class="pre">value</span></code><a class="headerlink" href="#value-value" title="Permalink to this headline">¶</a></h4>
+<p>The <code class="docutils literal notranslate"><span class="pre">value</span></code> field defines the value which should be written when
+<a class="reference internal" href="glossary.html#term-linking"><span class="xref std std-term">linking</span></a> the corresponding bytecode.</p>
+<blockquote>
+<div><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Required:</th><td class="field-body">Yes</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">String</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Format:</th><td class="field-body">Determined based on <code class="docutils literal notranslate"><span class="pre">type</span></code>, see below.</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<p><strong>Format</strong></p>
+<p>For static value <em>literals</em> (e.g. address), value <strong>must</strong> be a
+<em>byte string</em></p>
+<p>To reference the address of a <a class="reference internal" href="glossary.html#term-contract-instance"><span class="xref std std-term">Contract Instance</span></a> from the current
+package the value should be the name of that contract instance.</p>
+<blockquote>
+<div><ul class="simple">
+<li>This value <strong>must</strong> be a valid contract instance name.</li>
+<li>The chain definition under which the contract instance that this
+link value belongs to must contain this value within its keys.</li>
+<li>This value <strong>may not</strong> reference the same contract instance that
+this link value belongs to.</li>
+</ul>
+</div></blockquote>
+<p>To reference a contract instance from a <a class="reference internal" href="glossary.html#term-package"><span class="xref std std-term">Package</span></a> from somewhere
+within the dependency tree the value is constructed as follows.</p>
+<blockquote>
+<div><ul class="simple">
+<li>Let <code class="docutils literal notranslate"><span class="pre">[p1,</span> <span class="pre">p2,</span> <span class="pre">..</span> <span class="pre">pn]</span></code> define a path down the dependency tree.</li>
+<li>Each of <code class="docutils literal notranslate"><span class="pre">p1,</span> <span class="pre">p2,</span> <span class="pre">pn</span></code> <strong>must</strong> be valid package names.</li>
+<li><code class="docutils literal notranslate"><span class="pre">p1</span></code> <strong>must</strong> be present in keys of the <code class="docutils literal notranslate"><span class="pre">build_dependencies</span></code> for
+the current package.</li>
+<li>For every <code class="docutils literal notranslate"><span class="pre">pn</span></code> where <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">&gt;</span> <span class="pre">1</span></code>, <code class="docutils literal notranslate"><span class="pre">pn</span></code> <strong>must</strong> be present in the
+keys of the <code class="docutils literal notranslate"><span class="pre">build_dependencies</span></code> of the package for <code class="docutils literal notranslate"><span class="pre">pn-1</span></code>.</li>
+<li>The value is represented by the string
+<code class="docutils literal notranslate"><span class="pre">&lt;p1&gt;:&lt;p2&gt;:&lt;...&gt;:&lt;pn&gt;:&lt;contract-instance&gt;</span></code> where all of <code class="docutils literal notranslate"><span class="pre">&lt;p1&gt;</span></code>,
+<code class="docutils literal notranslate"><span class="pre">&lt;p2&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;pn&gt;</span></code> are valid package names and
+<code class="docutils literal notranslate"><span class="pre">&lt;contract-instance&gt;</span></code> is a valid <a class="reference internal" href="glossary.html#term-contract-name"><span class="xref std std-term">Contract Name</span></a>.</li>
+<li>The <code class="docutils literal notranslate"><span class="pre">&lt;contract-instance&gt;</span></code> value <strong>must</strong> be a valid
+<a class="reference internal" href="glossary.html#term-contract-instance-name"><span class="xref std std-term">Contract Instance Name</span></a>.</li>
+<li>Within the package of the dependency defined by <code class="docutils literal notranslate"><span class="pre">&lt;pn&gt;</span></code>, all of the
+following must be satisfiable:<ul>
+<li>There <strong>must</strong> be <em>exactly</em> one chain defined under the
+<code class="docutils literal notranslate"><span class="pre">deployments</span></code> key which matches the chain definition that this
+link value is nested under.</li>
+<li>The <code class="docutils literal notranslate"><span class="pre">&lt;contract-instance&gt;</span></code> value <strong>must</strong> be present in the keys
+of the matching chain.</li>
+</ul>
+</li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="the-bytecode-object">
+<h3>The <em>Bytecode</em> Object<a class="headerlink" href="#the-bytecode-object" title="Permalink to this headline">¶</a></h3>
+<p>A bytecode object has the following key/value pairs.</p>
+<div class="section" id="bytecode-bytecode">
+<h4>Bytecode: <code class="docutils literal notranslate"><span class="pre">bytecode</span></code><a class="headerlink" href="#bytecode-bytecode" title="Permalink to this headline">¶</a></h4>
+<p>The <code class="docutils literal notranslate"><span class="pre">bytecode</span></code> field is a string containing the <code class="docutils literal notranslate"><span class="pre">0x</span></code> prefixed
+hexadecimal representation of the bytecode.</p>
+<blockquote>
+<div><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Required:</th><td class="field-body">Yes</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">String</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Format:</th><td class="field-body"><code class="docutils literal notranslate"><span class="pre">0x</span></code> prefixed hexadecimal.</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</div>
+<div class="section" id="link-references-link-references">
+<h4>Link References: <code class="docutils literal notranslate"><span class="pre">link_references</span></code><a class="headerlink" href="#link-references-link-references" title="Permalink to this headline">¶</a></h4>
+<p>The <code class="docutils literal notranslate"><span class="pre">link_references</span></code> field defines the locations in the corresponding
+bytecode which require <a class="reference internal" href="glossary.html#term-linking"><span class="xref std std-term">linking</span></a>.</p>
+<blockquote>
+<div><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Required:</th><td class="field-body">No</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">Array</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Format:</th><td class="field-body">All values <strong>must</strong> be valid <a class="reference internal" href="#link-reference-object"><span class="std std-ref">Link Reference objects</span></a>.
+See also below.</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<p><strong>Format</strong></p>
+<p>This field is considered invalid if <em>any</em> of the <a class="reference internal" href="glossary.html#term-link-reference"><span class="xref std std-term">Link References</span></a> are
+invalid when applied to the corresponding <code class="docutils literal notranslate"><span class="pre">bytecode</span></code> field, <em>or</em> if
+any of the link references intersect.</p>
+<p>Intersection is defined as two link references which overlap.</p>
+</div>
+<div class="section" id="link-dependencies-link-dependencies">
+<h4>Link Dependencies: <code class="docutils literal notranslate"><span class="pre">link_dependencies</span></code><a class="headerlink" href="#link-dependencies-link-dependencies" title="Permalink to this headline">¶</a></h4>
+<p>The <code class="docutils literal notranslate"><span class="pre">link_dependencies</span></code> defines the <a class="reference internal" href="glossary.html#term-link-value"><span class="xref std std-term">Link Values</span></a> that have been used
+to link the corresponding bytecode.</p>
+<blockquote>
+<div><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Required:</th><td class="field-body">No</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">Array</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Format:</th><td class="field-body">All values <strong>must</strong> be valid <a class="reference internal" href="#link-value-object"><span class="std std-ref">Link Value objects</span></a>.
+See also below.</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<p><strong>Format</strong></p>
+<p>Validation of this field includes the following:</p>
+<ul class="simple">
+<li>Two link value objects <strong>must not</strong> contain any of the same values for
+<code class="docutils literal notranslate"><span class="pre">offsets</span></code>.</li>
+<li>Each <a class="reference internal" href="#link-value-object"><span class="std std-ref">link value object</span></a> <strong>must</strong> have a
+corresponding <a class="reference internal" href="#link-reference-object"><span class="std std-ref">link reference object</span></a> under
+the <code class="docutils literal notranslate"><span class="pre">link_references</span></code> field.</li>
+<li>The length of the resolved <code class="docutils literal notranslate"><span class="pre">value</span></code> <strong>must</strong> be equal to the
+<code class="docutils literal notranslate"><span class="pre">length</span></code> of the corresponding <a class="reference internal" href="glossary.html#term-link-reference"><span class="xref std std-term">Link Reference</span></a>.</li>
+</ul>
+<hr class="docutils" />
+</div>
+</div>
+<div class="section" id="the-package-meta-object">
+<span id="package-meta-object"></span><h3>The <em>Package Meta</em> Object<a class="headerlink" href="#the-package-meta-object" title="Permalink to this headline">¶</a></h3>
+<p>The <em>Package Meta</em> object is defined to have the following key/value
+pairs.</p>
+<div class="section" id="authors-authors">
+<h4>Authors: <code class="docutils literal notranslate"><span class="pre">authors</span></code><a class="headerlink" href="#authors-authors" title="Permalink to this headline">¶</a></h4>
+<p>The <code class="docutils literal notranslate"><span class="pre">authors</span></code> field defines a list of human readable names for the
+authors of this package. Packages <strong>may</strong> include this field.</p>
+<blockquote>
+<div><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Required:</th><td class="field-body">No</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Key:</th><td class="field-body"><code class="docutils literal notranslate"><span class="pre">authors</span></code></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">Array (String)</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</div>
+<div class="section" id="license-license">
+<h4>License: <code class="docutils literal notranslate"><span class="pre">license</span></code><a class="headerlink" href="#license-license" title="Permalink to this headline">¶</a></h4>
+<p>The <code class="docutils literal notranslate"><span class="pre">license</span></code> field declares the license under which this package is
+released. This value <strong>should</strong> conform to the
+<a class="reference external" href="https://en.wikipedia.org/wiki/Software_Package_Data_Exchange">SPDX</a>
+format. Packages <strong>should</strong> include this field.</p>
+<blockquote>
+<div><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Required:</th><td class="field-body">No</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Key:</th><td class="field-body"><code class="docutils literal notranslate"><span class="pre">license</span></code></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">String</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</div>
+<div class="section" id="description-description">
+<h4>Description: <code class="docutils literal notranslate"><span class="pre">description</span></code><a class="headerlink" href="#description-description" title="Permalink to this headline">¶</a></h4>
+<p>The <code class="docutils literal notranslate"><span class="pre">description</span></code> field provides additional detail that may be
+relevant for the package. Packages <strong>may</strong> include this field.</p>
+<blockquote>
+<div><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Required:</th><td class="field-body">No</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Key:</th><td class="field-body"><code class="docutils literal notranslate"><span class="pre">description</span></code></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">String</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</div>
+<div class="section" id="keywords-keywords">
+<h4>Keywords: <code class="docutils literal notranslate"><span class="pre">keywords</span></code><a class="headerlink" href="#keywords-keywords" title="Permalink to this headline">¶</a></h4>
+<p>The <code class="docutils literal notranslate"><span class="pre">keywords</span></code> field provides relevant keywords related to this
+package.</p>
+<blockquote>
+<div><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Required:</th><td class="field-body">No</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Key:</th><td class="field-body"><code class="docutils literal notranslate"><span class="pre">keywords</span></code></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">List of Strings</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</div>
+<div class="section" id="links-links">
+<h4>Links: <code class="docutils literal notranslate"><span class="pre">links</span></code><a class="headerlink" href="#links-links" title="Permalink to this headline">¶</a></h4>
+<p>The <code class="docutils literal notranslate"><span class="pre">links</span></code> field provides URIs to relevant resources associated with
+this package. When possible, authors <strong>should</strong> use the following keys
+for the following common resources.</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">website</span></code>: Primary website for the package.</li>
+<li><code class="docutils literal notranslate"><span class="pre">documentation</span></code>: Package Documentation</li>
+<li><code class="docutils literal notranslate"><span class="pre">repository</span></code>: Location of the project source code.</li>
+</ul>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Key:</th><td class="field-body"><code class="docutils literal notranslate"><span class="pre">links</span></code></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">Object (String: String)</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<hr class="docutils" />
+</div>
+</div>
+<div class="section" id="the-contract-type-object">
+<span id="contract-type-object"></span><h3>The <em>Contract Type</em> Object<a class="headerlink" href="#the-contract-type-object" title="Permalink to this headline">¶</a></h3>
+<p>A <em>Contract Type</em> object is defined to have the following key/value
+pairs.</p>
+<div class="section" id="contract-name-contract-name">
+<h4>Contract Name: <code class="docutils literal notranslate"><span class="pre">contract_name</span></code><a class="headerlink" href="#contract-name-contract-name" title="Permalink to this headline">¶</a></h4>
+<p>The <code class="docutils literal notranslate"><span class="pre">contract_name</span></code> field defines the <a class="reference internal" href="glossary.html#term-contract-name"><span class="xref std std-term">Contract Name</span></a> for this
+<a class="reference internal" href="glossary.html#term-contract-type"><span class="xref std std-term">Contract Type</span></a>.</p>
+<blockquote>
+<div><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Required:</th><td class="field-body">If the <a class="reference internal" href="glossary.html#term-contract-name"><span class="xref std std-term">Contract Name</span></a> and <a class="reference internal" href="glossary.html#term-contract-alias"><span class="xref std std-term">Contract Alias</span></a> are not the
+same.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">String</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Format:</th><td class="field-body"><strong>must</strong> be a valid <a class="reference internal" href="glossary.html#term-contract-name"><span class="xref std std-term">Contract Name</span></a>.</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</div>
+<div class="section" id="deployment-bytecode-deployment-bytecode">
+<h4>Deployment Bytecode: <code class="docutils literal notranslate"><span class="pre">deployment_bytecode</span></code><a class="headerlink" href="#deployment-bytecode-deployment-bytecode" title="Permalink to this headline">¶</a></h4>
+<p>The <code class="docutils literal notranslate"><span class="pre">deployment_bytecode</span></code> field defines the bytecode for this <a class="reference internal" href="glossary.html#term-contract-type"><span class="xref std std-term">Contract Type</span></a>.</p>
+<blockquote>
+<div><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Required:</th><td class="field-body">No</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">Object</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Format:</th><td class="field-body"><strong>must</strong> conform to <a class="reference internal" href="#the-bytecode-object">the Bytecode Object</a> format.</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</div>
+<div class="section" id="runtime-bytecode-runtime-bytecode">
+<h4>Runtime Bytecode: <code class="docutils literal notranslate"><span class="pre">runtime_bytecode</span></code><a class="headerlink" href="#runtime-bytecode-runtime-bytecode" title="Permalink to this headline">¶</a></h4>
+<p>The <code class="docutils literal notranslate"><span class="pre">runtime_bytecode</span></code> field defines the unlinked <code class="docutils literal notranslate"><span class="pre">0x</span></code>-prefixed
+runtime portion of <a class="reference internal" href="glossary.html#term-bytecode"><span class="xref std std-term">Bytecode</span></a> for this <a class="reference internal" href="glossary.html#term-contract-type"><span class="xref std std-term">Contract Type</span></a>.</p>
+<blockquote>
+<div><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Required:</th><td class="field-body">No</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">Object</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Format:</th><td class="field-body"><strong>must</strong> conform to <a class="reference internal" href="#the-bytecode-object">the Bytecode Object</a> format.</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</div>
+<div class="section" id="abi-abi">
+<h4>ABI: <code class="docutils literal notranslate"><span class="pre">abi</span></code><a class="headerlink" href="#abi-abi" title="Permalink to this headline">¶</a></h4>
+<blockquote>
+<div><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Required:</th><td class="field-body">No</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">List</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Format:</th><td class="field-body"><strong>must</strong> conform to the <a class="reference external" href="https://github.com/ethereum/wiki/wiki/Ethereum-Contract-ABI#json">Ethereum Contract ABI JSON format</a>.</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</div>
+<div class="section" id="natspec-natspec">
+<h4>Natspec: <code class="docutils literal notranslate"><span class="pre">natspec</span></code><a class="headerlink" href="#natspec-natspec" title="Permalink to this headline">¶</a></h4>
+<blockquote>
+<div><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Required:</th><td class="field-body">No</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">Object</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Format:</th><td class="field-body">The union of the
+<a class="reference external" href="https://github.com/ethereum/wiki/wiki/Ethereum-Natural-Specification-Format#user-documentation">UserDoc</a>
+and <a class="reference external" href="https://github.com/ethereum/wiki/wiki/Ethereum-Natural-Specification-Format#developer-documentation">DevDoc</a>  formats.</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</div>
+<div class="section" id="compiler-compiler">
+<h4>Compiler: <code class="docutils literal notranslate"><span class="pre">compiler</span></code><a class="headerlink" href="#compiler-compiler" title="Permalink to this headline">¶</a></h4>
+<blockquote>
+<div><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Required:</th><td class="field-body">No</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">Object</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Format:</th><td class="field-body"><strong>must</strong> conform to <a class="reference internal" href="#the-compiler-information-object">the Compiler Information object</a>
+format.</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<hr class="docutils" />
+</div>
+</div>
+<div class="section" id="the-contract-instance-object">
+<span id="contract-instance-object"></span><h3>The <em>Contract Instance</em> Object<a class="headerlink" href="#the-contract-instance-object" title="Permalink to this headline">¶</a></h3>
+<p>A <strong>Contract Instance Object</strong> represents a single deployed <a class="reference internal" href="glossary.html#term-contract-instance"><span class="xref std std-term">Contract Instance</span></a>
+and is defined to have the following key/value pairs.</p>
+<div class="section" id="contract-type-contract-type">
+<h4>Contract Type: <code class="docutils literal notranslate"><span class="pre">contract_type</span></code><a class="headerlink" href="#contract-type-contract-type" title="Permalink to this headline">¶</a></h4>
+<p>The <code class="docutils literal notranslate"><span class="pre">contract_type</span></code> field defines the <a class="reference internal" href="glossary.html#term-contract-type"><span class="xref std std-term">Contract Type</span></a> for this
+<a class="reference internal" href="glossary.html#term-contract-instance"><span class="xref std std-term">Contract Instance</span></a>. This can reference any of the contract types
+included in this <a class="reference internal" href="glossary.html#term-package"><span class="xref std std-term">Package</span></a> <em>or</em> any of the contract types found in any
+of the package dependencies from the <code class="docutils literal notranslate"><span class="pre">build_dependencies</span></code> section of
+the <a class="reference internal" href="glossary.html#term-package-manifest"><span class="xref std std-term">Package Manifest</span></a>.</p>
+<blockquote>
+<div><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Required:</th><td class="field-body">Yes</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">String</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Format:</th><td class="field-body">See Below.</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<p><strong>Format</strong></p>
+<p>Values for this field <strong>must</strong> conform to <em>one of</em> the two formats herein.</p>
+<p>To reference a contract type from this Package, use the format
+<code class="docutils literal notranslate"><span class="pre">&lt;contract-alias&gt;</span></code>.</p>
+<ul class="simple">
+<li>The <code class="docutils literal notranslate"><span class="pre">&lt;contract-alias&gt;</span></code> value <strong>must</strong> be a valid <a class="reference internal" href="glossary.html#term-contract-alias"><span class="xref std std-term">Contract Alias</span></a>.</li>
+<li>The value <strong>must</strong> be present in the keys of the <code class="docutils literal notranslate"><span class="pre">contract_types</span></code>
+section of this Package.</li>
+</ul>
+<p>To reference a contract type from a dependency, use the format
+<code class="docutils literal notranslate"><span class="pre">&lt;package-name&gt;:&lt;contract-alias&gt;</span></code>.</p>
+<ul class="simple">
+<li>The <code class="docutils literal notranslate"><span class="pre">&lt;package-name&gt;</span></code> value <strong>must</strong> be present in the keys of the
+<code class="docutils literal notranslate"><span class="pre">build_dependencies</span></code> of this Package.</li>
+<li>The <code class="docutils literal notranslate"><span class="pre">&lt;contract-alias&gt;</span></code> value <strong>must</strong> be be a valid <a class="reference internal" href="glossary.html#term-contract-alias"><span class="xref std std-term">Contract Alias</span></a>.</li>
+<li>The resolved package for <code class="docutils literal notranslate"><span class="pre">&lt;package-name&gt;</span></code> must contain the
+<code class="docutils literal notranslate"><span class="pre">&lt;contract-alias&gt;</span></code> value in the keys of the <code class="docutils literal notranslate"><span class="pre">contract_types</span></code>
+section.</li>
+</ul>
+</div>
+<div class="section" id="address-address">
+<span id="address"></span><h4>Address: <code class="docutils literal notranslate"><span class="pre">address</span></code><a class="headerlink" href="#address-address" title="Permalink to this headline">¶</a></h4>
+<p>The <code class="docutils literal notranslate"><span class="pre">address</span></code> field defines the <a class="reference internal" href="glossary.html#term-address"><span class="xref std std-term">Address</span></a> of the <a class="reference internal" href="glossary.html#term-contract-instance"><span class="xref std std-term">Contract Instance</span></a>.</p>
+<blockquote>
+<div><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Required:</th><td class="field-body">Yes</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">String</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Format:</th><td class="field-body">Hex encoded <code class="docutils literal notranslate"><span class="pre">0x</span></code> prefixed Ethereum address matching the
+regular expression <code class="docutils literal notranslate"><span class="pre">0x[0-9a-fA-F]{40}</span></code>.</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</div>
+<div class="section" id="transaction-transaction">
+<h4>Transaction: <code class="docutils literal notranslate"><span class="pre">transaction</span></code><a class="headerlink" href="#transaction-transaction" title="Permalink to this headline">¶</a></h4>
+<p>The <code class="docutils literal notranslate"><span class="pre">transaction</span></code> field defines the transaction hash in which this
+<a class="reference internal" href="glossary.html#term-contract-instance"><span class="xref std std-term">Contract Instance</span></a> was created.</p>
+<blockquote>
+<div><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Required:</th><td class="field-body">No</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">String</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Format:</th><td class="field-body"><code class="docutils literal notranslate"><span class="pre">0x</span></code> prefixed hex encoded transaction hash.</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</div>
+<div class="section" id="block-block">
+<h4>Block: <code class="docutils literal notranslate"><span class="pre">block</span></code><a class="headerlink" href="#block-block" title="Permalink to this headline">¶</a></h4>
+<p>The <code class="docutils literal notranslate"><span class="pre">block</span></code> field defines the block hash in which this the transaction
+which created this <em>contract instance</em> was mined.</p>
+<blockquote>
+<div><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Required:</th><td class="field-body">No</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">String</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Format:</th><td class="field-body"><code class="docutils literal notranslate"><span class="pre">0x</span></code> prefixed hex encoded block hash.</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</div>
+<div class="section" id="runtime-bytecode-runtime-bytecode-1">
+<span id="id3"></span><h4>Runtime Bytecode: <code class="docutils literal notranslate"><span class="pre">runtime_bytecode</span></code><a class="headerlink" href="#runtime-bytecode-runtime-bytecode-1" title="Permalink to this headline">¶</a></h4>
+<p>The <code class="docutils literal notranslate"><span class="pre">runtime_bytecode</span></code> field defines the runtime portion of bytecode for this
+<a class="reference internal" href="glossary.html#term-contract-instance"><span class="xref std std-term">Contract Instance</span></a>.  When present, the value from this field supersedes
+the <code class="docutils literal notranslate"><span class="pre">runtime_bytecode</span></code> from the <a class="reference internal" href="glossary.html#term-contract-type"><span class="xref std std-term">Contract Type</span></a> for this <a class="reference internal" href="glossary.html#term-contract-instance"><span class="xref std std-term">Contract Instance</span></a>.</p>
+<blockquote>
+<div><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Required:</th><td class="field-body">No</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">Object</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Format:</th><td class="field-body"><strong>must</strong> conform to <a class="reference internal" href="#the-bytecode-object">the Bytecode Object</a> format.</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<p>Every entry in the <code class="docutils literal notranslate"><span class="pre">link_references</span></code> for this bytecode <strong>must</strong> have a
+corresponding entry in the <code class="docutils literal notranslate"><span class="pre">link_dependencies</span></code> section.</p>
+</div>
+<div class="section" id="compiler-compiler-1">
+<span id="id4"></span><h4>Compiler: <code class="docutils literal notranslate"><span class="pre">compiler</span></code><a class="headerlink" href="#compiler-compiler-1" title="Permalink to this headline">¶</a></h4>
+<p>The <code class="docutils literal notranslate"><span class="pre">compiler</span></code> field defines the compiler information that was used
+during compilation of this <a class="reference internal" href="glossary.html#term-contract-instance"><span class="xref std std-term">Contract Instance</span></a>. This field <strong>should</strong> be
+present in all <a class="reference internal" href="glossary.html#term-contract-type"><span class="xref std std-term">Contract Types</span></a> which include <code class="docutils literal notranslate"><span class="pre">bytecode</span></code> or
+<code class="docutils literal notranslate"><span class="pre">runtime_bytecode</span></code>.</p>
+<blockquote>
+<div><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Required:</th><td class="field-body">No</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">Object</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Format:</th><td class="field-body"><strong>must</strong> conform to the <a class="reference internal" href="#compiler-information-object">Compiler Information Object</a>
+format.</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<hr class="docutils" />
+</div>
+</div>
+<div class="section" id="the-compiler-information-object">
+<span id="compiler-information-object"></span><h3>The <em>Compiler Information</em> Object<a class="headerlink" href="#the-compiler-information-object" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">compiler</span></code> field defines the compiler information that was used
+during compilation of this <a class="reference internal" href="glossary.html#term-contract-instance"><span class="xref std std-term">Contract Instance</span></a>. This field <strong>should</strong> be
+present in all contract instances that locally declare <code class="docutils literal notranslate"><span class="pre">runtime_bytecode</span></code>.</p>
+<p>A <em>Compiler Information</em> object is defined to have the following
+key/value pairs.</p>
+<div class="section" id="id5">
+<h4>Name <code class="docutils literal notranslate"><span class="pre">name</span></code><a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h4>
+<p>The <code class="docutils literal notranslate"><span class="pre">name</span></code> field defines which compiler was used in compilation.</p>
+<blockquote>
+<div><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Required:</th><td class="field-body">Yes</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Key:</th><td class="field-body"><code class="docutils literal notranslate"><span class="pre">name</span></code></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">String</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</div>
+<div class="section" id="version-version-1">
+<span id="id6"></span><h4>Version: <code class="docutils literal notranslate"><span class="pre">version</span></code><a class="headerlink" href="#version-version-1" title="Permalink to this headline">¶</a></h4>
+<p>The <code class="docutils literal notranslate"><span class="pre">version</span></code> field defines the version of the compiler. The field
+<strong>should</strong> be OS agnostic (OS not included in the string) and take the
+form of either the stable version in <a class="reference external" href="http://semver.org/">semver</a> format or if built on a
+nightly should be denoted in the form of <code class="docutils literal notranslate"><span class="pre">&lt;semver&gt;-&lt;commit-hash&gt;</span></code> ex:
+<code class="docutils literal notranslate"><span class="pre">0.4.8-commit.60cc1668</span></code>.</p>
+<blockquote>
+<div><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Required:</th><td class="field-body">Yes</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Key:</th><td class="field-body"><code class="docutils literal notranslate"><span class="pre">version</span></code></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">String</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</div>
+<div class="section" id="settings-settings">
+<h4>Settings: <code class="docutils literal notranslate"><span class="pre">settings</span></code><a class="headerlink" href="#settings-settings" title="Permalink to this headline">¶</a></h4>
+<p>The <code class="docutils literal notranslate"><span class="pre">settings</span></code> field defines any settings or configuration that was
+used in compilation. For the <code class="docutils literal notranslate"><span class="pre">&quot;solc&quot;</span></code> compiler, this <strong>should</strong> conform
+to the <a class="reference external" href="http://solidity.readthedocs.io/en/latest/using-the-compiler.html#compiler-input-and-output-json-description">Compiler Input and Output Description</a>.</p>
+<blockquote>
+<div><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Required:</th><td class="field-body">No</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Key:</th><td class="field-body"><code class="docutils literal notranslate"><span class="pre">settings</span></code></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">Object</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="bip122-uris">
+<h3>BIP122 URIs<a class="headerlink" href="#bip122-uris" title="Permalink to this headline">¶</a></h3>
+<p>BIP122 URIs are used to define a blockchain via a subset of the
+<a class="reference external" href="https://github.com/bitcoin/bips/blob/master/bip-0122.mediawiki">BIP-122</a>
+spec.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">blockchain</span><span class="p">:</span><span class="o">//&lt;</span><span class="n">genesis_hash</span><span class="o">&gt;/</span><span class="n">block</span><span class="o">/&lt;</span><span class="n">latest</span> <span class="n">confirmed</span> <span class="n">block</span> <span class="nb">hash</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">&lt;genesis</span> <span class="pre">hash&gt;</span></code> represents the blockhash of the first block on
+the chain, and <code class="docutils literal notranslate"><span class="pre">&lt;latest</span> <span class="pre">confirmed</span> <span class="pre">block</span> <span class="pre">hash&gt;</span></code> represents the hash of
+the latest block that’s been reliably confirmed (package managers should
+be free to choose their desired level of confirmations).</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="use-cases.html" class="btn btn-neutral float-right" title="Rationale" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="overview.html" class="btn btn-neutral" title="Simple Summary" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Piper Merriam, et al..
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/contentui.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
