@@ -202,9 +202,24 @@
       "type": "string",
       "pattern": "^0x([0-9a-fA-F]{2})*$"
     },
-    "BytecodeObject": {
-      "title": "Bytecode Object",
-      "type": "object",
+    "UnlinkedBytecodeObject": {
+      "title": "Unlinked Bytecode Object",
+      "required": ["bytecode", "link_references"],
+      "properties": {
+        "bytecode": {
+          "$ref": "#/definitions/ByteString"
+        },
+        "link_references": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/LinkReference"
+          }
+        }
+      }
+    },
+    "LinkedBytecodeObject": {
+      "title": "Linked Bytecode Object",
+      "required": ["link_dependencies"],
       "properties": {
         "bytecode": {
           "$ref": "#/definitions/ByteString"
@@ -222,20 +237,6 @@
           }
         }
       }
-    },
-    "UnlinkedBytecodeObject": {
-      "title": "Unlinked Bytecode Object",
-      "allOf": [{
-        "$ref": "#/definitions/BytecodeObject"
-      }],
-      "required": ["bytecode", "link_references"]
-    },
-    "LinkedBytecodeObject": {
-      "title": "Linked Bytecode Object",
-      "allOf": [{
-        "$ref": "#/definitions/BytecodeObject"
-      }],
-      "required": ["link_dependencies"]
     },
     "LinkReference": {
       "title": "Link Reference",
