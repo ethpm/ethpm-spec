@@ -2,13 +2,9 @@
   "name": "ethpm-spec",
   "version": "1.0.1",
   "description": "Ethereum Package Manager Specifications",
-  "main": "index.js",
-  "scripts": {
-    "build": ""
-  },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ethpm/epm-spec.git"
+    "url": "git+https://github.com/ethpm/ethpm-spec.git"
   },
   "keywords": [
     "ethereum",
@@ -20,10 +16,7 @@
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ethpm/epm-spec/issues"
+    "url": "https://github.com/ethpm/ethpm-spec/issues"
   },
-  "homepage": "https://github.com/ethpm/epm-spec#readme",
-  "dependencies": {
-    "json-schema-to-markdown": "^1.0.3"
-  }
+  "homepage": "https://github.com/ethpm/ethpm-spec#readme"
 }
