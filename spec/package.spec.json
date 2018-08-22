@@ -62,12 +62,7 @@
       "type": "object",
       "patternProperties": {
         "^blockchain\\://[0-9a-zA-Z]{64}/block/[0-9a-zA-Z]{64}$": {
-          "type": "object",
-          "patternProperties": {
-            "^[a-zA-Z][a-zA-Z0-9_]{0,255}$": {
-              "$ref": "#/definitions/ContractInstance"
-            }
-          }
+          "$ref": "#/definitions/Deployment"
         }
       }
     },
@@ -311,6 +306,15 @@
       "description": "The name of the deployed contract instance",
       "type": "string",
       "pattern": "^[a-zA-Z][a-zA-Z0-9_]{0,255}$"
+    },
+    "Deployment": {
+      "title": "Deployment",
+      "type": "object",
+      "patternProperties": {
+        "^[a-zA-Z][a-zA-Z0-9_]{0,255}$": {
+          "$ref": "#/definitions/ContractInstance"
+        }
+      }
     },
     "PackageContractInstanceName": {
       "title": "Package Contract Instance Name",
