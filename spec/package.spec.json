@@ -161,11 +161,12 @@
       "description": "Data for a deployed instance of a contract",
       "type": "object",
       "required": [
-        "contract_type"
+        "contract_type",
+        "address"
       ],
       "properties": {
         "contract_type": {
-          "title": "Contract Type",
+          "title": "Contract Type Name",
           "description": "The contract type of this contract instance",
           "type": "string",
           "pattern": "^(?:[a-z][-a-z0-9]{0,255}\\:)?[a-zA-Z][-a-zA-Z0-9_]{0,255}(?:\\[[-a-zA-Z0-9]{1,256}\\])?$"
@@ -202,7 +203,7 @@
       "pattern": "^0x([0-9a-fA-F]{2})*$"
     },
     "BytecodeObject": {
-      "title": "Contract Bytecode",
+      "title": "Bytecode Object",
       "type": "object",
       "anyOf": [
         {"required": ["bytecode"]},
