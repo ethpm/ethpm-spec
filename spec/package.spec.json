@@ -131,10 +131,10 @@
           "pattern": "[a-zA-Z][a-zA-Z0-9_]{0,255}"
         },
         "deployment_bytecode": {
-          "$ref": "#/definitions/BytecodeObject"
+          "$ref": "#/definitions/UnlinkedBytecodeObject"
         },
         "runtime_bytecode": {
-          "$ref": "#/definitions/BytecodeObject"
+          "$ref": "#/definitions/UnlinkedBytecodeObject"
         },
         "abi": {
           "title": "ABI",
@@ -176,7 +176,7 @@
           "$ref": "#/definitions/BlockHash"
         },
         "runtime_bytecode": {
-          "$ref": "#/definitions/BytecodeObject"
+          "$ref": "#/definitions/LinkedBytecodeObject"
         },
         "compiler": {
           "$ref": "#/definitions/CompilerInformation"
@@ -197,13 +197,24 @@
       "type": "string",
       "pattern": "^0x([0-9a-fA-F]{2})*$"
     },
-    "BytecodeObject": {
-      "title": "Bytecode Object",
-      "type": "object",
-      "anyOf": [
-        {"required": ["bytecode"]},
-        {"required": ["link_dependencies"]}
-      ],
+    "UnlinkedBytecodeObject": {
+      "title": "Unlinked Bytecode Object",
+      "required": ["bytecode", "link_references"],
+      "properties": {
+        "bytecode": {
+          "$ref": "#/definitions/ByteString"
+        },
+        "link_references": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/LinkReference"
+          }
+        }
+      }
+    },
+    "LinkedBytecodeObject": {
+      "title": "Linked Bytecode Object",
+      "required": ["link_dependencies"],
       "properties": {
         "bytecode": {
           "$ref": "#/definitions/ByteString"
