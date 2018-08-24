@@ -424,11 +424,22 @@ Link References: ``link_references``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The ``link_references`` field defines the locations in the corresponding
-bytecode which require |linking|. If bytecode contains no link references, this field should be an empty array.
+bytecode which require |linking|. If bytecode contains no link references, this field **must** be an empty array.
 
   :Required: Yes
   :Type: Array
   :Format: All values **must** be valid :ref:`Link Reference objects <link-reference-object>`.
+    See also below.
+
+Link Dependencies: ``link_dependencies``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The ``link_dependencies`` defines the |LinkValues| that have been used to link 
+the corresponding bytecode. For example, if a contract type references a deployed library.
+
+  :Required: No
+  :Type: Array
+  :Format: All values **must** be valid :ref:`Link Value objects <link-value-object>`.
     See also below.
 
 **Format**
