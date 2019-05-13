@@ -5,42 +5,42 @@ The following use cases were considered during the creation of this
 specification.
 
 Stand Alone Package with an Inheritable Contract
-   i.e. ``owned``
+   e.g. ``owned``
 
    See `full description <#stand-alone-package-with-an-inheritable-contract>`__.
 
 Dependent Package with an Inheritable Contract
-   i.e. ``transferable``
+   e.g. ``transferable``
 
    See `full description <#dependent-package-with-an-inheritable-contract>`_.
 
 Stand Alone Package with a Reusable Contract
-   i.e. ``standard-token``
+   e.g. ``standard-token``
 
    See `full description <#stand-alone-package-with-a-reusable-contract>`_.
 
 Stand Alone Package with a Deployed Contract
-   i.e. ``safe-math-lib``
+   e.g. ``safe-math-lib``
 
    See `full description <#stand-alone-package-with-a-deployed-contract>`_.
 
 Dependent Package with a Reusable Contract
-   i.e. ``piper-coin``
+   e.g. ``piper-coin``
 
    See `full description <#dependent-package-with-a-reusable-contract>`_.
 
 Stand Alone Package with a Deployed Contract Linked against a Deployed Library
-   i.e. ``escrow``
+   e.g. ``escrow``
 
    See `full description <#stand-alone-package-with-a-deployed-contract-linked-against-a-deployed-library>`_.
 
 Dependent Package with a Deployed Contract Linked against a Package Dependency
-   i.e. ``wallet``
+   e.g. ``wallet``
 
    See `full description <#dependent-package-with-a-deployed-contract-linked-against-a-package-dependency>`_.
 
 Dependent Package with a Deployed Contract Linked Against a Deep Dependency
-   i.e. ``wallet-with-send``
+   e.g. ``wallet-with-send``
 
    See `full description <#dependent-package-with-a-deployed-contract-linked-against-a-deep-dependency>`_.
 
