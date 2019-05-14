@@ -6,7 +6,7 @@ chardet==3.0.4
 docutils==0.14
 idna==2.6
 imagesize==1.0.0
-Jinja2==2.10
+Jinja2==2.10.1
 jsonpointer==2.0
 jsonschema==2.6.0
 MarkupSafe==1.0
@@ -17,8 +17,8 @@ Pygments==2.2.0
 pygments-lexer-solidity==0.2.0
 pyparsing==2.2.0
 pytz==2018.4
-PyYAML==3.12
-requests==2.18.4
+PyYAML==4.2b1
+requests==2.20.0
 six==1.11.0
 snowballstemmer==1.2.1
 Sphinx==1.7.4
@@ -29,4 +29,4 @@ sphinxcontrib-contentui==0.2.2
 sphinxcontrib-plantuml==0.11
 sphinxcontrib-soliditydomain==0.3.0
 sphinxcontrib-websupport==1.0.1
-urllib3==1.22
+urllib3==1.24.2

@@ -21,8 +21,6 @@ dependencies to do bytecode verification of its contracts.
 Guiding Principles
 ------------------
 
-----
-
 This specification makes the following assumptions about the
 document lifecycle.
 
@@ -39,8 +37,6 @@ document lifecycle.
 
 Conventions
 -----------
-
-----
 
 RFC2119
 ~~~~~~~
@@ -66,8 +62,6 @@ have no prefix. Unless otherwise specified, all hexadecimal values
 Document Format
 ---------------
 
-----
-
 The canonical format is a single JSON object. Packages **must** conform to the
 following serialization rules.
 
@@ -82,8 +76,6 @@ following serialization rules.
 
 Document Specification
 ----------------------
-
-----
 
 The following fields are defined for the package. Custom fields **may** be
 included. Custom fields **should** be prefixed with ``x-`` to prevent
@@ -256,8 +248,6 @@ The ``build_dependencies`` field defines a key/value mapping of Ethereum
 
 Definitions
 -----------
-
-----
 
 Definitions for different objects used within the Package. All objects
 allow custom fields to be included. Custom fields **should** be prefixed

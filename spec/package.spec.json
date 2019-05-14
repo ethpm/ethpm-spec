@@ -114,7 +114,7 @@
           "type": "object",
           "additionalProperties": {
             "type": "string",
-            "format": "URI"
+            "format": "uri"
           }
         }
       }

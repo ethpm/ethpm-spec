@@ -12,37 +12,37 @@ Stand Alone Package with an Inheritable Contract
 Dependent Package with an Inheritable Contract
    e.g. ``transferable``
 
-   See `full description <#dependent-package-with-an-inheritable-contract>`_.
+   See `full description <#dependent-package-with-an-inheritable-contract>`__.
 
 Stand Alone Package with a Reusable Contract
    e.g. ``standard-token``
 
-   See `full description <#stand-alone-package-with-a-reusable-contract>`_.
+   See `full description <#stand-alone-package-with-a-reusable-contract>`__.
 
 Stand Alone Package with a Deployed Contract
    e.g. ``safe-math-lib``
 
-   See `full description <#stand-alone-package-with-a-deployed-contract>`_.
+   See `full description <#stand-alone-package-with-a-deployed-contract>`__.
 
 Dependent Package with a Reusable Contract
    e.g. ``piper-coin``
 
-   See `full description <#dependent-package-with-a-reusable-contract>`_.
+   See `full description <#dependent-package-with-a-reusable-contract>`__.
 
 Stand Alone Package with a Deployed Contract Linked against a Deployed Library
    e.g. ``escrow``
 
-   See `full description <#stand-alone-package-with-a-deployed-contract-linked-against-a-deployed-library>`_.
+   See `full description <#stand-alone-package-with-a-deployed-contract-linked-against-a-deployed-library>`__.
 
 Dependent Package with a Deployed Contract Linked against a Package Dependency
    e.g. ``wallet``
 
-   See `full description <#dependent-package-with-a-deployed-contract-linked-against-a-package-dependency>`_.
+   See `full description <#dependent-package-with-a-deployed-contract-linked-against-a-package-dependency>`__.
 
 Dependent Package with a Deployed Contract Linked Against a Deep Dependency
    e.g. ``wallet-with-send``
 
-   See `full description <#dependent-package-with-a-deployed-contract-linked-against-a-deep-dependency>`_.
+   See `full description <#dependent-package-with-a-deployed-contract-linked-against-a-deep-dependency>`__.
 
 *Each use case builds incrementally on the previous one.*
 
@@ -80,7 +80,7 @@ contracts which serve as base contracts for other contracts to inherit
 from but do not provide any real useful functionality on their own. The
 common *owned* pattern is a example for this use case.
 
-.. literalinclude:: ../../examples/owned/contracts/owned.sol
+.. literalinclude:: ../../examples/owned/contracts/Owned.sol
    :language: solidity
 
 ..
