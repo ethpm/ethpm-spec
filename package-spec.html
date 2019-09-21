@@ -358,7 +358,7 @@ names <strong>must</strong> not exceed 255 characters in length.</p>
 <tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">String</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Format:</th><td class="field-body"><strong>must</strong> match the regular expression
-<code class="docutils literal notranslate"><span class="pre">^[a-zA-Z][a-zA-Z0-9_]{0,255}$</span></code></td>
+<code class="docutils literal notranslate"><span class="pre">^[a-z][a-z0-9_-]{0,255}$</span></code></td>
 </tr>
 </tbody>
 </table>
@@ -485,7 +485,7 @@ release.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">deployments</span></code> field holds the information for the chains on which
 this release has <a class="reference internal" href="glossary.html#term-contract-instance"><span class="xref std std-term">Contract Instances</span></a> as well as the <a class="reference internal" href="glossary.html#term-contract-type"><span class="xref std std-term">Contract Types</span></a>
 and other deployment details for those deployed contract instances.
-The set of chains defined by the <cite>BIP122 URI &lt;#bip122-uris&gt;</cite> keys for this
+The set of chains defined by the <a class="reference internal" href="#bip122-bip122-1"><span class="std std-ref">BIP122 URI</span></a> keys for this
 object <strong>must</strong> be unique. There cannot be two different URI keys in a deployments
 field representing the same blockchain.</p>
 <blockquote>
@@ -1253,11 +1253,11 @@ to the <a class="reference external" href="http://solidity.readthedocs.io/en/lat
 </tbody>
 </table>
 </div></blockquote>
-</div>
-</div>
 <hr class="docutils" />
+</div>
+</div>
 <div class="section" id="bip122-uris">
-<h3>BIP122 URIs<a class="headerlink" href="#bip122-uris" title="Permalink to this headline">¶</a></h3>
+<span id="bip122-bip122-1"></span><h3>BIP122 URIs<a class="headerlink" href="#bip122-uris" title="Permalink to this headline">¶</a></h3>
 <p>BIP122 URIs are used to define a blockchain via a subset of the
 <a class="reference external" href="https://github.com/bitcoin/bips/blob/master/bip-0122.mediawiki">BIP-122</a>
 spec.</p>
