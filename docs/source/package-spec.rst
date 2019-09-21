@@ -209,7 +209,7 @@ Deployments: ``deployments``
 The ``deployments`` field holds the information for the chains on which
 this release has |ContractInstances| as well as the |ContractTypes|
 and other deployment details for those deployed contract instances.
-The set of chains defined by the `BIP122 URI <#bip122-uris>` keys for this
+The set of chains defined by the :ref:`BIP122 URI<bip122-bip122-1>` keys for this
 object **must** be unique. There cannot be two different URI keys in a deployments
 field representing the same blockchain.
 
@@ -747,6 +747,8 @@ to the `Compiler Input and Output Description <http://solidity.readthedocs.io/en
   :Type: Object
 
 ----
+
+.. _bip122-bip122-1:
 
 BIP122 URIs
 ~~~~~~~~~~~
