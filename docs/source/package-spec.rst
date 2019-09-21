@@ -117,7 +117,7 @@ names **must** not exceed 255 characters in length.
   :Key: ``package_name``
   :Type: String
   :Format: **must** match the regular expression
-    ``^[a-zA-Z][a-zA-Z0-9_]{0,255}$``
+    ``^[a-z][a-z0-9_-]{0,255}$``
 
 ----
 
