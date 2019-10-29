@@ -1,0 +1,944 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Rationale &mdash; EthPM Package Manifest  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/contentui.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Glossary" href="glossary.html" />
+    <link rel="prev" title="Specification" href="package-spec.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> EthPM Package Manifest
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="overview.html#overview">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="package-spec.html">Specification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#id1">Use Cases</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#keywords">Keywords</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#stand-alone-package-with-an-inheritable-contract">Stand Alone Package with an Inheritable Contract</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dependent-package-with-an-inheritable-contract">Dependent Package with an Inheritable Contract</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#stand-alone-package-with-a-reusable-contract">Stand Alone Package with a Reusable Contract</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#stand-alone-package-with-a-deployed-contract">Stand Alone Package with a Deployed Contract</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dependent-package-with-a-reusable-contract">Dependent Package with a Reusable Contract</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#stand-alone-package-with-a-deployed-contract-linked-against-a-deployed-library">Stand Alone Package with a Deployed Contract Linked against a Deployed Library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dependent-package-with-a-deployed-contract-linked-against-a-package-dependency">Dependent Package with a Deployed Contract Linked against a Package Dependency</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dependent-package-with-a-deployed-contract-linked-against-a-deep-dependency">Dependent Package with a Deployed Contract Linked against a Deep Dependency</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">EthPM Package Manifest</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Rationale</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/use-cases.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>Use Cases<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>The following use cases were considered during the creation of this
+specification.</p>
+<dl class="docutils">
+<dt>Stand Alone Package with an Inheritable Contract</dt>
+<dd><p class="first">e.g. <code class="docutils literal notranslate"><span class="pre">owned</span></code></p>
+<p class="last">See <a class="reference external" href="#stand-alone-package-with-an-inheritable-contract">full description</a>.</p>
+</dd>
+<dt>Dependent Package with an Inheritable Contract</dt>
+<dd><p class="first">e.g. <code class="docutils literal notranslate"><span class="pre">transferable</span></code></p>
+<p class="last">See <a class="reference external" href="#dependent-package-with-an-inheritable-contract">full description</a>.</p>
+</dd>
+<dt>Stand Alone Package with a Reusable Contract</dt>
+<dd><p class="first">e.g. <code class="docutils literal notranslate"><span class="pre">standard-token</span></code></p>
+<p class="last">See <a class="reference external" href="#stand-alone-package-with-a-reusable-contract">full description</a>.</p>
+</dd>
+<dt>Stand Alone Package with a Deployed Contract</dt>
+<dd><p class="first">e.g. <code class="docutils literal notranslate"><span class="pre">safe-math-lib</span></code></p>
+<p class="last">See <a class="reference external" href="#stand-alone-package-with-a-deployed-contract">full description</a>.</p>
+</dd>
+<dt>Dependent Package with a Reusable Contract</dt>
+<dd><p class="first">e.g. <code class="docutils literal notranslate"><span class="pre">piper-coin</span></code></p>
+<p class="last">See <a class="reference external" href="#dependent-package-with-a-reusable-contract">full description</a>.</p>
+</dd>
+<dt>Stand Alone Package with a Deployed Contract Linked against a Deployed Library</dt>
+<dd><p class="first">e.g. <code class="docutils literal notranslate"><span class="pre">escrow</span></code></p>
+<p class="last">See <a class="reference external" href="#stand-alone-package-with-a-deployed-contract-linked-against-a-deployed-library">full description</a>.</p>
+</dd>
+<dt>Dependent Package with a Deployed Contract Linked against a Package Dependency</dt>
+<dd><p class="first">e.g. <code class="docutils literal notranslate"><span class="pre">wallet</span></code></p>
+<p class="last">See <a class="reference external" href="#dependent-package-with-a-deployed-contract-linked-against-a-package-dependency">full description</a>.</p>
+</dd>
+<dt>Dependent Package with a Deployed Contract Linked Against a Deep Dependency</dt>
+<dd><p class="first">e.g. <code class="docutils literal notranslate"><span class="pre">wallet-with-send</span></code></p>
+<p class="last">See <a class="reference external" href="#dependent-package-with-a-deployed-contract-linked-against-a-deep-dependency">full description</a>.</p>
+</dd>
+</dl>
+<p><em>Each use case builds incrementally on the previous one.</em></p>
+<div class="section" id="keywords">
+<h2>Keywords<a class="headerlink" href="#keywords" title="Permalink to this headline">¶</a></h2>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Stand Alone:</th><td class="field-body">Package has no external dependencies (i.e. no <code class="docutils literal notranslate"><span class="pre">build_dependencies</span></code>),
+contains all contract data needed without reaching into another package.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Dependent:</th><td class="field-body">Package does not contain all necessary contract data (i.e. has <code class="docutils literal notranslate"><span class="pre">build_dependencies</span></code>),
+<strong>must</strong> reach into a package dependency to retrieve data.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Inheritable:</th><td class="field-body">Contract doesn’t provide useful functionality on it’s own and is meant
+to serve as a base contract for others to inherit from.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Reusable:</th><td class="field-body">Contract is useful on it’s own, meant to be used as-is.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Deployed Contract/Library:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">Refers to an instance of a contract/library that has already been
+deployed to a specific address on a chain.</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Package Dependency:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body">External dependency directly referenced via the <code class="docutils literal notranslate"><span class="pre">build_dependencies</span></code> of a package.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Deep Dependency:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">External dependency referenced via the <code class="docutils literal notranslate"><span class="pre">build_dependencies</span></code> of a package dependency
+(or by reaching down dependency tree as far as necessary).</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="stand-alone-package-with-an-inheritable-contract">
+<span id="id2"></span><h2>Stand Alone Package with an Inheritable Contract<a class="headerlink" href="#stand-alone-package-with-an-inheritable-contract" title="Permalink to this headline">¶</a></h2>
+<p>For the first example we’ll look at a package which only contains
+contracts which serve as base contracts for other contracts to inherit
+from but do not provide any real useful functionality on their own. The
+common <em>owned</em> pattern is a example for this use case.</p>
+<div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kr">pragma solidity</span> <span class="o">^</span><span class="mi">0</span><span class="p">.</span><span class="mi">4</span><span class="p">.</span><span class="mi">24</span><span class="p">;</span>
+
+<span class="kd">contract</span> <span class="n">Owned</span> <span class="p">{</span>
+    <span class="kt">address</span> <span class="n">owner</span><span class="p">;</span>
+    
+    <span class="kd">modifier</span> <span class="n">onlyOwner</span> <span class="p">{</span> <span class="nf">require</span><span class="p">(</span><span class="nb">msg</span><span class="p">.</span><span class="nb">sender</span> <span class="o">==</span> <span class="n">owner</span><span class="p">);</span> <span class="kr">_</span><span class="p">;</span> <span class="p">}</span>
+
+    <span class="kd">constructor</span><span class="p">()</span> <span class="kr">public</span> <span class="p">{</span>
+        <span class="n">owner</span> <span class="o">=</span> <span class="nb">msg</span><span class="p">.</span><span class="nb">sender</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<blockquote>
+<div>For this example we will assume this file is located in the solidity
+source file <code class="docutils literal notranslate"><span class="pre">./contracts/owned.sol</span></code></div></blockquote>
+<p>The <code class="docutils literal notranslate"><span class="pre">owned</span></code> package contains a single solidity source source file
+which is intended to be used as a base contract for other contracts to
+be inherited from. The package does not define any pre-deployed
+addresses for the <em>owned</em> contract.</p>
+<p>The smallest Package for this example looks like this:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;manifest_version&quot;</span><span class="p">:</span> <span class="s2">&quot;2&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;version&quot;</span><span class="p">:</span> <span class="s2">&quot;1.0.0&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;package_name&quot;</span><span class="p">:</span> <span class="s2">&quot;owned&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;sources&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;./contracts/owned.sol&quot;</span><span class="p">:</span> <span class="s2">&quot;ipfs://QmUjYUcX9kLv2FQH8nwc3RLLXtU3Yv5XFpvEjFcAKXB6xD&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>A Package which includes more than the minimum information would look
+like this.</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="nt">&quot;manifest_version&quot;</span><span class="p">:</span><span class="s2">&quot;2&quot;</span><span class="p">,</span><span class="nt">&quot;meta&quot;</span><span class="p">:{</span><span class="nt">&quot;authors&quot;</span><span class="p">:[</span><span class="s2">&quot;Piper Merriam &lt;pipermerriam@gmail.com&gt;&quot;</span><span class="p">],</span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="s2">&quot;Reusable contracts which implement a privileged &#39;owner&#39; model for authorization.&quot;</span><span class="p">,</span><span class="nt">&quot;keywords&quot;</span><span class="p">:[</span><span class="s2">&quot;authorization&quot;</span><span class="p">],</span><span class="nt">&quot;license&quot;</span><span class="p">:</span><span class="s2">&quot;MIT&quot;</span><span class="p">,</span><span class="nt">&quot;links&quot;</span><span class="p">:{</span><span class="nt">&quot;documentation&quot;</span><span class="p">:</span><span class="s2">&quot;ipfs://QmUYcVzTfSwJoigggMxeo2g5STWAgJdisQsqcXHws7b1FW&quot;</span><span class="p">}},</span><span class="nt">&quot;package_name&quot;</span><span class="p">:</span><span class="s2">&quot;owned&quot;</span><span class="p">,</span><span class="nt">&quot;sources&quot;</span><span class="p">:{</span><span class="nt">&quot;./contracts/Owned.sol&quot;</span><span class="p">:</span><span class="s2">&quot;ipfs://Qme4otpS88NV8yQi8TfTP89EsQC5bko3F5N1yhRoi6cwGV&quot;</span><span class="p">},</span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="s2">&quot;1.0.0&quot;</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>This fully fleshed out Package is meant to demonstrate various pieces of
+optional data that can be included. However, for the remainder of our
+examples we will be using minimalistic Packages to keep our examples as
+succinct as possible.</p>
+</div>
+<div class="section" id="dependent-package-with-an-inheritable-contract">
+<span id="id3"></span><h2>Dependent Package with an Inheritable Contract<a class="headerlink" href="#dependent-package-with-an-inheritable-contract" title="Permalink to this headline">¶</a></h2>
+<p>Now that we’ve seen what a simple package looks like, let’s see how to declare
+dependencies.</p>
+<p>The next package will implement the <em>transferable</em> pattern and will
+depend on our <code class="docutils literal notranslate"><span class="pre">owned</span></code> package for the authorization mechanism to
+ensure that only the contract owner may transfer ownership. The
+<code class="docutils literal notranslate"><span class="pre">transferable</span></code> package will contain a single solidity source file
+<code class="docutils literal notranslate"><span class="pre">./contracts/transferable.sol</span></code>.</p>
+<div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kr">pragma solidity</span> <span class="o">^</span><span class="mi">0</span><span class="p">.</span><span class="mi">4</span><span class="p">.</span><span class="mi">24</span><span class="p">;</span>
+
+<span class="kn">import</span> <span class="p">{</span><span class="n">Owned</span><span class="p">}</span> <span class="kr">from</span> <span class="s">&quot;owned/contracts/Owned.sol&quot;</span><span class="p">;</span>
+
+<span class="kd">contract</span> <span class="n">Transferable</span> <span class="kr">is</span> <span class="n">Owned</span> <span class="p">{</span>
+    <span class="kd">event</span> <span class="n">OwnerChanged</span><span class="p">(</span><span class="kt">address</span> <span class="kr">indexed</span> <span class="n">prevOwner</span><span class="p">,</span> <span class="kt">address</span> <span class="kr">indexed</span> <span class="n">newOwner</span><span class="p">);</span>
+
+    <span class="kd">function</span> <span class="n">transferOwner</span><span class="p">(</span><span class="kt">address</span> <span class="n">newOwner</span><span class="p">)</span> <span class="kr">public</span> <span class="n">onlyOwner</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">bool</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kr">emit</span> <span class="n">OwnerChanged</span><span class="p">(</span><span class="n">owner</span><span class="p">,</span> <span class="n">newOwner</span><span class="p">);</span>
+        <span class="n">owner</span> <span class="o">=</span> <span class="n">newOwner</span><span class="p">;</span>
+        <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The EPM spec is designed to provide as high a guarantee as possible that
+builds are deterministic and reproducable. To ensure that each package
+you install gets the <em>exact</em> dependencies it needs, all dependencies are
+declared as content addressed URIs. This ensures that when a package
+manager fetches a dependency it always gets the right one.</p>
+<p>The IPFS URI for the previous <code class="docutils literal notranslate"><span class="pre">owned</span></code> Package turns out to be
+<code class="docutils literal notranslate"><span class="pre">ipfs://QmXDf2GP67otcF2gjWUxFt4AzFkfwGiuzfexhGuotGTLJH</span></code> which is what
+we will use in our <code class="docutils literal notranslate"><span class="pre">transferable</span></code> package to declare the dependency.
+The Package looks like the following.</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="nt">&quot;build_dependencies&quot;</span><span class="p">:{</span><span class="nt">&quot;owned&quot;</span><span class="p">:</span><span class="s2">&quot;ipfs://QmbeVyFLSuEUxiXKwSsEjef6icpdTdA4kGG9BcrJXKNKUW&quot;</span><span class="p">},</span><span class="nt">&quot;manifest_version&quot;</span><span class="p">:</span><span class="s2">&quot;2&quot;</span><span class="p">,</span><span class="nt">&quot;meta&quot;</span><span class="p">:{</span><span class="nt">&quot;authors&quot;</span><span class="p">:[</span><span class="s2">&quot;Piper Merriam &lt;pipermerriam@gmail.com&gt;&quot;</span><span class="p">],</span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="s2">&quot;Reusable contracts which implement a privileged &#39;owner&#39; model for authorization with functionality for transfering ownership.&quot;</span><span class="p">,</span><span class="nt">&quot;keywords&quot;</span><span class="p">:[</span><span class="s2">&quot;authorization&quot;</span><span class="p">],</span><span class="nt">&quot;license&quot;</span><span class="p">:</span><span class="s2">&quot;MIT&quot;</span><span class="p">},</span><span class="nt">&quot;package_name&quot;</span><span class="p">:</span><span class="s2">&quot;transferable&quot;</span><span class="p">,</span><span class="nt">&quot;sources&quot;</span><span class="p">:{</span><span class="nt">&quot;./contracts/Transferable.sol&quot;</span><span class="p">:</span><span class="s2">&quot;ipfs://QmZYkdUUTwREjfy4vQc3enzu6WKk8eNyvGERqy1cNNVkAD&quot;</span><span class="p">},</span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="s2">&quot;1.0.0&quot;</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>It will be up to the package management software to determine how the
+<code class="docutils literal notranslate"><span class="pre">owned</span></code> dependency actually gets installed as well as handling any
+import remappings necessary to make the import statement work.</p>
+</div>
+<div class="section" id="stand-alone-package-with-a-reusable-contract">
+<span id="id4"></span><h2>Stand Alone Package with a Reusable Contract<a class="headerlink" href="#stand-alone-package-with-a-reusable-contract" title="Permalink to this headline">¶</a></h2>
+<p>In this next example we’ll look at a package which contains a reusable
+contract. This means that the package provides a contract which can be
+on its own in some manner. For this example we will be creating a
+package which includes a reusable standard
+<a class="reference external" href="https://github.com/ethereum/EIPs/issues/20">ERC20</a> token contract.</p>
+<blockquote>
+<div>The source code for these contracts was pulled from the
+<a class="reference external" href="https://github.com/ConsenSys/singulardtv-contracts">SingularDTV</a>
+github repository. Thanks to them for a very well written contract.</div></blockquote>
+<p>This package will contain two solidity source files:</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference external" href="https://github.com/ethpm/ethpm-spec/blob/master/examples/standard-token/contracts/AbstractToken.sol">./contracts/AbstractToken.sol</a></li>
+<li><a class="reference external" href="https://github.com/ethpm/ethpm-spec/blob/master/examples/standard-token/contracts/StandardToken.sol">./contracts/StandardToken.sol</a></li>
+</ul>
+</div></blockquote>
+<p>Given that these source files are relatively large they will not be
+included here within the guide but can be found in the
+<a class="reference external" href="https://github.com/ethpm/ethpm-spec/tree/master/examples/standard-token">./examples/standard-token/</a>
+directory within this repository.</p>
+<p>Since this package includes a contract which may be used as-is, our
+Package is going to contain additional information from our previous
+examples, specifically, the <code class="docutils literal notranslate"><span class="pre">contract_types</span></code> section. Since we expect
+people to compile this contract theirselves we won’t need to include any
+of the contract bytecode, but it will be useful to include the contract
+ABI and Natspec information. Our Package will look something like the
+following. The contract ABI and NatSpec sections have been truncated to
+improve legibility. The full Package can be found
+<a class="reference external" href="./examples/standard-token/1.0.0.json">here</a></p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;manifest_version&quot;</span><span class="p">:</span> <span class="s2">&quot;2&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;version&quot;</span><span class="p">:</span> <span class="s2">&quot;1.0.0&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;package_name&quot;</span><span class="p">:</span> <span class="s2">&quot;standard-token&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;sources&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;./contracts/AbstractToken.sol&quot;</span><span class="p">:</span> <span class="s2">&quot;ipfs://QmQMXDprXxCunfQjA42LXZtzL6YMP8XTuGDB6AjHzpYHgk&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;./contracts/StandardToken.sol&quot;</span><span class="p">:</span> <span class="s2">&quot;ipfs://QmNLr7DzmiaQvk25C8bADBnh9bF5V3JfbwHS49kyoGGEHz&quot;</span>
+  <span class="p">},</span>
+  <span class="nt">&quot;contract_types&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;StandardToken&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;abi&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;...&quot;</span>
+      <span class="p">],</span>
+      <span class="nt">&quot;natspec&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;author&quot;</span><span class="p">:</span> <span class="s2">&quot;Stefan George - &lt;stefan.george@consensys.net&gt;&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Standard token contract&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;methods&quot;</span><span class="p">:</span> <span class="p">{</span>
+          <span class="nt">&quot;allowance(address,address)&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;details&quot;</span><span class="p">:</span> <span class="s2">&quot;Returns number of allowed tokens for given address.&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;params&quot;</span><span class="p">:</span> <span class="p">{</span>
+              <span class="nt">&quot;_owner&quot;</span><span class="p">:</span> <span class="s2">&quot;Address of token owner.&quot;</span><span class="p">,</span>
+              <span class="nt">&quot;_spender&quot;</span><span class="p">:</span> <span class="s2">&quot;Address of token spender.&quot;</span>
+            <span class="p">}</span>
+          <span class="p">},</span>
+          <span class="nt">&quot;...&quot;</span><span class="p">:</span> <span class="s2">&quot;...&quot;</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>While it is not required to include the contract ABI and NatSpec
+information, it does provide those using this package with the data
+they would need to interact with an instance of this contract without
+having to regenerate this information from source.</p>
+</div>
+<div class="section" id="stand-alone-package-with-a-deployed-contract">
+<span id="id5"></span><h2>Stand Alone Package with a Deployed Contract<a class="headerlink" href="#stand-alone-package-with-a-deployed-contract" title="Permalink to this headline">¶</a></h2>
+<p>Now that we’ve seen what a package looks like which includes a fully
+functional contract that is ready to be deployed, lets explore a package
+that also includes a deployed instance of that contract.</p>
+<p>Solidity Libraries are an excellent example of this type of package, so
+for this example we are going to write a library for <em>safe</em> math
+operations called <code class="docutils literal notranslate"><span class="pre">safe-math-lib</span></code>. This library will implement
+functions to allow addition and subtraction without needing to check for
+underflow or overflow conditions. Our package will have a single
+solidity source file <code class="docutils literal notranslate"><span class="pre">./contracts/SafeMathLib.sol</span></code></p>
+<div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kr">pragma solidity</span> <span class="o">^</span><span class="mi">0</span><span class="p">.</span><span class="mi">4</span><span class="p">.</span><span class="mi">24</span><span class="p">;</span>
+
+
+<span class="c1">/// @title Safe Math Library</span>
+<span class="c1">/// @author Piper Merriam &lt;pipermerriam@gmail.com&gt;</span>
+<span class="kd">library</span> <span class="n">SafeMathLib</span> <span class="p">{</span>
+    <span class="c1">/// @dev Adds a and b, throwing an error if the operation would cause an overflow.</span>
+    <span class="c1">/// @param a The first number to add</span>
+    <span class="c1">/// @param b The second number to add</span>
+    <span class="kd">function</span> <span class="n">safeAdd</span><span class="p">(</span><span class="kt">uint256</span> <span class="n">a</span><span class="p">,</span> <span class="kt">uint256</span> <span class="n">b</span><span class="p">)</span> <span class="kr">public</span> <span class="kr">pure</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">uint256</span> <span class="n">c</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">;</span>
+        <span class="nf">assert</span><span class="p">(</span><span class="n">c</span> <span class="o">&gt;=</span> <span class="n">a</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">c</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">/// @dev Subtracts b from a, throwing an error if the operation would cause an underflow.</span>
+    <span class="c1">/// @param a The number to be subtracted from</span>
+    <span class="c1">/// @param b The amount that should be subtracted</span>
+    <span class="kd">function</span> <span class="n">safeSub</span><span class="p">(</span><span class="kt">uint256</span> <span class="n">a</span><span class="p">,</span> <span class="kt">uint256</span> <span class="n">b</span><span class="p">)</span> <span class="kr">public</span> <span class="kr">pure</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">uint256</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nf">assert</span><span class="p">(</span><span class="n">b</span> <span class="o">&lt;=</span> <span class="n">a</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">a</span> <span class="o">-</span> <span class="n">b</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>This will be our first package which includes the <code class="docutils literal notranslate"><span class="pre">deployments</span></code>
+section which is the location where information about deployed contract
+instances is found. Lets look at the Package, some parts have been
+truncated for readability but the full file can be found
+<a class="reference external" href="./examples/safe-math-lib/1.0.0.json">here</a></p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;manifest_version&quot;</span><span class="p">:</span> <span class="s2">&quot;2&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;version&quot;</span><span class="p">:</span> <span class="s2">&quot;1.0.0&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;package_name&quot;</span><span class="p">:</span> <span class="s2">&quot;safe-math-lib&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;sources&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;./contracts/SafeMathLib.sol&quot;</span><span class="p">:</span> <span class="s2">&quot;ipfs://QmVN1p6MmMLYcSq1VTmaSDLC3xWuAUwEFBFtinfzpmtzQG&quot;</span>
+  <span class="p">},</span>
+  <span class="nt">&quot;contract_types&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;SafeMathLib&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;deployment_bytecode&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;bytecode&quot;</span><span class="p">:</span> <span class="s2">&quot;0x606060405234610000575b60a9806100176000396000f36504062dabbdf050606060405260e060020a6000350463a293d1e88114602e578063e6cb901314604c575b6000565b603a600435602435606a565b60408051918252519081900360200190f35b603a6004356024356088565b60408051918252519081900360200190f35b6000828211602a57508082036081566081565b6000565b5b92915050565b6000828284011115602a57508181016081566081565b6000565b5b9291505056&quot;</span>
+      <span class="p">},</span>
+      <span class="nt">&quot;runtime_bytecode&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;bytecode&quot;</span><span class="p">:</span> <span class="s2">&quot;0x6504062dabbdf050606060405260e060020a6000350463a293d1e88114602e578063e6cb901314604c575b6000565b603a600435602435606a565b60408051918252519081900360200190f35b603a6004356024356088565b60408051918252519081900360200190f35b6000828211602a57508082036081566081565b6000565b5b92915050565b6000828284011115602a57508181016081566081565b6000565b5b9291505056&quot;</span>
+      <span class="p">},</span>
+      <span class="nt">&quot;abi&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;...&quot;</span>
+      <span class="p">],</span>
+      <span class="nt">&quot;compiler&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;solc&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;version&quot;</span><span class="p">:</span> <span class="s2">&quot;0.4.6+commit.2dabbdf0.Darwin.appleclang&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;settings&quot;</span><span class="p">:</span> <span class="p">{</span>
+          <span class="nt">&quot;optimize&quot;</span><span class="p">:</span> <span class="kc">true</span>
+        <span class="p">}</span>
+      <span class="p">},</span>
+      <span class="nt">&quot;natspec&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Safe Math Library&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;author&quot;</span><span class="p">:</span> <span class="s2">&quot;Piper Merriam &lt;pipermerriam@gmail.com&gt;&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;...&quot;</span><span class="p">:</span> <span class="s2">&quot;...&quot;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+  <span class="nt">&quot;deployments&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;blockchain://41941023680923e0fe4d74a34bdac8141f2540e3ae90623718e47d66d1ca4a2d/block/1e96de11320c83cca02e8b9caf3e489497e8e432befe5379f2f08599f8aecede&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;SafeMathLib&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;contract_type&quot;</span><span class="p">:</span> <span class="s2">&quot;SafeMathLib&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;address&quot;</span><span class="p">:</span> <span class="s2">&quot;0x8d2c532d7d211816a2807a411f947b211569b68c&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;transaction&quot;</span><span class="p">:</span> <span class="s2">&quot;0xaceef751507a79c2dee6aa0e9d8f759aa24aab081f6dcf6835d792770541cb2b&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;block&quot;</span><span class="p">:</span> <span class="s2">&quot;0x420cb2b2bd634ef42f9082e1ee87a8d4aeeaf506ea5cdeddaa8ff7cbf911810c&quot;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The first thing to point out is that unlike our <code class="docutils literal notranslate"><span class="pre">standard-token</span></code>
+contract, we’ve included the <code class="docutils literal notranslate"><span class="pre">bytecode</span></code>, <code class="docutils literal notranslate"><span class="pre">runtime_bytecode</span></code> and
+<code class="docutils literal notranslate"><span class="pre">compiler</span></code> information in the <code class="docutils literal notranslate"><span class="pre">SafeMathLib</span></code> section of the
+<code class="docutils literal notranslate"><span class="pre">contract_type</span></code> definition. This is because we are also including a
+deployed instance of this contract and need to require adequate
+information for package managers to verify that the contract found at
+the deployed address is in fact from the source code included in this
+package.</p>
+<p>The next thing to look at is the <code class="docutils literal notranslate"><span class="pre">deployments</span></code> section. The first
+thing you should see is the
+<a class="reference external" href="https://github.com/bitcoin/bips/blob/master/bip-0122.mediawiki">BIP122</a>
+URI.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">blockchain</span><span class="p">:</span><span class="o">//</span><span class="mf">41941023680923e0</span><span class="n">fe4d74a34bdac8141f2540e3ae90623718e47d66d1ca4a2d</span><span class="o">/</span><span class="n">block</span><span class="o">/</span><span class="mf">1e96</span><span class="n">de11320c83cca02e8b9caf3e489497e8e432befe5379f2f08599f8aecede</span>
+</pre></div>
+</div>
+<p>This URI defines the chain on which the <code class="docutils literal notranslate"><span class="pre">SafeMathLib</span></code> library was
+deployed. The first hash you see,
+<code class="docutils literal notranslate"><span class="pre">41941023680923e0fe4d74a34bdac8141f2540e3ae90623718e47d66d1ca4a2d</span></code> is
+the genesis block hash for the Ropsten test network. The later hash
+<code class="docutils literal notranslate"><span class="pre">1e96de11320c83cca02e8b9caf3e489497e8e432befe5379f2f08599f8aecede</span></code> is
+the block hash for block number 168,238 from the Ropsten chain.</p>
+<p>Under that URI there is a single <a class="reference internal" href="glossary.html#term-contract-instance"><span class="xref std std-term">Contract Instance</span></a>. It specifies that
+it’s <a class="reference internal" href="glossary.html#term-contract-type"><span class="xref std std-term">Contract Type</span></a> is <code class="docutils literal notranslate"><span class="pre">SafeMathLib</span></code>, the address that the contract
+instance can be found at, the transaction hash for the transaction that
+deployed the contract, and the block hash in which the deploying
+transaction was mined.</p>
+</div>
+<div class="section" id="dependent-package-with-a-reusable-contract">
+<span id="id6"></span><h2>Dependent Package with a Reusable Contract<a class="headerlink" href="#dependent-package-with-a-reusable-contract" title="Permalink to this headline">¶</a></h2>
+<p>For our next example we’ll be creating a package includes a deployed
+instance of a <a class="reference internal" href="glossary.html#term-contract-type"><span class="xref std std-term">Contract Type</span></a> from that comes from a package dependency.
+This differs from our previous <code class="docutils literal notranslate"><span class="pre">safe-math-lib</span></code> example where our
+deployment is referencing a local contract from the local
+<code class="docutils literal notranslate"><span class="pre">contract_types</span></code>. In this package we will be referencing a
+<code class="docutils literal notranslate"><span class="pre">contract_type</span></code> from one of the <code class="docutils literal notranslate"><span class="pre">build_dependencies</span></code></p>
+<p>We are going to use the <code class="docutils literal notranslate"><span class="pre">standard-token</span></code> package we created earlier
+and include a deployed version of the <code class="docutils literal notranslate"><span class="pre">StandardToken</span></code> contract.</p>
+<p>Our package will be called <code class="docutils literal notranslate"><span class="pre">piper-coin</span></code> and will not contain any
+source files since it merely makes use of the contracts from the
+<code class="docutils literal notranslate"><span class="pre">standard-token</span></code> package. The Package is listed below, and can be found at
+<a class="reference external" href="https://github.com/ethpm/ethpm-spec/blob/master/examples/piper-coin/1.0.0.json">./examples/piper-coin/1.0.0.json</a></p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="nt">&quot;build_dependencies&quot;</span><span class="p">:{</span><span class="nt">&quot;standard-token&quot;</span><span class="p">:</span><span class="s2">&quot;ipfs://QmVu9zuza5mkJwwcFdh2SXBugm1oSgZVuEKkph9XLsbUwg&quot;</span><span class="p">},</span><span class="nt">&quot;deployments&quot;</span><span class="p">:{</span><span class="nt">&quot;blockchain://41941023680923e0fe4d74a34bdac8141f2540e3ae90623718e47d66d1ca4a2d/block/4803939cf88aaf46fb7c9fb771cda4e4072c6c5fe3aaad1860f7064ef18f50b9&quot;</span><span class="p">:{</span><span class="nt">&quot;PiperCoin&quot;</span><span class="p">:{</span><span class="nt">&quot;address&quot;</span><span class="p">:</span><span class="s2">&quot;0xC70871869Ff35e9d08e650b49F23891DB462F181&quot;</span><span class="p">,</span><span class="nt">&quot;block&quot;</span><span class="p">:</span><span class="s2">&quot;0xb21dda724b6f14bcdde1db9703a5c1bfb088763acdb725be2429c1ef8ce0a4e1&quot;</span><span class="p">,</span><span class="nt">&quot;compiler&quot;</span><span class="p">:{</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;solc&quot;</span><span class="p">,</span><span class="nt">&quot;settings&quot;</span><span class="p">:{</span><span class="nt">&quot;optimize&quot;</span><span class="p">:</span><span class="kc">true</span><span class="p">},</span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="s2">&quot;0.4.24+commit.e67f0147.Emscripten.clang&quot;</span><span class="p">},</span><span class="nt">&quot;contract_type&quot;</span><span class="p">:</span><span class="s2">&quot;standard-token:StandardToken&quot;</span><span class="p">,</span><span class="nt">&quot;deployment_bytecode&quot;</span><span class="p">:{</span><span class="nt">&quot;bytecode&quot;</span><span class="p">:</span><span class="s2">&quot;0x608060405234801561001057600080fd5b5060405160208061045383398101604081815291516002819055336000818152602081815285822084905583855294519294919390927fddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef929181900390910190a3506103d2806100816000396000f3006080604052600436106100775763ffffffff7c0100000000000000000000000000000000000000000000000000000000600035041663095ea7b3811461007c57806318160ddd146100b457806323b872dd146100db57806370a0823114610105578063a9059cbb14610126578063dd62ed3e1461014a575b600080fd5b34801561008857600080fd5b506100a0600160a060020a0360043516602435610171565b604080519115158252519081900360200190f35b3480156100c057600080fd5b506100c96101d8565b60408051918252519081900360200190f35b3480156100e757600080fd5b506100a0600160a060020a03600435811690602435166044356101de565b34801561011157600080fd5b506100c9600160a060020a03600435166102c9565b34801561013257600080fd5b506100a0600160a060020a03600435166024356102e4565b34801561015657600080fd5b506100c9600160a060020a036004358116906024351661037b565b336000818152600160209081526040808320600160a060020a038716808552908352818420869055815186815291519394909390927f8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b925928290030190a35060015b92915050565b60025481565b600160a060020a03831660009081526020819052604081205482118015906102295750600160a060020a03841660009081526001602090815260408083203384529091529020548211155b80156102355750600082115b156102be57600160a060020a0380841660008181526020818152604080832080548801905593881680835284832080548890039055600182528483203384528252918490208054879003905583518681529351929391927fddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef9281900390910190a35060016102c2565b5060005b9392505050565b600160a060020a031660009081526020819052604090205490565b3360009081526020819052604081205482118015906103035750600082115b15610373573360008181526020818152604080832080548790039055600160a060020a03871680845292819020805487019055805186815290519293927fddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef929181900390910190a35060016101d2565b5060006101d2565b600160a060020a039182166000908152600160209081526040808320939094168252919091522054905600a165627a7a72305820cf9d6a3f751ca1e6b9bc2324e42633a4cde513d64c3e6cc32d6359629249e90200290000000000000000000000000000000000000000000000000000000000000001&quot;</span><span class="p">},</span><span class="nt">&quot;runtime_bytecode&quot;</span><span class="p">:{</span><span class="nt">&quot;bytecode&quot;</span><span class="p">:</span><span class="s2">&quot;0x6080604052600436106100775763ffffffff7c0100000000000000000000000000000000000000000000000000000000600035041663095ea7b3811461007c57806318160ddd146100b457806323b872dd146100db57806370a0823114610105578063a9059cbb14610126578063dd62ed3e1461014a575b600080fd5b34801561008857600080fd5b506100a0600160a060020a0360043516602435610171565b604080519115158252519081900360200190f35b3480156100c057600080fd5b506100c96101d8565b60408051918252519081900360200190f35b3480156100e757600080fd5b506100a0600160a060020a03600435811690602435166044356101de565b34801561011157600080fd5b506100c9600160a060020a03600435166102c9565b34801561013257600080fd5b506100a0600160a060020a03600435166024356102e4565b34801561015657600080fd5b506100c9600160a060020a036004358116906024351661037b565b336000818152600160209081526040808320600160a060020a038716808552908352818420869055815186815291519394909390927f8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b925928290030190a35060015b92915050565b60025481565b600160a060020a03831660009081526020819052604081205482118015906102295750600160a060020a03841660009081526001602090815260408083203384529091529020548211155b80156102355750600082115b156102be57600160a060020a0380841660008181526020818152604080832080548801905593881680835284832080548890039055600182528483203384528252918490208054879003905583518681529351929391927fddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef9281900390910190a35060016102c2565b5060005b9392505050565b600160a060020a031660009081526020819052604090205490565b3360009081526020819052604081205482118015906103035750600082115b15610373573360008181526020818152604080832080548790039055600160a060020a03871680845292819020805487019055805186815290519293927fddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef929181900390910190a35060016101d2565b5060006101d2565b600160a060020a039182166000908152600160209081526040808320939094168252919091522054905600a165627a7a72305820cf9d6a3f751ca1e6b9bc2324e42633a4cde513d64c3e6cc32d6359629249e9020029&quot;</span><span class="p">},</span><span class="nt">&quot;transaction&quot;</span><span class="p">:</span><span class="s2">&quot;0x93f6c5fbdb4c62f1bff8bace3ec2f80267b6cdd3710c36f9b1445031175d9f6f&quot;</span><span class="p">}}},</span><span class="nt">&quot;manifest_version&quot;</span><span class="p">:</span><span class="s2">&quot;2&quot;</span><span class="p">,</span><span class="nt">&quot;package_name&quot;</span><span class="p">:</span><span class="s2">&quot;piper-coin&quot;</span><span class="p">,</span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="s2">&quot;1.0.0&quot;</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Most of this should be familiar but it’s worth pointing out how we
+reference <a class="reference internal" href="glossary.html#term-contract-type"><span class="xref std std-term">Contract Types</span></a> from dependencies. Under the <code class="docutils literal notranslate"><span class="pre">PiperCoin</span></code>
+entry within the deployments you should see that the <code class="docutils literal notranslate"><span class="pre">contract_type</span></code>
+key is set to <code class="docutils literal notranslate"><span class="pre">standard-token:StandardToken</span></code>. The first portion
+represents the name of the package dependency within the
+<code class="docutils literal notranslate"><span class="pre">build_dependencies</span></code> that should be used. The later portion indicates
+the contract type that should be used from that dependencies contract
+types.</p>
+</div>
+<div class="section" id="stand-alone-package-with-a-deployed-contract-linked-against-a-deployed-library">
+<span id="id7"></span><h2>Stand Alone Package with a Deployed Contract Linked against a Deployed Library<a class="headerlink" href="#stand-alone-package-with-a-deployed-contract-linked-against-a-deployed-library" title="Permalink to this headline">¶</a></h2>
+<p>In the previous <code class="docutils literal notranslate"><span class="pre">safe-math-lib</span></code> package we demonstrated what a package
+with a deployed instance of one of it’s local contracts looks like. In
+this example we will build on that concept with a package which includes
+a library and a contract which uses that library as well as deployed
+instances of both.</p>
+<p>The package will be called <code class="docutils literal notranslate"><span class="pre">escrow</span></code> and will implementing a simple
+escrow contract. The escrow contract will make use of a library to
+safely send ether. Both the contract and library will be part of the
+package found in the following two solidity source files.</p>
+<ul class="simple">
+<li><a class="reference external" href="https://github.com/ethpm/ethpm-spec/blob/master/examples/escrow/contracts/SafeSendLib.sol">./contracts/SafeSendLib.sol</a></li>
+<li><a class="reference external" href="https://github.com/ethpm/ethpm-spec/blob/master/examples/escrow/contracts/Escrow.sol">./contracts/Escrow.sol</a></li>
+</ul>
+<p>The full source for these files can be found here:
+<a class="reference external" href="https://github.com/ethpm/ethpm-spec/tree/master/examples/escrow">./examples/escrow/</a>.</p>
+<p>The Package is listed below with some sections truncated for improved
+readability. The full Package can be found at
+<a class="reference external" href="https://github.com/ethpm/ethpm-spec/blob/master/examples/escrow/1.0.0.json">./examples/escrow/1.0.0.json</a></p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;manifest_version&quot;</span><span class="p">:</span> <span class="s2">&quot;2&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;version&quot;</span><span class="p">:</span> <span class="s2">&quot;1.0.0&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;package_name&quot;</span><span class="p">:</span> <span class="s2">&quot;escrow&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;sources&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;./contracts/SafeSendLib.sol&quot;</span><span class="p">:</span> <span class="s2">&quot;ipfs://QmcnzhWjaV71qzKntv4burxyix9W2yBA2LrJB4k99tGqkZ&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;./contracts/Escrow.sol&quot;</span><span class="p">:</span> <span class="s2">&quot;ipfs://QmSwmFLT5B5aag485ZWvHmfdC1cU5EFdcqs1oqE5KsxGMw&quot;</span>
+  <span class="p">},</span>
+  <span class="nt">&quot;contract_types&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;SafeSendLib&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;...&quot;</span><span class="p">:</span> <span class="s2">&quot;...&quot;</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;Escrow&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;...&quot;</span><span class="p">:</span> <span class="s2">&quot;...&quot;</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+  <span class="nt">&quot;deployments&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;blockchain://41941023680923e0fe4d74a34bdac8141f2540e3ae90623718e47d66d1ca4a2d/block/e76cf1f29a4689f836d941d7ffbad4e4b32035a441a509dc53150c2165f8e90d&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;SafeMathLib&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;contract_type&quot;</span><span class="p">:</span> <span class="s2">&quot;SafeSendLib&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;address&quot;</span><span class="p">:</span> <span class="s2">&quot;0x80d7f7a33e551455a909e1b914c4fd4e6d0074cc&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;transaction&quot;</span><span class="p">:</span> <span class="s2">&quot;0x74561167f360eaa20ea67bd4b4bf99164aabb36b2287061e86137bfa0d35d5fb&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;block&quot;</span><span class="p">:</span> <span class="s2">&quot;0x46554e3cf7b768b1cc1990ad4e2d3a137fe9373c0dda765f4db450cd5fa64102&quot;</span>
+      <span class="p">},</span>
+      <span class="nt">&quot;Escrow&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;contract_type&quot;</span><span class="p">:</span> <span class="s2">&quot;Escrow&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;address&quot;</span><span class="p">:</span> <span class="s2">&quot;0x35b6b723786fd8bd955b70db794a1f1df56e852f&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;transaction&quot;</span><span class="p">:</span> <span class="s2">&quot;0x905fbbeb6069d8b3c8067d233f58b0196b43da7a20b839f3da41f69c87da2037&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;block&quot;</span><span class="p">:</span> <span class="s2">&quot;0x9b39dcab3d665a51755dedef56e7c858702f5817ce926a0cd8ff3081c5159b7f&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;runtime_bytecode&quot;</span><span class="p">:</span> <span class="p">{</span>
+          <span class="nt">&quot;link_dependencies&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+              <span class="nt">&quot;offsets&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="mi">262</span><span class="p">,</span>
+                <span class="mi">412</span>
+              <span class="p">],</span>
+              <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;reference&quot;</span><span class="p">,</span>
+              <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;SafeSendLib&quot;</span>
+            <span class="p">}</span>
+          <span class="p">]</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>This Package is the first one we’ve seen thus far that include the
+<code class="docutils literal notranslate"><span class="pre">link_dependencies</span></code> section within one of the <a class="reference internal" href="glossary.html#term-contract-instance"><span class="xref std std-term">Contract Instances</span></a>.
+The <code class="docutils literal notranslate"><span class="pre">runtime_bytecode</span></code> value for the <code class="docutils literal notranslate"><span class="pre">Escrow</span></code> contract has been
+excluded from the example above for readability, but the full value is
+as follows (wrapped to 80 characters).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mh">0x606060405260e060020a600035046366d003ac811461003457806367e404ce1461005d5780636</span>
+<span class="mi">9</span><span class="n">d8957514610086575b610000565b3461000057610041610095565b60408051600160a060020a03</span>
+<span class="mi">9092168252519081900360200190</span><span class="n">f35b34610000576100416100a4565b60408051600160a060020</span>
+<span class="n">a039092168252519081900360200190f35b34610000576100936100b3565b005b600154600160a0</span>
+<span class="mi">60020</span><span class="n">a031681565b600054600160a060020a031681565b60005433600160a060020a03908116911</span>
+<span class="mf">6141561014857600154604080516000602091820152815160e260020</span><span class="n">a6324d048c7028152600160</span>
+<span class="n">a060020a03938416600482015230909316316024840152905173000000000000000000000000000</span>
+<span class="mi">000000000000092639341231</span><span class="n">c926044808301939192829003018186803b156100005760325a03f4</span>
+<span class="mf">1561000057506101e2915050565</span><span class="n">b60015433600160a060020a039081169116141561002f5760008</span>
+<span class="mf">05460408051602090810193909352805160e260020</span><span class="n">a6324d048c7028152600160a060020a039283</span>
+<span class="mi">1660048201523090921631602483015251730000000000000000000000000000000000000000926</span>
+<span class="mi">39341231</span><span class="n">c9260448082019391829003018186803b156100005760325a03f41561000057506101e2</span>
+<span class="mi">915050565</span><span class="n">b610000565b5b5b56</span>
+</pre></div>
+</div>
+<p>This bytecode is unlinked, meaning it has missing portions of data, populated
+instead with zeroes (<code class="docutils literal notranslate"><span class="pre">0000000000000000000000000000000000000000</span></code>).
+This section of zeroes is referred to as a <a class="reference internal" href="glossary.html#term-link-reference"><span class="xref std std-term">Link Reference</span></a>. The
+entries in the <code class="docutils literal notranslate"><span class="pre">link_dependencies</span></code> section of a <a class="reference internal" href="glossary.html#term-contract-instance"><span class="xref std std-term">Contract Instance</span></a>
+describe how these link references should be filled in.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">offsets</span></code> value specifies the locations (as byte offset) where the
+replacement should begin. The <code class="docutils literal notranslate"><span class="pre">value</span></code> defines what should be used to replace
+the link reference. In this case, the <code class="docutils literal notranslate"><span class="pre">value</span></code> is referencing the
+<code class="docutils literal notranslate"><span class="pre">SafeSendLib</span></code> contract instance from this Package.</p>
+</div>
+<div class="section" id="dependent-package-with-a-deployed-contract-linked-against-a-package-dependency">
+<span id="id8"></span><h2>Dependent Package with a Deployed Contract Linked against a Package Dependency<a class="headerlink" href="#dependent-package-with-a-deployed-contract-linked-against-a-package-dependency" title="Permalink to this headline">¶</a></h2>
+<p>Now that we’ve seen how we can handle linking dependencies that rely on
+deployed <a class="reference internal" href="glossary.html#term-contract-instance"><span class="xref std std-term">Contract Instances</span></a> from the local package we’ll explore an
+example with link dependencies that rely on contracts from the package
+dependencies.</p>
+<p>In this example we’ll be writing the <code class="docutils literal notranslate"><span class="pre">wallet</span></code> package which includes a
+wallet contract which makes use of the previous <code class="docutils literal notranslate"><span class="pre">safe-math-lib</span></code>
+package. We will also make use of the <code class="docutils literal notranslate"><span class="pre">owned</span></code> package from our very
+first example to handle authorization. Our package will contain a single
+solidity source file
+<a class="reference external" href="https://github.com/ethpm/ethpm-spec/blob/master/examples/wallet/contracts/Wallet.sol">./contracts/Wallet.sol</a>, shown below.</p>
+<div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kr">pragma solidity</span> <span class="o">^</span><span class="mi">0</span><span class="p">.</span><span class="mi">4</span><span class="p">.</span><span class="mi">24</span><span class="p">;</span>
+
+
+<span class="kn">import</span> <span class="p">{</span><span class="n">SafeMathLib</span><span class="p">}</span> <span class="kr">from</span> <span class="s">&quot;./safe-math-lib/contracts/SafeMathLib.sol&quot;</span><span class="p">;</span>
+<span class="kn">import</span> <span class="p">{</span><span class="n">Owned</span><span class="p">}</span> <span class="kr">from</span> <span class="s">&quot;./owned/contracts/Owned.sol&quot;</span><span class="p">;</span>
+
+
+<span class="c1">/// @title Contract for holding funds in escrow between two semi trusted parties.</span>
+<span class="c1">/// @author Piper Merriam &lt;pipermerriam@gmail.com&gt;</span>
+<span class="kd">contract</span> <span class="n">Wallet</span> <span class="kr">is</span> <span class="n">Owned</span> <span class="p">{</span>
+    <span class="kn">using</span> <span class="n">SafeMathLib</span> <span class="k">for</span> <span class="kt">uint</span><span class="p">;</span>
+
+    <span class="kd">mapping</span> <span class="p">(</span><span class="kt">address</span> <span class="o">=&gt;</span> <span class="kt">uint</span><span class="p">)</span> <span class="n">allowances</span><span class="p">;</span>
+
+    <span class="c1">/// @dev Fallback function for depositing funds</span>
+    <span class="kd">function</span><span class="p">()</span> <span class="kr">public</span> <span class="p">{</span>
+    <span class="p">}</span>
+
+    <span class="c1">/// @dev Sends the recipient the specified amount</span>
+    <span class="c1">/// @notice This will send the reciepient the specified amount.</span>
+    <span class="kd">function</span> <span class="nf">send</span><span class="p">(</span><span class="kt">address</span> <span class="n">recipient</span><span class="p">,</span> <span class="kt">uint</span> <span class="nb">value</span><span class="p">)</span> <span class="kr">public</span> <span class="n">onlyOwner</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">bool</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">recipient</span><span class="p">.</span><span class="nf">send</span><span class="p">(</span><span class="nb">value</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="c1">/// @dev Sets recipient to be approved to withdraw the specified amount</span>
+    <span class="c1">/// @notice This will set the recipient to be approved to withdraw the specified amount.</span>
+    <span class="kd">function</span> <span class="n">approve</span><span class="p">(</span><span class="kt">address</span> <span class="n">recipient</span><span class="p">,</span> <span class="kt">uint</span> <span class="nb">value</span><span class="p">)</span> <span class="kr">public</span> <span class="n">onlyOwner</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">bool</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">allowances</span><span class="p">[</span><span class="n">recipient</span><span class="p">]</span> <span class="o">=</span> <span class="nb">value</span><span class="p">;</span>
+        <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">/// @dev Lets caller withdraw up to their approved amount</span>
+    <span class="c1">/// @notice This will withdraw provided value, deducting it from your total allowance.</span>
+    <span class="kd">function</span> <span class="n">withdraw</span><span class="p">(</span><span class="kt">uint</span> <span class="nb">value</span><span class="p">)</span> <span class="kr">public</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">bool</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">allowances</span><span class="p">[</span><span class="nb">msg</span><span class="p">.</span><span class="nb">sender</span><span class="p">]</span> <span class="o">=</span> <span class="n">allowances</span><span class="p">[</span><span class="nb">msg</span><span class="p">.</span><span class="nb">sender</span><span class="p">].</span><span class="n">safeSub</span><span class="p">(</span><span class="nb">value</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nb">msg</span><span class="p">.</span><span class="nb">sender</span><span class="p">.</span><span class="nf">send</span><span class="p">(</span><span class="nb">value</span><span class="p">))</span>
+            <span class="nf">revert</span><span class="p">();</span>
+        <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The Package for our <code class="docutils literal notranslate"><span class="pre">wallet</span></code> package can been seen below. It has been
+trimmed to improve readability. The full Package can be found at
+<a class="reference external" href="https://github.com/ethpm/ethpm-spec/blob/master/examples/wallet/1.0.0.json">./examples/wallet/1.0.0.json</a></p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;manifest_version&quot;</span><span class="p">:</span> <span class="s2">&quot;2&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;version&quot;</span><span class="p">:</span> <span class="s2">&quot;1.0.0&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;package_name&quot;</span><span class="p">:</span> <span class="s2">&quot;wallet&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;sources&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;./contracts/Wallet.sol&quot;</span><span class="p">:</span> <span class="s2">&quot;ipfs://QmYKibsXPSTR5UjywQHX8SM4za1K3QHadtFGWmZqGA4uE9&quot;</span>
+  <span class="p">},</span>
+  <span class="nt">&quot;contract_types&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;Wallet&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;deployment_bytecode&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;...&quot;</span><span class="p">:</span> <span class="s2">&quot;...&quot;</span>
+      <span class="p">},</span>
+      <span class="nt">&quot;runtime_bytecode&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;...&quot;</span><span class="p">:</span> <span class="s2">&quot;...&quot;</span>
+      <span class="p">},</span>
+      <span class="nt">&quot;...&quot;</span><span class="p">:</span> <span class="s2">&quot;...&quot;</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+  <span class="nt">&quot;deployments&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;blockchain://41941023680923e0fe4d74a34bdac8141f2540e3ae90623718e47d66d1ca4a2d/block/3ececfa0e03bce2d348279316100913c42ca2dcd51b8bc8d2d87ef2dc6a479ff&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;Wallet&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;contract_type&quot;</span><span class="p">:</span> <span class="s2">&quot;Wallet&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;address&quot;</span><span class="p">:</span> <span class="s2">&quot;0xcd0f8d7dab6c682d3726693ef3c7aaacc6431d1c&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;transaction&quot;</span><span class="p">:</span> <span class="s2">&quot;0x5c113857925ae0d866341513bb0732cd799ebc1c18fcec253bbc41d2a029acd4&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;block&quot;</span><span class="p">:</span> <span class="s2">&quot;0xccd130623ad3b25a357ead2ecfd22d38756b2e6ac09b77a37bd0ecdf16249765&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;runtime_bytecode&quot;</span><span class="p">:</span> <span class="p">{</span>
+          <span class="nt">&quot;link_dependencies&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+              <span class="nt">&quot;offsets&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="mi">340</span>
+              <span class="p">],</span>
+              <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;reference&quot;</span><span class="p">,</span>
+              <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;safe-math-lib:SafeMathLib&quot;</span>
+            <span class="p">}</span>
+          <span class="p">]</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+  <span class="nt">&quot;build_dependencies&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;owned&quot;</span><span class="p">:</span> <span class="s2">&quot;ipfs://QmUwVUMVtkVctrLDeL12SoeCPUacELBU8nAxRtHUzvtjND&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;safe-math-lib&quot;</span><span class="p">:</span> <span class="s2">&quot;ipfs://QmfUwis9K2SLwnUh62PDb929JzU5J2aFKd4kS1YErYajdq&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Just like our previous example, the <code class="docutils literal notranslate"><span class="pre">runtime_bytecode</span></code> has been
+omitted for improved readability, but the full value is as follows
+(wrapped to 80 characters).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mh">0x606060405236156100355760e060020a6000350463095ea7b381146100435780632e1a7d4d146</span>
+<span class="mi">1006</span><span class="n">a578063d0679d341461008e575b34610000576100415b5b565b005b34610000576100566004</span>
+<span class="mi">356024356100</span><span class="n">b5565b604080519115158252519081900360200190f35b346100005761005660043</span>
+<span class="mi">56100</span><span class="n">f8565b604080519115158252519081900360200190f35b3461000057610056600435602435</span>
+<span class="mi">6101</span><span class="n">da565b604080519115158252519081900360200190f35b6000805433600160a060020a03908</span>
+<span class="mi">1169116146100</span><span class="n">d157610000565b50600160a060020a038216600090815260016020819052604090</span>
+<span class="mi">91208290555</span><span class="n">b5b92915050565b600160a060020a033316600090815260016020908152604080832</span>
+<span class="mi">0548151830184905281517</span><span class="n">fa293d1e8000000000000000000000000000000000000000000000000</span>
+<span class="mi">0000000081526004810191909152602481018590529051730000000000000000000000000000000</span>
+<span class="mi">0000000009263</span><span class="n">a293d1e89260448082019391829003018186803b156100005760325a03f4156100</span>
+<span class="mi">00575050604080518051600160</span><span class="n">a060020a033316600081815260016020529384209190915592508</span>
+<span class="mi">4156108</span><span class="n">fc0291859190818181858888f1935050505015156101d157610000565b5060015b919050</span>
+<span class="mi">565</span><span class="n">b6000805433600160a060020a039081169116146101f657610000565b604051600160a060020</span>
+<span class="n">a0384169083156108fc029084906000818181858888f19450505050505b5b9291505056</span>
+</pre></div>
+</div>
+<p>As you can see, this bytecode contains missing link references, in this case to
+the <code class="docutils literal notranslate"><span class="pre">SafeMathLib</span></code> library from the <code class="docutils literal notranslate"><span class="pre">safe-math-lib</span></code> package dependency.
+If you look in the <code class="docutils literal notranslate"><span class="pre">link_dependencies</span></code> section of our <code class="docutils literal notranslate"><span class="pre">Wallet</span></code>
+contract you’ll see it’s items are similar to the ones from our previous
+example.</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;link_dependencies&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;offsets&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="mi">340</span>
+      <span class="p">],</span>
+      <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;reference&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;safe-math-lib:SafeMathLib&quot;</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>However, unlike the previous example which linked against a <em>local</em>
+contract type, <code class="docutils literal notranslate"><span class="pre">value</span></code> portion is prefixed with the name of the
+package which contains the address of the contract instance that this
+should be linked against.</p>
+</div>
+<div class="section" id="dependent-package-with-a-deployed-contract-linked-against-a-deep-dependency">
+<span id="id9"></span><h2>Dependent Package with a Deployed Contract Linked against a Deep Dependency<a class="headerlink" href="#dependent-package-with-a-deployed-contract-linked-against-a-deep-dependency" title="Permalink to this headline">¶</a></h2>
+<p>In the previous example we saw how link dependencies against direct
+package dependencies are handled. In this example we will look at how
+this works when the link dependency is against a package deeper in the
+dependency tree.</p>
+<p>This package will contain a single solidity source file
+<a class="reference external" href="https://github.com/ethpm/ethpm-spec/blob/master/examples/wallet-with-send/contracts/WalletWithSend.sol">./contracts/WalletWithSend.sol</a>
+which extends our previous <code class="docutils literal notranslate"><span class="pre">Wallet</span></code> contract, adding a new
+<code class="docutils literal notranslate"><span class="pre">approvedSend</span></code> function.</p>
+<div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kr">pragma solidity</span> <span class="o">^</span><span class="mi">0</span><span class="p">.</span><span class="mi">4</span><span class="p">.</span><span class="mi">24</span><span class="p">;</span>
+
+
+<span class="kn">import</span> <span class="p">{</span><span class="n">Wallet</span><span class="p">}</span> <span class="kr">from</span> <span class="s">&quot;./wallet/contracts/Wallet.sol&quot;</span><span class="p">;</span>
+
+
+<span class="c1">/// @title Wallet contract with simple send and approval spending functionality</span>
+<span class="c1">/// @author Piper Merriam &lt;pipermerriam@gmail.com&gt;</span>
+<span class="kd">contract</span> <span class="n">WalletWithSend</span> <span class="kr">is</span> <span class="n">Wallet</span> <span class="p">{</span>
+    <span class="c1">/// @dev Sends funds that have been approved to the specified address</span>
+    <span class="c1">/// @notice This will send the reciepient the specified amount.</span>
+    <span class="kd">function</span> <span class="n">approvedSend</span><span class="p">(</span><span class="kt">uint</span> <span class="nb">value</span><span class="p">,</span> <span class="kt">address</span> <span class="n">to</span><span class="p">)</span> <span class="kr">public</span> <span class="p">{</span>
+        <span class="n">allowances</span><span class="p">[</span><span class="nb">msg</span><span class="p">.</span><span class="nb">sender</span><span class="p">]</span> <span class="o">=</span> <span class="n">allowances</span><span class="p">[</span><span class="nb">msg</span><span class="p">.</span><span class="nb">sender</span><span class="p">].</span><span class="n">safeSub</span><span class="p">(</span><span class="nb">value</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">to</span><span class="p">.</span><span class="nf">send</span><span class="p">(</span><span class="nb">value</span><span class="p">))</span>
+            <span class="nf">revert</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>This new <code class="docutils literal notranslate"><span class="pre">approvedSend</span></code> function allows spending an address’s provided
+<em>allowance</em> by sending it to a specified address.</p>
+<p>The Package for our <code class="docutils literal notranslate"><span class="pre">wallet-with-send</span></code> package can been seen below. It
+has been trimmed to improve readability. The full Package can be found
+at
+<a class="reference external" href="https://github.com/ethpm/ethpm-spec/blob/master/examples/wallet-with-send/1.0.0.json">./examples/wallet-with-send/1.0.0.json</a></p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;manifest_version&quot;</span><span class="p">:</span> <span class="s2">&quot;2&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;version&quot;</span><span class="p">:</span> <span class="s2">&quot;1.0.0&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;package_name&quot;</span><span class="p">:</span> <span class="s2">&quot;wallet-with-send&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;sources&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;./contracts/WalletWithSend.sol&quot;</span><span class="p">:</span> <span class="s2">&quot;ipfs://QmWAKLzXaxES3tszDXDPP9xvf7xqsB9FU3W7MtapQ47naU&quot;</span>
+  <span class="p">},</span>
+  <span class="nt">&quot;contract_types&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;WalletWithSend&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;deployment_bytecode&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;...&quot;</span><span class="p">:</span> <span class="s2">&quot;...&quot;</span>
+      <span class="p">},</span>
+      <span class="nt">&quot;runtime_bytecode&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;...&quot;</span><span class="p">:</span> <span class="s2">&quot;...&quot;</span>
+      <span class="p">},</span>
+      <span class="nt">&quot;...&quot;</span><span class="p">:</span> <span class="s2">&quot;...&quot;</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+  <span class="nt">&quot;deployments&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;blockchain://41941023680923e0fe4d74a34bdac8141f2540e3ae90623718e47d66d1ca4a2d/block/bfb631d770940a93296e9b93f034f9f920ae311a8b37acd57ff0b55605beee73&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;Wallet&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;contract_type&quot;</span><span class="p">:</span> <span class="s2">&quot;WalletWithSend&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;address&quot;</span><span class="p">:</span> <span class="s2">&quot;0x7817d93f681a72758335398913136069c945d34b&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;transaction&quot;</span><span class="p">:</span> <span class="s2">&quot;0xe37d5691b58472f9932545d1d44fc95463a69adb1a3da5b06da2d9f3ff5c2939&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;block&quot;</span><span class="p">:</span> <span class="s2">&quot;0x5479e2f948184e13581d13e6a3d5bd5e5263d898d4514c5ec6fab37e2a1e9d6c&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;runtime_bytecode&quot;</span><span class="p">:</span> <span class="p">{</span>
+          <span class="nt">&quot;link_dependencies&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+              <span class="nt">&quot;offsets&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="mi">383</span><span class="p">,</span>
+                <span class="mi">587</span>
+              <span class="p">],</span>
+              <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;reference&quot;</span><span class="p">,</span>
+              <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;wallet:safe-math-lib:SafeMathLib&quot;</span>
+            <span class="p">}</span>
+          <span class="p">]</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+  <span class="nt">&quot;build_dependencies&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;wallet&quot;</span><span class="p">:</span> <span class="s2">&quot;ipfs://QmSg2QvGhQrYgQqbTGVYjGmF9hkEZrxQNmSXsr8fFyYtD4&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The important part of this Package is the <code class="docutils literal notranslate"><span class="pre">link_dependencies</span></code> section.</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;link_dependencies&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;offsets&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="mi">383</span><span class="p">,</span>
+        <span class="mi">587</span>
+      <span class="p">],</span>
+      <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;reference&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;wallet:safe-math-lib:SafeMathLib&quot;</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">value</span></code> portion here means that the bytecode for this contract is
+linked against the <code class="docutils literal notranslate"><span class="pre">SafeMathLib</span></code> deployed instance from the
+<code class="docutils literal notranslate"><span class="pre">safe-math-lib</span></code> dependency from the <code class="docutils literal notranslate"><span class="pre">wallet</span></code> dependency of this
+package. This defines the traversal path through the dependency tree to
+the deployed instance of the <code class="docutils literal notranslate"><span class="pre">SafeMathLib</span></code> library which was used for
+linking during deployment.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="glossary.html" class="btn btn-neutral float-right" title="Glossary" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="package-spec.html" class="btn btn-neutral" title="Specification" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Piper Merriam, et al..
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/contentui.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
