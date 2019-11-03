@@ -395,10 +395,10 @@ within the dependency tree the value is constructed as follows.
 
 ----
 
-The *Bytecode* Object
-~~~~~~~~~~~~~~~~~~~~~
+The *UnlinkedBytecode* Object
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-A bytecode object has the following key/value pairs.
+An unlinked bytecode object, representing a |ContractType|, has the following key/value pairs.
 
 Bytecode: ``bytecode``
 ^^^^^^^^^^^^^^^^^^^^^^
@@ -410,16 +410,26 @@ hexadecimal representation of the bytecode.
   :Type: String
   :Format: ``0x`` prefixed hexadecimal.
 
-
 Link References: ``link_references``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The ``link_references`` field defines the locations in the corresponding
-bytecode which require |linking|.
+bytecode which require |linking|. If bytecode contains no link references, this field **must** be an empty array.
+
+  :Required: Yes
+  :Type: Array
+  :Format: All values **must** be valid :ref:`Link Reference objects <link-reference-object>`.
+    See also below.
+
+Link Dependencies: ``link_dependencies``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The ``link_dependencies`` defines the |LinkValues| that have been used to link 
+the corresponding bytecode. For example, if a contract type references a deployed library.
 
   :Required: No
   :Type: Array
-  :Format: All values **must** be valid :ref:`Link Reference objects <link-reference-object>`.
+  :Format: All values **must** be valid :ref:`Link Value objects <link-value-object>`.
     See also below.
 
 **Format**
@@ -430,15 +440,43 @@ any of the link references intersect.
 
 Intersection is defined as two link references which overlap.
 
+----
+
+The *LinkedBytecode* Object
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+A linked bytecode object, representing a deployed |ContractInstance|, has the following key/value pairs.
+
 Link Dependencies: ``link_dependencies``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The ``link_dependencies`` defines the |LinkValues| that have been used
 to link the corresponding bytecode.
 
-  :Required: No
+  :Required: Yes
   :Type: Array
   :Format: All values **must** be valid :ref:`Link Value objects <link-value-object>`.
+    See also below.
+
+Bytecode: ``bytecode``
+^^^^^^^^^^^^^^^^^^^^^^
+
+The ``bytecode`` field is a string containing the ``0x`` prefixed
+hexadecimal representation of the bytecode.
+
+  :Required: Only if a |LinkValue| differs from its corresponding |ContractType|.
+  :Type: String
+  :Format: ``0x`` prefixed hexadecimal.
+
+Link References: ``link_references``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The ``link_references`` field defines the locations in the corresponding
+bytecode which require |linking|.
+
+  :Required: Only if a |LinkValue| differs from its corresponding |ContractType|.
+  :Type: Array
+  :Format: All values **must** be valid :ref:`Link Reference objects <link-reference-object>`.
     See also below.
 
 **Format**
@@ -449,8 +487,8 @@ Validation of this field includes the following:
    ``offsets``.
 
 -  Each :ref:`link value object <link-value-object>` **must** have a
-   corresponding :ref:`link reference object <link-reference-object>` under
-   the ``link_references`` field.
+   corresponding :ref:`link reference object <link-reference-object>` in its
+   corresponding |ContractType| or in the ``link_references`` field.
 
 -  The length of the resolved ``value`` **must** be equal to the
    ``length`` of the corresponding |LinkReference|.
@@ -551,7 +589,7 @@ The ``deployment_bytecode`` field defines the bytecode for this |ContractType|.
 
   :Required: No
   :Type: Object
-  :Format: **must** conform to `the Bytecode Object`_ format.
+  :Format: **must** conform to `the UnlinkedBytecode Object`_ format.
 
 
 Runtime Bytecode: ``runtime_bytecode``
@@ -562,7 +600,7 @@ runtime portion of |Bytecode| for this |ContractType|.
 
   :Required: No
   :Type: Object
-  :Format: **must** conform to `the Bytecode Object`_ format.
+  :Format: **must** conform to `the UnlinkedBytecode Object`_ format.
 
 ABI: ``abi``
 ^^^^^^^^^^^^
@@ -675,7 +713,7 @@ the ``runtime_bytecode`` from the |ContractType| for this |ContractInstance|.
 
   :Required: No
   :Type: Object
-  :Format: **must** conform to `the Bytecode Object`_ format.
+  :Format: **must** conform to `the LinkedBytecode Object`_ format.
 
 Every entry in the ``link_references`` for this bytecode **must** have a
 corresponding entry in the ``link_dependencies`` section.
