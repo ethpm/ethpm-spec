@@ -1,6 +1,6 @@
 {
   "name": "ethpm-spec",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "Ethereum Package Manager Specifications",
   "scripts": {
     "prepare": "json2ts -i ./spec/package.spec.json -o ./index.d.ts"
