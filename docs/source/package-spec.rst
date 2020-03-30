@@ -111,7 +111,7 @@ Package Name: ``name``
 
 The ``name`` field defines a human readable name for this package.
 
-  - Packages **must** include this field to be released on an EthPM registry.
+  - Packages **should** include this field to be released on an EthPM registry.
   - Package names **must** begin with a lowercase letter and be comprised of only lowercase
     letters, numeric characters, and the dash character ``-``.
   - Package names **must** not exceed 255 characters in length.
@@ -129,7 +129,7 @@ Package Version: ``version``
 
 The ``version`` field declares the version number of this release.
   
-  - Packages **must** include this field to be released on an EthPM registry.
+  - Packages **should** include this field to be released on an EthPM registry.
   - This value **should** conform to the `semver <http://semver.org/>`__ version numbering specification.
 
   :Required: If ``name`` is included.
@@ -529,18 +529,17 @@ Source Object
 Checksum: ``checksum``
 ^^^^^^^^^^^^^^^^^^^^^^
 
-Hash of the source file - prefixed by the hash algorithm and a ``/``.
-  - (eg. ``keccak256/abc123...``).
+Hash of the source file.
 
-  TODO: Can we enforce content-addressed urls and remove this field entirely?
-  :Required: If there are no urls that contain a hash of its contents.
+  :Required: **If** there are no URIs provided that contain a content hash.
   :Key: ``checksum``
-  :Value: string
+  :Value: `ChecksumObject`_
 
 URLs: ``urls``
 ^^^^^^^^^^^^^^
 Array of urls that resolve to the same source file.
   - Urls **should** be stored on a content-addressable filesystem.
+  - Urls **must** be prefixed with a scheme.
   - If the resulting document is a directory the key **should** be interpreted as a directory path.
   - If the resulting document is a file the key **should** be interpreted as a file path.
 
@@ -561,10 +560,36 @@ Install Path: ``installPath``
 Filesystem path of source file.
   - **Must** be a relative filesystem path that begins with a ``./``.
   - **Must** resolve to a path that is within the current virtual working directory.
+  - **Must** be unique across all included sources.
 
   :Required: This field **must** be included for the package to be writable to disk.
   :Key: ``installPath``
   :Value: string
+
+----
+
+.. _Checksum Object:
+
+The *Checksum* Object
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+A *Checksum* object is defined to have the following key/value pairs.
+
+Algorithm: ``algorithm``
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+The ``algorithm`` used to generate the corresponding hash.
+
+  :Required: Yes
+  :Type: String
+
+Hash: ``hash``
+^^^^^^^^^^^^^^
+
+The ``hash`` of a source files contents generated with the corresponding algorithm.
+
+  :Required: Yes
+  :Type: String
 
 ----
 
@@ -573,8 +598,7 @@ Filesystem path of source file.
 The *Contract Type* Object
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-A *Contract Type* object is defined to have the following key/value
-pairs.
+A *Contract Type* object is defined to have the following key/value pairs.
 
 Contract Name: ``contractName``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -714,7 +738,6 @@ the ``runtimeBytecode`` from the |ContractType| for this |ContractInstance|.
 Every entry in the ``linkReferences`` for this bytecode **must** have a
 corresponding entry in the ``linkDependencies`` section.
 
-
 .. _compiler-compiler-1:
 
 Compiler: ``compiler``
@@ -789,6 +812,17 @@ A list of the |ContractAlias| in this package that used this compiler to generat
   :Required: No
   :Key: ``contractTypes``
   :Type: Array(|ContractAlias|)
+
+Sources: ``sources``
+^^^^^^^^^^^^^^^^^^^^
+
+A list of the |Sources| in this package that are targeted by this compiler version. 
+
+  - Values **must** match a global source identifier located in ``"sources"``.
+
+  :Required: No
+  :Key: ``sources``
+  :Type: Array(String)
 
 ----
 
