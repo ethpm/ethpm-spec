@@ -64,8 +64,11 @@ Glossary
 
       The contract alias **must** use *one of* the following naming schemes:
 
-      -  ``<contract-name>``
-      -  ``<contract-name>[<identifier>]``
+      -  ``<source-id>:<contract-name>``
+      -  ``<source-id>:<contract-name>[<identifier>]``
+
+      The ``<source-id>`` portion **must** match a key from the ``sources``
+      object for the respective source file of this contract type.
 
       The ``<contract-name>`` portion **must** be the same as the
       |ContractName| for this contract type.
