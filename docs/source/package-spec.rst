@@ -738,21 +738,6 @@ the ``runtimeBytecode`` from the |ContractType| for this |ContractInstance|.
 Every entry in the ``linkReferences`` for this bytecode **must** have a
 corresponding entry in the ``linkDependencies`` section.
 
-.. _compiler-compiler-1:
-
-Compiler: ``compiler``
-^^^^^^^^^^^^^^^^^^^^^^
-
-The ``compiler`` field defines the compiler information that was used
-during compilation of this |ContractInstance|. This field **should** be
-present in all |ContractTypes| which include ``bytecode`` or
-``runtimeBytecode``.
-
-  :Required: No
-  :Type: Object
-  :Format: **must** conform to the `Compiler Information Object`_
-   format.
-
 ----
 
 .. _compiler information object:
