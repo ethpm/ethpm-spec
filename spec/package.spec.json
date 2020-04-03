@@ -3,30 +3,31 @@
   "description": "EthPM Manifest Specification",
   "type": "object",
   "required": [
-    "manifest"
+    "manifest_version",
+    "package_name",
+    "version"
   ],
-  "version": "3",
+  "version": "2",
   "properties": {
-    "manifest": {
+    "manifest_version": {
       "type": "string",
-      "title": "Manifest",
+      "title": "Manifest Version",
       "description": "EthPM Manifest Version",
-      "default": "ethpm/3",
-      "enum": ["ethpm/3"]
+      "default": "2",
+      "enum": ["2"]
     },
-    "name": {
-      "title": "Name",
+    "package_name": {
+      "title": "Package Name",
       "description": "The name of the package that this release is for",
       "type": "string",
       "pattern": "^[a-z][-a-z0-9]{0,255}$"
     },
-    "version": {
-      "title": "Version",
-      "description": "The version of the package that this release is for",
-      "type": "string"
-    },
     "meta": {
       "$ref": "#/definitions/PackageMeta"
+    },
+    "version": {
+      "title": "Version",
+      "type": "string"
     },
     "sources": {
       "title": "Sources",
@@ -45,7 +46,7 @@
         }
       }
     },
-    "contractTypes": {
+    "contract_types": {
       "title": "Contract Types",
       "description": "The contract types included in this release",
       "type": "object",
@@ -65,7 +66,7 @@
         }
       }
     },
-    "buildDependencies": {
+    "build_dependencies": {
       "title": "Build Dependencies",
       "type": "object",
       "patternProperties": {
@@ -123,16 +124,16 @@
       "description": "Data for a contract type included in this package",
       "type": "object",
       "properties":{
-        "contractName": {
+        "contract_name": {
           "title": "Contract Name",
           "description": "The name for this contract type as found in the project source code.",
           "type": "string",
           "pattern": "[a-zA-Z][a-zA-Z0-9_]{0,255}"
         },
-        "deploymentBytecode": {
+        "deployment_bytecode": {
           "$ref": "#/definitions/BytecodeObject"
         },
-        "runtimeBytecode": {
+        "runtime_bytecode": {
           "$ref": "#/definitions/BytecodeObject"
         },
         "abi": {
@@ -140,13 +141,11 @@
           "description": "The ABI for this contract type",
           "type": "array"
         },
-		// todo update to devdoc/userdoc
         "natspec": {
           "title": "NatSpec",
           "description": "The combined user-doc and dev-doc for this contract",
           "type": "object"
         },
-		// todo move to top level
         "compiler": {
           "$ref": "#/definitions/CompilerInformation"
         }
@@ -157,11 +156,11 @@
       "description": "Data for a deployed instance of a contract",
       "type": "object",
       "required": [
-        "contractType",
+        "contract_type",
         "address"
       ],
       "properties": {
-        "contractType": {
+        "contract_type": {
           "title": "Contract Type Name",
           "description": "The contract type of this contract instance",
           "type": "string",
@@ -176,10 +175,13 @@
         "block": {
           "$ref": "#/definitions/BlockHash"
         },
-        "runtimeBytecode": {
+        "runtime_bytecode": {
           "$ref": "#/definitions/BytecodeObject"
         },
-        "linkDependencies": {
+        "compiler": {
+          "$ref": "#/definitions/CompilerInformation"
+        },
+        "link_dependencies": {
           "title": "Link Dependencies",
           "description": "The values for the link references found within this contract instances runtime bytecode",
           "type": "array",
@@ -200,19 +202,19 @@
       "type": "object",
       "anyOf": [
         {"required": ["bytecode"]},
-        {"required": ["linkDependencies"]}
+        {"required": ["link_dependencies"]}
       ],
       "properties": {
         "bytecode": {
           "$ref": "#/definitions/ByteString"
         },
-        "linkReferences": {
+        "link_references": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/LinkReference"
           }
         },
-        "linkDependencies": {
+        "link_dependencies": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/LinkValue"

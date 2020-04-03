@@ -3,50 +3,50 @@
   "description": "EthPM Manifest Specification",
   "type": "object",
   "required": [
-    "manifest_version",
-    "package_name",
-    "version"
+    "manifest"
   ],
-  "version": "2",
+  "version": "3",
   "properties": {
-    "manifest_version": {
+    "manifest": {
       "type": "string",
-      "title": "Manifest Version",
+      "title": "Manifest",
       "description": "EthPM Manifest Version",
-      "default": "2",
-      "enum": ["2"]
+      "default": "ethpm/3",
+      "enum": ["ethpm/3"]
     },
-    "package_name": {
-      "title": "Package Name",
+    "name": {
+      "title": "Name",
       "description": "The name of the package that this release is for",
       "type": "string",
       "pattern": "^[a-z][-a-z0-9]{0,255}$"
     },
+    "version": {
+      "title": "Version",
+      "description": "The version of the package that this release is for",
+      "type": "string"
+    },
     "meta": {
       "$ref": "#/definitions/PackageMeta"
     },
-    "version": {
-      "title": "Version",
-      "type": "string"
-    },
     "sources": {
       "title": "Sources",
+      "description": "The source files included in this release",
       "type": "object",
       "patternProperties": {
-        "\\.\\/.*": {
-          "anyOf": [
-            {
-              "title": "Source code",
-              "type": "string"
-            },
-            {
-              "$ref": "#/definitions/ContentURI"
-            }
-          ]
-        }
-      }
+        ".*": {
+		  "$ref": "#/definitions/Source"
+		}
+	  }
     },
-    "contract_types": {
+	"compilers": {
+	  "title": "Compilers",
+	  "description": "The compiler versions used in this release",
+	  "type": "array",
+	  "items": {
+	    "$ref": "#/definitions/CompilerInformation"
+	  }
+	},
+    "contractTypes": {
       "title": "Contract Types",
       "description": "The contract types included in this release",
       "type": "object",
@@ -66,7 +66,7 @@
         }
       }
     },
-    "build_dependencies": {
+    "buildDependencies": {
       "title": "Build Dependencies",
       "type": "object",
       "patternProperties": {
@@ -77,6 +77,37 @@
     }
   },
   "definitions": {
+	"Source": {
+	  "title": "Source",
+	  "description": "Information about a source file included in this package",
+	  "type": "object",
+	  "anyOf": [
+		{"required": "content"},
+		{"required": "urls"}
+	  ],
+	  "properties": {
+	    "checksum": {
+          "$ref": "#/definitions/ChecksumObject"
+		},
+		"urls": {
+		  "title": "URLs",
+		  "description": "Array of urls that resolve to the source file",
+		  "type": "array",
+		  "items": {
+			"$ref": "#/definitions/ContentURI"
+		  }
+		},
+		"content": {
+		  "title": "Source code",
+		  "type": "string"
+		},
+		"installPath": {
+		  "title": "Target file path to install source file",
+		  "type": "string",
+		  "pattern": "^\.\/.*$"
+		}
+	  }
+	},
     "PackageMeta": {
       "title": "Package Meta",
       "description": "Metadata about the package",
@@ -92,7 +123,7 @@
         },
         "license": {
           "title": "License",
-          "description": "The license that this package and it's source are released under",
+          "description": "The license that this package and its source are released under",
           "type": "string"
         },
         "description": {
@@ -124,16 +155,16 @@
       "description": "Data for a contract type included in this package",
       "type": "object",
       "properties":{
-        "contract_name": {
+        "contractName": {
           "title": "Contract Name",
           "description": "The name for this contract type as found in the project source code.",
           "type": "string",
           "pattern": "[a-zA-Z][a-zA-Z0-9_]{0,255}"
         },
-        "deployment_bytecode": {
+        "deploymentBytecode": {
           "$ref": "#/definitions/BytecodeObject"
         },
-        "runtime_bytecode": {
+        "runtimeBytecode": {
           "$ref": "#/definitions/BytecodeObject"
         },
         "abi": {
@@ -141,13 +172,15 @@
           "description": "The ABI for this contract type",
           "type": "array"
         },
-        "natspec": {
-          "title": "NatSpec",
-          "description": "The combined user-doc and dev-doc for this contract",
+        "devdoc": {
+          "title": "Devdoc",
+          "description": "The dev-doc for this contract",
           "type": "object"
         },
-        "compiler": {
-          "$ref": "#/definitions/CompilerInformation"
+        "userdoc": {
+          "title": "Userdoc",
+          "description": "The user-doc for this contract",
+          "type": "object"
         }
       }
     },
@@ -156,11 +189,11 @@
       "description": "Data for a deployed instance of a contract",
       "type": "object",
       "required": [
-        "contract_type",
+        "contractType",
         "address"
       ],
       "properties": {
-        "contract_type": {
+        "contractType": {
           "title": "Contract Type Name",
           "description": "The contract type of this contract instance",
           "type": "string",
@@ -175,13 +208,10 @@
         "block": {
           "$ref": "#/definitions/BlockHash"
         },
-        "runtime_bytecode": {
+        "runtimeBytecode": {
           "$ref": "#/definitions/BytecodeObject"
         },
-        "compiler": {
-          "$ref": "#/definitions/CompilerInformation"
-        },
-        "link_dependencies": {
+        "linkDependencies": {
           "title": "Link Dependencies",
           "description": "The values for the link references found within this contract instances runtime bytecode",
           "type": "array",
@@ -202,19 +232,19 @@
       "type": "object",
       "anyOf": [
         {"required": ["bytecode"]},
-        {"required": ["link_dependencies"]}
+        {"required": ["linkDependencies"]}
       ],
       "properties": {
         "bytecode": {
           "$ref": "#/definitions/ByteString"
         },
-        "link_references": {
+        "linkReferences": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/LinkReference"
           }
         },
-        "link_dependencies": {
+        "linkDependencies": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/LinkValue"
@@ -222,6 +252,23 @@
         }
       }
     },
+	"ChecksumObject": {
+      "title": "Checksum Object",
+	  "description": "Checksum information about the contents of a source file",
+	  "type": "object",
+	  "required": [
+		"hash",
+		"algorithm"
+	  ],
+	  "properties": {
+		"hash": {
+		  "type": "string"
+		},
+		"algorithm": {
+		  "type": "string"
+		}
+	  }
+	},
     "LinkReference": {
       "title": "Link Reference",
       "description": "A defined location in some bytecode which requires linking",
@@ -324,7 +371,7 @@
     },
     "CompilerInformation": {
       "title": "Compiler Information",
-      "description": "Information about the software that was used to compile a contract type or instance",
+      "description": "Information about the software that was used to compile a contract type or deployment",
       "type": "object",
       "required": [
         "name",
@@ -347,7 +394,7 @@
     },
     "Address": {
       "title": "Address",
-      "description": "An Ethereum address",
+      "description": "A 0x-prefixed Ethereum address",
       "allOf": [
         { "$ref": "#/definitions/ByteString" },
         { "minLength": 42, "maxLength": 42 }
@@ -355,7 +402,7 @@
     },
     "TransactionHash": {
       "title": "Transaction Hash",
-      "description": "An Ethereum transaction hash",
+      "description": "A 0x-prefixed Ethereum transaction hash",
       "allOf": [
         { "$ref": "#/definitions/ByteString" },
         { "minLength": 66, "maxLength": 66 }
