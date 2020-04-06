@@ -29,9 +29,7 @@
       "$ref": "#/definitions/PackageMeta"
     },
     "sources": {
-      "title": "Sources",
-      "description": "The source files included in this release",
-      "type": "object",
+      "title": "Sources", "description": "The source files included in this release", "type": "object",
       "patternProperties": {
         ".*": {
 		  "$ref": "#/definitions/Source"
@@ -51,7 +49,7 @@
       "description": "The contract types included in this release",
       "type": "object",
       "patternProperties": {
-        "[a-zA-Z][-a-zA-Z0-9_]{0,255}(?:\\[[-a-zA-Z0-9]{1,256}\\])?$": {
+        "^.*:[a-zA-Z][-a-zA-Z0-9_]{0,255}(?:\\[[-a-zA-Z0-9]{1,256}\\])?$": {
           "$ref": "#/definitions/ContractType"
         }
       }
@@ -61,7 +59,7 @@
       "description": "The deployed contract instances in this release",
       "type": "object",
       "patternProperties": {
-        "^blockchain\\://[0-9a-zA-Z]{64}/block/[0-9a-zA-Z]{64}$": {
+        "^blockchain\\://[0-9a-fA-F]{64}\\/block\\/[0-9a-fA-F]{64}$": {
           "$ref": "#/definitions/Deployment"
         }
       }
@@ -82,8 +80,8 @@
 	  "description": "Information about a source file included in this package",
 	  "type": "object",
 	  "anyOf": [
-		{"required": "content"},
-		{"required": "urls"}
+		{"required": ["content"]},
+		{"required": ["urls"]}
 	  ],
 	  "properties": {
 	    "checksum": {
@@ -104,7 +102,7 @@
 		"installPath": {
 		  "title": "Target file path to install source file",
 		  "type": "string",
-		  "pattern": "^\.\/.*$"
+		  "pattern": "^\\.\\/.*$"
 		}
 	  }
 	},
@@ -197,7 +195,7 @@
           "title": "Contract Type Name",
           "description": "The contract type of this contract instance",
           "type": "string",
-          "pattern": "^(?:[a-z][-a-z0-9]{0,255}\\:)?[a-zA-Z][-a-zA-Z0-9_]{0,255}(?:\\[[-a-zA-Z0-9]{1,256}\\])?$"
+          "pattern": "^(?:[a-z][-a-z0-9]{0,255}\\:)?.*:[a-zA-Z][-a-zA-Z0-9_]{0,255}(?:\\[[-a-zA-Z0-9]{1,256}\\])?$"
         },
         "address": {
           "$ref": "#/definitions/Address"
@@ -291,7 +289,7 @@
           "minimum": 1
         },
         "name": {
-          "$ref": "#/definitions/Identifier"
+          "$ref": "#/definitions/PackageContractTypeName"
         }
       }
     },
@@ -343,16 +341,11 @@
         }
       }]
     },
-    "Identifier": {
-      "title": "Identifier",
-      "type": "string",
-      "pattern": "^[a-zA-Z][a-zA-Z0-9_]{0,255}$"
-    },
     "ContractInstanceName": {
       "title": "Contract Instance Name",
       "description": "The name of the deployed contract instance",
       "type": "string",
-      "pattern": "^[a-zA-Z][a-zA-Z0-9_]{0,255}$"
+      "pattern": "^.*:[a-zA-Z][-a-zA-Z0-9_]{0,255}(?:\\[[-a-zA-Z0-9]{1,256}\\])?$"
     },
     "Deployment": {
       "title": "Deployment",
@@ -363,11 +356,17 @@
         }
       }
     },
+	"PackageContractTypeName": {
+      "title": "Package Contract Type Name",
+      "description": "The path to a contract somewhere down the dependency tree",
+      "type": "string",
+      "pattern": "^(?:[a-z][-a-z0-9]{0,255}\\:)?.*:[a-zA-Z][-a-zA-Z0-9_]{0,255}(?:\\[[-a-zA-Z0-9]{1,256}\\])?$"
+	},
     "PackageContractInstanceName": {
       "title": "Package Contract Instance Name",
       "description": "The path to a deployed contract instance somewhere down the dependency tree",
       "type": "string",
-      "pattern": "^([a-z][-a-z0-9]{0,255}\\:)+[a-zA-Z][a-zA-Z0-9_]{0,255}$"
+      "pattern": "^(?:[a-z][-a-z0-9]{0,255}\\:)?.*:[a-zA-Z][-a-zA-Z0-9_]{0,255}(?:\\[[-a-zA-Z0-9]{1,256}\\])?$"
     },
     "CompilerInformation": {
       "title": "Compiler Information",
