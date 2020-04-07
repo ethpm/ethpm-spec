@@ -230,7 +230,7 @@ The ``buildDependencies`` field defines a key/value mapping of Ethereum
   :Type: Object (String: String)
   :Format:
     - Keys **must** be valid `package-names`_ matching the regular expression ``^[a-z][-a-z0-9]{0,255}$``.
-    - Values **must** be a |ContentAddressableURI| which resolves to a valid package.
+    - Values **must** be a |ContentAddressableURI| which resolves to a valid package that conforms the same EthPM manifest version as its parent.
 
 ----
 
@@ -568,7 +568,7 @@ Filesystem path of source file.
 
 ----
 
-.. _Checksum Object:
+.. _ChecksumObject:
 
 The *Checksum* Object
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -797,17 +797,6 @@ A list of the |ContractAlias| in this package that used this compiler to generat
   :Required: No
   :Key: ``contractTypes``
   :Type: Array(|ContractAlias|)
-
-Sources: ``sources``
-^^^^^^^^^^^^^^^^^^^^
-
-A list of the |Sources| in this package that are targeted by this compiler version. 
-
-  - Values **must** match a global source identifier located in ``"sources"``.
-
-  :Required: No
-  :Key: ``sources``
-  :Type: Array(String)
 
 ----
 
