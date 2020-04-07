@@ -164,7 +164,6 @@
 <li class="toctree-l4"><a class="reference internal" href="#version-version">Version: <code class="docutils literal notranslate"><span class="pre">version</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#settings-settings">Settings: <code class="docutils literal notranslate"><span class="pre">settings</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#id4">Contract Types: <code class="docutils literal notranslate"><span class="pre">contractTypes</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id5">Sources: <code class="docutils literal notranslate"><span class="pre">sources</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#bip122-uris">BIP122 URIs</a></li>
@@ -562,7 +561,7 @@ field representing the same blockchain.</p>
 </tr>
 <tr class="field-even field"><th class="field-name">Format:</th><td class="field-body"><ul class="first last simple">
 <li>Keys <strong>must</strong> be valid <a class="reference internal" href="#package-names">package-names</a> matching the regular expression <code class="docutils literal notranslate"><span class="pre">^[a-z][-a-z0-9]{0,255}$</span></code>.</li>
-<li>Values <strong>must</strong> be a <a class="reference internal" href="glossary.html#term-content-addressable-uri"><span class="xref std std-term">Content Addressable URI</span></a> which resolves to a valid package.</li>
+<li>Values <strong>must</strong> be a <a class="reference internal" href="glossary.html#term-content-addressable-uri"><span class="xref std std-term">Content Addressable URI</span></a> which resolves to a valid package that conforms the same EthPM manifest version as its parent.</li>
 </ul>
 </td>
 </tr>
@@ -979,7 +978,7 @@ for the following common resources.</p>
 </tr>
 <tr class="field-even field"><th class="field-name">Key:</th><td class="field-body"><code class="docutils literal notranslate"><span class="pre">checksum</span></code></td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Value:</th><td class="field-body"><a href="#id8"><span class="problematic" id="id9">`ChecksumObject`_</span></a></td>
+<tr class="field-odd field"><th class="field-name">Value:</th><td class="field-body"><a class="reference internal" href="#checksumobject">ChecksumObject</a></td>
 </tr>
 </tbody>
 </table>
@@ -1055,7 +1054,7 @@ for the following common resources.</p>
 </div>
 </div>
 <div class="section" id="the-checksum-object">
-<span id="checksum-object"></span><h3>The <em>Checksum</em> Object<a class="headerlink" href="#the-checksum-object" title="Permalink to this headline">¶</a></h3>
+<span id="checksumobject"></span><h3>The <em>Checksum</em> Object<a class="headerlink" href="#the-checksum-object" title="Permalink to this headline">¶</a></h3>
 <p>A <em>Checksum</em> object is defined to have the following key/value pairs.</p>
 <div class="section" id="algorithm-algorithm">
 <h4>Algorithm: <code class="docutils literal notranslate"><span class="pre">algorithm</span></code><a class="headerlink" href="#algorithm-algorithm" title="Permalink to this headline">¶</a></h4>
@@ -1398,27 +1397,6 @@ to the <a class="reference external" href="http://solidity.readthedocs.io/en/lat
 <tr class="field-even field"><th class="field-name">Key:</th><td class="field-body"><code class="docutils literal notranslate"><span class="pre">contractTypes</span></code></td>
 </tr>
 <tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">Array(<a class="reference internal" href="glossary.html#term-contract-alias"><span class="xref std std-term">Contract Alias</span></a>)</td>
-</tr>
-</tbody>
-</table>
-</div></blockquote>
-</div>
-<div class="section" id="id5">
-<h4>Sources: <code class="docutils literal notranslate"><span class="pre">sources</span></code><a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h4>
-<p>A list of the <a href="#id6"><span class="problematic" id="id7">|Sources|</span></a> in this package that are targeted by this compiler version.</p>
-<blockquote>
-<div><ul class="simple">
-<li>Values <strong>must</strong> match a global source identifier located in <code class="docutils literal notranslate"><span class="pre">&quot;sources&quot;</span></code>.</li>
-</ul>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Required:</th><td class="field-body">No</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Key:</th><td class="field-body"><code class="docutils literal notranslate"><span class="pre">sources</span></code></td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">Array(String)</td>
 </tr>
 </tbody>
 </table>
