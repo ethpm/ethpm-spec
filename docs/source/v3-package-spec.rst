@@ -1,7 +1,7 @@
-.. _package-specification:
+.. _v3-package-specification:
 
-Specification
-=============
+V3 Specification [WIP]
+======================
 
 .. include:: _include.rst
 

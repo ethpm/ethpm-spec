@@ -153,7 +153,7 @@ Glossary
 
    Package Manifest
       A machine-readable description of a package (See
-      :ref:`package-specification` for information about the format for package
+      :ref:`v2-package-specification` for information about the format for package
       manifests.)
 
    Prefixed

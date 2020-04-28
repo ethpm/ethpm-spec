@@ -13,7 +13,8 @@
    :caption: Contents:
 
    overview
-   package-spec
+   v2-package-spec
+   v3-package-spec
    use-cases
    glossary
    postfix
