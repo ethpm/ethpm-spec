@@ -465,10 +465,10 @@ authors of this package. Packages **may** include this field.
 License: ``license``
 ^^^^^^^^^^^^^^^^^^^^
 
-The ``license`` field declares the license under which this package is
-released. This value **should** conform to the
+The ``license`` field declares the license associated with this
+source file. This value **should** conform to the
 `SPDX <https://en.wikipedia.org/wiki/Software_Package_Data_Exchange>`__
-format. Packages **should** include this field.
+format. Sources **should** include this field.
 
   :Required: No
   :Key: ``license``
@@ -518,7 +518,7 @@ The *Sources* Object
 
 A *Sources* object is defined to have the following fields.
 
-  :Key: A global identifier for the source file. (string)
+  :Key: A unique identifier for the source file. (string)
   :Value: `SourceObject`_
 
 .. _SourceObject:
@@ -543,7 +543,7 @@ Array of urls that resolve to the same source file.
   - If the resulting document is a directory the key **should** be interpreted as a directory path.
   - If the resulting document is a file the key **should** be interpreted as a file path.
 
-  :Required: If ``content`` is not present.
+  :Required: If ``content`` is not included.
   :Key: ``urls``
   :Value: Array(string)
 
@@ -551,7 +551,7 @@ Content: ``content``
 ^^^^^^^^^^^^^^^^^^^^
 Inlined contract source.
 
-  :Required: If ``urls`` is not present.
+  :Required: If ``urls`` is not included.
   :Key: ``content``
   :Value: string
 
@@ -565,6 +565,16 @@ Filesystem path of source file.
   :Required: This field **must** be included for the package to be writable to disk.
   :Key: ``installPath``
   :Value: string
+
+Type: ``type``
+^^^^^^^^^^^^^^
+
+The ``type`` field declares the type of the source file. The field **should** be one
+of the following values: ``jsonabi``, ``solidity``, ``vyper``. 
+
+  :Required: No
+  :Key: ``type``
+  :Type: String
 
 ----
 
@@ -645,6 +655,14 @@ Natspec: ``natspec``
   :Format: The union of the
     `UserDoc <https://github.com/ethereum/wiki/wiki/Ethereum-Natural-Specification-Format#user-documentation>`_
     and `DevDoc <https://github.com/ethereum/wiki/wiki/Ethereum-Natural-Specification-Format#developer-documentation>`_  formats.
+
+Source: ``source``
+^^^^^^^^^^^^^^^^^^
+The global source identifier for the source file from which this contract type was generated.
+
+  :Required: No
+  :Type: String
+  :Value: **must** match a unique source ID included in the `Sources Object`_ for this package.
 
 ----
 
