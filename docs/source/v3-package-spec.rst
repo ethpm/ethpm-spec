@@ -462,6 +462,18 @@ authors of this package. Packages **may** include this field.
   :Key: ``authors``
   :Type: Array (String)
 
+License: ``license``
+^^^^^^^^^^^^^^^^^^^^
+
+The ``license`` field declares the license associated with this
+source file. This value **should** conform to the
+`SPDX <https://en.wikipedia.org/wiki/Software_Package_Data_Exchange>`__
+format. Sources **should** include this field.
+
+  :Required: No
+  :Key: ``license``
+  :Type: String
+
 Description: ``description``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -553,18 +565,6 @@ Filesystem path of source file.
   :Required: This field **must** be included for the package to be writable to disk.
   :Key: ``installPath``
   :Value: string
-
-License: ``license``
-^^^^^^^^^^^^^^^^^^^^
-
-The ``license`` field declares the license associated with this
-source file. This value **should** conform to the
-`SPDX <https://en.wikipedia.org/wiki/Software_Package_Data_Exchange>`__
-format. Sources **should** include this field.
-
-  :Required: No
-  :Key: ``license``
-  :Type: String
 
 Type: ``type``
 ^^^^^^^^^^^^^^
