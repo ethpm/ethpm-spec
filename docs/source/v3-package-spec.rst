@@ -842,3 +842,4 @@ The ``<genesis hash>`` represents the blockhash of the first block on
 the chain, and ``<latest confirmed block hash>`` represents the hash of
 the latest block that's been reliably confirmed (package managers should
 be free to choose their desired level of confirmations).
+

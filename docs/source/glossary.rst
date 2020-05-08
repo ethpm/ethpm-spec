@@ -1,6 +1,8 @@
 Glossary
 ========
 
+The terms in this glossary have been updated to reflect the changes made in V3.
+
 .. include:: _include.rst
 
 .. glossary::
@@ -162,4 +164,3 @@ Glossary
       Not |Prefixed|.
 
         :Example: ``deadbeef``
-
