@@ -82,7 +82,7 @@ included. Custom fields **should** be prefixed with ``x-`` to prevent
 name collisions with future versions of the specification.
 
   :See Also: Formalized (`JSON-Schema <http://json-schema.org>`_) version of
-    this specification: `package.spec.json <https://github.com/ethpm/ethpm-spec/tree/v2.0.0-prerelease.0/spec/package.spec.json>`_
+    this specification: `package.spec.json <https://github.com/ethpm/ethpm-spec/blob/master/spec/v3.spec.json>`_
   :Jump To: `Definitions`_
 
 .. _manifest-version:
@@ -229,7 +229,7 @@ The ``buildDependencies`` field defines a key/value mapping of Ethereum
   :Key: ``buildDependencies``
   :Type: Object (String: String)
   :Format:
-    - Keys **must** be valid `package-names`_ matching the regular expression ``^[a-z][-a-z0-9]{0,255}$``.
+    - Keys **must** be valid `package-names`_.
     - Values **must** be a |ContentAddressableURI| which resolves to a valid package that conforms the same EthPM manifest version as its parent.
 
 ----
@@ -350,7 +350,7 @@ For static value *literals* (e.g. address), value **must** be a
 To reference the address of a |ContractInstance| from the current
 package the value should be the name of that contract instance.
 
-    -  This value **must** be a valid contract instance name.
+    -  This value **must** be a valid |ContractInstanceName|.
     -  The chain definition under which the contract instance that this
        link value belongs to must contain this value within its keys.
     -  This value **may not** reference the same contract instance that
@@ -842,4 +842,3 @@ The ``<genesis hash>`` represents the blockhash of the first block on
 the chain, and ``<latest confirmed block hash>`` represents the hash of
 the latest block that's been reliably confirmed (package managers should
 be free to choose their desired level of confirmations).
-

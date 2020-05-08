@@ -85,7 +85,7 @@ The terms in this glossary have been updated to reflect the changes made in V3.
       chain from the deployments of a single |Package|. This name **must** be
       unique across all other contract instances for the given chain. The
       name must conform to the regular expression
-      ``^[a-zA-Z][a-zA-Z0-9_$]{0,255}$``
+      ``^[a-zA-Z_$][a-zA-Z0-9_$]{0,255}$``
 
       In cases where there is a single deployed instance of a given
       |ContractType|, package managers **should** use the |ContractAlias| for
