@@ -153,6 +153,7 @@
             
   <div class="section" id="glossary">
 <h1>Glossary<a class="headerlink" href="#glossary" title="Permalink to this headline">¶</a></h1>
+<p>The terms in this glossary have been updated to reflect the changes made in V3.</p>
 <dl class="glossary docutils">
 <dt id="term-abi">ABI</dt>
 <dd>The JSON representation of the application binary interface.
@@ -214,12 +215,12 @@ aliases <strong>must</strong> be unique within a single <a class="reference inte
 <p>The contract alias <strong>must</strong> use <em>one of</em> the following naming schemes:</p>
 <ul class="simple">
 <li><code class="docutils literal notranslate"><span class="pre">&lt;contract-name&gt;</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">&lt;contract-name&gt;[&lt;identifier&gt;]</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">&lt;contract-name&gt;&lt;identifier&gt;</span></code></li>
 </ul>
 <p>The <code class="docutils literal notranslate"><span class="pre">&lt;contract-name&gt;</span></code> portion <strong>must</strong> be the same as the
 <a class="reference internal" href="#term-contract-name"><span class="xref std std-term">Contract Name</span></a> for this contract type.</p>
-<p class="last">The <code class="docutils literal notranslate"><span class="pre">[&lt;identifier&gt;]</span></code> portion <strong>must</strong> match the regular expression
-<code class="docutils literal notranslate"><span class="pre">\[[-a-zA-Z0-9]{1,256}\]</span></code>.</p>
+<p class="last">The <code class="docutils literal notranslate"><span class="pre">&lt;identifier&gt;</span></code> portion <strong>must</strong> match the regular expression
+<code class="docutils literal notranslate"><span class="pre">^[-a-zA-Z0-9]{1,256}$</span></code>.</p>
 </dd>
 <dt id="term-contract-instance">Contract Instance</dt>
 <dd><p class="first">A contract instance a specific deployed version of a <a class="reference internal" href="#term-contract-type"><span class="xref std std-term">Contract Type</span></a>.</p>
@@ -230,7 +231,7 @@ aliases <strong>must</strong> be unique within a single <a class="reference inte
 chain from the deployments of a single <a class="reference internal" href="#term-package"><span class="xref std std-term">Package</span></a>. This name <strong>must</strong> be
 unique across all other contract instances for the given chain. The
 name must conform to the regular expression
-<code class="docutils literal notranslate"><span class="pre">[a-zA-Z][a-zA-Z0-9_]{0,255}</span></code></p>
+<code class="docutils literal notranslate"><span class="pre">^[a-zA-Z_$][a-zA-Z0-9_$]{0,255}$</span></code></p>
 <p>In cases where there is a single deployed instance of a given
 <a class="reference internal" href="#term-contract-type"><span class="xref std std-term">Contract Type</span></a>, package managers <strong>should</strong> use the <a class="reference internal" href="#term-contract-alias"><span class="xref std std-term">Contract Alias</span></a> for
 that contract type for this name.</p>
@@ -242,7 +243,7 @@ deployed instances in a meaningful way.</p>
 <dt id="term-contract-name">Contract Name</dt>
 <dd><p class="first">The name found in the source code that defines a specific <a class="reference internal" href="#term-contract-type"><span class="xref std std-term">Contract Type</span></a>.
 These names <strong>must</strong> conform to the regular expression
-<code class="docutils literal notranslate"><span class="pre">[a-zA-Z][-a-zA-Z0-9_]{0,255}</span></code>.</p>
+<code class="docutils literal notranslate"><span class="pre">^[a-zA-Z_$][a-zA-Z0-9_$]{0,255}$</span></code>.</p>
 <p class="last">There can be multiple contracts with the same contract name in a
 projects source files.</p>
 </dd>
@@ -262,7 +263,7 @@ they have the same bytecode.</p>
 </dd>
 <dt id="term-identifier">Identifier</dt>
 <dd><p class="first">Refers generally to a named entity in the <a class="reference internal" href="#term-package"><span class="xref std std-term">Package</span></a>.</p>
-<p class="last">A string matching the regular expression <code class="docutils literal notranslate"><span class="pre">[a-zA-Z][-_a-zA-Z0-9]{0,255}</span></code></p>
+<p class="last">A string matching the regular expression <code class="docutils literal notranslate"><span class="pre">^[a-zA-Z][-_a-zA-Z0-9]{0,255}$</span></code></p>
 </dd>
 <dt id="term-link-reference">Link Reference</dt>
 <dd><p class="first">A location within a contract’s bytecode which needs to be linked.  A link

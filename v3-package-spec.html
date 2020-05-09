@@ -147,11 +147,12 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#the-contract-type-object">The <em>Contract Type</em> Object</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#contract-name-contractname">Contract Name: <code class="docutils literal notranslate"><span class="pre">contractName</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#source-id-sourceid">Source ID: <code class="docutils literal notranslate"><span class="pre">sourceId</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#deployment-bytecode-deploymentbytecode">Deployment Bytecode: <code class="docutils literal notranslate"><span class="pre">deploymentBytecode</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#runtime-bytecode-runtimebytecode">Runtime Bytecode: <code class="docutils literal notranslate"><span class="pre">runtimeBytecode</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#abi-abi">ABI: <code class="docutils literal notranslate"><span class="pre">abi</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#natspec-natspec">Natspec: <code class="docutils literal notranslate"><span class="pre">natspec</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#source-source">Source: <code class="docutils literal notranslate"><span class="pre">source</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#userdoc-userdoc">UserDoc: <code class="docutils literal notranslate"><span class="pre">userdoc</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#devdoc-devdoc">DevDoc: <code class="docutils literal notranslate"><span class="pre">devdoc</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#the-contract-instance-object">The <em>Contract Instance</em> Object</a><ul>
@@ -319,7 +320,7 @@ name collisions with future versions of the specification.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">See Also:</th><td class="field-body">Formalized (<a class="reference external" href="http://json-schema.org">JSON-Schema</a>) version of
-this specification: <a class="reference external" href="https://github.com/ethpm/ethpm-spec/tree/v2.0.0-prerelease.0/spec/package.spec.json">package.spec.json</a></td>
+this specification: <a class="reference external" href="https://github.com/ethpm/ethpm-spec/blob/master/spec/v3.spec.json">package.spec.json</a></td>
 </tr>
 <tr class="field-even field"><th class="field-name">Jump To:</th><td class="field-body"><a class="reference internal" href="#definitions">Definitions</a></td>
 </tr>
@@ -563,7 +564,7 @@ field representing the same blockchain.</p>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">Format:</th><td class="field-body"><ul class="first last simple">
-<li>Keys <strong>must</strong> be valid <a class="reference internal" href="#package-names">package-names</a> matching the regular expression <code class="docutils literal notranslate"><span class="pre">^[a-z][-a-z0-9]{0,255}$</span></code>.</li>
+<li>Keys <strong>must</strong> be valid <a class="reference internal" href="#package-names">package-names</a>.</li>
 <li>Values <strong>must</strong> be a <a class="reference internal" href="glossary.html#term-content-addressable-uri"><span class="xref std std-term">Content Addressable URI</span></a> which resolves to a valid package that conforms the same EthPM manifest version as its parent.</li>
 </ul>
 </td>
@@ -728,7 +729,7 @@ when <a class="reference internal" href="glossary.html#term-linking"><span class
 package the value should be the name of that contract instance.</p>
 <blockquote>
 <div><ul class="simple">
-<li>This value <strong>must</strong> be a valid contract instance name.</li>
+<li>This value <strong>must</strong> be a valid <a class="reference internal" href="glossary.html#term-contract-instance-name"><span class="xref std std-term">Contract Instance Name</span></a>.</li>
 <li>The chain definition under which the contract instance that this
 link value belongs to must contain this value within its keys.</li>
 <li>This value <strong>may not</strong> reference the same contract instance that
@@ -870,9 +871,11 @@ authors of this package. Packages <strong>may</strong> include this field.</p>
 <div class="section" id="license-license">
 <h4>License: <code class="docutils literal notranslate"><span class="pre">license</span></code><a class="headerlink" href="#license-license" title="Permalink to this headline">¶</a></h4>
 <p>The <code class="docutils literal notranslate"><span class="pre">license</span></code> field declares the license associated with this
-source file. This value <strong>should</strong> conform to the
+package. This value <strong>should</strong> conform to the
 <a class="reference external" href="https://en.wikipedia.org/wiki/Software_Package_Data_Exchange">SPDX</a>
-format. Sources <strong>should</strong> include this field.</p>
+format. Packages <strong>should</strong> include this field. If a file <a class="reference internal" href="#source-object">Source Object</a>
+defines its own license, that license takes precedence for that particular
+file over the package-scoped <code class="docutils literal notranslate"><span class="pre">meta</span></code> license.</p>
 <blockquote>
 <div><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -977,7 +980,7 @@ for the following common resources.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Required:</th><td class="field-body"><strong>If</strong> there are no URIs provided that contain a content hash.</td>
+<tr class="field-odd field"><th class="field-name">Required:</th><td class="field-body"><strong>If</strong> there are no URLs present that contain a content hash.</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Key:</th><td class="field-body"><code class="docutils literal notranslate"><span class="pre">checksum</span></code></td>
 </tr>
@@ -1129,7 +1132,25 @@ same.</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">String</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Format:</th><td class="field-body"><strong>must</strong> be a valid <a class="reference internal" href="glossary.html#term-contract-name"><span class="xref std std-term">Contract Name</span></a>.</td>
+<tr class="field-odd field"><th class="field-name">Format:</th><td class="field-body"><strong>Must</strong> be a valid <a class="reference internal" href="glossary.html#term-contract-name"><span class="xref std std-term">Contract Name</span></a>.</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</div>
+<div class="section" id="source-id-sourceid">
+<h4>Source ID: <code class="docutils literal notranslate"><span class="pre">sourceId</span></code><a class="headerlink" href="#source-id-sourceid" title="Permalink to this headline">¶</a></h4>
+<p>The global source identifier for the source file from which this contract type was generated.</p>
+<blockquote>
+<div><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Required:</th><td class="field-body">No</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">String</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Value:</th><td class="field-body"><strong>Must</strong> match a unique source ID included in the <a class="reference internal" href="#sources-object">Sources Object</a> for this package.</td>
 </tr>
 </tbody>
 </table>
@@ -1147,7 +1168,7 @@ same.</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">Object</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Format:</th><td class="field-body"><strong>must</strong> conform to <a class="reference internal" href="#the-bytecode-object">the Bytecode Object</a> format.</td>
+<tr class="field-odd field"><th class="field-name">Format:</th><td class="field-body"><strong>Must</strong> conform to <a class="reference internal" href="#the-bytecode-object">the Bytecode Object</a> format.</td>
 </tr>
 </tbody>
 </table>
@@ -1166,7 +1187,7 @@ runtime portion of <a class="reference internal" href="glossary.html#term-byteco
 </tr>
 <tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">Object</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Format:</th><td class="field-body"><strong>must</strong> conform to <a class="reference internal" href="#the-bytecode-object">the Bytecode Object</a> format.</td>
+<tr class="field-odd field"><th class="field-name">Format:</th><td class="field-body"><strong>Must</strong> conform to <a class="reference internal" href="#the-bytecode-object">the Bytecode Object</a> format.</td>
 </tr>
 </tbody>
 </table>
@@ -1183,14 +1204,14 @@ runtime portion of <a class="reference internal" href="glossary.html#term-byteco
 </tr>
 <tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">Array</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Format:</th><td class="field-body"><strong>must</strong> conform to the <a class="reference external" href="https://github.com/ethereum/wiki/wiki/Ethereum-Contract-ABI#json">Ethereum Contract ABI JSON format</a>.</td>
+<tr class="field-odd field"><th class="field-name">Format:</th><td class="field-body"><strong>Must</strong> conform to the <a class="reference external" href="https://github.com/ethereum/wiki/wiki/Ethereum-Contract-ABI#json">Ethereum Contract ABI JSON format</a>.</td>
 </tr>
 </tbody>
 </table>
 </div></blockquote>
 </div>
-<div class="section" id="natspec-natspec">
-<h4>Natspec: <code class="docutils literal notranslate"><span class="pre">natspec</span></code><a class="headerlink" href="#natspec-natspec" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="userdoc-userdoc">
+<h4>UserDoc: <code class="docutils literal notranslate"><span class="pre">userdoc</span></code><a class="headerlink" href="#userdoc-userdoc" title="Permalink to this headline">¶</a></h4>
 <blockquote>
 <div><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -1200,17 +1221,14 @@ runtime portion of <a class="reference internal" href="glossary.html#term-byteco
 </tr>
 <tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">Object</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Format:</th><td class="field-body">The union of the
-<a class="reference external" href="https://github.com/ethereum/wiki/wiki/Ethereum-Natural-Specification-Format#user-documentation">UserDoc</a>
-and <a class="reference external" href="https://github.com/ethereum/wiki/wiki/Ethereum-Natural-Specification-Format#developer-documentation">DevDoc</a>  formats.</td>
+<tr class="field-odd field"><th class="field-name">Format:</th><td class="field-body"><strong>Must</strong> conform to the <a class="reference external" href="https://github.com/ethereum/wiki/wiki/Ethereum-Natural-Specification-Format#user-documentation">UserDoc</a> format.</td>
 </tr>
 </tbody>
 </table>
 </div></blockquote>
 </div>
-<div class="section" id="source-source">
-<h4>Source: <code class="docutils literal notranslate"><span class="pre">source</span></code><a class="headerlink" href="#source-source" title="Permalink to this headline">¶</a></h4>
-<p>The global source identifier for the source file from which this contract type was generated.</p>
+<div class="section" id="devdoc-devdoc">
+<h4>DevDoc: <code class="docutils literal notranslate"><span class="pre">devdoc</span></code><a class="headerlink" href="#devdoc-devdoc" title="Permalink to this headline">¶</a></h4>
 <blockquote>
 <div><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -1218,9 +1236,9 @@ and <a class="reference external" href="https://github.com/ethereum/wiki/wiki/Et
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Required:</th><td class="field-body">No</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">String</td>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">Object</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Value:</th><td class="field-body"><strong>must</strong> match a unique source ID included in the <a class="reference internal" href="#sources-object">Sources Object</a> for this package.</td>
+<tr class="field-odd field"><th class="field-name">Format:</th><td class="field-body"><strong>Must</strong> conform to the <a class="reference external" href="https://github.com/ethereum/wiki/wiki/Ethereum-Natural-Specification-Format#developer-documentation">DevDoc</a> format.</td>
 </tr>
 </tbody>
 </table>
@@ -1286,7 +1304,7 @@ section.</li>
 <tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">String</td>
 </tr>
 <tr class="field-odd field"><th class="field-name">Format:</th><td class="field-body">Hex encoded <code class="docutils literal notranslate"><span class="pre">0x</span></code> prefixed Ethereum address matching the
-regular expression <code class="docutils literal notranslate"><span class="pre">0x[0-9a-fA-F]{40}</span></code>.</td>
+regular expression <code class="docutils literal notranslate"><span class="pre">^0x[0-9a-fA-F]{40}$</span></code>.</td>
 </tr>
 </tbody>
 </table>

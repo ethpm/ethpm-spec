@@ -1,6 +1,8 @@
 Glossary
 ========
 
+The terms in this glossary have been updated to reflect the changes made in V3.
+
 .. include:: _include.rst
 
 .. glossary::
@@ -65,13 +67,13 @@ Glossary
       The contract alias **must** use *one of* the following naming schemes:
 
       -  ``<contract-name>``
-      -  ``<contract-name>[<identifier>]``
+      -  ``<contract-name><identifier>``
 
       The ``<contract-name>`` portion **must** be the same as the
       |ContractName| for this contract type.
 
-      The ``[<identifier>]`` portion **must** match the regular expression
-      ``\[[-a-zA-Z0-9]{1,256}\]``.
+      The ``<identifier>`` portion **must** match the regular expression
+      ``^[-a-zA-Z0-9]{1,256}$``.
 
    Contract Instance
       A contract instance a specific deployed version of a |ContractType|.
@@ -83,7 +85,7 @@ Glossary
       chain from the deployments of a single |Package|. This name **must** be
       unique across all other contract instances for the given chain. The
       name must conform to the regular expression
-      ``[a-zA-Z][a-zA-Z0-9_]{0,255}``
+      ``^[a-zA-Z_$][a-zA-Z0-9_$]{0,255}$``
 
       In cases where there is a single deployed instance of a given
       |ContractType|, package managers **should** use the |ContractAlias| for
@@ -97,7 +99,7 @@ Glossary
    Contract Name
       The name found in the source code that defines a specific |ContractType|.
       These names **must** conform to the regular expression
-      ``[a-zA-Z][-a-zA-Z0-9_]{0,255}``.
+      ``^[a-zA-Z_$][a-zA-Z0-9_$]{0,255}$``.
 
       There can be multiple contracts with the same contract name in a
       projects source files.
@@ -122,7 +124,7 @@ Glossary
    Identifier
       Refers generally to a named entity in the |Package|.
 
-      A string matching the regular expression ``[a-zA-Z][-_a-zA-Z0-9]{0,255}``
+      A string matching the regular expression ``^[a-zA-Z][-_a-zA-Z0-9]{0,255}$``
 
    Link Reference
       A location within a contract's bytecode which needs to be linked.  A link
@@ -162,4 +164,3 @@ Glossary
       Not |Prefixed|.
 
         :Example: ``deadbeef``
-

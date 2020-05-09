@@ -82,7 +82,7 @@ included. Custom fields **should** be prefixed with ``x-`` to prevent
 name collisions with future versions of the specification.
 
   :See Also: Formalized (`JSON-Schema <http://json-schema.org>`_) version of
-    this specification: `package.spec.json <https://github.com/ethpm/ethpm-spec/tree/v2.0.0-prerelease.0/spec/package.spec.json>`_
+    this specification: `package.spec.json <https://github.com/ethpm/ethpm-spec/blob/master/spec/v3.spec.json>`_
   :Jump To: `Definitions`_
 
 .. _manifest-version:
@@ -229,7 +229,7 @@ The ``buildDependencies`` field defines a key/value mapping of Ethereum
   :Key: ``buildDependencies``
   :Type: Object (String: String)
   :Format:
-    - Keys **must** be valid `package-names`_ matching the regular expression ``^[a-z][-a-z0-9]{0,255}$``.
+    - Keys **must** be valid `package-names`_.
     - Values **must** be a |ContentAddressableURI| which resolves to a valid package that conforms the same EthPM manifest version as its parent.
 
 ----
@@ -350,7 +350,7 @@ For static value *literals* (e.g. address), value **must** be a
 To reference the address of a |ContractInstance| from the current
 package the value should be the name of that contract instance.
 
-    -  This value **must** be a valid contract instance name.
+    -  This value **must** be a valid |ContractInstanceName|.
     -  The chain definition under which the contract instance that this
        link value belongs to must contain this value within its keys.
     -  This value **may not** reference the same contract instance that
@@ -466,9 +466,11 @@ License: ``license``
 ^^^^^^^^^^^^^^^^^^^^
 
 The ``license`` field declares the license associated with this
-source file. This value **should** conform to the
+package. This value **should** conform to the
 `SPDX <https://en.wikipedia.org/wiki/Software_Package_Data_Exchange>`__
-format. Sources **should** include this field.
+format. Packages **should** include this field. If a file `Source Object`_
+defines its own license, that license takes precedence for that particular
+file over the package-scoped ``meta`` license.
 
   :Required: No
   :Key: ``license``
@@ -531,7 +533,7 @@ Checksum: ``checksum``
 
 Hash of the source file.
 
-  :Required: **If** there are no URIs provided that contain a content hash.
+  :Required: **If** there are no URLs present that contain a content hash.
   :Key: ``checksum``
   :Value: `ChecksumObject`_
 
@@ -619,7 +621,15 @@ The ``contractName`` field defines the |ContractName| for this
   :Required: If the |ContractName| and |ContractAlias| are not the
    same.
   :Type: String
-  :Format: **must** be a valid |ContractName|.
+  :Format: **Must** be a valid |ContractName|.
+
+Source ID: ``sourceId``
+^^^^^^^^^^^^^^^^^^^^^^^
+The global source identifier for the source file from which this contract type was generated.
+
+  :Required: No
+  :Type: String
+  :Value: **Must** match a unique source ID included in the `Sources Object`_ for this package.
 
 Deployment Bytecode: ``deploymentBytecode``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -628,7 +638,7 @@ The ``deploymentBytecode`` field defines the bytecode for this |ContractType|.
 
   :Required: No
   :Type: Object
-  :Format: **must** conform to `the Bytecode Object`_ format.
+  :Format: **Must** conform to `the Bytecode Object`_ format.
 
 Runtime Bytecode: ``runtimeBytecode``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -638,31 +648,28 @@ runtime portion of |Bytecode| for this |ContractType|.
 
   :Required: No
   :Type: Object
-  :Format: **must** conform to `the Bytecode Object`_ format.
+  :Format: **Must** conform to `the Bytecode Object`_ format.
 
 ABI: ``abi``
 ^^^^^^^^^^^^
 
   :Required: No
   :Type: Array
-  :Format: **must** conform to the `Ethereum Contract ABI JSON format <https://github.com/ethereum/wiki/wiki/Ethereum-Contract-ABI#json>`_.
+  :Format: **Must** conform to the `Ethereum Contract ABI JSON format <https://github.com/ethereum/wiki/wiki/Ethereum-Contract-ABI#json>`_.
 
-Natspec: ``natspec``
+UserDoc: ``userdoc``
 ^^^^^^^^^^^^^^^^^^^^
 
   :Required: No
   :Type: Object
-  :Format: The union of the
-    `UserDoc <https://github.com/ethereum/wiki/wiki/Ethereum-Natural-Specification-Format#user-documentation>`_
-    and `DevDoc <https://github.com/ethereum/wiki/wiki/Ethereum-Natural-Specification-Format#developer-documentation>`_  formats.
+  :Format: **Must** conform to the `UserDoc <https://github.com/ethereum/wiki/wiki/Ethereum-Natural-Specification-Format#user-documentation>`_ format.
 
-Source: ``source``
-^^^^^^^^^^^^^^^^^^
-The global source identifier for the source file from which this contract type was generated.
+DevDoc: ``devdoc``
+^^^^^^^^^^^^^^^^^^^^
 
   :Required: No
-  :Type: String
-  :Value: **must** match a unique source ID included in the `Sources Object`_ for this package.
+  :Type: Object
+  :Format: **Must** conform to the `DevDoc <https://github.com/ethereum/wiki/wiki/Ethereum-Natural-Specification-Format#developer-documentation>`_ format.
 
 ----
 
@@ -718,7 +725,7 @@ The ``address`` field defines the |Address| of the |ContractInstance|.
   :Required: Yes
   :Type: String
   :Format: Hex encoded ``0x`` prefixed Ethereum address matching the
-   regular expression ``0x[0-9a-fA-F]{40}``.
+   regular expression ``^0x[0-9a-fA-F]{40}$``.
 
 Transaction: ``transaction``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
