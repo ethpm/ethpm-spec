@@ -14,7 +14,8 @@
     },
     "sources": {
         "contracts/Transferable.sol": {
-            "installPath": "./contracts/Transferable/sol",
+            "type": "solidity",
+            "installPath": "./contracts/Transferable.sol",
             "urls": [
                 "ipfs://QmZYkdUUTwREjfy4vQc3enzu6WKk8eNyvGERqy1cNNVkAD"
             ]
