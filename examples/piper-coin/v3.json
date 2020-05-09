@@ -5,7 +5,7 @@
     "deployments": {
         "blockchain://41941023680923e0fe4d74a34bdac8141f2540e3ae90623718e47d66d1ca4a2d/block/4803939cf88aaf46fb7c9fb771cda4e4072c6c5fe3aaad1860f7064ef18f50b9": {
             "PiperCoin": {
-                "contractType": "standard-token:contracts/StandardToken.sol:StandardToken",
+                "contractType": "standard-token:StandardToken",
                 "address": "0xC70871869Ff35e9d08e650b49F23891DB462F181",
                 "transaction": "0x93f6c5fbdb4c62f1bff8bace3ec2f80267b6cdd3710c36f9b1445031175d9f6f",
                 "block": "0xb21dda724b6f14bcdde1db9703a5c1bfb088763acdb725be2429c1ef8ce0a4e1",
@@ -18,7 +18,7 @@
             }
         }
     },
-    "build_dependencies": {
+    "buildDependencies": {
         "standard-token": "ipfs://QmVu9zuza5mkJwwcFdh2SXBugm1oSgZVuEKkph9XLsbUwg"
     }
 }

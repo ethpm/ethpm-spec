@@ -47,8 +47,11 @@
       "title": "Contract Types",
       "description": "The contract types included in this release",
       "type": "object",
+	  "propertyNames": {
+		"$ref": "#/definitions/ContractTypeName"
+	  },
       "patternProperties": {
-        "^[a-zA-Z_$][-a-zA-Z0-9_$]{0,255}(?:[-a-zA-Z0-9]{1,256})?$": {
+        "": {
           "$ref": "#/definitions/ContractType"
         }
       }
@@ -167,13 +170,10 @@
       "type": "object",
       "properties":{
         "contractName": {
-          "title": "Contract Name",
-          "description": "The name for this contract type as found in the project source code.",
-          "type": "string",
-          "pattern": "[a-zA-Z][a-zA-Z0-9_]{0,255}"
+          "$ref": "#/definitions/ContractTypeName"
         },
-        "source": {
-          "title": "Source",
+        "sourceId": {
+          "title": "Source ID",
           "description": "The source ID that corresponds to this contract type",
           "type": "string"
         },
@@ -210,7 +210,7 @@
       ],
       "properties": {
         "contractType": {
-          "$ref": "#/definitions/ContractType"
+          "$ref": "#/definitions/ContractTypeName"
         },
         "address": {
           "$ref": "#/definitions/Address"
@@ -234,7 +234,7 @@
         }
       }
     },
-    "ContractType": {	
+    "ContractTypeName": {	
       "title": "Contract Type Name",
       "description": "The name of the contract type",
       "type": "string",
@@ -374,7 +374,7 @@
     "Deployment": {
       "title": "Deployment",
       "type": "object",
-	  "propertyNames": {
+      "propertyNames": {
         "$ref": "#/definitions/ContractInstanceName"
       },
       "patternProperties": {
@@ -387,13 +387,13 @@
       "title": "Nested Contract Type Name",
       "description": "Name of a nested contract type from somewhere down the dependency tree",
       "type": "string",
-      "pattern": "^(?:[a-z][-a-z0-9]{0,255}\\:)?:[a-zA-Z_$][-a-zA-Z0-9_$]{0,255}(?:[-a-zA-Z0-9]{1,256})?$"
+      "pattern": "^(?:[a-z][-a-z0-9]{0,255}\\:)+[a-zA-Z_$][-a-zA-Z0-9_$]{0,255}(?:[-a-zA-Z0-9]{1,256})?$"
 	},
     "NestedContractInstanceName": {
       "title": "Nested Contract Instance Name",
       "description": "Name of a nested contract instance from somewhere down the dependency tree",
       "type": "string",
-      "pattern": "^(?:[a-z][-a-z0-9]{0,255}\\:)?[a-zA-Z_$][-a-zA-Z0-9_$]{0,255}(?:[-a-zA-Z0-9]{1,256})?$"
+      "pattern": "^(?:[a-z][-a-z0-9]{0,255}\\:)+[a-zA-Z_$][-a-zA-Z0-9_$]{0,255}(?:[-a-zA-Z0-9]{1,256})?$"
     },
     "CompilerInformation": {
       "title": "Compiler Information",
@@ -415,6 +415,13 @@
         "settings": {
           "description": "The settings used for compilation",
           "type": "object"
+        },
+        "contractTypes": {
+          "description": "The contract types that targeted this compiler.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ContractTypeName"
+          }
         }
       }
     },

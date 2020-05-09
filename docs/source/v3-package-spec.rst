@@ -623,8 +623,8 @@ The ``contractName`` field defines the |ContractName| for this
   :Type: String
   :Format: **Must** be a valid |ContractName|.
 
-Source: ``source``
-^^^^^^^^^^^^^^^^^^
+Source ID: ``sourceId``
+^^^^^^^^^^^^^^^^^^^^^^^
 The global source identifier for the source file from which this contract type was generated.
 
   :Required: No
