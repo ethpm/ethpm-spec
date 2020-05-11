@@ -3,6 +3,7 @@ from jsonschema import (
     ValidationError as jsonValidationError,
 )
 
+
 def test_schema_accepts_valid_manifest_values(base_manifest, validate_v3):
     assert validate_v3(base_manifest) is None
 
