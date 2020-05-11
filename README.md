@@ -77,11 +77,11 @@ for the machine-readable version.
 
 ## Contributing
 
-### Building Sphinx docs locally
-
 Requirements: Python 3, `pip`, `make`
+Fork and clone this repo to get started. Then, activate a
+[virtual environment](https://docs.python-guide.org/dev/virtualenvs/) in the cloned repo's directory:
 
-Fork and clone this repo to get started. Then, in the cloned repo's directory:
+### Building Sphinx docs locally
 
 1. `pip install -r requirements.txt`
 2. `cd docs`
@@ -90,3 +90,7 @@ Fork and clone this repo to get started. Then, in the cloned repo's directory:
 Docs are written in [reStructuredText](http://docutils.sourceforge.net/rst.html)
 and built using the [Sphinx](http://www.sphinx-doc.org/) documentation
 generator.
+
+### Running tests locally
+
+1. `pytest tests/`
