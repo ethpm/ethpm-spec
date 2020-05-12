@@ -10,8 +10,9 @@ from jsonschema.validators import (
 
 @pytest.fixture
 def schema():
-    p = Path('.') 
-    return json.loads((p / 'spec' / 'v3.spec.json').read_text())
+    ethpm_spec_dir = Path(__file__).parent.parent
+    v3_schema_path = ethpm_spec_dir / 'spec' / 'v3.spec.json'
+    return json.loads(v3_schema_path.read_text())
 
 
 @pytest.fixture

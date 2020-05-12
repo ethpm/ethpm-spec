@@ -14,7 +14,7 @@ BLOCK_HASH = '0xee1147804cd4eb25b7111244d11424be221de81679f27f8a469d772d1a51909a
         {BLOCKCHAIN_URI: {'MyContract': {'contractType': 'MyContract', 'address': ADDRESS}}},
         {BLOCKCHAIN_URI: {'MyContract': {'contractType': 'nested:MyContract', 'address': ADDRESS}}},
         {BLOCKCHAIN_URI: {'MyContract': {'contractType': 'nested:MyContract', 'address': ADDRESS, 'block': BLOCK_HASH, 'transaction': TX_HASH}}},
-        # {BLOCKCHAIN_URI: {'MyContract': {'contractType': 'multiple:nested:MyContract', 'address': ADDRESS}}},  TBD
+        {BLOCKCHAIN_URI: {'MyContract': {'contractType': 'multiple:nested:MyContract', 'address': ADDRESS}}},
     )
 )
 def test_schema_accepts_valid_deployments(base_manifest, validate_v3, value):

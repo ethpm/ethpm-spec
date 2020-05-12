@@ -213,7 +213,10 @@
       ],
       "properties": {
         "contractType": {
-          "$ref": "#/definitions/ContractTypeName"
+          "anyOf": [
+            {"$ref": "#/definitions/ContractTypeName"},
+            {"$ref": "#/definitions/NestedContractTypeName"}
+          ]
         },
         "address": {
           "$ref": "#/definitions/Address"
