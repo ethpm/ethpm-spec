@@ -1,0 +1,1 @@
+{"manifest":"ethpm/3","compilers":[{"contractTypes":["mycontract"],"name":"solc","version":"0.4.8-commit.60cc166c","settings":{"optimize":true}}]}

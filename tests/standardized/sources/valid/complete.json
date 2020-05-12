@@ -1,0 +1,1 @@
+{"manifest":"ethpm/3","sources":{"MyContract.sol":{"checksum":{"algorithm":"sha256","hash":"QmYvsyuxjj9mKmCvn3jrdfnaHYwFsyHXUu7kETrN4dBhE6"},"installPath":"./path/to/MyContract.sol","type":"solidity","urls":["ipfs://QmYvsyuxjj9mKmCvn3jrdfnaHYwFsyHXUu7kETrN4dBhE6"]}}}

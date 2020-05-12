@@ -1,0 +1,1 @@
+{"manifest":"ethpm/3","deployments":{"blockchain://abc/block/123":{"MyContract":{"contractType":"MyContract","address":"0x9182902397B57a8c611D764D4DCD24BA951B4319"}}}}

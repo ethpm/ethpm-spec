@@ -1,0 +1,1 @@
+{"manifest":"ethpm/3","contractTypes":{"MyContractAlias":{"contractName":"MyContract","sourceId":"MyContract.sol","deploymentBytecode":{"bytecode":"0x"},"runtimeBytecode":{"bytecode":"0x"},"abi":[],"userdoc":{},"devdoc":{}}}}
