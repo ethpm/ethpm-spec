@@ -100,7 +100,7 @@ generator.
 
 Each test fixture contains a ``package`` field with a raw, json encoded string of the manifest.
 
-Each test fixture contains a ``testcase`` field that indicates whether the associated ``package`` is ``invalid`` or ``valid``.
+Each test fixture contains a ``testCase`` field that indicates whether the associated ``package`` is ``invalid`` or ``valid``.
 
 Each invalid test fixture contains an ``errorInfo`` field.
 - The ``errorPointer`` field, which is a [jsonpointer](https://tools.ietf.org/html/rfc6901) pointing towards the cause of the invalid error, is included for ``invalid`` tests. 

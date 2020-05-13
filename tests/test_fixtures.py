@@ -8,22 +8,25 @@ from jsonschema import (
 
 FIXTURE_DIR = Path(__file__).parent.parent / 'tests' / 'standardized'
 
-valid_fixtures = [fixture for fixture in FIXTURE_DIR.glob('**/*.json') if fixture.parent.name == 'valid']
 
-invalid_fixtures = [fixture for fixture in FIXTURE_DIR.glob('**/*.json') if fixture.parent.name == 'invalid']
+def pytest_generate_tests(metafunc):
+    if 'valid_fixture' in metafunc.fixturenames:
+        valid_fixtures = [fixture for fixture in FIXTURE_DIR.glob('**/*.json') if fixture.parent.name == 'valid']
+        metafunc.parametrize("valid_fixture", valid_fixtures)
+    elif 'invalid_fixture' in metafunc.fixturenames:
+        valid_fixtures = [fixture for fixture in FIXTURE_DIR.glob('**/*.json') if fixture.parent.name == 'invalid']
+        metafunc.parametrize("invalid_fixture", valid_fixtures)
 
 
-@pytest.mark.parametrize("fixture", valid_fixtures)
-def test_valid_fixtures(fixture, validate_v3):
-    fixture_json = json.loads(fixture.read_text())
+def test_valid_fixtures(valid_fixture, validate_v3):
+    fixture_json = json.loads(valid_fixture.read_text())
     manifest_json = json.loads(fixture_json['package'])
     assert fixture_json['testCase'] == 'valid'
     assert validate_v3(manifest_json) is None
 
 
-@pytest.mark.parametrize("fixture", invalid_fixtures)
-def test_invalid_fixtures(fixture, validate_v3):
-    fixture_json = json.loads(fixture.read_text())
+def test_invalid_fixtures(invalid_fixture, validate_v3):
+    fixture_json = json.loads(invalid_fixture.read_text())
     manifest_json = json.loads(fixture_json['package'])
     escaped_reason = re.escape(fixture_json['errorInfo']['reason'])
     assert fixture_json['testCase'] == 'invalid'
