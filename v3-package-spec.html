@@ -995,7 +995,8 @@ for the following common resources.</p>
 <dl class="docutils">
 <dt>Array of urls that resolve to the same source file.</dt>
 <dd><ul class="first simple">
-<li>Urls <strong>should</strong> be stored on a content-addressable filesystem.</li>
+<li>Urls <strong>should</strong> be stored on a content-addressable filesystem. <strong>If</strong> they are not, then either <code class="docutils literal notranslate"><span class="pre">content</span></code>
+or <code class="docutils literal notranslate"><span class="pre">checksum</span></code> <strong>must</strong> be included.</li>
 <li>Urls <strong>must</strong> be prefixed with a scheme.</li>
 <li>If the resulting document is a directory the key <strong>should</strong> be interpreted as a directory path.</li>
 <li>If the resulting document is a file the key <strong>should</strong> be interpreted as a file path.</li>

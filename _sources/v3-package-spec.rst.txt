@@ -540,7 +540,8 @@ Hash of the source file.
 URLs: ``urls``
 ^^^^^^^^^^^^^^
 Array of urls that resolve to the same source file.
-  - Urls **should** be stored on a content-addressable filesystem.
+  - Urls **should** be stored on a content-addressable filesystem. **If** they are not, then either ``content``
+    or ``checksum`` **must** be included.
   - Urls **must** be prefixed with a scheme.
   - If the resulting document is a directory the key **should** be interpreted as a directory path.
   - If the resulting document is a file the key **should** be interpreted as a file path.
