@@ -1,0 +1,9 @@
+{
+    "package": "{\"manifest\":\"ethpm/3\",\"meta\":\"metadata\"}",
+    "testCase": "invalid",
+    "errorInfo": {
+        "errorCode": "N0009",
+        "errorPointer": "/meta",
+        "reason": "'metadata' is not of type 'object'"
+    }
+}

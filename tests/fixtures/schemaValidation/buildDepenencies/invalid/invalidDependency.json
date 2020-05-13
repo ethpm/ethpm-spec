@@ -1,0 +1,9 @@
+{
+    "package": "{\"buildDependencies\":{\"./invalid\":\"ipfs://QmYvsyuxjj9mKmCvn3jrdfnaHYwFsyHXUu7kETrN4dBhE6\"},\"manifest\":\"ethpm/3\"}",
+    "testCase": "invalid",
+    "errorInfo": {
+        "errorCode": "N0008",
+        "errorPointer": "/buildDependencies",
+        "reason": "'./invalid' does not match '^[a-z][-a-z0-9]{0,255}$'"
+    }
+}

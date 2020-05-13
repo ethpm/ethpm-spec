@@ -1,0 +1,9 @@
+{
+    "package": "{\"manifest\":\"ethpm/2\"}",
+    "testCase": "invalid",
+    "errorInfo": {
+        "errorCode": "N0001",
+        "errorPointer": "/manifest",
+        "reason": "'ethpm/2' is not one of ['ethpm/3']"
+    }
+}

@@ -1,0 +1,4 @@
+{
+    "package": "{\"deployments\":{\"blockchain://d8764b6fdd13fbd4132265128dcaacb7c04cbb0ee0e0efb329e7a24d1f8509c7/block/d8764b6fdd13fbd4132265128dcaacb7c04cbb0ee0e0efb329e7a24d1f8509c7\":{\"MyContract\":{\"address\":\"0x9182902397B57a8c611D764D4DCD24BA951B4319\",\"block\":\"0xee1147804cd4eb25b7111244d11424be221de81679f27f8a469d772d1a51909a\",\"contractType\":\"MyContract\",\"runtimeBytecode\":{\"bytecode\":\"0x\"},\"transaction\":\"0xb16905dbcc3bed51f0bc79475dd2e69df451ff193bf62bca58ae2fcca2c196f7\"}}},\"manifest\":\"ethpm/3\"}",
+    "testCase": "valid"
+}

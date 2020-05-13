@@ -60,8 +60,11 @@
       "title": "Deployments",
       "description": "The deployed contract instances in this release",
       "type": "object",
+      "propertyNames": {
+        "$ref": "#/definitions/BlockchainURI"
+	  },
       "patternProperties": {
-        "^blockchain\\://[0-9a-fA-F]{64}\\/block\\/[0-9a-fA-F]{64}$": {
+        "": {
           "$ref": "#/definitions/Deployment"
         }
       }
@@ -210,7 +213,10 @@
       ],
       "properties": {
         "contractType": {
-          "$ref": "#/definitions/ContractTypeName"
+          "anyOf": [
+            {"$ref": "#/definitions/ContractTypeName"},
+            {"$ref": "#/definitions/NestedContractTypeName"}
+          ]
         },
         "address": {
           "$ref": "#/definitions/Address"
@@ -454,6 +460,16 @@
       "description": "An content addressable URI",
       "type": "string",
       "format": "uri"
-    }
+    },
+	"BlockchainURI": {
+      "title": "Blockchain URI",
+      "description": "An BIP122 URI",
+      "type": "string",
+      "pattern": "^blockchain\\://[0-9a-fA-F]{64}\\/block\\/[0-9a-fA-F]{64}$"
+	}
+  },
+  "dependencies": {
+    "name": ["version"],
+    "version": ["name"]
   }
 }

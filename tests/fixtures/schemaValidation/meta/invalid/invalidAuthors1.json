@@ -1,0 +1,9 @@
+{
+    "package": "{\"manifest\":\"ethpm/3\",\"meta\":{\"authors\":{\"first\":\"mr. author\"}}}",
+    "testCase": "invalid",
+    "errorInfo": {
+        "errorCode": "N0009",
+        "errorPointer": "/meta/authors",
+        "reason": "{'first': 'mr. author'} is not of type 'array'"
+    }
+}

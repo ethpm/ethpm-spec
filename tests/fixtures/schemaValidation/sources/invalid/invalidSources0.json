@@ -1,0 +1,9 @@
+{
+    "package": "{\"manifest\":\"ethpm/3\",\"sources\":\"source1\"}",
+    "testCase": "invalid",
+    "errorInfo": {
+        "errorCode": "N0004",
+        "errorPointer": "/sources",
+        "reason": "'source1' is not of type 'object'"
+    }
+}

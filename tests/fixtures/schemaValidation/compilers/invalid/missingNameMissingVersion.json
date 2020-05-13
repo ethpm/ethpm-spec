@@ -1,0 +1,9 @@
+{
+    "package": "{\"compilers\":[{\"contractTypes\":[\"MyContract\"]}],\"manifest\":\"ethpm/3\"}",
+    "testCase": "invalid",
+    "errorInfo": {
+        "errorCode": "N0007",
+        "errorPointer": "/compilers/0",
+        "reason": "'name' is a required property"
+    }
+}

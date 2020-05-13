@@ -1,0 +1,9 @@
+{
+    "package": "{\"manifest\":\"ethpm/3\",\"sources\":{\"MyContract.sol\":{\"content\":[{\"file\":\"pragma solidity >=0.5.0 <0.7.0;\\ncontract MyContract {\\n}\"}]}}}",
+    "testCase": "invalid",
+    "errorInfo": {
+        "errorCode": "N0004",
+        "errorPointer": "/sources/MyContract.sol/content",
+        "reason": "[{'file': 'pragma solidity >=0.5.0 <0.7.0;\\ncontract MyContract {\\n}'}] is not of type 'string'"
+    }
+}

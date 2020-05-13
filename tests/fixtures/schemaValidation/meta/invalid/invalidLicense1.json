@@ -1,0 +1,9 @@
+{
+    "package": "{\"manifest\":\"ethpm/3\",\"meta\":{\"license\":{\"first\":\"MIT\"}}}",
+    "testCase": "invalid",
+    "errorInfo": {
+        "errorCode": "N0009",
+        "errorPointer": "/meta/license",
+        "reason": "{'first': 'MIT'} is not of type 'string'"
+    }
+}

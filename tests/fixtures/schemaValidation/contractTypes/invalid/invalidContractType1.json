@@ -1,0 +1,9 @@
+{
+    "package": "{\"contractTypes\":[\"list\",\"of\",\"types\"],\"manifest\":\"ethpm/3\"}",
+    "testCase": "invalid",
+    "errorInfo": {
+        "errorCode": "N0005",
+        "errorPointer": "/contractTypes",
+        "reason": "['list', 'of', 'types'] is not of type 'object'"
+    }
+}

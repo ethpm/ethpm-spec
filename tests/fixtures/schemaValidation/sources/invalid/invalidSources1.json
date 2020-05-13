@@ -1,0 +1,9 @@
+{
+    "package": "{\"manifest\":\"ethpm/3\",\"sources\":[\"list\",\"of\",\"sources\"]}",
+    "testCase": "invalid",
+    "errorInfo": {
+        "errorCode": "N0004",
+        "errorPointer": "/sources",
+        "reason": "['list', 'of', 'sources'] is not of type 'object'"
+    }
+}

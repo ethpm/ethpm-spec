@@ -1,0 +1,9 @@
+{
+    "package": "{\"manifest\":\"ethpm/3\",\"name\":\"Package\",\"version\":\"1\"}",
+    "testCase": "invalid",
+    "errorInfo": {
+        "errorCode": "N0002",
+        "errorPointer": "/name",
+        "reason": "'Package' does not match '^[a-z][-a-z0-9]{0,255}$'"
+    }
+}

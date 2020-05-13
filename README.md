@@ -77,16 +77,42 @@ for the machine-readable version.
 
 ## Contributing
 
+Requirements: Python 3, `pip`, `make`
+Fork and clone this repo to get started. Then, activate a
+[virtual environment](https://docs.python-guide.org/dev/virtualenvs/) in the cloned repo's
+directory and run `pip install -r requirements.txt`
+
 ### Building Sphinx docs locally
 
-Requirements: Python 3, `pip`, `make`
-
-Fork and clone this repo to get started. Then, in the cloned repo's directory:
-
-1. `pip install -r requirements.txt`
-2. `cd docs`
-3. `make html`
+1. `cd docs`
+2. `make html`
 
 Docs are written in [reStructuredText](http://docutils.sourceforge.net/rst.html)
 and built using the [Sphinx](http://www.sphinx-doc.org/) documentation
 generator.
+
+### Running tests locally
+
+1. `pytest tests/`
+
+
+### Test fixture schema
+
+Each test fixture contains a ``package`` field with a raw, json encoded string of the manifest.
+
+Each test fixture contains a ``testCase`` field that indicates whether the associated ``package`` is ``invalid`` or ``valid``.
+
+Each invalid test fixture contains an ``errorInfo`` field.
+- The ``errorPointer`` field, which is a [jsonpointer](https://tools.ietf.org/html/rfc6901) pointing towards the cause of the invalid error, is included for ``invalid`` tests. 
+- The ``reason`` field, which is a human readable description of the error, is included for ``invalid`` tests.
+- The ``errorCode`` field, which is a machine readable description of the error, is included for ``invalid`` tests according to the following table.
+
+``N0001`` - Invalid ``"manifest"`` field.
+``N0002`` - Invalid ``"name"`` field.
+``N0003`` - Invalid ``"version"`` field.
+``N0004`` - Invalid ``"sources"`` field.
+``N0005`` - Invalid ``"contractTypes"`` field.
+``N0006`` - Invalid ``"deployments"`` field.
+``N0007`` - Invalid ``"compilers"`` field.
+``N0008`` - Invalid ``"buildDependencies"`` field.
+``N0009`` - Invalid ``"meta"`` field.

@@ -1,0 +1,9 @@
+{
+    "package": "{\"compilers\":[{\"version\":\"0.4.8-commit.60cc166c\"}],\"manifest\":\"ethpm/3\"}",
+    "testCase": "invalid",
+    "errorInfo": {
+        "errorCode": "N0007",
+        "errorPointer": "/compilers/0",
+        "reason": "'name' is a required property"
+    }
+}

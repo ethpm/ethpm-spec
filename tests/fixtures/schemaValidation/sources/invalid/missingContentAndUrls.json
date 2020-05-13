@@ -1,0 +1,9 @@
+{
+    "package": "{\"manifest\":\"ethpm/3\",\"sources\":{\"MyContract.sol\":{\"installPath\":\"./MyContract.sol\"}}}",
+    "testCase": "invalid",
+    "errorInfo": {
+        "errorCode": "N0004",
+        "errorPointer": "/sources/MyContract.sol",
+        "reason": "'content' is a required property"
+    }
+}

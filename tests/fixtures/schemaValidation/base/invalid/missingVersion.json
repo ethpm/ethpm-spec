@@ -1,0 +1,9 @@
+{
+    "package": "{\"manifest\":\"ethpm/3\",\"name\":\"mypackage\"}",
+    "testCase": "invalid",
+    "errorInfo": {
+        "errorCode": "N0003",
+        "errorPointer": "/",
+        "reason": "'version' is a dependency of 'name'"
+    }
+}

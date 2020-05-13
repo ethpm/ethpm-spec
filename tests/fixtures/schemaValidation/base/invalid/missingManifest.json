@@ -1,0 +1,9 @@
+{
+    "package": "{\"name\":\"mypackage\",\"version\":\"1\"}",
+    "testCase": "invalid",
+    "errorInfo": {
+        "errorCode": "N0001",
+        "errorPointer": "/",
+        "reason": "'manifest' is a required property"
+    }
+}

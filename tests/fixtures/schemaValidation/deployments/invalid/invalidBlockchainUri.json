@@ -1,0 +1,9 @@
+{
+    "package": "{\"deployments\":{\"blockchain://abc/block/123\":{\"MyContract\":{\"address\":\"0x9182902397B57a8c611D764D4DCD24BA951B4319\",\"contractType\":\"MyContract\"}}},\"manifest\":\"ethpm/3\"}",
+    "testCase": "invalid",
+    "errorInfo": {
+        "errorCode": "N0006",
+        "errorPointer": "/deployments",
+        "reason": "'blockchain://abc/block/123' does not match '^blockchain\\\\://[0-9a-fA-F]{64}\\\\/block\\\\/[0-9a-fA-F]{64}$'"
+    }
+}

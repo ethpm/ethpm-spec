@@ -1,0 +1,9 @@
+{
+    "package": "{\"deployments\":{\"blockchain://d8764b6fdd13fbd4132265128dcaacb7c04cbb0ee0e0efb329e7a24d1f8509c7/block/d8764b6fdd13fbd4132265128dcaacb7c04cbb0ee0e0efb329e7a24d1f8509c7\":{\"MyContract\":{\"address\":\"0x9182902397B57a8c611D764D4DCD24BA951B4319\",\"contractType\":\".MyContract\"}}},\"manifest\":\"ethpm/3\"}",
+    "testCase": "invalid",
+    "errorInfo": {
+        "errorCode": "N0006",
+        "errorPointer": "/deployments/blockchain:~1~1d8764b6fdd13fbd4132265128dcaacb7c04cbb0ee0e0efb329e7a24d1f8509c7~1block~1d8764b6fdd13fbd4132265128dcaacb7c04cbb0ee0e0efb329e7a24d1f8509c7/",
+        "reason": "'.MyContract' does not match '^(?:[a-z][-a-z0-9]{0,255}\\\\:)?[a-zA-Z_$][-a-zA-Z0-9_$]{0,255}(?:[-a-zA-Z0-9]{1,256}])?$'"
+    }
+}

@@ -1,0 +1,4 @@
+{
+    "package": "{\"contractTypes\":{\"MyContract\":{}},\"manifest\":\"ethpm/3\"}",
+    "testCase": "valid"
+}

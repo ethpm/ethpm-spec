@@ -1,0 +1,4 @@
+{
+    "package": "{\"manifest\":\"ethpm/3\",\"sources\":{\"MyContract.sol\":{\"urls\":[\"ipfs://QmYvsyuxjj9mKmCvn3jrdfnaHYwFsyHXUu7kETrN4dBhE6\"]}}}",
+    "testCase": "valid"
+}

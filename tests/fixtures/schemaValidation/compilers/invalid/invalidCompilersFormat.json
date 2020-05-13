@@ -1,0 +1,9 @@
+{
+    "package": "{\"compilers\":{\"name\":\"solc\",\"version\":\"0.4.8-commit.60cc166c\"},\"manifest\":\"ethpm/3\"}",
+    "testCase": "invalid",
+    "errorInfo": {
+        "errorCode": "N0007",
+        "errorPointer": "/compilers",
+        "reason": "{'name': 'solc', 'version': '0.4.8-commit.60cc166c'} is not of type 'array'"
+    }
+}
