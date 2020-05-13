@@ -1,1 +1,4 @@
-{"manifest":"ethpm/3","contractTypes":{"MyContractAlias":{"contractName":"MyContract","sourceId":"MyContract.sol","deploymentBytecode":{"bytecode":"0x"},"runtimeBytecode":{"bytecode":"0x"},"abi":[],"userdoc":{},"devdoc":{}}}}
+{
+    "package": "{\"contractTypes\":{\"MyContractAlias\":{\"abi\":[],\"contractName\":\"MyContract\",\"deploymentBytecode\":{\"bytecode\":\"0x\"},\"devdoc\":{},\"runtimeBytecode\":{\"bytecode\":\"0x\"},\"sourceId\":\"MyContract.sol\",\"userdoc\":{}}},\"manifest\":\"ethpm/3\"}",
+    "testCase": "valid"
+}

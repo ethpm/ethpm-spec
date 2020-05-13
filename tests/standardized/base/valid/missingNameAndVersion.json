@@ -1,1 +1,4 @@
-{"manifest":"ethpm/3"}
+{
+    "package": "{\"manifest\":\"ethpm/3\"}",
+    "testCase": "valid"
+}

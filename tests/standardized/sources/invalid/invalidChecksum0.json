@@ -1,1 +1,9 @@
-{"manifest":"ethpm/3","sources":{"MyContract.sol":{"checksum":"QmYvsyuxjj9mKmCvn3jrdfnaHYwFsyHXUu7kETrN4dBhE6","urls":["ipfs://QmYvsyuxjj9mKmCvn3jrdfnaHYwFsyHXUu7kETrN4dBhE6"]}}}
+{
+    "package": "{\"manifest\":\"ethpm/3\",\"sources\":{\"MyContract.sol\":{\"checksum\":\"QmYvsyuxjj9mKmCvn3jrdfnaHYwFsyHXUu7kETrN4dBhE6\",\"urls\":[\"ipfs://QmYvsyuxjj9mKmCvn3jrdfnaHYwFsyHXUu7kETrN4dBhE6\"]}}}",
+    "testCase": "invalid",
+    "errorInfo": {
+        "errorCode": "N0004",
+        "errorPointer": "/sources/MyContract.sol/checksum",
+        "reason": "'QmYvsyuxjj9mKmCvn3jrdfnaHYwFsyHXUu7kETrN4dBhE6' is not of type 'object'"
+    }
+}

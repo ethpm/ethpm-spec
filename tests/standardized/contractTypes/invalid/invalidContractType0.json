@@ -1,1 +1,9 @@
-{"manifest":"ethpm/3","contractTypes":"mycontract"}
+{
+    "package": "{\"contractTypes\":\"mycontract\",\"manifest\":\"ethpm/3\"}",
+    "testCase": "invalid",
+    "errorInfo": {
+        "errorCode": "N0005",
+        "errorPointer": "/contractTypes",
+        "reason": "'mycontract' is not of type 'object'"
+    }
+}

@@ -1,1 +1,4 @@
-{"manifest":"ethpm/3","meta":{"license":"MIT"}}
+{
+    "package": "{\"manifest\":\"ethpm/3\",\"meta\":{\"license\":\"MIT\"}}",
+    "testCase": "valid"
+}

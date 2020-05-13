@@ -1,1 +1,9 @@
-{"manifest":"ethpm/3","meta":{"links":"www.github.com"}}
+{
+    "package": "{\"manifest\":\"ethpm/3\",\"meta\":{\"links\":\"www.github.com\"}}",
+    "testCase": "invalid",
+    "errorInfo": {
+        "errorCode": "N0009",
+        "errorPointer": "/meta/links",
+        "reason": "'www.github.com' is not of type 'object'"
+    }
+}

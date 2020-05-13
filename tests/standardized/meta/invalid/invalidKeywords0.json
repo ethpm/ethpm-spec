@@ -1,1 +1,9 @@
-{"manifest":"ethpm/3","meta":{"keywords":"ethereum"}}
+{
+    "package": "{\"manifest\":\"ethpm/3\",\"meta\":{\"keywords\":\"ethereum\"}}",
+    "testCase": "invalid",
+    "errorInfo": {
+        "errorCode": "N0009",
+        "errorPointer": "/meta/keywords",
+        "reason": "'ethereum' is not of type 'array'"
+    }
+}

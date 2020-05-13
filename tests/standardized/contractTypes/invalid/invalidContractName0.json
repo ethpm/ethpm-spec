@@ -1,1 +1,9 @@
-{"manifest":"ethpm/3","contractTypes":{"MyContract":{"contractName":""}}}
+{
+    "package": "{\"contractTypes\":{\"MyContract\":{\"contractName\":\"\"}},\"manifest\":\"ethpm/3\"}",
+    "testCase": "invalid",
+    "errorInfo": {
+        "errorCode": "N0005",
+        "errorPointer": "/contractTypes/MyContract/contractName",
+        "reason": "'' does not match '^(?:[a-z][-a-z0-9]{0,255}\\\\:)?[a-zA-Z_$][-a-zA-Z0-9_$]{0,255}(?:[-a-zA-Z0-9]{1,256}])?$'"
+    }
+}

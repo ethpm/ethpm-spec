@@ -1,1 +1,4 @@
-{"manifest":"ethpm/3","compilers":[{"name":"solc","version":"0.4.8-commit.60cc166c"}]}
+{
+    "package": "{\"compilers\":[{\"name\":\"solc\",\"version\":\"0.4.8-commit.60cc166c\"}],\"manifest\":\"ethpm/3\"}",
+    "testCase": "valid"
+}

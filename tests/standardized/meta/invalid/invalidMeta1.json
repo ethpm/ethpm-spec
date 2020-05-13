@@ -1,1 +1,9 @@
-{"manifest":"ethpm/3","meta":["list","of","metadata"]}
+{
+    "package": "{\"manifest\":\"ethpm/3\",\"meta\":[\"list\",\"of\",\"metadata\"]}",
+    "testCase": "invalid",
+    "errorInfo": {
+        "errorCode": "N0009",
+        "errorPointer": "/meta",
+        "reason": "['list', 'of', 'metadata'] is not of type 'object'"
+    }
+}

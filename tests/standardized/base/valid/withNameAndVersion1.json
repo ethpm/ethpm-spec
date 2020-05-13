@@ -1,1 +1,4 @@
-{"manifest":"ethpm/3","name":"my-package1","version":"1.0.0-alpha.1"}
+{
+    "package": "{\"manifest\":\"ethpm/3\",\"name\":\"my-package1\",\"version\":\"1.0.0-alpha.1\"}",
+    "testCase": "valid"
+}

@@ -1,1 +1,4 @@
-{"manifest":"ethpm/3","buildDependencies":{"package":"ipfs://QmYvsyuxjj9mKmCvn3jrdfnaHYwFsyHXUu7kETrN4dBhE6"}}
+{
+    "package": "{\"buildDependencies\":{\"package\":\"ipfs://QmYvsyuxjj9mKmCvn3jrdfnaHYwFsyHXUu7kETrN4dBhE6\"},\"manifest\":\"ethpm/3\"}",
+    "testCase": "valid"
+}

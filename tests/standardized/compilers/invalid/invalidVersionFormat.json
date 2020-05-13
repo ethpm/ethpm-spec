@@ -1,1 +1,9 @@
-{"manifest":"ethpm/3","compilers":[{"name":"solc","version":{"commit":"0.4.8-commit.60cc166c"}}]}
+{
+    "package": "{\"compilers\":[{\"name\":\"solc\",\"version\":{\"commit\":\"0.4.8-commit.60cc166c\"}}],\"manifest\":\"ethpm/3\"}",
+    "testCase": "invalid",
+    "errorInfo": {
+        "errorCode": "N0007",
+        "errorPointer": "/compilers/0/version",
+        "reason": "{'commit': '0.4.8-commit.60cc166c'} is not of type 'string'"
+    }
+}

@@ -1,1 +1,4 @@
-{"manifest":"ethpm/3","meta":{"authors":["list","of","authors"]}}
+{
+    "package": "{\"manifest\":\"ethpm/3\",\"meta\":{\"authors\":[\"list\",\"of\",\"authors\"]}}",
+    "testCase": "valid"
+}

@@ -1,1 +1,9 @@
-{"manifest":"ethpm/3","meta":{"description":["list","of","licenses"]}}
+{
+    "package": "{\"manifest\":\"ethpm/3\",\"meta\":{\"description\":[\"list\",\"of\",\"licenses\"]}}",
+    "testCase": "invalid",
+    "errorInfo": {
+        "errorCode": "N0009",
+        "errorPointer": "/meta/description",
+        "reason": "['list', 'of', 'licenses'] is not of type 'string'"
+    }
+}

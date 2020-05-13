@@ -1,1 +1,9 @@
-{"manifest":"ethpm/3","compilers":[{"name":"solc"}]}
+{
+    "package": "{\"compilers\":[{\"name\":\"solc\"}],\"manifest\":\"ethpm/3\"}",
+    "testCase": "invalid",
+    "errorInfo": {
+        "errorCode": "N0007",
+        "errorPointer": "/compilers/0",
+        "reason": "'version' is a required property"
+    }
+}

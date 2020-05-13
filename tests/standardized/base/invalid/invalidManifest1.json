@@ -1,1 +1,9 @@
-{"manifest":"3"}
+{
+    "package": "{\"manifest\":\"3\"}",
+    "testCase": "invalid",
+    "errorInfo": {
+        "errorCode": "N0001",
+        "errorPointer": "/manifest",
+        "reason": "'3' is not one of ['ethpm/3']"
+    }
+}
