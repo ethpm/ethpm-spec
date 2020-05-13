@@ -6,7 +6,7 @@ from jsonschema import (
     ValidationError as jsonValidationError,
 )
 
-FIXTURE_DIR = Path(__file__).parent.parent / 'tests' / 'standardized'
+FIXTURE_DIR = Path(__file__).parent.parent / 'tests' / 'fixtures'
 
 
 def pytest_generate_tests(metafunc):
@@ -14,8 +14,8 @@ def pytest_generate_tests(metafunc):
         valid_fixtures = [fixture for fixture in FIXTURE_DIR.glob('**/*.json') if fixture.parent.name == 'valid']
         metafunc.parametrize("valid_fixture", valid_fixtures)
     elif 'invalid_fixture' in metafunc.fixturenames:
-        valid_fixtures = [fixture for fixture in FIXTURE_DIR.glob('**/*.json') if fixture.parent.name == 'invalid']
-        metafunc.parametrize("invalid_fixture", valid_fixtures)
+        invalid_fixtures = [fixture for fixture in FIXTURE_DIR.glob('**/*.json') if fixture.parent.name == 'invalid']
+        metafunc.parametrize("invalid_fixture", invalid_fixtures)
 
 
 def test_valid_fixtures(valid_fixture, validate_v3):
