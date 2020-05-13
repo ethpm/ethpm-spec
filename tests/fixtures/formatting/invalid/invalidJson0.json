@@ -1,0 +1,9 @@
+{
+    "package": "{{\"manifest\":\"ethpm/3\"}}",
+    "testCase": "invalid",
+    "errorInfo": {
+        "errorCode": "N0010",
+        "errorPointer": "/",
+        "reason": "Invalid JSON"
+    }
+}
