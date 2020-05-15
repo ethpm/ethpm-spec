@@ -18,5 +18,7 @@ import json
 )
 def test_schema_accepts_v3_examples(validate_v3, ethpm_spec_dir, example):
     examples_dir = ethpm_spec_dir / 'examples'
-    manifest = json.loads((examples_dir / example / 'v3.json').read_text())
-    assert validate_v3(manifest) is None
+    pretty_manifest = json.loads((examples_dir / example / 'v3-pretty.json').read_text())
+    strict_manifest = json.loads((examples_dir / example / 'v3.json').read_text())
+    assert validate_v3(pretty_manifest) is None
+    assert validate_v3(strict_manifest) is None
