@@ -1,4 +1,5 @@
-pragma solidity ^0.4.24;
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.6.8;
 
 
 import {SafeMathLib} from "./safe-math-lib/contracts/SafeMathLib.sol";
@@ -13,12 +14,12 @@ contract Wallet is Owned {
     mapping (address => uint) allowances;
 
     /// @dev Fallback function for depositing funds
-    function() public {
+    fallback() external {
     }
 
     /// @dev Sends the recipient the specified amount
     /// @notice This will send the reciepient the specified amount.
-    function send(address recipient, uint value) public onlyOwner returns (bool) {
+    function send(address payable recipient, uint value) public onlyOwner returns (bool) {
         return recipient.send(value);
     }
 
