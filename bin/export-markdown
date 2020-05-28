@@ -22,6 +22,7 @@ export-via-asciidoc () {
 
 
     asciidoc \
+        -d book \
         --backend="docbook" \
         --out-file="build/docbook/index.docbook" \
         build/asciidoc/index.adoc
