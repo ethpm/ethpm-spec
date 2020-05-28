@@ -1,0 +1,196 @@
+{
+    "compilers": [
+        {
+            "contractTypes": [
+                "SimpleAuction"
+            ],
+            "name": "Solidity",
+            "settings": {
+                "evmVersion": "istanbul",
+                "libraries": {},
+                "metadata": {
+                    "bytecodeHash": "ipfs"
+                },
+                "optimizer": {
+                    "enabled": true,
+                    "runs": 200
+                },
+                "remappings": []
+            },
+            "version": "0.6.8+commit.0bbfe453"
+        }
+    ],
+    "contractTypes": {
+        "SimpleAuction": {
+            "abi": [
+                {
+                    "inputs": [
+                        {
+                            "internalType": "uint256",
+                            "name": "_biddingTime",
+                            "type": "uint256"
+                        },
+                        {
+                            "internalType": "address payable",
+                            "name": "_beneficiary",
+                            "type": "address"
+                        }
+                    ],
+                    "stateMutability": "nonpayable",
+                    "type": "constructor"
+                },
+                {
+                    "anonymous": false,
+                    "inputs": [
+                        {
+                            "indexed": false,
+                            "internalType": "address",
+                            "name": "winner",
+                            "type": "address"
+                        },
+                        {
+                            "indexed": false,
+                            "internalType": "uint256",
+                            "name": "amount",
+                            "type": "uint256"
+                        }
+                    ],
+                    "name": "AuctionEnded",
+                    "type": "event"
+                },
+                {
+                    "anonymous": false,
+                    "inputs": [
+                        {
+                            "indexed": false,
+                            "internalType": "address",
+                            "name": "bidder",
+                            "type": "address"
+                        },
+                        {
+                            "indexed": false,
+                            "internalType": "uint256",
+                            "name": "amount",
+                            "type": "uint256"
+                        }
+                    ],
+                    "name": "HighestBidIncreased",
+                    "type": "event"
+                },
+                {
+                    "inputs": [],
+                    "name": "autionEnd",
+                    "outputs": [],
+                    "stateMutability": "nonpayable",
+                    "type": "function"
+                },
+                {
+                    "inputs": [],
+                    "name": "auctionEndTime",
+                    "outputs": [
+                        {
+                            "internalType": "uint256",
+                            "name": "",
+                            "type": "uint256"
+                        }
+                    ],
+                    "stateMutability": "view",
+                    "type": "function"
+                },
+                {
+                    "inputs": [],
+                    "name": "beneficiary",
+                    "outputs": [
+                        {
+                            "internalType": "address payable",
+                            "name": "",
+                            "type": "address"
+                        }
+                    ],
+                    "stateMutability": "view",
+                    "type": "function"
+                },
+                {
+                    "inputs": [],
+                    "name": "bid",
+                    "outputs": [],
+                    "stateMutability": "payable",
+                    "type": "function"
+                },
+                {
+                    "inputs": [],
+                    "name": "highestBid",
+                    "outputs": [
+                        {
+                            "internalType": "uint256",
+                            "name": "",
+                            "type": "uint256"
+                        }
+                    ],
+                    "stateMutability": "view",
+                    "type": "function"
+                },
+                {
+                    "inputs": [],
+                    "name": "highestBidder",
+                    "outputs": [
+                        {
+                            "internalType": "address",
+                            "name": "",
+                            "type": "address"
+                        }
+                    ],
+                    "stateMutability": "view",
+                    "type": "function"
+                },
+                {
+                    "inputs": [],
+                    "name": "withdraw",
+                    "outputs": [
+                        {
+                            "internalType": "bool",
+                            "name": "",
+                            "type": "bool"
+                        }
+                    ],
+                    "stateMutability": "nonpayable",
+                    "type": "function"
+                }
+            ],
+            "devdoc": {
+                "methods": {}
+            },
+            "sourceId": "SimpleAuction.sol",
+            "userdoc": {
+                "methods": {
+                    "auctionEnd()": {
+                        "notice": "End the auction and send the highest bid to the beneficiary."
+                    },
+                    "bid()": {
+                        "notice": "Bid on the auction with the value sent together with this transaction. The value will only be refunded if the auction is not won."
+                    },
+                    "constructor": "Create a simple auction with `_biddingTime` seconds bidding time on behalf of the beneficiary address `_beneficiary`.",
+                    "withdraw()": {
+                        "notice": "Withdraw a bid that was overbid."
+                    }
+                }
+            }
+        }
+    },
+    "manifest": "ethpm/3",
+    "sources": {
+        "SimpleAuction.sol": {
+            "checksum": {
+                "algorithm": "keccak256",
+                "hash": "0xc6183becc5949c04cc6fe02ab3f0805964665b9c9e9637186296873943699eaa"
+            },
+            "installPath": "./SimpleAuction.sol",
+            "license": "GPL-3.0",
+            "type": "solidity",
+            "urls": [
+                "bzz-raw://0de66900acf72ac03648ca2188eb9ecf8c315ea4c0b7ddc15b1d2a0cb68c1ddf",
+                "dweb:/ipfs/QmWT94M1d1HfN2GS7PqFKFJgoHwPWicZp5TeF5MnTKec1M"
+            ]
+        }
+    }
+}
