@@ -217,7 +217,7 @@ improve legibility. The full Package can be found
    {
      "manifest": "ethpm/3",
      "version": "1.0.0",
-     "package_name": "standard-token",
+     "name": "standard-token",
      "sources": {
        "./contracts/AbstractToken.sol": {
          "installPath": "./contracts/AbstractToken.sol",

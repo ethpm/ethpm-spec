@@ -71,6 +71,8 @@ following serialization rules.
 -  Duplicate keys in the same object are invalid.
 -  The document **must** use `UTF-8 <https://en.wikipedia.org/wiki/UTF-8>`_ encoding.
 -  The document **must** not have a trailing newline.
+-  To ensure backwards compatibility, `manifest_version` is a forbidden
+   top-level key.
 
 ----
 
@@ -361,10 +363,10 @@ within the dependency tree the value is constructed as follows.
 
     -  Let ``[p1, p2, .. pn]`` define a path down the dependency tree.
     -  Each of ``p1, p2, pn`` **must** be valid package names.
-    -  ``p1`` **must** be present in keys of the ``build_dependencies`` for
+    -  ``p1`` **must** be present in keys of the ``buildDependencies`` for
        the current package.
     -  For every ``pn`` where ``n > 1``, ``pn`` **must** be present in the
-       keys of the ``build_dependencies`` of the package for ``pn-1``.
+       keys of the ``buildDependencies`` of the package for ``pn-1``.
     -  The value is represented by the string
        ``<p1>:<p2>:<...>:<pn>:<contract-instance>`` where all of ``<p1>``,
        ``<p2>``, ``<pn>`` are valid package names and
@@ -507,8 +509,8 @@ for the following common resources.
   - ``documentation``: Package Documentation
   - ``repository``: Location of the project source code.
 
+  :Required: No
   :Key: ``links``
-
   :Type: Object (String: String)
 
 ----
@@ -548,7 +550,7 @@ Array of urls that resolve to the same source file.
 
   :Required: If ``content`` is not included.
   :Key: ``urls``
-  :Value: Array(string)
+  :Value: Array(String)
 
 Content: ``content``
 ^^^^^^^^^^^^^^^^^^^^
@@ -556,7 +558,7 @@ Inlined contract source.
 
   :Required: If ``urls`` is not included.
   :Key: ``content``
-  :Value: string
+  :Value: String
 
 Install Path: ``installPath``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -567,7 +569,7 @@ Filesystem path of source file.
 
   :Required: This field **must** be included for the package to be writable to disk.
   :Key: ``installPath``
-  :Value: string
+  :Value: String
 
 Type: ``type``
 ^^^^^^^^^^^^^^
