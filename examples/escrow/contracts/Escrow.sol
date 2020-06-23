@@ -1,4 +1,5 @@
-pragma solidity ^0.4.24;
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.6.8;
 
 
 import {SafeSendLib} from "./SafeSendLib.sol";
@@ -12,7 +13,7 @@ contract Escrow {
     address public sender;
     address public recipient;
 
-    constructor(address _recipient) public payable {
+    constructor(address _recipient) public {
         sender = msg.sender;
         recipient = _recipient;
     }
