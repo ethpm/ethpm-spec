@@ -71,6 +71,8 @@ following serialization rules.
 -  Duplicate keys in the same object are invalid.
 -  The document **must** use `UTF-8 <https://en.wikipedia.org/wiki/UTF-8>`_ encoding.
 -  The document **must** not have a trailing newline.
+-  To ensure backwards compatibility, `manifest_version` is a forbidden
+   top-level key.
 
 ----
 
