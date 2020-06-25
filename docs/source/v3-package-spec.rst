@@ -462,6 +462,8 @@ authors of this package. Packages **may** include this field.
   :Key: ``authors``
   :Type: Array (String)
 
+.. _Meta License:
+
 License: ``license``
 ^^^^^^^^^^^^^^^^^^^^
 
@@ -577,6 +579,18 @@ of the following values: ``jsonabi``, ``solidity``, ``vyper``.
 
   :Required: No
   :Key: ``type``
+  :Type: String
+
+License: ``license``
+^^^^^^^^^^^^^^^^^^^^
+
+The ``license`` field declares the type of license associated with
+this source file. When defined, this license overrides the
+package-scoped `Meta License`_. If undefined, this file extends the
+package-scoped license.
+
+  :Required: No
+  :Key: ``license``
   :Type: String
 
 ----
