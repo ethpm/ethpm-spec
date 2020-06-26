@@ -575,7 +575,7 @@ Type: ``type``
 ^^^^^^^^^^^^^^
 
 The ``type`` field declares the type of the source file. The field **should** be one
-of the following values: ``jsonabi``, ``solidity``, ``vyper``. 
+of the following values: ``solidity``, ``vyper``, ``abi-json``, ``solidity-ast-json``. 
 
   :Required: No
   :Key: ``type``
