@@ -119,6 +119,11 @@
 		  "title": "Type",
 		  "description": "File type of this source",
 		  "type": "string"
+		},
+		"license": {
+		  "title": "License",
+		  "description": "The license associated with the source file",
+		  "type": "string"
 		}
 	  }
 	},
