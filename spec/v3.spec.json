@@ -6,6 +6,9 @@
     "manifest"
   ],
   "version": "3",
+  "not": {
+    "required": ["manifest_version"]
+  },
   "properties": {
     "manifest": {
       "type": "string",

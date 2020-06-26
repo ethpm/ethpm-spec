@@ -1,0 +1,9 @@
+{
+    "package": "{\"manifest\":\"ethpm/3\",\"manifest_version\":\"2\"}",
+    "testCase": "invalid",
+    "errorInfo": {
+        "errorCode": "N0003",
+        "errorPointer": "/",
+        "reason": "['manifest_version']} is not allowed"
+    }
+}
