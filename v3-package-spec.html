@@ -138,6 +138,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#content-content">Content: <code class="docutils literal notranslate"><span class="pre">content</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#install-path-installpath">Install Path: <code class="docutils literal notranslate"><span class="pre">installPath</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#id2">Type: <code class="docutils literal notranslate"><span class="pre">type</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">License: <code class="docutils literal notranslate"><span class="pre">license</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#the-checksum-object">The <em>Checksum</em> Object</a><ul>
@@ -164,10 +165,10 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#the-compiler-information-object">The <em>Compiler Information</em> Object</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id4">Name <code class="docutils literal notranslate"><span class="pre">name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">Name <code class="docutils literal notranslate"><span class="pre">name</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#version-version">Version: <code class="docutils literal notranslate"><span class="pre">version</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#settings-settings">Settings: <code class="docutils literal notranslate"><span class="pre">settings</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id5">Contract Types: <code class="docutils literal notranslate"><span class="pre">contractTypes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">Contract Types: <code class="docutils literal notranslate"><span class="pre">contractTypes</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#bip122-uris">BIP122 URIs</a></li>
@@ -871,13 +872,13 @@ authors of this package. Packages <strong>may</strong> include this field.</p>
 </div></blockquote>
 </div>
 <div class="section" id="license-license">
-<h4>License: <code class="docutils literal notranslate"><span class="pre">license</span></code><a class="headerlink" href="#license-license" title="Permalink to this headline">¶</a></h4>
+<span id="meta-license"></span><h4>License: <code class="docutils literal notranslate"><span class="pre">license</span></code><a class="headerlink" href="#license-license" title="Permalink to this headline">¶</a></h4>
 <p>The <code class="docutils literal notranslate"><span class="pre">license</span></code> field declares the license associated with this
 package. This value <strong>should</strong> conform to the
 <a class="reference external" href="https://en.wikipedia.org/wiki/Software_Package_Data_Exchange">SPDX</a>
 format. Packages <strong>should</strong> include this field. If a file <a class="reference internal" href="#source-object">Source Object</a>
 defines its own license, that license takes precedence for that particular
-file over the package-scoped <code class="docutils literal notranslate"><span class="pre">meta</span></code> license.</p>
+file over this package-scoped <code class="docutils literal notranslate"><span class="pre">meta</span></code> license.</p>
 <blockquote>
 <div><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -1063,7 +1064,7 @@ or <code class="docutils literal notranslate"><span class="pre">checksum</span><
 <div class="section" id="id2">
 <h4>Type: <code class="docutils literal notranslate"><span class="pre">type</span></code><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
 <p>The <code class="docutils literal notranslate"><span class="pre">type</span></code> field declares the type of the source file. The field <strong>should</strong> be one
-of the following values: <code class="docutils literal notranslate"><span class="pre">jsonabi</span></code>, <code class="docutils literal notranslate"><span class="pre">solidity</span></code>, <code class="docutils literal notranslate"><span class="pre">vyper</span></code>.</p>
+of the following values: <code class="docutils literal notranslate"><span class="pre">solidity</span></code>, <code class="docutils literal notranslate"><span class="pre">vyper</span></code>, <code class="docutils literal notranslate"><span class="pre">abi-json</span></code>, <code class="docutils literal notranslate"><span class="pre">solidity-ast-json</span></code>.</p>
 <blockquote>
 <div><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -1072,6 +1073,26 @@ of the following values: <code class="docutils literal notranslate"><span class=
 <tr class="field-odd field"><th class="field-name">Required:</th><td class="field-body">No</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Key:</th><td class="field-body"><code class="docutils literal notranslate"><span class="pre">type</span></code></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">String</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</div>
+<div class="section" id="id3">
+<h4>License: <code class="docutils literal notranslate"><span class="pre">license</span></code><a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
+<p>The <code class="docutils literal notranslate"><span class="pre">license</span></code> field declares the type of license associated with
+this source file. When defined, this license overrides the
+package-scoped <a class="reference internal" href="#meta-license">Meta License</a>.</p>
+<blockquote>
+<div><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Required:</th><td class="field-body">No</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Key:</th><td class="field-body"><code class="docutils literal notranslate"><span class="pre">license</span></code></td>
 </tr>
 <tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">String</td>
 </tr>
@@ -1352,7 +1373,7 @@ which created this <em>contract instance</em> was mined.</p>
 </div></blockquote>
 </div>
 <div class="section" id="runtime-bytecode-runtime-bytecode-1">
-<span id="id3"></span><h4>Runtime Bytecode: <code class="docutils literal notranslate"><span class="pre">runtimeBytecode</span></code><a class="headerlink" href="#runtime-bytecode-runtime-bytecode-1" title="Permalink to this headline">¶</a></h4>
+<span id="id4"></span><h4>Runtime Bytecode: <code class="docutils literal notranslate"><span class="pre">runtimeBytecode</span></code><a class="headerlink" href="#runtime-bytecode-runtime-bytecode-1" title="Permalink to this headline">¶</a></h4>
 <p>The <code class="docutils literal notranslate"><span class="pre">runtimeBytecode</span></code> field defines the runtime portion of bytecode for this
 <a class="reference internal" href="glossary.html#term-contract-instance"><span class="xref std std-term">Contract Instance</span></a>.  When present, the value from this field supersedes
 the <code class="docutils literal notranslate"><span class="pre">runtimeBytecode</span></code> from the <a class="reference internal" href="glossary.html#term-contract-type"><span class="xref std std-term">Contract Type</span></a> for this <a class="reference internal" href="glossary.html#term-contract-instance"><span class="xref std std-term">Contract Instance</span></a>.</p>
@@ -1381,8 +1402,8 @@ corresponding entry in the <code class="docutils literal notranslate"><span clas
 during compilation of any <a class="reference internal" href="glossary.html#term-contract-type"><span class="xref std std-term">Contract Types</span></a> or <a class="reference internal" href="glossary.html#term-contract-instance"><span class="xref std std-term">Contract Instance</span></a> included in this pacakge.</p>
 <p>A <em>Compiler Information</em> object is defined to have the following
 key/value pairs.</p>
-<div class="section" id="id4">
-<h4>Name <code class="docutils literal notranslate"><span class="pre">name</span></code><a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id5">
+<h4>Name <code class="docutils literal notranslate"><span class="pre">name</span></code><a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h4>
 <p>The <code class="docutils literal notranslate"><span class="pre">name</span></code> field defines which compiler was used in compilation.</p>
 <blockquote>
 <div><table class="docutils field-list" frame="void" rules="none">
@@ -1441,8 +1462,8 @@ to the <a class="reference external" href="http://solidity.readthedocs.io/en/lat
 </table>
 </div></blockquote>
 </div>
-<div class="section" id="id5">
-<h4>Contract Types: <code class="docutils literal notranslate"><span class="pre">contractTypes</span></code><a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id6">
+<h4>Contract Types: <code class="docutils literal notranslate"><span class="pre">contractTypes</span></code><a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h4>
 <p>A list of the <a class="reference internal" href="glossary.html#term-contract-alias"><span class="xref std std-term">Contract Alias</span></a> in this package that used this compiler to generate its outputs.</p>
 <blockquote>
 <div><ul class="simple">

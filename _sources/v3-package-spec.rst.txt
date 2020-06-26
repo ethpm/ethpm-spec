@@ -464,6 +464,8 @@ authors of this package. Packages **may** include this field.
   :Key: ``authors``
   :Type: Array (String)
 
+.. _Meta License:
+
 License: ``license``
 ^^^^^^^^^^^^^^^^^^^^
 
@@ -472,7 +474,7 @@ package. This value **should** conform to the
 `SPDX <https://en.wikipedia.org/wiki/Software_Package_Data_Exchange>`__
 format. Packages **should** include this field. If a file `Source Object`_
 defines its own license, that license takes precedence for that particular
-file over the package-scoped ``meta`` license.
+file over this package-scoped ``meta`` license.
 
   :Required: No
   :Key: ``license``
@@ -575,10 +577,21 @@ Type: ``type``
 ^^^^^^^^^^^^^^
 
 The ``type`` field declares the type of the source file. The field **should** be one
-of the following values: ``jsonabi``, ``solidity``, ``vyper``. 
+of the following values: ``solidity``, ``vyper``, ``abi-json``, ``solidity-ast-json``. 
 
   :Required: No
   :Key: ``type``
+  :Type: String
+
+License: ``license``
+^^^^^^^^^^^^^^^^^^^^
+
+The ``license`` field declares the type of license associated with
+this source file. When defined, this license overrides the
+package-scoped `Meta License`_.
+
+  :Required: No
+  :Key: ``license``
   :Type: String
 
 ----
