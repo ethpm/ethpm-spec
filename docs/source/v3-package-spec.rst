@@ -472,7 +472,7 @@ package. This value **should** conform to the
 `SPDX <https://en.wikipedia.org/wiki/Software_Package_Data_Exchange>`__
 format. Packages **should** include this field. If a file `Source Object`_
 defines its own license, that license takes precedence for that particular
-file over the package-scoped ``meta`` license.
+file over this package-scoped ``meta`` license.
 
   :Required: No
   :Key: ``license``
@@ -586,8 +586,7 @@ License: ``license``
 
 The ``license`` field declares the type of license associated with
 this source file. When defined, this license overrides the
-package-scoped `Meta License`_. If undefined, this file extends the
-package-scoped license.
+package-scoped `Meta License`_.
 
   :Required: No
   :Key: ``license``
