@@ -3,16 +3,16 @@
     "version": "1.0.0",
     "name": "standard-token",
     "sources": {
-        "contracts/AbstractToken.sol": {
+        "AbstractToken.sol": {
             "type": "solidity",
-            "installPath": "./contracts/AbstractToken.sol",
+            "installPath": "./AbstractToken.sol",
             "urls": [
                 "ipfs://Qma8tiYLSYGSjbLVn4RbTHBt2LBUXe2ADb37NVsG5UgXea"
             ]
         },
-        "contracts/StandardToken.sol": {
+        "StandardToken.sol": {
             "type": "solidity",
-            "installPath": "./contracts/StandardToken.sol",
+            "installPath": "./StandardToken.sol",
             "urls": [
                 "ipfs://QmRJHLmPVct2rbBpdGjP3xkXbF7romQigtmcs8TRfV1yC7"
             ]
@@ -20,7 +20,7 @@
     },
     "contractTypes": {
         "StandardToken": {
-            "sourceId": "contracts/StandardToken.sol",
+            "sourceId": "StandardToken.sol",
             "abi": [
                 {
                     "constant": false,
