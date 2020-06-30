@@ -238,7 +238,8 @@ deployed to a specific address on a chain.</td>
 contracts which serve as base contracts for other contracts to inherit
 from but do not provide any real useful functionality on their own. The
 common <em>owned</em> pattern is a example for this use case.</p>
-<div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kr">pragma solidity</span> <span class="o">^</span><span class="mi">0</span><span class="p">.</span><span class="mi">4</span><span class="p">.</span><span class="mi">24</span><span class="p">;</span>
+<div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="c1">// SPDX-License-Identifier: MIT</span>
+<span class="kr">pragma solidity</span> <span class="o">^</span><span class="mi">0</span><span class="p">.</span><span class="mi">6</span><span class="p">.</span><span class="mi">8</span><span class="p">;</span>
 
 <span class="kd">contract</span> <span class="n">Owned</span> <span class="p">{</span>
     <span class="kt">address</span> <span class="n">owner</span><span class="p">;</span>
@@ -288,7 +289,8 @@ depend on our <code class="docutils literal notranslate"><span class="pre">owned
 ensure that only the contract owner may transfer ownership. The
 <code class="docutils literal notranslate"><span class="pre">transferable</span></code> package will contain a single solidity source file
 <code class="docutils literal notranslate"><span class="pre">./contracts/transferable.sol</span></code>.</p>
-<div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kr">pragma solidity</span> <span class="o">^</span><span class="mi">0</span><span class="p">.</span><span class="mi">4</span><span class="p">.</span><span class="mi">24</span><span class="p">;</span>
+<div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="c1">// SPDX-License-Identifier: MIT</span>
+<span class="kr">pragma solidity</span> <span class="o">^</span><span class="mi">0</span><span class="p">.</span><span class="mi">6</span><span class="p">.</span><span class="mi">8</span><span class="p">;</span>
 
 <span class="kn">import</span> <span class="p">{</span><span class="n">Owned</span><span class="p">}</span> <span class="kr">from</span> <span class="s">&quot;owned/contracts/Owned.sol&quot;</span><span class="p">;</span>
 
@@ -398,7 +400,8 @@ operations called <code class="docutils literal notranslate"><span class="pre">s
 functions to allow addition and subtraction without needing to check for
 underflow or overflow conditions. Our package will have a single
 solidity source file <code class="docutils literal notranslate"><span class="pre">./contracts/SafeMathLib.sol</span></code></p>
-<div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kr">pragma solidity</span> <span class="o">^</span><span class="mi">0</span><span class="p">.</span><span class="mi">4</span><span class="p">.</span><span class="mi">24</span><span class="p">;</span>
+<div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="c1">// SPDX-License-Identifier: MIT</span>
+<span class="kr">pragma solidity</span> <span class="o">^</span><span class="mi">0</span><span class="p">.</span><span class="mi">6</span><span class="p">.</span><span class="mi">8</span><span class="p">;</span>
 
 
 <span class="c1">/// @title Safe Math Library</span>
@@ -635,7 +638,8 @@ package. We will also make use of the <code class="docutils literal notranslate"
 first example to handle authorization. Our package will contain a single
 solidity source file
 <a class="reference external" href="https://github.com/ethpm/ethpm-spec/blob/master/examples/wallet/contracts/Wallet.sol">./contracts/Wallet.sol</a>, shown below.</p>
-<div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kr">pragma solidity</span> <span class="o">^</span><span class="mi">0</span><span class="p">.</span><span class="mi">4</span><span class="p">.</span><span class="mi">24</span><span class="p">;</span>
+<div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="c1">// SPDX-License-Identifier: MIT</span>
+<span class="kr">pragma solidity</span> <span class="o">^</span><span class="mi">0</span><span class="p">.</span><span class="mi">6</span><span class="p">.</span><span class="mi">8</span><span class="p">;</span>
 
 
 <span class="kn">import</span> <span class="p">{</span><span class="n">SafeMathLib</span><span class="p">}</span> <span class="kr">from</span> <span class="s">&quot;./safe-math-lib/contracts/SafeMathLib.sol&quot;</span><span class="p">;</span>
@@ -650,12 +654,12 @@ solidity source file
     <span class="kd">mapping</span> <span class="p">(</span><span class="kt">address</span> <span class="o">=&gt;</span> <span class="kt">uint</span><span class="p">)</span> <span class="n">allowances</span><span class="p">;</span>
 
     <span class="c1">/// @dev Fallback function for depositing funds</span>
-    <span class="kd">function</span><span class="p">()</span> <span class="kr">public</span> <span class="p">{</span>
+    <span class="n">fallback</span><span class="p">()</span> <span class="kr">external</span> <span class="p">{</span>
     <span class="p">}</span>
 
     <span class="c1">/// @dev Sends the recipient the specified amount</span>
     <span class="c1">/// @notice This will send the reciepient the specified amount.</span>
-    <span class="kd">function</span> <span class="nf">send</span><span class="p">(</span><span class="kt">address</span> <span class="n">recipient</span><span class="p">,</span> <span class="kt">uint</span> <span class="nb">value</span><span class="p">)</span> <span class="kr">public</span> <span class="n">onlyOwner</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">bool</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">function</span> <span class="nf">send</span><span class="p">(</span><span class="kt">address</span> <span class="kr">payable</span> <span class="n">recipient</span><span class="p">,</span> <span class="kt">uint</span> <span class="nb">value</span><span class="p">)</span> <span class="kr">public</span> <span class="n">onlyOwner</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">bool</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">return</span> <span class="n">recipient</span><span class="p">.</span><span class="nf">send</span><span class="p">(</span><span class="nb">value</span><span class="p">);</span>
     <span class="p">}</span>
 
@@ -778,7 +782,8 @@ dependency tree.</p>
 <a class="reference external" href="https://github.com/ethpm/ethpm-spec/blob/master/examples/wallet-with-send/contracts/WalletWithSend.sol">./contracts/WalletWithSend.sol</a>
 which extends our previous <code class="docutils literal notranslate"><span class="pre">Wallet</span></code> contract, adding a new
 <code class="docutils literal notranslate"><span class="pre">approvedSend</span></code> function.</p>
-<div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kr">pragma solidity</span> <span class="o">^</span><span class="mi">0</span><span class="p">.</span><span class="mi">4</span><span class="p">.</span><span class="mi">24</span><span class="p">;</span>
+<div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="c1">// SPDX-License-Identifier: MIT</span>
+<span class="kr">pragma solidity</span> <span class="o">^</span><span class="mi">0</span><span class="p">.</span><span class="mi">6</span><span class="p">.</span><span class="mi">8</span><span class="p">;</span>
 
 
 <span class="kn">import</span> <span class="p">{</span><span class="n">Wallet</span><span class="p">}</span> <span class="kr">from</span> <span class="s">&quot;./wallet/contracts/Wallet.sol&quot;</span><span class="p">;</span>
@@ -789,7 +794,7 @@ which extends our previous <code class="docutils literal notranslate"><span clas
 <span class="kd">contract</span> <span class="n">WalletWithSend</span> <span class="kr">is</span> <span class="n">Wallet</span> <span class="p">{</span>
     <span class="c1">/// @dev Sends funds that have been approved to the specified address</span>
     <span class="c1">/// @notice This will send the reciepient the specified amount.</span>
-    <span class="kd">function</span> <span class="n">approvedSend</span><span class="p">(</span><span class="kt">uint</span> <span class="nb">value</span><span class="p">,</span> <span class="kt">address</span> <span class="n">to</span><span class="p">)</span> <span class="kr">public</span> <span class="p">{</span>
+    <span class="kd">function</span> <span class="n">approvedSend</span><span class="p">(</span><span class="kt">uint</span> <span class="nb">value</span><span class="p">,</span> <span class="kt">address</span> <span class="kr">payable</span> <span class="n">to</span><span class="p">)</span> <span class="kr">public</span> <span class="p">{</span>
         <span class="n">allowances</span><span class="p">[</span><span class="nb">msg</span><span class="p">.</span><span class="nb">sender</span><span class="p">]</span> <span class="o">=</span> <span class="n">allowances</span><span class="p">[</span><span class="nb">msg</span><span class="p">.</span><span class="nb">sender</span><span class="p">].</span><span class="n">safeSub</span><span class="p">(</span><span class="nb">value</span><span class="p">);</span>
         <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">to</span><span class="p">.</span><span class="nf">send</span><span class="p">(</span><span class="nb">value</span><span class="p">))</span>
             <span class="nf">revert</span><span class="p">();</span>
