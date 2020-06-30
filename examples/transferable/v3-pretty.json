@@ -13,15 +13,15 @@
         ]
     },
     "sources": {
-        "contracts/Transferable.sol": {
+        "Transferable.sol": {
             "type": "solidity",
-            "installPath": "./contracts/Transferable.sol",
+            "installPath": "./Transferable.sol",
             "urls": [
-                "ipfs://QmZYkdUUTwREjfy4vQc3enzu6WKk8eNyvGERqy1cNNVkAD"
+                "ipfs://QmdWB74Ca8tyXtS3UxzJqcvETv3LLkacX2ywfJfNNWVnYt"
             ]
         }
     },
     "buildDependencies": {
-        "owned": "ipfs://QmbeVyFLSuEUxiXKwSsEjef6icpdTdA4kGG9BcrJXKNKUW"
+        "owned": "ipfs://QmcxvhkJJVpbxEAa6cgW3B6XwPJb79w9GpNUv2P2THUzZR"
     }
 }

@@ -16,12 +16,12 @@
         }
     },
     "sources": {
-        "contracts/Owned.sol": {
+        "Owned.sol": {
             "type": "solidity",
             "urls": [
-                "ipfs://Qme4otpS88NV8yQi8TfTP89EsQC5bko3F5N1yhRoi6cwGV"
+                "ipfs://QmU8QUSt56ZoBDJgjjXvAZEPro9LmK1m2gjVG5Q4s9x29W"
             ],
-            "installPath": "./contracts/Owned.sol"
+            "installPath": "./Owned.sol"
         }
     }
 }
