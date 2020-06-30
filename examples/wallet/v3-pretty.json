@@ -5,9 +5,9 @@
     "sources": {
         "Wallet.sol": {
             "type": "solidity",
-            "installPath": "./Wallet/sol",
+            "installPath": "./Wallet.sol",
             "urls": [
-                "ipfs://QmdvZEW3AaUntDfFkcbdnYzeLAAeD4YFeixQsdmHF88T6Q"
+                "ipfs://QmfTZzHLSShTS1woD7JNszAyhjtS7ErFDT4QmtwEQQ1qpa"
             ]
         }
     },
@@ -17,9 +17,9 @@
                 "Wallet"
             ],
             "name": "solc",
-            "version": "0.4.24+commit.e67f0147.Emscripten.clang",
+            "version": "0.6.8+commit.0bbfe453",
             "settings": {
-                "optimize": true
+                "optimize": false
             }
         }
     ],
@@ -27,11 +27,11 @@
         "Wallet": {
             "sourceId": "Wallet.sol",
             "deploymentBytecode": {
-                "bytecode": "0x608060405260008054600160a060020a031916331790556102bf806100256000396000f3006080604052600436106100565763ffffffff7c0100000000000000000000000000000000000000000000000000000000600035041663095ea7b381146100655780632e1a7d4d146100aa578063d0679d34146100c2575b34801561006257600080fd5b50005b34801561007157600080fd5b5061009673ffffffffffffffffffffffffffffffffffffffff600435166024356100f3565b604080519115158252519081900360200190f35b3480156100b657600080fd5b5061009660043561014a565b3480156100ce57600080fd5b5061009673ffffffffffffffffffffffffffffffffffffffff60043516602435610236565b6000805473ffffffffffffffffffffffffffffffffffffffff16331461011857600080fd5b5073ffffffffffffffffffffffffffffffffffffffff8216600090815260016020819052604090912082905592915050565b3360009081526001602090815260408083205481517fa293d1e800000000000000000000000000000000000000000000000000000000815260048101919091526024810185905290517300000000000000000000000000000000000000009263a293d1e89260448082019391829003018186803b1580156101ca57600080fd5b505af41580156101de573d6000803e3d6000fd5b505050506040513d60208110156101f457600080fd5b505133600081815260016020526040808220939093559151909184156108fc02918591818181858888f19350505050151561022e57600080fd5b506001919050565b6000805473ffffffffffffffffffffffffffffffffffffffff16331461025b57600080fd5b60405173ffffffffffffffffffffffffffffffffffffffff84169083156108fc029084906000818181858888f19796505050505050505600a165627a7a723058207816bfaab53d55eff94c08cb3e5655a597fb47b8b10256bc7b52b12105f3095e0029",
+                "bytecode": "0x608060405234801561001057600080fd5b50336000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550610430806100606000396000f3fe608060405234801561001057600080fd5b50600436106100455760003560e01c8063095ea7b3146100485780632e1a7d4d146100ae578063d0679d34146100f457610046565b5b005b6100946004803603604081101561005e57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291908035906020019092919050505061015a565b604051808215151515815260200191505060405180910390f35b6100da600480360360208110156100c457600080fd5b8101908080359060200190929190505050610203565b604051808215151515815260200191505060405180910390f35b6101406004803603604081101561010a57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919080359060200190929190505050610362565b604051808215151515815260200191505060405180910390f35b60008060009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff16146101b557600080fd5b81600160008573ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020819055506001905092915050565b6000600160003373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000205473000000000000000000000000000000000000000063a293d1e89091846040518363ffffffff1660e01b8152600401808381526020018281526020019250505060206040518083038186803b15801561029d57600080fd5b505af41580156102b1573d6000803e3d6000fd5b505050506040513d60208110156102c757600080fd5b8101908080519060200190929190505050600160003373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020819055503373ffffffffffffffffffffffffffffffffffffffff166108fc839081150290604051600060405180830381858888f1935050505061035957600080fd5b60019050919050565b60008060009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff16146103bd57600080fd5b8273ffffffffffffffffffffffffffffffffffffffff166108fc839081150290604051600060405180830381858888f1935050505090509291505056fea2646970667358221220fa09119fa13c8df37a523851a236b913e5d00bf3274d5619daad516f510c8a9264736f6c63430006080033",
                 "linkReferences": [
                     {
                         "offsets": [
-                            442
+                            679
                         ],
                         "length": 20,
                         "name": "safe-math-lib:SafeMathLib"
@@ -39,11 +39,11 @@
                 ]
             },
             "runtimeBytecode": {
-                "bytecode": "0x6080604052600436106100565763ffffffff7c0100000000000000000000000000000000000000000000000000000000600035041663095ea7b381146100655780632e1a7d4d146100aa578063d0679d34146100c2575b34801561006257600080fd5b50005b34801561007157600080fd5b5061009673ffffffffffffffffffffffffffffffffffffffff600435166024356100f3565b604080519115158252519081900360200190f35b3480156100b657600080fd5b5061009660043561014a565b3480156100ce57600080fd5b5061009673ffffffffffffffffffffffffffffffffffffffff60043516602435610236565b6000805473ffffffffffffffffffffffffffffffffffffffff16331461011857600080fd5b5073ffffffffffffffffffffffffffffffffffffffff8216600090815260016020819052604090912082905592915050565b3360009081526001602090815260408083205481517fa293d1e800000000000000000000000000000000000000000000000000000000815260048101919091526024810185905290517300000000000000000000000000000000000000009263a293d1e89260448082019391829003018186803b1580156101ca57600080fd5b505af41580156101de573d6000803e3d6000fd5b505050506040513d60208110156101f457600080fd5b505133600081815260016020526040808220939093559151909184156108fc02918591818181858888f19350505050151561022e57600080fd5b506001919050565b6000805473ffffffffffffffffffffffffffffffffffffffff16331461025b57600080fd5b60405173ffffffffffffffffffffffffffffffffffffffff84169083156108fc029084906000818181858888f19796505050505050505600a165627a7a723058207816bfaab53d55eff94c08cb3e5655a597fb47b8b10256bc7b52b12105f3095e0029",
+                "bytecode": "0x608060405234801561001057600080fd5b50600436106100455760003560e01c8063095ea7b3146100485780632e1a7d4d146100ae578063d0679d34146100f457610046565b5b005b6100946004803603604081101561005e57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291908035906020019092919050505061015a565b604051808215151515815260200191505060405180910390f35b6100da600480360360208110156100c457600080fd5b8101908080359060200190929190505050610203565b604051808215151515815260200191505060405180910390f35b6101406004803603604081101561010a57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919080359060200190929190505050610362565b604051808215151515815260200191505060405180910390f35b60008060009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff16146101b557600080fd5b81600160008573ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020819055506001905092915050565b6000600160003373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000205473000000000000000000000000000000000000000063a293d1e89091846040518363ffffffff1660e01b8152600401808381526020018281526020019250505060206040518083038186803b15801561029d57600080fd5b505af41580156102b1573d6000803e3d6000fd5b505050506040513d60208110156102c757600080fd5b8101908080519060200190929190505050600160003373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020819055503373ffffffffffffffffffffffffffffffffffffffff166108fc839081150290604051600060405180830381858888f1935050505061035957600080fd5b60019050919050565b60008060009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff16146103bd57600080fd5b8273ffffffffffffffffffffffffffffffffffffffff166108fc839081150290604051600060405180830381858888f1935050505090509291505056fea2646970667358221220fa09119fa13c8df37a523851a236b913e5d00bf3274d5619daad516f510c8a9264736f6c63430006080033",
                 "linkReferences": [
                     {
                         "offsets": [
-                            405
+                            583
                         ],
                         "length": 20,
                         "name": "safe-math-lib:SafeMathLib"
@@ -51,76 +51,77 @@
                 ]
             },
             "abi": [
-                {
-                    "constant": false,
-                    "inputs": [
-                        {
-                            "name": "recipient",
-                            "type": "address"
-                        },
-                        {
-                            "name": "value",
-                            "type": "uint256"
-                        }
-                    ],
-                    "name": "approve",
-                    "outputs": [
-                        {
-                            "name": "",
-                            "type": "bool"
-                        }
-                    ],
-                    "payable": false,
-                    "stateMutability": "nonpayable",
-                    "type": "function"
-                },
-                {
-                    "constant": false,
-                    "inputs": [
-                        {
-                            "name": "value",
-                            "type": "uint256"
-                        }
-                    ],
-                    "name": "withdraw",
-                    "outputs": [
-                        {
-                            "name": "",
-                            "type": "bool"
-                        }
-                    ],
-                    "payable": false,
-                    "stateMutability": "nonpayable",
-                    "type": "function"
-                },
-                {
-                    "constant": false,
-                    "inputs": [
-                        {
-                            "name": "recipient",
-                            "type": "address"
-                        },
-                        {
-                            "name": "value",
-                            "type": "uint256"
-                        }
-                    ],
-                    "name": "send",
-                    "outputs": [
-                        {
-                            "name": "",
-                            "type": "bool"
-                        }
-                    ],
-                    "payable": false,
-                    "stateMutability": "nonpayable",
-                    "type": "function"
-                },
-                {
-                    "payable": false,
-                    "stateMutability": "nonpayable",
-                    "type": "fallback"
-                }
+				{
+					"stateMutability": "nonpayable",
+					"type": "fallback"
+				},
+				{
+					"inputs": [
+						{
+							"internalType": "address",
+							"name": "recipient",
+							"type": "address"
+						},
+						{
+							"internalType": "uint256",
+							"name": "value",
+							"type": "uint256"
+						}
+					],
+					"name": "approve",
+					"outputs": [
+						{
+							"internalType": "bool",
+							"name": "",
+							"type": "bool"
+						}
+					],
+					"stateMutability": "nonpayable",
+					"type": "function"
+				},
+				{
+					"inputs": [
+						{
+							"internalType": "address payable",
+							"name": "recipient",
+							"type": "address"
+						},
+						{
+							"internalType": "uint256",
+							"name": "value",
+							"type": "uint256"
+						}
+					],
+					"name": "send",
+					"outputs": [
+						{
+							"internalType": "bool",
+							"name": "",
+							"type": "bool"
+						}
+					],
+					"stateMutability": "nonpayable",
+					"type": "function"
+				},
+				{
+					"inputs": [
+						{
+							"internalType": "uint256",
+							"name": "value",
+							"type": "uint256"
+						}
+					],
+					"name": "withdraw",
+					"outputs": [
+						{
+							"internalType": "bool",
+							"name": "",
+							"type": "bool"
+						}
+					],
+					"stateMutability": "nonpayable",
+					"type": "function"
+				}
             ],
             "devdoc": {
                 "author": "Piper Merriam <pipermerriam@gmail.com>",
@@ -153,17 +154,17 @@
         }
     },
     "deployments": {
-        "blockchain://41941023680923e0fe4d74a34bdac8141f2540e3ae90623718e47d66d1ca4a2d/block/0d2426efb30377a18129af05d887f9ba76bff85482000bd19e3630eb09a8bf39": {
+        "blockchain://41941023680923e0fe4d74a34bdac8141f2540e3ae90623718e47d66d1ca4a2d/block/e30e4ef1dd1e73e788c3d094859f14ddd139a19e8a3667e2ee4831d9bd1113ac": {
             "Wallet": {
                 "contractType": "Wallet",
-                "address": "0x79eb62e7a360952670C03676F47a9087c15065B3",
-                "transaction": "0xaf122c215282dd340d686a662d60239f43700e15127b44e68dd6a00c48b9c88a",
-                "block": "0x0a2d01614f4dadd0b7eeeb945d5bab534825911a7769a6d2da8adb72e91b2531",
+                "address": "0x491CB3AC79d0f5D7078C3cF6EF3daEcE9623CD21",
+                "transaction": "0x8648f43125776ec2b727eda84d10c67db1693fce8bc1e7b3f84f9e40086e4773",
+                "block": "0x77adadc004c1a830682f3237b42ce81a379d11dfd88292c97ad80658f470717a",
                 "runtimeBytecode": {
                     "linkDependencies": [
                         {
                             "offsets": [
-                                405
+                                583
                             ],
                             "type": "reference",
                             "value": "safe-math-lib:SafeMathLib"
@@ -174,7 +175,7 @@
         }
     },
     "buildDependencies": {
-        "owned": "ipfs://QmbeVyFLSuEUxiXKwSsEjef6icpdTdA4kGG9BcrJXKNKUW",
-        "safe-math-lib": "ipfs://QmWgvM8yXGyHoGWqLFXvareJsoCZVsdrpKNCLMun3RaSJm"
+        "owned": "ipfs://QmcxvhkJJVpbxEAa6cgW3B6XwPJb79w9GpNUv2P2THUzZR",
+        "safe-math-lib": "ipfs://QmWnPsiS3Xb8GvCDEBFnnKs8Yk4HaAX6rCqJAaQXGbCoPk"
     }
 }
