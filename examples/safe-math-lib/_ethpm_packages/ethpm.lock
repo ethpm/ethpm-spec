@@ -1,0 +1,11 @@
+{
+    "safe-math-lib": {
+        "alias": "safe-math-lib",
+        "install_uri": "ipfs://QmWnPsiS3Xb8GvCDEBFnnKs8Yk4HaAX6rCqJAaQXGbCoPk",
+        "registry_address": null,
+        "resolved_content_hash": "QmWnPsiS3Xb8GvCDEBFnnKs8Yk4HaAX6rCqJAaQXGbCoPk",
+        "resolved_package_name": "safe-math-lib",
+        "resolved_uri": "ipfs://QmWnPsiS3Xb8GvCDEBFnnKs8Yk4HaAX6rCqJAaQXGbCoPk",
+        "resolved_version": "1.0.0"
+    }
+}

@@ -1,0 +1,11 @@
+{
+    "standard-token": {
+        "alias": "standard-token",
+        "install_uri": "ipfs://QmQNffBrmbB3TuBCtYfYsJWJVLssatWXa3H6CkGeyNUySA",
+        "registry_address": null,
+        "resolved_content_hash": "QmQNffBrmbB3TuBCtYfYsJWJVLssatWXa3H6CkGeyNUySA",
+        "resolved_package_name": "standard-token",
+        "resolved_uri": "ipfs://QmQNffBrmbB3TuBCtYfYsJWJVLssatWXa3H6CkGeyNUySA",
+        "resolved_version": "1.0.0"
+    }
+}

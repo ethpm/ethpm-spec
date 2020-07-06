@@ -1,0 +1,20 @@
+{
+    "owned": {
+        "alias": "owned",
+        "install_uri": "ipfs://QmcxvhkJJVpbxEAa6cgW3B6XwPJb79w9GpNUv2P2THUzZR",
+        "registry_address": null,
+        "resolved_content_hash": "QmcxvhkJJVpbxEAa6cgW3B6XwPJb79w9GpNUv2P2THUzZR",
+        "resolved_package_name": "owned",
+        "resolved_uri": "ipfs://QmcxvhkJJVpbxEAa6cgW3B6XwPJb79w9GpNUv2P2THUzZR",
+        "resolved_version": "1.0.0"
+    },
+    "safe-math-lib": {
+        "alias": "safe-math-lib",
+        "install_uri": "ipfs://QmWnPsiS3Xb8GvCDEBFnnKs8Yk4HaAX6rCqJAaQXGbCoPk",
+        "registry_address": null,
+        "resolved_content_hash": "QmWnPsiS3Xb8GvCDEBFnnKs8Yk4HaAX6rCqJAaQXGbCoPk",
+        "resolved_package_name": "safe-math-lib",
+        "resolved_uri": "ipfs://QmWnPsiS3Xb8GvCDEBFnnKs8Yk4HaAX6rCqJAaQXGbCoPk",
+        "resolved_version": "1.0.0"
+    }
+}
