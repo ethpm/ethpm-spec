@@ -1,0 +1,11 @@
+{
+    "wallet-with-send": {
+        "alias": "wallet-with-send",
+        "install_uri": "ipfs://QmSL3do3oYQfJmCCK8AQ8w278GQS5WJJmega5L22X3PGdG",
+        "registry_address": null,
+        "resolved_content_hash": "QmSL3do3oYQfJmCCK8AQ8w278GQS5WJJmega5L22X3PGdG",
+        "resolved_package_name": "wallet-with-send",
+        "resolved_uri": "ipfs://QmSL3do3oYQfJmCCK8AQ8w278GQS5WJJmega5L22X3PGdG",
+        "resolved_version": "1.0.0"
+    }
+}

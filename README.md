@@ -65,14 +65,22 @@ complexity. Source for use case examples can be found in the
 [examples/](https://github.com/ethpm/ethpm-spec/blob/master/examples/)
 directory of this repository.
 
+Each example directory contains..
+- `1.0.0.json`: ethpm v2 manifest (deprecated)
+- `1.0.0-pretty.json`: ethpm v2 manifest (pretty printed) (deprecated)
+- `v3.json`: ethpm v3 manifest
+- `v3-pretty.json`: ethpm v3 manifest (pretty printed)
+- `contracts/`: Directory containing the source contracts for the example
+- `_ethpm_packages/`: Example directory for how the v3 manifest should be written to disk (installed) by a framework according to the [write-to-disk spec](https://ethpm-cli.readthedocs.io/en/latest/disk.html#ethpm-packages).
+
 ## Specification
 
 The EthPM package manifest format is formally specified as a
 [JSON-Schema](http://json-schema.org).
 
-Please see [**Package Specification**](http://ethpm.github.io/ethpm-spec/package-spec.html)
+Please see [**Package Specification**](http://ethpm.github.io/ethpm-spec/v3-package-spec.html)
 for a natural-language description of this schema, or see
-[package.spec.json](https://github.com/ethpm/ethpm-spec/blob/master/spec/package.spec.json)
+[package.spec.json](https://github.com/ethpm/ethpm-spec/blob/master/spec/v3.spec.json)
 for the machine-readable version.
 
 ## Contributing

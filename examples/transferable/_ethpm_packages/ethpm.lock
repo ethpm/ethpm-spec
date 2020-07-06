@@ -1,0 +1,11 @@
+{
+    "transferable": {
+        "alias": "transferable",
+        "install_uri": "ipfs://QmQAB7K4trduGoQ899LPtcqhPqnUcE56NKWYk2vx82UBJ6",
+        "registry_address": null,
+        "resolved_content_hash": "QmQAB7K4trduGoQ899LPtcqhPqnUcE56NKWYk2vx82UBJ6",
+        "resolved_package_name": "transferable",
+        "resolved_uri": "ipfs://QmQAB7K4trduGoQ899LPtcqhPqnUcE56NKWYk2vx82UBJ6",
+        "resolved_version": "1.0.0"
+    }
+}

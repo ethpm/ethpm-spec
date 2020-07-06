@@ -1,0 +1,11 @@
+{
+    "escrow": {
+        "alias": "escrow",
+        "install_uri": "ipfs://QmNpLojZo471M357NTUZ1qKDwjUZrfYctWhzPtNFEXcSaL",
+        "registry_address": null,
+        "resolved_content_hash": "QmNpLojZo471M357NTUZ1qKDwjUZrfYctWhzPtNFEXcSaL",
+        "resolved_package_name": "escrow",
+        "resolved_uri": "ipfs://QmNpLojZo471M357NTUZ1qKDwjUZrfYctWhzPtNFEXcSaL",
+        "resolved_version": "1.0.0"
+    }
+}

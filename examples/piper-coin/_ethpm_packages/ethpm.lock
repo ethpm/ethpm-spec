@@ -1,0 +1,11 @@
+{
+    "piper-coin": {
+        "alias": "piper-coin",
+        "install_uri": "ipfs://QmNbvXM5ig6Qtz6abRuG52KgjFqfXDyBCdRTz7QDENgxzv",
+        "registry_address": null,
+        "resolved_content_hash": "QmNbvXM5ig6Qtz6abRuG52KgjFqfXDyBCdRTz7QDENgxzv",
+        "resolved_package_name": "piper-coin",
+        "resolved_uri": "ipfs://QmNbvXM5ig6Qtz6abRuG52KgjFqfXDyBCdRTz7QDENgxzv",
+        "resolved_version": "1.0.0"
+    }
+}

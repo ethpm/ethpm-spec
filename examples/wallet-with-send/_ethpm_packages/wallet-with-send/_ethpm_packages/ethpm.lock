@@ -1,0 +1,11 @@
+{
+    "wallet": {
+        "alias": "wallet",
+        "install_uri": "ipfs://QmRALeFkttSr6DLmPiNtAqLcMJYXu4BK3SjZGVgW8VASnm",
+        "registry_address": null,
+        "resolved_content_hash": "QmRALeFkttSr6DLmPiNtAqLcMJYXu4BK3SjZGVgW8VASnm",
+        "resolved_package_name": "wallet",
+        "resolved_uri": "ipfs://QmRALeFkttSr6DLmPiNtAqLcMJYXu4BK3SjZGVgW8VASnm",
+        "resolved_version": "1.0.0"
+    }
+}
