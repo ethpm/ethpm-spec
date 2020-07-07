@@ -65,6 +65,14 @@ complexity. Source for use case examples can be found in the
 [examples/](https://github.com/ethpm/ethpm-spec/blob/master/examples/)
 directory of this repository.
 
+Each example directory contains..
+- `1.0.0.json`: ethpm v2 manifest (deprecated)
+- `1.0.0-pretty.json`: ethpm v2 manifest (pretty printed) (deprecated)
+- `v3.json`: ethpm v3 manifest
+- `v3-pretty.json`: ethpm v3 manifest (pretty printed)
+- `contracts/`: Directory containing the source contracts for the example
+- `metadata/`: Directory containing example ethpm compliant [compiler metadata output](https://solidity.readthedocs.io/en/latest/metadata.html) for each example contract
+
 ## Specification
 
 The EthPM package manifest format is formally specified as a

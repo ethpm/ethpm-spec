@@ -2,7 +2,7 @@
 pragma solidity ^0.6.8;
 
 
-import {Wallet} from "./wallet/contracts/Wallet.sol";
+import {Wallet} from "./wallet/Wallet.sol";
 
 
 /// @title Wallet contract with simple send and approval spending functionality

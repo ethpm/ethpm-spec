@@ -2,8 +2,8 @@
 pragma solidity ^0.6.8;
 
 
-import {SafeMathLib} from "./safe-math-lib/contracts/SafeMathLib.sol";
-import {Owned} from "./owned/contracts/Owned.sol";
+import {SafeMathLib} from "./safe-math-lib/SafeMathLib.sol";
+import {Owned} from "./owned/Owned.sol";
 
 
 /// @title Contract for holding funds in escrow between two semi trusted parties.
