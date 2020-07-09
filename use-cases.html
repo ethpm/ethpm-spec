@@ -292,7 +292,7 @@ ensure that only the contract owner may transfer ownership. The
 <div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="c1">// SPDX-License-Identifier: MIT</span>
 <span class="kr">pragma solidity</span> <span class="o">^</span><span class="mi">0</span><span class="p">.</span><span class="mi">6</span><span class="p">.</span><span class="mi">8</span><span class="p">;</span>
 
-<span class="kn">import</span> <span class="p">{</span><span class="n">Owned</span><span class="p">}</span> <span class="kr">from</span> <span class="s">&quot;owned/contracts/Owned.sol&quot;</span><span class="p">;</span>
+<span class="kn">import</span> <span class="p">{</span><span class="n">Owned</span><span class="p">}</span> <span class="kr">from</span> <span class="s">&quot;owned/Owned.sol&quot;</span><span class="p">;</span>
 
 <span class="kd">contract</span> <span class="n">Transferable</span> <span class="kr">is</span> <span class="n">Owned</span> <span class="p">{</span>
     <span class="kd">event</span> <span class="n">OwnerChanged</span><span class="p">(</span><span class="kt">address</span> <span class="kr">indexed</span> <span class="n">prevOwner</span><span class="p">,</span> <span class="kt">address</span> <span class="kr">indexed</span> <span class="n">newOwner</span><span class="p">);</span>
@@ -642,8 +642,8 @@ solidity source file
 <span class="kr">pragma solidity</span> <span class="o">^</span><span class="mi">0</span><span class="p">.</span><span class="mi">6</span><span class="p">.</span><span class="mi">8</span><span class="p">;</span>
 
 
-<span class="kn">import</span> <span class="p">{</span><span class="n">SafeMathLib</span><span class="p">}</span> <span class="kr">from</span> <span class="s">&quot;./safe-math-lib/contracts/SafeMathLib.sol&quot;</span><span class="p">;</span>
-<span class="kn">import</span> <span class="p">{</span><span class="n">Owned</span><span class="p">}</span> <span class="kr">from</span> <span class="s">&quot;./owned/contracts/Owned.sol&quot;</span><span class="p">;</span>
+<span class="kn">import</span> <span class="p">{</span><span class="n">SafeMathLib</span><span class="p">}</span> <span class="kr">from</span> <span class="s">&quot;./safe-math-lib/SafeMathLib.sol&quot;</span><span class="p">;</span>
+<span class="kn">import</span> <span class="p">{</span><span class="n">Owned</span><span class="p">}</span> <span class="kr">from</span> <span class="s">&quot;./owned/Owned.sol&quot;</span><span class="p">;</span>
 
 
 <span class="c1">/// @title Contract for holding funds in escrow between two semi trusted parties.</span>
@@ -786,7 +786,7 @@ which extends our previous <code class="docutils literal notranslate"><span clas
 <span class="kr">pragma solidity</span> <span class="o">^</span><span class="mi">0</span><span class="p">.</span><span class="mi">6</span><span class="p">.</span><span class="mi">8</span><span class="p">;</span>
 
 
-<span class="kn">import</span> <span class="p">{</span><span class="n">Wallet</span><span class="p">}</span> <span class="kr">from</span> <span class="s">&quot;./wallet/contracts/Wallet.sol&quot;</span><span class="p">;</span>
+<span class="kn">import</span> <span class="p">{</span><span class="n">Wallet</span><span class="p">}</span> <span class="kr">from</span> <span class="s">&quot;./wallet/Wallet.sol&quot;</span><span class="p">;</span>
 
 
 <span class="c1">/// @title Wallet contract with simple send and approval spending functionality</span>
