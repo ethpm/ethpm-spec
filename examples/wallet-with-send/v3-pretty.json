@@ -7,7 +7,7 @@
             "type": "solidity",
             "installPath": "./WalletWithSend.sol",
             "urls": [
-                "ipfs://QmQmKim8MpVGgkaJzHCAWkAJnr3hPLrUXmaz5Ao1gWjxNY"
+                "ipfs://QmPLAfssK4y4AjHvLimxGNBRAc5xmGFVx3Tf7dekPKuVUo"
             ]
         }
     },
@@ -202,6 +202,6 @@
         }
     },
     "buildDependencies": {
-        "wallet": "ipfs://QmRALeFkttSr6DLmPiNtAqLcMJYXu4BK3SjZGVgW8VASnm"
+        "wallet": "ipfs://QmPtZxv9uEtr671XVjevHDacP9M4Tw9T7p6n1MS1xdyMeC"
     }
 }
