@@ -1,0 +1,401 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Glossary &mdash; EthPM Package Manifest  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/contentui.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Backwards Compatibility" href="postfix.html" />
+    <link rel="prev" title="Rationale" href="use-cases.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> EthPM Package Manifest
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html#overview">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="v2-package-spec.html">V2 Specification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="v3-package-spec.html">V3 Specification [WIP]</a></li>
+<li class="toctree-l1"><a class="reference internal" href="use-cases.html#id1">Use Cases</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Glossary</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">EthPM Package Manifest</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Glossary</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/glossary.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="glossary">
+<h1>Glossary<a class="headerlink" href="#glossary" title="Permalink to this headline">¶</a></h1>
+<p>The terms in this glossary have been updated to reflect the changes made in V3.</p>
+<dl class="glossary docutils">
+<dt id="term-abi">ABI</dt>
+<dd>The JSON representation of the application binary interface.
+See the official <a class="reference external" href="https://solidity.readthedocs.io/en/develop/abi-spec.html">specification</a>
+for more information.</dd>
+<dt id="term-address">Address</dt>
+<dd>A public identifier for an account on a particular chain</dd>
+<dt id="term-bytecode">Bytecode</dt>
+<dd><p class="first">The set of EVM instructions as produced by a compiler. Unless otherwise
+specified this should be assumed to be hexadecimal encoded, representing
+a whole number of bytes, and <a class="reference internal" href="#term-prefixed"><span class="xref std std-term">prefixed</span></a> with <code class="docutils literal notranslate"><span class="pre">0x</span></code>.</p>
+<p>Bytecode can either be linked or unlinked. (see <a class="reference internal" href="#term-linking"><span class="xref std std-term">Linking</span></a>)</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Unlinked Bytecode:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body"><p class="first">The hexadecimal representation of a contract’s EVM
+instructions that contains sections of code that requires <a class="reference internal" href="#term-linking"><span class="xref std std-term">linking</span></a>
+for the contract to be functional.</p>
+<p>The sections of code which are unlinked <strong>must</strong> be filled in with zero bytes.</p>
+<p><strong>Example</strong>: <code class="docutils literal notranslate"><span class="pre">0x606060405260e06000730000000000000000000000000000000000000000634d536f</span></code></p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Linked Bytecode:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><p class="first">The hexadecimal representation of a contract’s EVM
+instructions which has had all <a class="reference internal" href="#term-link-reference"><span class="xref std std-term">Link References</span></a> replaced with the
+desired <a class="reference internal" href="#term-link-value"><span class="xref std std-term">Link Values</span></a>.</p>
+<p class="last"><strong>Example</strong>: <code class="docutils literal notranslate"><span class="pre">0x606060405260e06000736fe36000604051602001526040518160e060020a634d536f</span></code></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt id="term-chain-definition">Chain Definition</dt>
+<dd><p class="first">This definition originates from <a class="reference external" href="https://github.com/bitcoin/bips/blob/master/bip-0122.mediawiki">BIP122 URI</a>.</p>
+<p>A URI in the format <code class="docutils literal notranslate"><span class="pre">blockchain://&lt;chain_id&gt;/block/&lt;block_hash&gt;</span></code></p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">chain_id</span></code> is the unprefixed hexadecimal representation of the
+genesis hash for the chain.</li>
+<li><code class="docutils literal notranslate"><span class="pre">block_hash</span></code> is the unprefixed hexadecimal representation of the
+hash of a block on the chain.</li>
+</ul>
+<p class="last">A chain is considered to match a chain definition if the the genesis
+block hash matches the <code class="docutils literal notranslate"><span class="pre">chain_id</span></code> and the block defined by
+<code class="docutils literal notranslate"><span class="pre">block_hash</span></code> can be found on that chain. It is possible for multiple
+chains to match a single URI, in which case all chains are considered
+valid matches</p>
+</dd>
+<dt id="term-content-addressable-uri">Content Addressable URI</dt>
+<dd><p class="first">Any URI which contains a cryptographic hash which can be used to verify
+the integrity of the content found at the URI.</p>
+<p>The URI format is defined in RFC3986</p>
+<p class="last">It is <strong>recommended</strong> that tools support IPFS and Swarm.</p>
+</dd>
+<dt id="term-contract-alias">Contract Alias</dt>
+<dd><p class="first">This is a name used to reference a specific <a class="reference internal" href="#term-contract-type"><span class="xref std std-term">Contract Type</span></a>. Contract
+aliases <strong>must</strong> be unique within a single <a class="reference internal" href="#term-package"><span class="xref std std-term">Package</span></a>.</p>
+<p>The contract alias <strong>must</strong> use <em>one of</em> the following naming schemes:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">&lt;contract-name&gt;</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">&lt;contract-name&gt;&lt;identifier&gt;</span></code></li>
+</ul>
+<p>The <code class="docutils literal notranslate"><span class="pre">&lt;contract-name&gt;</span></code> portion <strong>must</strong> be the same as the
+<a class="reference internal" href="#term-contract-name"><span class="xref std std-term">Contract Name</span></a> for this contract type.</p>
+<p class="last">The <code class="docutils literal notranslate"><span class="pre">&lt;identifier&gt;</span></code> portion <strong>must</strong> match the regular expression
+<code class="docutils literal notranslate"><span class="pre">^[-a-zA-Z0-9]{1,256}$</span></code>.</p>
+</dd>
+<dt id="term-contract-instance">Contract Instance</dt>
+<dd><p class="first">A contract instance a specific deployed version of a <a class="reference internal" href="#term-contract-type"><span class="xref std std-term">Contract Type</span></a>.</p>
+<p class="last">All contract instances have an <a class="reference internal" href="#term-address"><span class="xref std std-term">Address</span></a> on some specific chain.</p>
+</dd>
+<dt id="term-contract-instance-name">Contract Instance Name</dt>
+<dd><p class="first">A name which refers to a specific <a class="reference internal" href="#term-contract-instance"><span class="xref std std-term">Contract Instance</span></a> on a specific
+chain from the deployments of a single <a class="reference internal" href="#term-package"><span class="xref std std-term">Package</span></a>. This name <strong>must</strong> be
+unique across all other contract instances for the given chain. The
+name must conform to the regular expression
+<code class="docutils literal notranslate"><span class="pre">^[a-zA-Z_$][a-zA-Z0-9_$]{0,255}$</span></code></p>
+<p>In cases where there is a single deployed instance of a given
+<a class="reference internal" href="#term-contract-type"><span class="xref std std-term">Contract Type</span></a>, package managers <strong>should</strong> use the <a class="reference internal" href="#term-contract-alias"><span class="xref std std-term">Contract Alias</span></a> for
+that contract type for this name.</p>
+<p class="last">In cases where there are multiple deployed instances of a given
+contract type, package managers <strong>should</strong> use a name which provides
+some added semantic information as to help differentiate the two
+deployed instances in a meaningful way.</p>
+</dd>
+<dt id="term-contract-name">Contract Name</dt>
+<dd><p class="first">The name found in the source code that defines a specific <a class="reference internal" href="#term-contract-type"><span class="xref std std-term">Contract Type</span></a>.
+These names <strong>must</strong> conform to the regular expression
+<code class="docutils literal notranslate"><span class="pre">^[a-zA-Z_$][a-zA-Z0-9_$]{0,255}$</span></code>.</p>
+<p class="last">There can be multiple contracts with the same contract name in a
+projects source files.</p>
+</dd>
+<dt id="term-contract-type">Contract Type</dt>
+<dd><p class="first">Refers to a specific contract in the package source.
+This term can be used to refer to an abstract contract, a normal
+contract, or a library. Two contracts are of the same contract type if
+they have the same bytecode.</p>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">contract</span> <span class="n">Wallet</span> <span class="p">{</span>
+    <span class="o">...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p class="last">A deployed instance of the <code class="docutils literal notranslate"><span class="pre">Wallet</span></code> contract would be of of type
+<code class="docutils literal notranslate"><span class="pre">Wallet</span></code>.</p>
+</dd>
+<dt id="term-identifier">Identifier</dt>
+<dd><p class="first">Refers generally to a named entity in the <a class="reference internal" href="#term-package"><span class="xref std std-term">Package</span></a>.</p>
+<p class="last">A string matching the regular expression <code class="docutils literal notranslate"><span class="pre">^[a-zA-Z][-_a-zA-Z0-9]{0,255}$</span></code></p>
+</dd>
+<dt id="term-link-reference">Link Reference</dt>
+<dd><p class="first">A location within a contract’s bytecode which needs to be linked.  A link
+reference has the following properties.</p>
+<blockquote class="last">
+<div><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name"><code class="docutils literal notranslate"><span class="pre">offset</span></code>:</th><td class="field-body">Defines the location within the bytecode where the
+link reference begins.</td>
+</tr>
+<tr class="field-even field"><th class="field-name"><code class="docutils literal notranslate"><span class="pre">length</span></code>:</th><td class="field-body">Defines the length of the reference.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name"><code class="docutils literal notranslate"><span class="pre">name</span></code>:</th><td class="field-body">(optional.) A string to identify the reference</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</dd>
+<dt id="term-link-value">Link Value</dt>
+<dd>A link value is the value which can be inserted in place of a
+<a class="reference internal" href="#term-link-reference"><span class="xref std std-term">Link Reference</span></a></dd>
+<dt id="term-linking">Linking</dt>
+<dd>The act of replacing <a class="reference internal" href="#term-link-reference"><span class="xref std std-term">Link References</span></a> with <a class="reference internal" href="#term-link-value"><span class="xref std std-term">Link Values</span></a> within some
+<a class="reference internal" href="#term-bytecode"><span class="xref std std-term">Bytecode</span></a>.</dd>
+<dt id="term-package">Package</dt>
+<dd><p class="first">Distribution of an application’s source or compiled bytecode along with
+metadata related to authorship, license, versioning, et al.</p>
+<p class="last">For brevity, the term <strong>Package</strong> is often used metonymously to mean
+<a class="reference internal" href="#term-package-manifest"><span class="xref std std-term">Package Manifest</span></a>.</p>
+</dd>
+<dt id="term-package-manifest">Package Manifest</dt>
+<dd>A machine-readable description of a package (See
+<a class="reference internal" href="v2-package-spec.html#v2-package-specification"><span class="std std-ref">V2 Specification</span></a> for information about the format for package
+manifests.)</dd>
+<dt id="term-prefixed">Prefixed</dt>
+<dd><p class="first"><a class="reference internal" href="#term-bytecode"><span class="xref std std-term">Bytecode</span></a> string with leading <code class="docutils literal notranslate"><span class="pre">0x</span></code>.</p>
+<blockquote class="last">
+<div><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"><code class="docutils literal notranslate"><span class="pre">0xdeadbeef</span></code></td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</dd>
+<dt id="term-unprefixed">Unprefixed</dt>
+<dd><p class="first">Not <a class="reference internal" href="#term-prefixed"><span class="xref std std-term">Prefixed</span></a>.</p>
+<blockquote class="last">
+<div><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"><code class="docutils literal notranslate"><span class="pre">deadbeef</span></code></td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</dd>
+</dl>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="postfix.html" class="btn btn-neutral float-right" title="Backwards Compatibility" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="use-cases.html" class="btn btn-neutral" title="Rationale" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Piper Merriam, et al..
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/contentui.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
