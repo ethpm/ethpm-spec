@@ -25,6 +25,7 @@ to distributed source files.
 - [Use Case Examples](http://ethpm.github.io/ethpm-spec/use-cases.html)
   - [Examples Sources](https://github.com/ethpm/ethpm-spec/blob/master/examples/)
 - [Glossary](http://ethpm.github.io/ethpm-spec/glossary.html)
+- [ethPM URI](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-1319.md) JSON tests (`./tests/fixtures/ethpm_uri_tests.json`)
 
 ## Examples / Use Cases
 
