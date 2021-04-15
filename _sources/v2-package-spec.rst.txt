@@ -3,6 +3,9 @@
 V2 Specification
 ================
 
+.. warning::
+    EthPM V2 is now deprecated. All tooling supports V3, and should be updated if not.
+
 .. include:: _include.rst
 
 This document defines the specification for an EthPM package manifest.

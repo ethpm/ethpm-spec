@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>V3 Specification [WIP] &mdash; EthPM Package Manifest  documentation</title>
+  <title>V3 Specification &mdash; EthPM Package Manifest  documentation</title>
   
 
   
@@ -84,7 +84,7 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="overview.html#overview">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="v2-package-spec.html">V2 Specification</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">V3 Specification [WIP]</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">V3 Specification</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#guiding-principles">Guiding Principles</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#conventions">Conventions</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#rfc2119">RFC2119</a></li>
@@ -223,7 +223,7 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>V3 Specification [WIP]</li>
+      <li>V3 Specification</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -242,8 +242,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="v3-specification-wip">
-<span id="v3-package-specification"></span><h1>V3 Specification [WIP]<a class="headerlink" href="#v3-specification-wip" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="v3-specification">
+<span id="v3-package-specification"></span><h1>V3 Specification<a class="headerlink" href="#v3-specification" title="Permalink to this headline">¶</a></h1>
 <p>This document defines the specification for an EthPM package manifest.
 A package manifest provides metadata about a <a class="reference internal" href="glossary.html#term-package"><span class="xref std std-term">Package</span></a>, and in most cases
 should provide sufficient information about the packaged contracts and its
@@ -1045,6 +1045,8 @@ or <code class="docutils literal notranslate"><span class="pre">checksum</span><
 <li><strong>Must</strong> be a relative filesystem path that begins with a <code class="docutils literal notranslate"><span class="pre">./</span></code>.</li>
 <li><strong>Must</strong> resolve to a path that is within the current virtual working directory.</li>
 <li><strong>Must</strong> be unique across all included sources.</li>
+<li>While this field might not be directly useful for certain compilers (i.e. Vyper),
+it is still required to ensure cross-tooling compatibility of packages.</li>
 </ul>
 <table class="last docutils field-list" frame="void" rules="none">
 <col class="field-name" />
