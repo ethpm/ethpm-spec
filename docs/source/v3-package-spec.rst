@@ -1,7 +1,7 @@
 .. _v3-package-specification:
 
-V3 Specification [WIP]
-======================
+V3 Specification
+================
 
 .. include:: _include.rst
 
@@ -564,10 +564,12 @@ Inlined contract source.
 
 Install Path: ``installPath``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Filesystem path of source file.
+Filesystem path of source file. 
   - **Must** be a relative filesystem path that begins with a ``./``.
   - **Must** resolve to a path that is within the current virtual working directory.
   - **Must** be unique across all included sources.
+  - While this field might not be directly useful for certain compilers (i.e. Vyper),
+    it is still required to ensure cross-tooling compatibility of packages.
 
   :Required: This field **must** be included for the package to be writable to disk.
   :Key: ``installPath``
