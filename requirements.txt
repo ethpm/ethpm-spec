@@ -30,4 +30,4 @@ sphinxcontrib-contentui==0.2.2
 sphinxcontrib-plantuml==0.11
 sphinxcontrib-soliditydomain==0.3.0
 sphinxcontrib-websupport==1.0.1
-urllib3==1.24.2
+urllib3==1.26.5
