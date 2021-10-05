@@ -441,14 +441,14 @@
     "manifest": "ethpm/3",
     "name": "standard-token",
     "sources": {
-        "./AbstractToken.sol": {
+        "AbstractToken.sol": {
             "installPath": "./AbstractToken.sol",
             "type": "solidity",
             "urls": [
                 "ipfs://QmSBYuGKSH2veDepMbFQu3XVStYRCvuqFjUV7YCPufeHJz"
             ]
         },
-        "./StandardToken.sol": {
+        "StandardToken.sol": {
             "installPath": "./StandardToken.sol",
             "type": "solidity",
             "urls": [

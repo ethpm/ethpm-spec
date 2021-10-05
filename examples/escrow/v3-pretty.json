@@ -152,14 +152,14 @@
     "manifest": "ethpm/3",
     "name": "escrow",
     "sources": {
-        "./Escrow.sol": {
+        "Escrow.sol": {
             "installPath": "./Escrow.sol",
             "type": "solidity",
             "urls": [
                 "ipfs://QmNLpdCi4UakwJ9rBoL7rDnEzNeA6f8uvKbiMhZVqTucu1"
             ]
         },
-        "./SafeSendLib.sol": {
+        "SafeSendLib.sol": {
             "installPath": "./SafeSendLib.sol",
             "type": "solidity",
             "urls": [
