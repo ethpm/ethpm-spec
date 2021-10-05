@@ -20,7 +20,7 @@
       "title": "Package Name",
       "description": "The name of the package that this release is for",
       "type": "string",
-      "pattern": "^[a-z][-a-z0-9]{0,255}$"
+      "pattern": "^[a-z][-a-z0-9]{0,254}$"
     },
     "meta": {
       "$ref": "#/definitions/PackageMeta"
@@ -51,7 +51,7 @@
       "description": "The contract types included in this release",
       "type": "object",
       "patternProperties": {
-        "[a-zA-Z][-a-zA-Z0-9_]{0,255}(?:\\[[-a-zA-Z0-9]{1,256}\\])?$": {
+        "[a-zA-Z][-a-zA-Z0-9_]{0,254}(?:\\[[-a-zA-Z0-9]{1,256}\\])?$": {
           "$ref": "#/definitions/ContractType"
         }
       }
@@ -70,7 +70,7 @@
       "title": "Build Dependencies",
       "type": "object",
       "patternProperties": {
-        "^[a-z][-a-z0-9]{0,255}$": {
+        "^[a-z][-a-z0-9]{0,254}$": {
           "$ref": "#/definitions/ContentURI"
         }
       }
@@ -128,7 +128,7 @@
           "title": "Contract Name",
           "description": "The name for this contract type as found in the project source code.",
           "type": "string",
-          "pattern": "[a-zA-Z][a-zA-Z0-9_]{0,255}"
+          "pattern": "[a-zA-Z][a-zA-Z0-9_]{0,254}"
         },
         "deployment_bytecode": {
           "$ref": "#/definitions/BytecodeObject"
@@ -164,7 +164,7 @@
           "title": "Contract Type Name",
           "description": "The contract type of this contract instance",
           "type": "string",
-          "pattern": "^(?:[a-z][-a-z0-9]{0,255}\\:)?[a-zA-Z][-a-zA-Z0-9_]{0,255}(?:\\[[-a-zA-Z0-9]{1,256}\\])?$"
+          "pattern": "^(?:[a-z][-a-z0-9]{0,254}\\:)?[a-zA-Z][-a-zA-Z0-9_]{0,254}(?:\\[[-a-zA-Z0-9]{1,256}\\])?$"
         },
         "address": {
           "$ref": "#/definitions/Address"
@@ -299,19 +299,19 @@
     "Identifier": {
       "title": "Identifier",
       "type": "string",
-      "pattern": "^[a-zA-Z][a-zA-Z0-9_]{0,255}$"
+      "pattern": "^[a-zA-Z][a-zA-Z0-9_]{0,254}$"
     },
     "ContractInstanceName": {
       "title": "Contract Instance Name",
       "description": "The name of the deployed contract instance",
       "type": "string",
-      "pattern": "^[a-zA-Z][a-zA-Z0-9_]{0,255}$"
+      "pattern": "^[a-zA-Z][a-zA-Z0-9_]{0,254}$"
     },
     "Deployment": {
       "title": "Deployment",
       "type": "object",
       "patternProperties": {
-        "^[a-zA-Z][a-zA-Z0-9_]{0,255}$": {
+        "^[a-zA-Z][a-zA-Z0-9_]{0,254}$": {
           "$ref": "#/definitions/ContractInstance"
         }
       }
@@ -320,7 +320,7 @@
       "title": "Package Contract Instance Name",
       "description": "The path to a deployed contract instance somewhere down the dependency tree",
       "type": "string",
-      "pattern": "^([a-z][-a-z0-9]{0,255}\\:)+[a-zA-Z][a-zA-Z0-9_]{0,255}$"
+      "pattern": "^([a-z][-a-z0-9]{0,254}\\:)+[a-zA-Z][a-zA-Z0-9_]{0,254}$"
     },
     "CompilerInformation": {
       "title": "Compiler Information",
