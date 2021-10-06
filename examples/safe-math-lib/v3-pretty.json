@@ -105,7 +105,7 @@
     "manifest": "ethpm/3",
     "name": "safe-math-lib",
     "sources": {
-        "./SafeMathLib.sol": {
+        "SafeMathLib.sol": {
             "installPath": "./SafeMathLib.sol",
             "type": "solidity",
             "urls": [
