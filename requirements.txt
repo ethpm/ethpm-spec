@@ -1,6 +1,6 @@
 alabaster==0.7.10
 antlr4-python3-runtime==4.7.1
-Babel==2.5.3
+Babel==2.9.1
 certifi==2018.4.16
 chardet==3.0.4
 docutils==0.14
