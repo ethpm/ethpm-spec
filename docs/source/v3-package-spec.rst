@@ -76,6 +76,16 @@ following serialization rules.
 
 ----
 
+Best Practices
+--------------
+
+The EthPM specification is designed to be as flexible as possible, adapting to many
+different use cases. As a result, it places few restrictions on what fields are required
+in a single package. However, it is recommended that package authors include all available
+contract assets in a package to make it as useful as possible.
+
+----
+
 Document Specification
 ----------------------
 
