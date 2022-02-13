@@ -13,7 +13,7 @@ MarkupSafe==1.1.1
 packaging==17.1
 pbr==4.0.3
 peewee==3.4.0
-Pygments==2.2.0
+Pygments==2.7.4
 pygments-lexer-solidity==0.2.0
 pyparsing==2.2.0
 pytz==2018.4
