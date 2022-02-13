@@ -1,0 +1,9 @@
+{
+    "package": "{\n    \"contractTypes\":{\n        \"ABCContract\":{}\n    },\n    \"manifest\":\"ethpm/3\"\n}",
+    "testCase": "invalid",
+    "errorInfo": {
+        "errorCode": "N0010",
+        "errorPointer": "/",
+        "reason": "is not tightly packed"
+    }
+}

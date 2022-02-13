@@ -24,3 +24,21 @@ def validate_v3(schema):
     def _validate(*args, **kwargs):
         validate(args[0], schema, cls=validator_for(schema, Draft7Validator))
     return _validate
+
+@pytest.fixture
+def validate_manifest_formatting():
+    def _validate(*args, **kwargs):
+        raw_manifest = args[0]
+        try:
+            manifest_dict = json.loads(raw_manifest)
+        except json.JSONDecodeError:
+            raise Exception("Invalid JSON")
+
+        if raw_manifest[-1:] == "\n":
+            raise Exception("Invalid trailing newline")
+
+        sorted_manifest = json.dumps(manifest_dict, sort_keys=True, separators=(",", ":"))
+        if raw_manifest != sorted_manifest:
+            raise Exception("Invalid manifest has unsorted keys, duplicate keys, or is not tightly packed.")
+
+    return _validate

@@ -1,0 +1,9 @@
+{
+    "package": "{\"contractTypes\":{\"ABCContract\":{\"abi\":[]},\"ABCContract\":{\"abi\":[]}},\"manifest\":\"ethpm/3\"}",
+    "testCase": "invalid",
+    "errorInfo": {
+        "errorCode": "N0010",
+        "errorPointer": "/",
+        "reason": "duplicate keys"
+    }
+}
