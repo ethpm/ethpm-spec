@@ -1,7 +1,7 @@
 alabaster==0.7.10
 antlr4-python3-runtime==4.7.1
 Babel==2.5.3
-certifi==2018.4.16
+certifi==2022.12.7
 chardet==3.0.4
 docutils==0.14
 idna==2.6
